@@ -1,12 +1,13 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Timer, Play, Pause, Square, Settings } from "lucide-react"
-import { usePomodoro } from "@/hooks/use-pomodoro"
+import { useState } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Timer, Play, Pause, Square, Settings } from "lucide-react";
+import { usePomodoro } from "@/hooks/use-pomodoro";
+import styles from "@/styles/pomodoro-timer.css";
 
 export function PomodoroTimer() {
   const {
@@ -21,44 +22,51 @@ export function PomodoroTimer() {
     updateSettings,
     formatTime,
     getTodaySessions,
-  } = usePomodoro()
+  } = usePomodoro();
 
-  const [showSettings, setShowSettings] = useState(false)
-  const [settingsForm, setSettingsForm] = useState(settings)
+  const [showSettings, setShowSettings] = useState(false);
+  const [settingsForm, setSettingsForm] = useState(settings);
 
-  const todaySessions = getTodaySessions()
-  const workSessions = todaySessions.filter((s) => s.type === "work").length
-  const breakSessions = todaySessions.filter((s) => s.type === "break").length
+  const todaySessions = getTodaySessions();
+  const workSessions = todaySessions.filter((s) => s.type === "work").length;
+  const breakSessions = todaySessions.filter((s) => s.type === "break").length;
 
   const handleSettingsUpdate = () => {
-    updateSettings(settingsForm)
-    setShowSettings(false)
-  }
+    updateSettings(settingsForm);
+    setShowSettings(false);
+  };
 
   const getNextSessionType = (): "work" | "break" => {
     if (!currentSession) {
-      return workSessions === 0 ? "work" : "break"
+      return workSessions === 0 ? "work" : "break";
     }
-    return currentSession.type === "work" ? "break" : "work"
-  }
+    return currentSession.type === "work" ? "break" : "work";
+  };
 
   return (
-    <Card>
-      <CardHeader className="flex flex-row items-center justify-between">
-        <CardTitle className="flex items-center gap-2">
-          <Timer className="h-5 w-5 text-red-500" />
+    <Card className={styles.timerCard}>
+      <CardHeader className={styles.cardHeader}>
+        <CardTitle className={styles.titleContainer}>
+          <Timer className={styles.timerIcon} />
           Pomodoro Timer
         </CardTitle>
-        <Button variant="ghost" size="sm" onClick={() => setShowSettings(!showSettings)}>
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={() => setShowSettings(!showSettings)}
+          className={styles.settingsButton}
+        >
           <Settings className="h-4 w-4" />
         </Button>
       </CardHeader>
       <CardContent className="space-y-4">
         {showSettings && (
-          <div className="space-y-3 p-3 bg-muted rounded-lg">
-            <div className="grid grid-cols-2 gap-3">
-              <div>
-                <Label>Work Duration (min)</Label>
+          <div className={styles.settingsContainer}>
+            <div className={styles.settingsGrid}>
+              <div className={styles.settingGroup}>
+                <Label className={styles.settingLabel}>
+                  Work Duration (min)
+                </Label>
                 <Input
                   type="number"
                   value={settingsForm.workDuration}
@@ -68,10 +76,11 @@ export function PomodoroTimer() {
                       workDuration: Number.parseInt(e.target.value) || 25,
                     })
                   }
+                  className={styles.settingInput}
                 />
               </div>
-              <div>
-                <Label>Short Break (min)</Label>
+              <div className={styles.settingGroup}>
+                <Label className={styles.settingLabel}>Short Break (min)</Label>
                 <Input
                   type="number"
                   value={settingsForm.shortBreakDuration}
@@ -81,10 +90,11 @@ export function PomodoroTimer() {
                       shortBreakDuration: Number.parseInt(e.target.value) || 5,
                     })
                   }
+                  className={styles.settingInput}
                 />
               </div>
-              <div>
-                <Label>Long Break (min)</Label>
+              <div className={styles.settingGroup}>
+                <Label className={styles.settingLabel}>Long Break (min)</Label>
                 <Input
                   type="number"
                   value={settingsForm.longBreakDuration}
@@ -94,53 +104,77 @@ export function PomodoroTimer() {
                       longBreakDuration: Number.parseInt(e.target.value) || 15,
                     })
                   }
+                  className={styles.settingInput}
                 />
               </div>
-              <div>
-                <Label>Sessions Until Long Break</Label>
+              <div className={styles.settingGroup}>
+                <Label className={styles.settingLabel}>
+                  Sessions Until Long Break
+                </Label>
                 <Input
                   type="number"
                   value={settingsForm.sessionsUntilLongBreak}
                   onChange={(e) =>
                     setSettingsForm({
                       ...settingsForm,
-                      sessionsUntilLongBreak: Number.parseInt(e.target.value) || 4,
+                      sessionsUntilLongBreak:
+                        Number.parseInt(e.target.value) || 4,
                     })
                   }
+                  className={styles.settingInput}
                 />
               </div>
             </div>
-            <Button onClick={handleSettingsUpdate} className="w-full">
+            <Button
+              onClick={handleSettingsUpdate}
+              className={styles.saveSettingsButton}
+            >
               Save Settings
             </Button>
           </div>
         )}
 
-        <div className="text-center space-y-4">
-          <div className="text-6xl font-mono font-bold">{formatTime(timeLeft)}</div>
+        <div className={styles.timerDisplay}>
+          <div className={styles.timeText}>{formatTime(timeLeft)}</div>
 
           {currentSession && (
-            <div className="text-lg font-medium">{currentSession.type === "work" ? "Work Session" : "Break Time"}</div>
+            <div className={styles.sessionTypeText}>
+              {currentSession.type === "work" ? "Work Session" : "Break Time"}
+            </div>
           )}
 
-          <div className="flex justify-center gap-2">
+          <div className={styles.controlsContainer}>
             {!currentSession ? (
-              <Button onClick={() => startSession(getNextSessionType())} className="flex items-center gap-2">
+              <Button
+                onClick={() => startSession(getNextSessionType())}
+                className={styles.startButton}
+              >
                 <Play className="h-4 w-4" />
                 Start {getNextSessionType() === "work" ? "Work" : "Break"}
               </Button>
             ) : (
               <>
                 {isRunning ? (
-                  <Button onClick={pauseSession} variant="outline">
+                  <Button
+                    onClick={pauseSession}
+                    variant="outline"
+                    className={styles.pauseButton}
+                  >
                     <Pause className="h-4 w-4" />
                   </Button>
                 ) : (
-                  <Button onClick={resumeSession}>
+                  <Button
+                    onClick={resumeSession}
+                    className={styles.resumeButton}
+                  >
                     <Play className="h-4 w-4" />
                   </Button>
                 )}
-                <Button onClick={stopSession} variant="destructive">
+                <Button
+                  onClick={stopSession}
+                  variant="destructive"
+                  className={styles.stopButton}
+                >
                   <Square className="h-4 w-4" />
                 </Button>
               </>
@@ -148,17 +182,17 @@ export function PomodoroTimer() {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-4 text-center">
-          <div className="p-3 bg-muted rounded-lg">
-            <div className="text-2xl font-bold text-green-600">{workSessions}</div>
-            <div className="text-sm text-muted-foreground">Work Sessions</div>
+        <div className={styles.statsGrid}>
+          <div className={styles.statCard}>
+            <div className={styles.workSessionsCount}>{workSessions}</div>
+            <div className={styles.statLabel}>Work Sessions</div>
           </div>
-          <div className="p-3 bg-muted rounded-lg">
-            <div className="text-2xl font-bold text-blue-600">{breakSessions}</div>
-            <div className="text-sm text-muted-foreground">Break Sessions</div>
+          <div className={styles.statCard}>
+            <div className={styles.breakSessionsCount}>{breakSessions}</div>
+            <div className={styles.statLabel}>Break Sessions</div>
           </div>
         </div>
       </CardContent>
     </Card>
-  )
+  );
 }
