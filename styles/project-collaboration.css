@@ -1,0 +1,108 @@
+/* Project Collaboration Component Styles */
+
+.projectCollaboration {
+  /* spacing between sections */
+  margin-bottom: 1.5rem;
+}
+
+.projectCollaborationHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.projectCollaborationTitle {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.projectCollaborationGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .projectCollaborationGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .projectCollaborationGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.projectCard {
+  transition: box-shadow 0.2s;
+}
+
+.projectCard:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.projectStatus {
+  color: #fff;
+  border: none;
+  padding: 0.25em 0.75em;
+  border-radius: 0.25em;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.projectStatusPlanning {
+  background: #3b82f6;
+}
+.projectStatusInProgress {
+  background: #f59e42;
+}
+.projectStatusReview {
+  background: #a78bfa;
+}
+.projectStatusCompleted {
+  background: #22c55e;
+}
+.projectStatusDefault {
+  background: #6b7280;
+}
+
+.projectProgress {
+  height: 0.5rem;
+}
+
+.projectDueSoon {
+  color: #eab308;
+}
+.projectOverdue {
+  color: #dc2626;
+}
+
+.projectCardContent {
+  padding: 1.5rem 1rem;
+  text-align: center;
+}
+
+.projectCardTitle {
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-clamp: 2;
+}
+
+.projectCardDescription {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin-bottom: 1rem;
+  line-clamp: 2;
+}
+
+.projectCardActions {
+  display: flex;
+  gap: 0.5rem;
+  padding-top: 0.5rem;
+}
+
+.projectCardActions .btn {
+  flex: 1;
+  background: transparent;
+}
