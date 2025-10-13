@@ -1,0 +1,91 @@
+.container {
+  @apply space-y-6;
+}
+
+.header {
+  @apply flex items-center justify-between;
+}
+
+.title {
+  @apply text-2xl font-bold;
+}
+
+.createButton {
+  @apply flex items-center;
+}
+
+.dialogContent {
+  @apply space-y-4;
+}
+
+.formLabel {
+  @apply text-sm font-medium mb-2 block;
+}
+
+.actionButtons {
+  @apply flex justify-end gap-2;
+}
+
+.emptyStateCard {
+  @apply text-center py-12;
+}
+
+.emptyStateIcon {
+  @apply h-12 w-12 text-muted-foreground mx-auto mb-4;
+}
+
+.emptyStateTitle {
+  @apply text-lg font-medium mb-2;
+}
+
+.emptyStateDescription {
+  @apply text-muted-foreground mb-4;
+}
+
+.groupsGrid {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
+}
+
+.groupCard {
+  @apply hover:shadow-md transition-shadow cursor-pointer;
+}
+
+.cardHeader {
+  @apply pb-3;
+}
+
+.cardHeaderContent {
+  @apply flex items-start justify-between;
+}
+
+.cardTitle {
+  @apply text-lg;
+}
+
+.subjectBadge {
+  @apply mt-1;
+}
+
+.descriptionText {
+  @apply text-sm text-muted-foreground mb-4 line-clamp-2;
+}
+
+.membersContainer {
+  @apply flex items-center gap-2 mb-4;
+}
+
+.avatarGroup {
+  @apply flex -space-x-2;
+}
+
+.memberCount {
+  @apply text-sm text-muted-foreground;
+}
+
+.actionButtonsGroup {
+  @apply flex gap-2;
+}
+
+.chatButton {
+  @apply flex-1;
+}
