@@ -33,22 +33,34 @@ export function Footer() {
             <h3>Quick Links</h3>
             <ul className={styles["links-list"]}>
               <li>
-                <Link href="/" className={styles.link}>Home</Link>
+                <Link href="/" className={styles.link}>
+                  Home
+                </Link>
               </li>
               <li>
-                <Link href="/expenses" className={styles.link}>Expense Tracker</Link>
+                <Link href="/expenses" className={styles.link}>
+                  Expense Tracker
+                </Link>
               </li>
               <li>
-                <Link href="/todos" className={styles.link}>Task Manager</Link>
+                <Link href="/todos" className={styles.link}>
+                  Task Manager
+                </Link>
               </li>
               <li>
-                <Link href="/notes" className={styles.link}>Sticky Notes</Link>
+                <Link href="/notes" className={styles.link}>
+                  Sticky Notes
+                </Link>
               </li>
               <li>
-                <Link href="/tasks" className={styles.link}>Study Planner</Link>
+                <Link href="/tasks" className={styles.link}>
+                  Study Planner
+                </Link>
               </li>
               <li>
-                <Link href="/wellbeing" className={styles.link}>Wellbeing Tracker</Link>
+                <Link href="/wellbeing" className={styles.link}>
+                  Wellbeing Tracker
+                </Link>
               </li>
             </ul>
           </div>
@@ -73,15 +85,24 @@ export function Footer() {
             <div>
               <h3>Follow Us</h3>
               <div className={styles["social-links"]}>
-                <Link href="https://github.com/1046prt/" className={styles["social-link"]}>
+                <Link
+                  href="https://github.com/1046prt/"
+                  className={styles["social-link"]}
+                >
                   <Github />
                   <span className="sr-only">GitHub</span>
                 </Link>
-                <Link href="https://x.com/1046prt/" className={styles["social-link"]}>
+                <Link
+                  href="https://x.com/1046prt/"
+                  className={styles["social-link"]}
+                >
                   <Twitter />
                   <span className="sr-only">Twitter</span>
                 </Link>
-                <Link href="mailto:1046prt@gmail.com" className={styles["social-link"]}>
+                <Link
+                  href="mailto:1046prt@gmail.com"
+                  className={styles["social-link"]}
+                >
                   <Mail />
                   <span className="sr-only">Email</span>
                 </Link>

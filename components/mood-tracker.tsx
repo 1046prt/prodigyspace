@@ -117,24 +117,22 @@ export function MoodTracker({ moodEntries, onAddEntry }: MoodTrackerProps) {
             <div>
               <label className={styles.moodLabel}>Mood</label>
               <div className={styles.moodButtons}>
-                {Object.entries(moodEmojis).map(
-                  ([value, { emoji, label, color }]) => (
-                    <Button
-                      key={value}
-                      variant={
-                        mood === Number.parseInt(value) ? "default" : "outline"
-                      }
-                      size="sm"
-                      onClick={() =>
-                        setMood(Number.parseInt(value) as 1 | 2 | 3 | 4 | 5)
-                      }
-                      className={styles.moodButton}
-                    >
-                      <span className={styles.moodEmoji}>{emoji}</span>
-                      <span className={styles.moodLabelSmall}>{label}</span>
-                    </Button>
-                  )
-                )}
+                {Object.entries(moodEmojis).map(([value, { emoji, label }]) => (
+                  <Button
+                    key={value}
+                    variant={
+                      mood === Number.parseInt(value) ? "default" : "outline"
+                    }
+                    size="sm"
+                    onClick={() =>
+                      setMood(Number.parseInt(value) as 1 | 2 | 3 | 4 | 5)
+                    }
+                    className={styles.moodButton}
+                  >
+                    <span className={styles.moodEmoji}>{emoji}</span>
+                    <span className={styles.moodLabelSmall}>{label}</span>
+                  </Button>
+                ))}
               </div>
             </div>
 

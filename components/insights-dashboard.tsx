@@ -16,8 +16,8 @@ import {
   Pie,
   Cell,
 } from "recharts";
-import { TrendingUp, Calendar, Activity, Brain, Heart } from "lucide-react";
-import { format, subDays, subWeeks, subMonths } from "date-fns";
+import { TrendingUp, Activity, Brain, Heart } from "lucide-react";
+import { format, subDays } from "date-fns";
 import type { MoodEntry, MeditationSession } from "@/types/wellbeing";
 import styles from "@styles/insight-dashboard.css";
 
@@ -101,7 +101,7 @@ const prepareMeditationTypeData = (meditationSessions: MeditationSession[]) => {
   });
 
   return Object.entries(typeCount)
-    .filter(([_, count]) => count > 0)
+    .filter(([, count]) => count > 0)
     .map(([name, value]) => ({ name, value }));
 };
 

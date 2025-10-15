@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Menu, X, GraduationCap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toggle";
-import styles from "@/styles/header.css";
+import "@/styles/header.css";
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -19,43 +19,43 @@ export function Header() {
   ];
 
   return (
-    <header className={styles.header}>
-      <div className={styles.container}>
+    <header className="header">
+      <div className="container">
         {/* Logo and Title */}
-        <Link href="/" className={styles.logoContainer}>
-          <div className={styles.logoIcon}>
-            <GraduationCap className={styles.menuButtonIcon} />
+        <Link href="/" className="logoContainer">
+          <div className="logoIcon">
+            <GraduationCap className="menuButtonIcon" />
           </div>
-          <span className={styles.logoText}>prodigyspace</span>
+          <span className="logoText">prodigyspace</span>
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className={styles.desktopNav}>
+        <nav className="desktopNav">
           {navItems.map((item) => (
-            <Link key={item.href} href={item.href} className={styles.navLink}>
+            <Link key={item.href} href={item.href} className="navLink">
               {item.label}
             </Link>
           ))}
         </nav>
 
         {/* Desktop Theme Toggle */}
-        <div className={styles.desktopThemeToggle}>
+        <div className="desktopThemeToggle">
           <ThemeToggle />
         </div>
 
         {/* Mobile Menu Button and Theme Toggle */}
-        <div className={styles.mobileControls}>
+        <div className="mobileControls">
           <ThemeToggle />
           <Button
             variant="ghost"
             size="icon"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className={styles.menuButton}
+            className="menuButton"
           >
             {isMenuOpen ? (
-              <X className={styles.menuButtonIcon} />
+              <X className="menuButtonIcon" />
             ) : (
-              <Menu className={styles.menuButtonIcon} />
+              <Menu className="menuButtonIcon" />
             )}
             <span className="sr-only">Toggle menu</span>
           </Button>
@@ -64,13 +64,13 @@ export function Header() {
 
       {/* Mobile Navigation */}
       {isMenuOpen && (
-        <div className={styles.mobileNav}>
-          <nav className={styles.mobileNavContainer}>
+        <div className="mobileNav">
+          <nav className="mobileNavContainer">
             {navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className={styles.mobileNavLink}
+                className="mobileNavLink"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item.label}

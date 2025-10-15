@@ -6,7 +6,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { GraduationCap, Target, Users, Zap } from "lucide-react";
-import styles from "@/styles/about.css";
 
 export default function AboutPage() {
   const values = [
@@ -37,12 +36,14 @@ export default function AboutPage() {
   ];
 
   return (
-    <div className={styles.aboutContainer}>
-      <div className={styles.aboutContent}>
+    <div className="w-full px-4 sm:px-6 lg:px-8 py-6">
+      <div className="max-w-4xl mx-auto">
         {/* Hero Section */}
-        <div className={styles.heroSection}>
-          <h1 className={styles.heroTitle}>About ProdigySpace</h1>
-          <p className={styles.heroSubtitle}>
+        <div className="text-center py-12">
+          <h1 className="text-4xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            About ProdigySpace
+          </h1>
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
             ProdigySpace was created by students, for students. We understand
             the unique challenges of managing academic life, personal finances,
             and staying organized while pursuing your education.
@@ -50,15 +51,15 @@ export default function AboutPage() {
         </div>
 
         {/* Mission Section */}
-        <div className={styles.missionSection}>
-          <Card className={styles.missionCard}>
-            <CardHeader className={styles.missionCardHeader}>
-              <CardTitle className={styles.missionCardTitle}>
+        <div className="mb-12">
+          <Card className="border-2 border-primary/20">
+            <CardHeader className="text-center">
+              <CardTitle className="text-2xl font-bold text-primary">
                 Our Mission
               </CardTitle>
             </CardHeader>
-            <CardContent className={styles.missionCardContent}>
-              <p className={styles.missionDescription}>
+            <CardContent className="text-center">
+              <p className="text-lg text-muted-foreground">
                 To empower students with simple, powerful tools that help them
                 stay organized, manage their finances, and focus on what matters
                 most - their education and personal growth. We believe that
@@ -70,27 +71,26 @@ export default function AboutPage() {
         </div>
 
         {/* Values Section */}
-        <div className={styles.valuesSection}>
-          <h2 className={styles.valuesTitle}>What We Stand For</h2>
-          <div className={`${styles.valuesGrid} ${styles.twoColumns}`}>
+        <div className="mb-12">
+          <h2 className="text-3xl font-bold text-center mb-8">
+            What We Stand For
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {values.map((value, index) => (
-              <Card key={index} className={styles.valueCard}>
-                <CardHeader className={styles.valueCardHeader}>
-                  <div className={styles.valueIconContainer}>
-                    <div
-                      className={`${styles.valueIconWrapper} ${styles.light} ${styles.dark}`}
-                    >
+              <Card
+                key={index}
+                className="h-full hover:shadow-lg transition-shadow"
+              >
+                <CardHeader>
+                  <div className="flex items-center space-x-3">
+                    <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-blue-100 dark:bg-blue-900">
                       <value.icon className="h-5 w-5 text-blue-600 dark:text-blue-400" />
                     </div>
-                    <CardTitle className={styles.valueCardTitle}>
-                      {value.title}
-                    </CardTitle>
+                    <CardTitle className="text-xl">{value.title}</CardTitle>
                   </div>
                 </CardHeader>
-                <CardContent className={styles.valueCardContent}>
-                  <CardDescription
-                    className={`${styles.valueDescription} ${styles.dark}`}
-                  >
+                <CardContent>
+                  <CardDescription className="text-base">
                     {value.description}
                   </CardDescription>
                 </CardContent>
@@ -100,47 +100,43 @@ export default function AboutPage() {
         </div>
 
         {/* Features Overview */}
-        <div className={styles.featuresSection}>
-          <h2 className={styles.featuresTitle}>Why Choose prodigyspace?</h2>
-          <div className={`${styles.featuresGrid} ${styles.threeColumns}`}>
-            <div className={styles.featureItem}>
-              <div
-                className={`${styles.featureIconWrapper} ${styles.emerald} ${styles.dark}`}
-              >
+        <div className="mb-12">
+          <h2 className="text-3xl font-bold text-center mb-8">
+            Why Choose ProdigySpace?
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="text-center">
+              <div className="flex items-center justify-center w-16 h-16 mx-auto mb-4 rounded-full bg-emerald-100 dark:bg-emerald-900">
                 <span className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">
                   💰
                 </span>
               </div>
-              <h3 className={styles.featureTitle}>Smart Budgeting</h3>
-              <p className={`${styles.featureDescription} ${styles.dark}`}>
+              <h3 className="text-xl font-bold mb-3">Smart Budgeting</h3>
+              <p className="text-muted-foreground">
                 Track expenses with categories, set budgets, and visualize your
                 spending patterns with intuitive charts.
               </p>
             </div>
-            <div className={styles.featureItem}>
-              <div
-                className={`${styles.featureIconWrapper} ${styles.blue} ${styles.dark}`}
-              >
+            <div className="text-center">
+              <div className="flex items-center justify-center w-16 h-16 mx-auto mb-4 rounded-full bg-blue-100 dark:bg-blue-900">
                 <span className="text-2xl font-bold text-blue-600 dark:text-blue-400">
                   ✅
                 </span>
               </div>
-              <h3 className={styles.featureTitle}>Task Management</h3>
-              <p className={`${styles.featureDescription} ${styles.dark}`}>
+              <h3 className="text-xl font-bold mb-3">Task Management</h3>
+              <p className="text-muted-foreground">
                 Organize assignments, set priorities, and never miss a deadline
                 with our comprehensive task system.
               </p>
             </div>
-            <div className={styles.featureItem}>
-              <div
-                className={`${styles.featureIconWrapper} ${styles.amber} ${styles.dark}`}
-              >
+            <div className="text-center">
+              <div className="flex items-center justify-center w-16 h-16 mx-auto mb-4 rounded-full bg-amber-100 dark:bg-amber-900">
                 <span className="text-2xl font-bold text-amber-600 dark:text-amber-400">
                   📝
                 </span>
               </div>
-              <h3 className={styles.featureTitle}>Quick Notes</h3>
-              <p className={`${styles.featureDescription} ${styles.dark}`}>
+              <h3 className="text-xl font-bold mb-3">Quick Notes</h3>
+              <p className="text-muted-foreground">
                 Capture ideas instantly with sticky notes that you can organize,
                 color-code, and access offline.
               </p>

@@ -1,70 +1,101 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { NoteEditor } from "@/components/note-editor"
-import { DocumentScanner } from "@/components/document-scanner"
-import { useNotes } from "@/hooks/use-notes"
-import { Plus, Search, Edit, Trash2, Pin, FileText, Camera } from "lucide-react"
-import type { Note } from "@/types/notes"
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { NoteEditor } from "@/components/note-editor";
+import { DocumentScanner } from "@/components/document-scanner";
+import { useNotes } from "@/hooks/use-notes";
+import {
+  Plus,
+  Search,
+  Edit,
+  Trash2,
+  Pin,
+  FileText,
+  Camera,
+} from "lucide-react";
+import type { Note } from "@/types/notes";
 
 export default function NotesPage() {
-  const { notes, scannedDocs, addNote, updateNote, deleteNote, addScannedDoc, deleteScannedDoc } = useNotes()
-  const [showEditor, setShowEditor] = useState(false)
-  const [editingNote, setEditingNote] = useState<Note | undefined>()
-  const [searchTerm, setSearchTerm] = useState("")
-  const [categoryFilter, setCategoryFilter] = useState<string>("all")
+  const {
+    notes,
+    scannedDocs,
+    addNote,
+    updateNote,
+    deleteNote,
+    addScannedDoc,
+    deleteScannedDoc,
+  } = useNotes();
+  const [showEditor, setShowEditor] = useState(false);
+  const [editingNote, setEditingNote] = useState<Note | undefined>();
+  const [searchTerm, setSearchTerm] = useState("");
+  const [categoryFilter, setCategoryFilter] = useState<string>("all");
 
   const filteredNotes = notes
     .filter((note) => {
       const matchesSearch =
         note.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
         note.content.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        note.tags.some((tag) => tag.toLowerCase().includes(searchTerm.toLowerCase()))
-      const matchesCategory = categoryFilter === "all" || note.category === categoryFilter
-      return matchesSearch && matchesCategory
+        note.tags.some((tag) =>
+          tag.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+      const matchesCategory =
+        categoryFilter === "all" || note.category === categoryFilter;
+      return matchesSearch && matchesCategory;
     })
     .sort((a, b) => {
-      if (a.isPinned && !b.isPinned) return -1
-      if (!a.isPinned && b.isPinned) return 1
-      return new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
-    })
+      if (a.isPinned && !b.isPinned) return -1;
+      if (!a.isPinned && b.isPinned) return 1;
+      return new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime();
+    });
 
-  const handleSaveNote = (noteData: Omit<Note, "id" | "createdAt" | "updatedAt">) => {
+  const handleSaveNote = (
+    noteData: Omit<Note, "id" | "createdAt" | "updatedAt">
+  ) => {
     if (editingNote) {
-      updateNote(editingNote.id, noteData)
+      updateNote(editingNote.id, noteData);
     } else {
-      addNote(noteData)
+      addNote(noteData);
     }
-    setShowEditor(false)
-    setEditingNote(undefined)
-  }
+    setShowEditor(false);
+    setEditingNote(undefined);
+  };
 
   const handleEditNote = (note: Note) => {
-    setEditingNote(note)
-    setShowEditor(true)
-  }
+    setEditingNote(note);
+    setShowEditor(true);
+  };
 
   const handleCancelEdit = () => {
-    setShowEditor(false)
-    setEditingNote(undefined)
-  }
+    setShowEditor(false);
+    setEditingNote(undefined);
+  };
 
   if (showEditor) {
     return (
-      <div className="container mx-auto p-6">
-        <NoteEditor note={editingNote} onSave={handleSaveNote} onCancel={handleCancelEdit} />
+      <div className="w-full px-4 sm:px-6 lg:px-8 py-6">
+        <NoteEditor
+          note={editingNote}
+          onSave={handleSaveNote}
+          onCancel={handleCancelEdit}
+        />
       </div>
-    )
+    );
   }
 
   return (
-    <div className="container mx-auto p-6">
+    <div className="w-full px-4 sm:px-6 lg:px-8 py-6">
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-3xl font-bold">Notes & Documents</h1>
         <Button onClick={() => setShowEditor(true)}>
@@ -132,15 +163,25 @@ export default function NotesPage() {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredNotes.map((note) => (
-                <Card key={note.id} className="hover:shadow-md transition-shadow">
+                <Card
+                  key={note.id}
+                  className="hover:shadow-md transition-shadow"
+                >
                   <CardHeader className="pb-3">
                     <div className="flex items-start justify-between">
                       <CardTitle className="text-lg flex items-center gap-2">
-                        {note.isPinned && <Pin className="h-4 w-4 text-yellow-600" />}
+                        {note.isPinned && (
+                          <Pin className="h-4 w-4 text-yellow-600" />
+                        )}
                         <span className="truncate">{note.title}</span>
                       </CardTitle>
                       <div className="flex gap-1">
-                        <Button size="sm" variant="ghost" onClick={() => handleEditNote(note)} className="h-8 w-8 p-0">
+                        <Button
+                          size="sm"
+                          variant="ghost"
+                          onClick={() => handleEditNote(note)}
+                          className="h-8 w-8 p-0"
+                        >
                           <Edit className="h-3 w-3" />
                         </Button>
                         <Button
@@ -158,11 +199,17 @@ export default function NotesPage() {
                     </Badge>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-sm text-muted-foreground mb-3 line-clamp-3">{note.content || "No content"}</p>
+                    <p className="text-sm text-muted-foreground mb-3 line-clamp-3">
+                      {note.content || "No content"}
+                    </p>
                     {note.tags.length > 0 && (
                       <div className="flex flex-wrap gap-1 mb-3">
                         {note.tags.slice(0, 3).map((tag) => (
-                          <Badge key={tag} variant="secondary" className="text-xs">
+                          <Badge
+                            key={tag}
+                            variant="secondary"
+                            className="text-xs"
+                          >
                             {tag}
                           </Badge>
                         ))}
@@ -173,7 +220,9 @@ export default function NotesPage() {
                         )}
                       </div>
                     )}
-                    <p className="text-xs text-muted-foreground">Updated {note.updatedAt.toLocaleDateString()}</p>
+                    <p className="text-xs text-muted-foreground">
+                      Updated {note.updatedAt.toLocaleDateString()}
+                    </p>
                   </CardContent>
                 </Card>
               ))}
@@ -182,9 +231,13 @@ export default function NotesPage() {
         </TabsContent>
 
         <TabsContent value="scanner">
-          <DocumentScanner onSave={addScannedDoc} scannedDocs={scannedDocs} onDelete={deleteScannedDoc} />
+          <DocumentScanner
+            onSave={addScannedDoc}
+            scannedDocs={scannedDocs}
+            onDelete={deleteScannedDoc}
+          />
         </TabsContent>
       </Tabs>
     </div>
-  )
+  );
 }

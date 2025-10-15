@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import styles from "../styles/project-collaboration.css";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -67,21 +67,6 @@ export function ProjectCollaboration({
     setSelectedGroupId("");
     setDueDate(undefined);
     setShowCreateDialog(false);
-  };
-
-  const getStatusColor = (status: Project["status"]) => {
-    switch (status) {
-      case "planning":
-        return "bg-blue-500";
-      case "in-progress":
-        return "bg-yellow-500";
-      case "review":
-        return "bg-purple-500";
-      case "completed":
-        return "bg-green-500";
-      default:
-        return "bg-gray-500";
-    }
   };
 
   const getProjectProgress = (project: Project) => {

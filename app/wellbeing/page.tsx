@@ -20,7 +20,7 @@ export default function WellbeingPage() {
   } = useWellbeing();
 
   return (
-    <div className="container mx-auto p-6">
+    <div className="w-full px-4 sm:px-6 lg:px-8 py-6">
       <div className="mb-6">
         <h1 className="text-3xl font-bold mb-2">Well-being Center</h1>
         <p className="text-muted-foreground">

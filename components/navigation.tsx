@@ -18,7 +18,7 @@ import {
   ListTodo,
 } from "lucide-react";
 import { useState } from "react";
-import styles from "@styles/navigation.css";
+import "@styles/navigation.css";
 
 const navigation = [
   { name: "Dashboard", href: "/", icon: Home },
@@ -36,30 +36,30 @@ export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className={styles.header}>
-      <div className={styles.container}>
+    <header className="header">
+      <div className="container">
         {/* Logo */}
-        <Link href="/" className={styles.logoLink}>
-          <div className={styles.logoWrapper}>
+        <Link href="/" className="logoLink">
+          <div className="logoWrapper">
             <Image
               src="/logo.png"
               alt="ProdigySpace Logo"
               width={24}
               height={24}
-              className={styles.logoImage}
+              className="logoImage"
             />
           </div>
-          <span className={styles.logoText}>ProdigySpace</span>
+          <span className="logoText">ProdigySpace</span>
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className={styles.desktopNav}>
+        <nav className="desktopNav">
           {navigation.map((item) => {
             const isActive = pathname === item.href;
             return (
               <Link key={item.name} href={item.href}>
                 <Button variant={isActive ? "default" : "ghost"} size="sm">
-                  <item.icon className={styles.icon} />
+                  <item.icon className="icon" />
                   {item.name}
                 </Button>
               </Link>
@@ -68,22 +68,18 @@ export function Navigation() {
         </nav>
 
         {/* Right side */}
-        <div className={styles.controls}>
+        <div className="controls">
           <ThemeToggle />
 
           {/* Mobile Navigation */}
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
-              <Button
-                variant="ghost"
-                size="sm"
-                className={styles.mobileTrigger}
-              >
-                <Menu className={styles.icon} />
+              <Button variant="ghost" size="sm" className="mobileTrigger">
+                <Menu className="icon" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className={styles.sheetContent}>
-              <div className={styles.sheetContainer}>
+            <SheetContent side="right" className="sheetContent">
+              <div className="sheetContainer">
                 {navigation.map((item) => {
                   const isActive = pathname === item.href;
                   return (
@@ -95,9 +91,9 @@ export function Navigation() {
                       <Button
                         variant={isActive ? "default" : "ghost"}
                         size="sm"
-                        className={styles.navButton}
+                        className="navButton"
                       >
-                        <item.icon className={styles.icon} />
+                        <item.icon className="icon" />
                         {item.name}
                       </Button>
                     </Link>

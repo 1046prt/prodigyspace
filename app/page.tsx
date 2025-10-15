@@ -126,7 +126,7 @@ export default function HomePage() {
 
   return (
     <div className={styles["mainpage-container"]}>
-      <div className="container mx-auto p-6">
+      <div className="w-full px-4 sm:px-6 lg:px-8">
         <header className={styles["mainpage-header"]}>
           <div className={styles["mainpage-logo-container"]}>
             <div className={styles["mainpage-logo-icon"]}>
