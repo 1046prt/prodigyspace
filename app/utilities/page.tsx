@@ -67,51 +67,54 @@ const mockGoals = [
 
 export default function UtilitiesPage() {
   return (
-    <div className="w-full px-4 sm:px-6 lg:px-8 py-6 space-y-6">
-      <div className="text-center space-y-2">
-        <h1 className="text-3xl font-bold">Student Utilities</h1>
-        <p className="text-muted-foreground">
-          Essential tools to boost your productivity and maintain healthy habits
-        </p>
-      </div>
-
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        <div className="md:col-span-1">
-          <WaterTracker />
-        </div>
-        <div className="md:col-span-1">
-          <PomodoroTimer />
-        </div>
-        <div className="md:col-span-2 lg:col-span-1">
-          <BookmarkManager />
+    <div className="w-full py-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+        <div className="text-center space-y-2">
+          <h1 className="text-3xl font-bold">Student Utilities</h1>
+          <p className="text-muted-foreground">
+            Essential tools to boost your productivity and maintain healthy
+            habits
+          </p>
         </div>
 
-        {/* New Utilities */}
-        <div className="md:col-span-2">
-          <UnitConverter />
-        </div>
-        <div className="md:col-span-2 lg:col-span-3">
-          <DocumentScanner
-            onSave={(docData) => console.log("Save document:", docData)}
-            scannedDocs={mockScannedDocs}
-            onDelete={(id) => console.log("Delete document:", id)}
-          />
-        </div>
-        <div className="md:col-span-2 lg:col-span-3">
-          <StudyPlanner
-            studySessions={mockStudySessions}
-            tasks={mockTasks}
-            onAddSession={(session) => console.log("Add session:", session)}
-          />
-        </div>
-        <div className="md:col-span-2 lg:col-span-3">
-          <GoalsManager
-            goals={mockGoals}
-            onAddGoal={(goal) => console.log("Add goal:", goal)}
-            onUpdateProgress={(goalId, progress) =>
-              console.log("Update progress:", goalId, progress)
-            }
-          />
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="md:col-span-1">
+            <WaterTracker />
+          </div>
+          <div className="md:col-span-1">
+            <PomodoroTimer />
+          </div>
+          <div className="md:col-span-2 lg:col-span-1">
+            <BookmarkManager />
+          </div>
+
+          {/* New Utilities */}
+          <div className="md:col-span-2">
+            <UnitConverter />
+          </div>
+          <div className="md:col-span-2 lg:col-span-3">
+            <DocumentScanner
+              onSave={(docData) => console.log("Save document:", docData)}
+              scannedDocs={mockScannedDocs}
+              onDelete={(id) => console.log("Delete document:", id)}
+            />
+          </div>
+          <div className="md:col-span-2 lg:col-span-3">
+            <StudyPlanner
+              studySessions={mockStudySessions}
+              tasks={mockTasks}
+              onAddSession={(session) => console.log("Add session:", session)}
+            />
+          </div>
+          <div className="md:col-span-2 lg:col-span-3">
+            <GoalsManager
+              goals={mockGoals}
+              onAddGoal={(goal) => console.log("Add goal:", goal)}
+              onUpdateProgress={(goalId, progress) =>
+                console.log("Update progress:", goalId, progress)
+              }
+            />
+          </div>
         </div>
       </div>
     </div>

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Github, Twitter, Mail, Phone, MapPin } from "lucide-react";
-import styles from "@styles/footer.css";
+import styles from "@/styles/footer.module.css";
 
 export function Footer() {
   return (

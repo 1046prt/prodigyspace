@@ -5,7 +5,7 @@ import { GeistMono } from "geist/font/mono";
 import { Analytics } from "@vercel/analytics/next";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Navigation } from "@/components/navigation";
-// import { Footer } from "@/components/footer";
+import { Footer } from "@/components/footer";
 import "@/styles/globals.css";
 import { Suspense } from "react";
 
@@ -136,11 +136,11 @@ export default function RootLayout({
           <div className="flex flex-col min-h-screen bg-background">
             <Navigation />
             <main className="flex-grow w-full">
-              <div className="w-full max-w-7xl mx-auto">
+              <div className="w-full">
                 <Suspense fallback={null}>{children}</Suspense>
               </div>
             </main>
-            {/* <Footer /> */}
+            <Footer />
           </div>
         </ThemeProvider>
         <Analytics />

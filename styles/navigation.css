@@ -109,6 +109,12 @@
   width: 2.25rem;
 }
 
+@media (min-width: 768px) {
+  .mobileTrigger {
+    display: none;
+  }
+}
+
 /* Mobile Navigation */
 .sheetContent {
   width: 16rem;
