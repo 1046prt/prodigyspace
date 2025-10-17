@@ -29,7 +29,7 @@ import { useStickyNotes } from "@/hooks/use-sticky-notes";
 import { StickyNote } from "@/components/sticky-note";
 import type { NoteColor } from "@/types/note";
 import { Plus, StickyNoteIcon, Palette, RotateCcw } from "lucide-react";
-import styles from "@styles/sticky-note-board.css";
+import styles from "@styles/sticky-note-board.module.css";
 
 const colorOptions: { value: NoteColor; label: string; class: string }[] = [
   { value: "yellow", label: "Yellow", class: styles.yellow },

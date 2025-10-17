@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/select";
 import { Bookmark, Plus, ExternalLink, Trash2, Edit } from "lucide-react";
 import { useBookmarks } from "@/hooks/use-bookmarks";
-import styles from "@styles/bookmark-manager.css";
+import styles from "@styles/bookmark-manager.module.css";
 
 export function BookmarkManager() {
   const {

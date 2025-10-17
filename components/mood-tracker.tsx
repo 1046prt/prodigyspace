@@ -14,7 +14,7 @@ import {
 import { format } from "date-fns";
 import { CalendarIcon, TrendingUp } from "lucide-react";
 import type { MoodEntry } from "@/types/wellbeing";
-import styles from "@styles/mood-tracker.css";
+import styles from "@styles/mood-tracker.module.css";
 
 interface MoodTrackerProps {
   moodEntries: MoodEntry[];

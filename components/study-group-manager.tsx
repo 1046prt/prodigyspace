@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/dialog";
 import { Users, Plus, Calendar, MessageCircle, Settings } from "lucide-react";
 import type { StudyGroup } from "@/types/collaboration";
-import styles from "@styles/sticky-group-manager.css";
+import styles from "@styles/sticky-group-manager.module.css";
 
 interface StudyGroupManagerProps {
   studyGroups: StudyGroup[];

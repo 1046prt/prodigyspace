@@ -51,7 +51,7 @@ import {
   Pie,
   Cell,
 } from "recharts";
-import styles from "@styles/expense.css";
+import styles from "@styles/expense.module.css";
 
 const categoryLabels: Record<ExpenseCategory, string> = {
   food: "Food & Dining",

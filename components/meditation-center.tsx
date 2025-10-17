@@ -15,7 +15,7 @@ import {
   Check,
 } from "lucide-react";
 import type { MeditationSession, BreathingExercise } from "@/types/wellbeing";
-import styles from "@styles/meditation-center.css";
+import styles from "@styles/meditation-center.module.css";
 
 interface MeditationCenterProps {
   sessions: MeditationSession[];
