@@ -7,6 +7,7 @@ import { DocumentScanner } from "@/components/document-scanner";
 import { StudyPlanner } from "@/components/study-planner";
 import { GoalsManager } from "@/components/goals-manager";
 import { UnitConverter } from "@/components/unit-converter";
+import { AttendanceTracker } from "@/components/attendance-tracker";
 
 // Mock data for the new components
 const mockScannedDocs = [
@@ -91,6 +92,9 @@ export default function UtilitiesPage() {
           {/* New Utilities */}
           <div className="md:col-span-2">
             <UnitConverter />
+          </div>
+          <div className="md:col-span-2 lg:col-span-3">
+            <AttendanceTracker />
           </div>
           <div className="md:col-span-2 lg:col-span-3">
             <DocumentScanner

@@ -58,6 +58,11 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/attendance" className={styles.link}>
+                  Attendance Tracker
+                </Link>
+              </li>
+              <li>
                 <Link href="/wellbeing" className={styles.link}>
                   Wellbeing Tracker
                 </Link>

@@ -16,6 +16,7 @@ import {
   Wallet,
   Settings,
   ListTodo,
+  GraduationCap,
 } from "lucide-react";
 import { useState } from "react";
 import "@styles/navigation.css";
@@ -25,6 +26,7 @@ const navigation = [
   { name: "Notes", href: "/notes", icon: FileText },
   { name: "Tasks", href: "/tasks", icon: CheckSquare },
   { name: "Todos", href: "/todos", icon: ListTodo },
+  { name: "Attendance", href: "/attendance", icon: GraduationCap },
   { name: "Collaboration", href: "/collaboration", icon: Users },
   { name: "Well-being", href: "/wellbeing", icon: Heart },
   { name: "Expenses", href: "/expenses", icon: Wallet },

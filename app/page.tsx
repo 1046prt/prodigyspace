@@ -20,11 +20,13 @@ import {
   BookOpen,
   TrendingUp,
   Clock,
+  GraduationCap,
 } from "lucide-react";
 import { useTasks } from "@/hooks/use-tasks";
 import { useNotes } from "@/hooks/use-notes";
 import { useCollaboration } from "@/hooks/use-collaboration";
 import { useWellbeing } from "@/hooks/use-wellbeing";
+import { useAttendance } from "@/hooks/use-attendance";
 import styles from "@/styles/page.module.css";
 
 export default function HomePage() {
@@ -32,6 +34,7 @@ export default function HomePage() {
   const { notes, scannedDocs } = useNotes();
   const { studyGroups, projects } = useCollaboration();
   const { moodEntries, meditationSessions } = useWellbeing();
+  const { subjects, calculateStats } = useAttendance();
 
   useEffect(() => {
     // Register service worker for PWA functionality
@@ -89,6 +92,11 @@ export default function HomePage() {
     )
     .slice(0, 3);
 
+  // Calculate attendance stats
+  const onTrackSubjects = subjects.filter(
+    (subject) => calculateStats(subject).isOnTrack
+  ).length;
+
   const features = [
     {
       icon: FileText,
@@ -105,6 +113,14 @@ export default function HomePage() {
       color: "text-green-600",
       href: "/tasks",
       stats: `${completedTasks}/${tasks.length} completed`,
+    },
+    {
+      icon: GraduationCap,
+      title: "Attendance Tracker",
+      description: "Monitor class attendance and maintain target percentages",
+      color: "text-orange-600",
+      href: "/attendance",
+      stats: `${onTrackSubjects}/${subjects.length} on track`,
     },
     {
       icon: Users,
@@ -181,6 +197,21 @@ export default function HomePage() {
                 {averageMood.toFixed(1)}
               </div>
               <div className={styles["mainpage-stat-label"]}>Avg Mood</div>
+            </CardContent>
+          </Card>
+          <Card className={styles["mainpage-stat-card"]}>
+            <CardContent className="p-4">
+              <div
+                className={`${styles["mainpage-stat-value"]} ${styles["mainpage-stat-value-attendance"]}`}
+              >
+                {subjects.length > 0
+                  ? Math.round((onTrackSubjects / subjects.length) * 100)
+                  : 0}
+                %
+              </div>
+              <div className={styles["mainpage-stat-label"]}>
+                Attendance On Track
+              </div>
             </CardContent>
           </Card>
         </div>
