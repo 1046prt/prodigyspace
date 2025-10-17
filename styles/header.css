@@ -36,6 +36,12 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.logoContainer:hover {
+  opacity: 0.8;
 }
 
 .logoIcon {
@@ -46,11 +52,17 @@
   justify-content: center;
   border-radius: 0.5rem;
   background-color: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+}
+
+.logoIcon svg {
+  color: hsl(var(--primary-foreground));
 }
 
 .logoText {
   font-size: 1.25rem;
   font-weight: 700;
+  background-color: hsl(var(--foreground));
 }
 
 /* Desktop Navigation */

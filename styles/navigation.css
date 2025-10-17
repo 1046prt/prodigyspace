@@ -54,6 +54,12 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.logoLink:hover {
+  opacity: 0.8;
 }
 
 .logoWrapper {
@@ -63,24 +69,13 @@
   align-items: center;
   justify-content: center;
   border-radius: 0.5rem;
+  background-color: hsl(var(--primary));
+  transition: background-color 0.2s ease;
 }
 
 .logoImage {
   height: 1.5rem;
   width: 1.5rem;
-}
-
-.logoText {
-  font-size: 1.25rem;
-  font-weight: 700;
-  background-image: linear-gradient(
-    to right,
-    hsl(var(--blue-600)),
-    hsl(var(--purple-600))
-  );
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
 }
 
 /* Desktop Navigation */
