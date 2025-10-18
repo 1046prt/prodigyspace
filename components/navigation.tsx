@@ -24,11 +24,9 @@ import "@/styles/navigation.css";
 
 const navigation = [
   { name: "Dashboard", href: "/", icon: Home },
-  { name: "Notes", href: "/notes", icon: FileText },
   { name: "Tasks", href: "/tasks", icon: CheckSquare },
   { name: "Todos", href: "/todos", icon: ListTodo },
   { name: "Attendance", href: "/attendance", icon: GraduationCap },
-  { name: "Collaboration", href: "/collaboration", icon: Users },
   { name: "Well-being", href: "/wellbeing", icon: Heart },
   { name: "Expenses", href: "/expenses", icon: Wallet },
   { name: "Utilities", href: "/utilities", icon: Settings },
@@ -60,7 +58,11 @@ export function Navigation() {
           {navigation.map((item) => {
             const isActive = pathname === item.href;
             return (
-              <Link key={item.name} href={item.href} className={`navigation-item ${isActive ? 'active' : ''}`}>
+              <Link
+                key={item.name}
+                href={item.href}
+                className={`navigation-item ${isActive ? "active" : ""}`}
+              >
                 <item.icon className="navigation-item-icon" />
                 <span>{item.name}</span>
               </Link>
@@ -69,11 +71,11 @@ export function Navigation() {
         </nav>
 
         {/* Right side controls */}
-        <div 
+        <div
           style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 'var(--space-3)',
+            display: "flex",
+            alignItems: "center",
+            gap: "var(--space-3)",
           }}
         >
           <ThemeToggle />
@@ -81,71 +83,59 @@ export function Navigation() {
           {/* Mobile Navigation */}
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
-              <Button 
-                variant="ghost" 
+              <Button
+                variant="ghost"
                 size="sm"
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  width: '2.5rem',
-                  height: '2.5rem',
-                  borderRadius: 'var(--radius-lg)',
-                  backgroundColor: 'var(--muted)',
-                  color: 'var(--foreground)',
-                  border: '1px solid var(--border)',
-                  transition: 'all var(--transition-default)',
-                }}
-                className="md:hidden"
+                className="navigation-mobile-trigger"
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = 'var(--accent)';
-                  e.currentTarget.style.transform = 'scale(1.05)';
+                  e.currentTarget.style.backgroundColor = "var(--accent)";
+                  e.currentTarget.style.transform = "scale(1.05)";
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = 'var(--muted)';
-                  e.currentTarget.style.transform = 'scale(1)';
+                  e.currentTarget.style.backgroundColor = "var(--muted)";
+                  e.currentTarget.style.transform = "scale(1)";
                 }}
               >
-                <Menu 
+                <Menu
                   style={{
-                    width: '1.25rem',
-                    height: '1.25rem',
+                    width: "1.25rem",
+                    height: "1.25rem",
                   }}
                 />
                 <span className="sr-only">Open menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent 
+            <SheetContent
               side="right"
               style={{
-                backgroundColor: 'var(--background)',
-                borderLeft: '1px solid var(--border)',
-                width: '20rem',
-                padding: 'var(--space-6)',
+                backgroundColor: "var(--background)",
+                borderLeft: "1px solid var(--border)",
+                width: "20rem",
+                padding: "var(--space-6)",
               }}
             >
-              <div 
+              <div
                 style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: 'var(--space-2)',
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "var(--space-2)",
                 }}
               >
-                <div 
+                <div
                   style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    marginBottom: 'var(--space-4)',
-                    paddingBottom: 'var(--space-4)',
-                    borderBottom: '1px solid var(--border)',
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    marginBottom: "var(--space-4)",
+                    paddingBottom: "var(--space-4)",
+                    borderBottom: "1px solid var(--border)",
                   }}
                 >
-                  <h2 
+                  <h2
                     style={{
-                      fontSize: 'var(--text-lg)',
-                      fontWeight: 'var(--font-semibold)',
-                      color: 'var(--foreground)',
+                      fontSize: "var(--text-lg)",
+                      fontWeight: "var(--font-semibold)",
+                      color: "var(--foreground)",
                     }}
                   >
                     Navigation
@@ -155,16 +145,16 @@ export function Navigation() {
                     size="sm"
                     onClick={() => setIsOpen(false)}
                     style={{
-                      width: '2rem',
-                      height: '2rem',
+                      width: "2rem",
+                      height: "2rem",
                       padding: 0,
-                      borderRadius: 'var(--radius-md)',
+                      borderRadius: "var(--radius-md)",
                     }}
                   >
-                    <X style={{ width: '1rem', height: '1rem' }} />
+                    <X style={{ width: "1rem", height: "1rem" }} />
                   </Button>
                 </div>
-                
+
                 {navigation.map((item) => {
                   const isActive = pathname === item.href;
                   return (
@@ -173,44 +163,51 @@ export function Navigation() {
                       href={item.href}
                       onClick={() => setIsOpen(false)}
                       style={{
-                        textDecoration: 'none',
+                        textDecoration: "none",
                       }}
                     >
                       <Button
                         variant={isActive ? "default" : "ghost"}
                         size="sm"
                         style={{
-                          width: '100%',
-                          justifyContent: 'flex-start',
-                          padding: 'var(--space-3) var(--space-4)',
-                          borderRadius: 'var(--radius-lg)',
-                          fontWeight: 'var(--font-medium)',
-                          transition: 'all var(--transition-default)',
-                          backgroundColor: isActive ? 'var(--primary)' : 'transparent',
-                          color: isActive ? 'var(--primary-foreground)' : 'var(--foreground-secondary)',
-                          border: isActive ? 'none' : '1px solid transparent',
-                          boxShadow: isActive ? 'var(--shadow-sm)' : 'none',
+                          width: "100%",
+                          justifyContent: "flex-start",
+                          padding: "var(--space-3) var(--space-4)",
+                          borderRadius: "var(--radius-lg)",
+                          fontWeight: "var(--font-medium)",
+                          transition: "all var(--transition-default)",
+                          backgroundColor: isActive
+                            ? "var(--primary)"
+                            : "transparent",
+                          color: isActive
+                            ? "var(--primary-foreground)"
+                            : "var(--foreground-secondary)",
+                          border: isActive ? "none" : "1px solid transparent",
+                          boxShadow: isActive ? "var(--shadow-sm)" : "none",
                         }}
                         onMouseEnter={(e) => {
                           if (!isActive) {
-                            e.currentTarget.style.backgroundColor = 'var(--muted)';
-                            e.currentTarget.style.color = 'var(--foreground)';
-                            e.currentTarget.style.transform = 'translateX(4px)';
+                            e.currentTarget.style.backgroundColor =
+                              "var(--muted)";
+                            e.currentTarget.style.color = "var(--foreground)";
+                            e.currentTarget.style.transform = "translateX(4px)";
                           }
                         }}
                         onMouseLeave={(e) => {
                           if (!isActive) {
-                            e.currentTarget.style.backgroundColor = 'transparent';
-                            e.currentTarget.style.color = 'var(--foreground-secondary)';
-                            e.currentTarget.style.transform = 'translateX(0)';
+                            e.currentTarget.style.backgroundColor =
+                              "transparent";
+                            e.currentTarget.style.color =
+                              "var(--foreground-secondary)";
+                            e.currentTarget.style.transform = "translateX(0)";
                           }
                         }}
                       >
-                        <item.icon 
+                        <item.icon
                           style={{
-                            width: '1.25rem',
-                            height: '1.25rem',
-                            marginRight: 'var(--space-3)',
+                            width: "1.25rem",
+                            height: "1.25rem",
+                            marginRight: "var(--space-3)",
                           }}
                         />
                         {item.name}

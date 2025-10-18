@@ -1,0 +1,179 @@
+/* ===========================================
+   APP LAYOUT STYLES
+   =========================================== */
+
+/* Main app container */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--background);
+  transition: background-color var(--transition-colors);
+}
+
+/* Main content area */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: calc(100vh - var(--header-height));
+}
+
+/* Page wrapper */
+.page-wrapper {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: var(--space-6) var(--container-padding);
+}
+
+/* Content sections */
+.content-section {
+  margin-bottom: var(--space-8);
+}
+
+.content-section:last-child {
+  margin-bottom: 0;
+}
+
+/* Page transitions */
+.page-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms ease-out, transform 300ms ease-out;
+}
+
+.page-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.page-exit-active {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 300ms ease-in, transform 300ms ease-in;
+}
+
+/* Loading states */
+.loading-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  color: var(--foreground-muted);
+}
+
+.loading-spinner {
+  width: 2rem;
+  height: 2rem;
+  border: 2px solid var(--border);
+  border-top: 2px solid var(--primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Error states */
+.error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  text-align: center;
+  color: var(--destructive);
+}
+
+.error-icon {
+  width: 3rem;
+  height: 3rem;
+  margin-bottom: var(--space-4);
+  color: var(--destructive);
+}
+
+/* Empty states */
+.empty-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  text-align: center;
+  color: var(--foreground-muted);
+}
+
+.empty-icon {
+  width: 3rem;
+  height: 3rem;
+  margin-bottom: var(--space-4);
+  color: var(--foreground-muted);
+}
+
+/* Responsive layout adjustments */
+@media (max-width: 768px) {
+  .page-wrapper {
+    padding: var(--space-4) var(--space-4);
+  }
+  
+  .content-section {
+    margin-bottom: var(--space-6);
+  }
+}
+
+@media (max-width: 480px) {
+  .page-wrapper {
+    padding: var(--space-3) var(--space-3);
+  }
+  
+  .content-section {
+    margin-bottom: var(--space-4);
+  }
+}
+
+/* Print styles */
+@media print {
+  .app-container {
+    background: white !important;
+    color: black !important;
+  }
+  
+  .main-content {
+    min-height: auto;
+  }
+  
+  .page-wrapper {
+    max-width: none;
+    padding: 0;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .app-container {
+    border: 1px solid var(--border);
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .page-enter,
+  .page-enter-active,
+  .page-exit,
+  .page-exit-active {
+    transition: none;
+  }
+  
+  .loading-spinner {
+    animation: none;
+  }
+}

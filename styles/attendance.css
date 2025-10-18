@@ -1,0 +1,440 @@
+/* ===========================================
+   ATTENDANCE COMPONENT STYLES
+   =========================================== */
+
+.attendance {
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--background) 0%, var(--background-secondary) 100%);
+  padding: var(--space-8) 0;
+}
+
+.attendance-container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+}
+
+.attendance-header {
+  text-align: center;
+  margin-bottom: var(--space-8);
+}
+
+.attendance-title {
+  font-size: var(--text-4xl);
+  font-weight: var(--font-bold);
+  color: var(--foreground);
+  margin-bottom: var(--space-4);
+  background: linear-gradient(135deg, var(--color-primary-600) 0%, var(--color-secondary-600) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.attendance-subtitle {
+  font-size: var(--text-lg);
+  color: var(--foreground-secondary);
+  max-width: 42rem;
+  margin: 0 auto;
+}
+
+/* ===========================================
+   STATS CARDS
+   =========================================== */
+
+.attendance-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--space-6);
+  margin-bottom: var(--space-8);
+}
+
+.attendance-stat-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-default);
+  position: relative;
+  overflow: hidden;
+}
+
+.attendance-stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-primary-500), var(--color-secondary-500));
+}
+
+.attendance-stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary);
+}
+
+.attendance-stat-value {
+  font-size: var(--text-3xl);
+  font-weight: var(--font-bold);
+  margin-bottom: var(--space-2);
+  line-height: var(--leading-none);
+}
+
+.attendance-stat-value-on-track {
+  color: var(--color-success-600);
+}
+
+.attendance-stat-value-warning {
+  color: var(--color-warning-600);
+}
+
+.attendance-stat-value-danger {
+  color: var(--color-error-600);
+}
+
+.attendance-stat-label {
+  color: var(--foreground-secondary);
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+}
+
+/* ===========================================
+   SUBJECT CARDS
+   =========================================== */
+
+.attendance-subjects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-6);
+  margin-bottom: var(--space-8);
+}
+
+.attendance-subject-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-default);
+}
+
+.attendance-subject-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary);
+}
+
+.attendance-subject-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-4);
+}
+
+.attendance-subject-name {
+  font-size: var(--text-xl);
+  font-weight: var(--font-semibold);
+  color: var(--foreground);
+  margin: 0;
+}
+
+.attendance-subject-code {
+  font-size: var(--text-sm);
+  color: var(--foreground-secondary);
+  background: var(--muted);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-md);
+  font-weight: var(--font-medium);
+}
+
+.attendance-progress-section {
+  margin-bottom: var(--space-4);
+}
+
+.attendance-progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-2);
+}
+
+.attendance-progress-label {
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  color: var(--foreground);
+}
+
+.attendance-progress-value {
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
+  color: var(--foreground);
+}
+
+.attendance-progress-bar {
+  height: 0.75rem;
+  border-radius: var(--radius-full);
+  background: var(--muted);
+  overflow: hidden;
+  position: relative;
+}
+
+.attendance-progress-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  transition: width var(--transition-default);
+  position: relative;
+}
+
+.attendance-progress-fill-on-track {
+  background: linear-gradient(90deg, var(--color-success-500), var(--color-success-400));
+}
+
+.attendance-progress-fill-warning {
+  background: linear-gradient(90deg, var(--color-warning-500), var(--color-warning-400));
+}
+
+.attendance-progress-fill-danger {
+  background: linear-gradient(90deg, var(--color-error-500), var(--color-error-400));
+}
+
+.attendance-actions {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.attendance-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-lg);
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  text-decoration: none;
+  transition: all var(--transition-default);
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.attendance-btn-primary {
+  background: var(--primary);
+  color: var(--primary-foreground);
+  border-color: var(--primary);
+}
+
+.attendance-btn-primary:hover {
+  background: var(--primary-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.attendance-btn-secondary {
+  background: var(--secondary);
+  color: var(--secondary-foreground);
+  border-color: var(--secondary);
+}
+
+.attendance-btn-secondary:hover {
+  background: var(--secondary-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.attendance-btn-outline {
+  background: transparent;
+  color: var(--foreground);
+  border-color: var(--border);
+}
+
+.attendance-btn-outline:hover {
+  background: var(--muted);
+  border-color: var(--border-strong);
+  transform: translateY(-1px);
+}
+
+/* ===========================================
+   ADD SUBJECT FORM
+   =========================================== */
+
+.attendance-add-form {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: var(--space-8);
+}
+
+.attendance-form-title {
+  font-size: var(--text-xl);
+  font-weight: var(--font-semibold);
+  color: var(--foreground);
+  margin-bottom: var(--space-4);
+}
+
+.attendance-form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+
+.attendance-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.attendance-form-label {
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  color: var(--foreground);
+}
+
+.attendance-form-input {
+  width: 100%;
+  height: var(--input-height-md);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--input-border);
+  background: var(--input);
+  padding: var(--input-padding-y) var(--input-padding-x);
+  font-size: var(--text-sm);
+  color: var(--foreground);
+  transition: all var(--transition-default);
+}
+
+.attendance-form-input:focus {
+  outline: none;
+  border-color: var(--input-focus);
+  box-shadow: 0 0 0 3px var(--ring);
+}
+
+.attendance-form-submit {
+  background: var(--primary);
+  color: var(--primary-foreground);
+  border: none;
+  border-radius: var(--radius-lg);
+  padding: var(--space-3) var(--space-6);
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  cursor: pointer;
+  transition: all var(--transition-default);
+}
+
+.attendance-form-submit:hover {
+  background: var(--primary-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+/* ===========================================
+   RESPONSIVE DESIGN
+   =========================================== */
+
+@media (max-width: 768px) {
+  .attendance {
+    padding: var(--space-4) 0;
+  }
+  
+  .attendance-container {
+    padding: 0 var(--space-4);
+  }
+  
+  .attendance-title {
+    font-size: var(--text-3xl);
+  }
+  
+  .attendance-stats-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+  
+  .attendance-subjects-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+  
+  .attendance-form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .attendance-container {
+    padding: 0 var(--space-3);
+  }
+  
+  .attendance-title {
+    font-size: var(--text-2xl);
+  }
+  
+  .attendance-subject-card {
+    padding: var(--space-4);
+  }
+  
+  .attendance-actions {
+    flex-direction: column;
+  }
+  
+  .attendance-btn {
+    justify-content: center;
+  }
+}
+
+/* ===========================================
+   ANIMATIONS
+   =========================================== */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.attendance-stat-card,
+.attendance-subject-card,
+.attendance-add-form {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.attendance-stat-card:nth-child(1) { animation-delay: 0.1s; }
+.attendance-stat-card:nth-child(2) { animation-delay: 0.2s; }
+.attendance-stat-card:nth-child(3) { animation-delay: 0.3s; }
+.attendance-stat-card:nth-child(4) { animation-delay: 0.4s; }
+
+/* ===========================================
+   FOCUS STYLES
+   =========================================== */
+
+.attendance-btn:focus-visible,
+.attendance-form-input:focus-visible,
+.attendance-form-submit:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+/* ===========================================
+   ACCESSIBILITY
+   =========================================== */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

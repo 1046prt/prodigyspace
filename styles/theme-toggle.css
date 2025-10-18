@@ -1,0 +1,167 @@
+/* ===========================================
+   THEME TOGGLE COMPONENT STYLES
+   =========================================== */
+
+.theme-toggle {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: var(--radius-lg);
+  background-color: var(--muted);
+  border: 1px solid var(--border);
+  color: var(--foreground);
+  cursor: pointer;
+  transition: all var(--transition-default);
+  overflow: hidden;
+}
+
+.theme-toggle:hover {
+  background-color: var(--accent);
+  transform: scale(1.05);
+  box-shadow: var(--shadow-md);
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.theme-toggle:active {
+  transform: scale(0.95);
+}
+
+/* Icon positioning and transitions */
+.sun-icon,
+.moon-icon {
+  position: absolute;
+  width: 1.25rem;
+  height: 1.25rem;
+  transition: all var(--transition-default);
+}
+
+.sun-icon {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+.moon-icon {
+  opacity: 0;
+  transform: rotate(180deg) scale(0.8);
+}
+
+/* Dark mode icon states */
+.dark .sun-icon {
+  opacity: 0;
+  transform: rotate(180deg) scale(0.8);
+}
+
+.dark .moon-icon {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+/* Animation keyframes */
+@keyframes rotateIn {
+  from {
+    opacity: 0;
+    transform: rotate(-180deg) scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+}
+
+@keyframes rotateOut {
+  from {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: rotate(180deg) scale(0.8);
+  }
+}
+
+/* Enhanced hover effects */
+.theme-toggle:hover .sun-icon {
+  animation: rotateIn 0.3s ease-out;
+}
+
+.theme-toggle:hover .moon-icon {
+  animation: rotateOut 0.3s ease-out;
+}
+
+/* Dark mode hover effects */
+.dark .theme-toggle:hover .sun-icon {
+  animation: rotateOut 0.3s ease-out;
+}
+
+.dark .theme-toggle:hover .moon-icon {
+  animation: rotateIn 0.3s ease-out;
+}
+
+/* Focus styles for accessibility */
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+/* Screen reader only text */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .theme-toggle {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+  
+  .sun-icon,
+  .moon-icon {
+    width: 1.125rem;
+    height: 1.125rem;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .theme-toggle {
+    border-width: 2px;
+  }
+  
+  .theme-toggle:hover {
+    border-color: var(--foreground);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .theme-toggle,
+  .sun-icon,
+  .moon-icon {
+    transition: none;
+  }
+  
+  .theme-toggle:hover {
+    transform: none;
+  }
+  
+  .sun-icon,
+  .moon-icon {
+    animation: none;
+  }
+}
