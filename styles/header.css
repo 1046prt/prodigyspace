@@ -1,43 +1,40 @@
 .header {
   position: sticky;
   top: 0;
-  z-index: 50;
+  z-index: var(--z-index-sticky);
   width: 100%;
-  border-bottom: 1px solid hsl(var(--border));
-  background-color: hsl(var(--background) / 0.95);
+  border-bottom: var(--border-width-1) solid var(--color-border);
+  background-color: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(12px);
+  box-shadow: var(--shadow-sm);
 }
 
 /* Support for browsers that support backdrop-filter */
 @supports (backdrop-filter: blur(12px)) {
   .header {
-    background-color: hsl(var(--background) / 0.6);
+    background-color: rgba(255, 255, 255, 0.6);
+  }
+
+  .dark .header {
+    background-color: rgba(var(--color-gray-900), 0.6);
   }
 }
 
 .container {
   display: flex;
-  height: 4rem;
+  height: var(--header-height);
   align-items: center;
   justify-content: space-between;
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-
-/* Adjust container width for larger screens */
-@media (min-width: 1280px) {
-  .container {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-  }
+  padding-left: var(--container-padding-x);
+  padding-right: var(--container-padding-x);
 }
 
 .logoContainer {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: var(--space-2);
   text-decoration: none;
-  transition: opacity 0.2s ease;
+  transition: opacity var(--transition-fast) var(--transition-ease);
 }
 
 .logoContainer:hover {
@@ -46,23 +43,23 @@
 
 .logoIcon {
   display: flex;
-  height: 2rem;
-  width: 2rem;
+  height: var(--space-8);
+  width: var(--space-8);
   align-items: center;
   justify-content: center;
-  border-radius: 0.5rem;
-  background-color: hsl(var(--primary));
-  color: hsl(var(--primary-foreground));
+  border-radius: var(--radius-lg);
+  background-color: var(--color-primary);
+  color: var(--color-primary-foreground);
 }
 
 .logoIcon svg {
-  color: hsl(var(--primary-foreground));
+  color: var(--color-primary-foreground);
 }
 
 .logoText {
-  font-size: 1.25rem;
+  font-size: var(--space-5);
   font-weight: 700;
-  background-color: hsl(var(--foreground));
+  color: var(--color-foreground);
 }
 
 /* Desktop Navigation */
@@ -74,18 +71,18 @@
   .desktopNav {
     display: flex;
     align-items: center;
-    gap: 1.5rem;
+    gap: var(--space-6);
   }
 }
 
 .navLink {
   font-size: 0.875rem;
   font-weight: 500;
-  transition: color 0.2s ease;
+  transition: color var(--transition-fast) var(--transition-ease);
 }
 
 .navLink:hover {
-  color: hsl(var(--primary));
+  color: var(--color-primary);
 }
 
 /* Desktop Theme Toggle */
@@ -103,7 +100,7 @@
 .mobileControls {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: var(--space-2);
 }
 
 @media (min-width: 768px) {
@@ -113,19 +110,19 @@
 }
 
 .menuButton {
-  height: 2.25rem;
-  width: 2.25rem;
+  height: var(--space-10);
+  width: var(--space-10);
 }
 
 .menuButtonIcon {
-  height: 1rem;
-  width: 1rem;
+  height: var(--space-4);
+  width: var(--space-4);
 }
 
 /* Mobile Navigation */
 .mobileNav {
-  border-top: 1px solid hsl(var(--border));
-  background-color: hsl(var(--background));
+  border-top: var(--border-width-1) solid var(--color-border);
+  background-color: var(--color-background);
   display: none;
 }
 
@@ -138,18 +135,18 @@
 .mobileNavContainer {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  padding: 1rem;
+  gap: var(--space-2);
+  padding: var(--space-4);
 }
 
 .mobileNavLink {
   font-size: 0.875rem;
   font-weight: 500;
-  transition: color 0.2s ease;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  transition: color var(--transition-fast) var(--transition-ease);
+  padding-top: var(--space-2);
+  padding-bottom: var(--space-2);
 }
 
 .mobileNavLink:hover {
-  color: hsl(var(--primary));
+  color: var(--color-primary);
 }

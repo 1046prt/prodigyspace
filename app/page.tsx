@@ -27,7 +27,7 @@ import { useNotes } from "@/hooks/use-notes";
 import { useCollaboration } from "@/hooks/use-collaboration";
 import { useWellbeing } from "@/hooks/use-wellbeing";
 import { useAttendance } from "@/hooks/use-attendance";
-import "@/styles/page.css";
+import "@/styles/homepage.css";
 
 export default function HomePage() {
   const { tasks } = useTasks();
@@ -141,117 +141,100 @@ export default function HomePage() {
   ];
 
   return (
-    <div className="mainpage-container">
-      <div className="w-full px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <header className="mainpage-header">
-          <div className="mainpage-logo-container">
-            <div className="mainpage-logo-icon">
-              <BookOpen className="h-8 w-8 text-white" />
+    <div className="homepage">
+      <div className="homepage-container">
+        <header className="homepage-header">
+          <div className="homepage-logo-container">
+            <div className="homepage-logo-icon">
+              <BookOpen />
             </div>
-            <h1 className="mainpage-logo-title">ProdigySpace</h1>
+            <h1 className="homepage-logo-title">ProdigySpace</h1>
           </div>
-          <p className="mainpage-subtitle">
+          <p className="homepage-subtitle">
             Your comprehensive digital workspace for academic success,
             collaboration, and well-being
           </p>
         </header>
 
-        <div className="mainpage-stats-grid">
-          <Card className="mainpage-stat-card">
-            <CardContent className="p-4">
-              <div className="mainpage-stat-value mainpage-stat-value-completed">
-                {completedTasks}
-              </div>
-              <div className="mainpage-stat-label">Tasks Completed</div>
-            </CardContent>
-          </Card>
-          <Card className="mainpage-stat-card">
-            <CardContent className="p-4">
-              <div className="mainpage-stat-value mainpage-stat-value-notes">
-                {notes.length}
-              </div>
-              <div className="mainpage-stat-label">Notes Created</div>
-            </CardContent>
-          </Card>
-          <Card className="mainpage-stat-card">
-            <CardContent className="p-4">
-              <div className="mainpage-stat-value mainpage-stat-value-groups">
-                {studyGroups.length}
-              </div>
-              <div className="mainpage-stat-label">Study Groups</div>
-            </CardContent>
-          </Card>
-          <Card className="mainpage-stat-card">
-            <CardContent className="p-4">
-              <div className="mainpage-stat-value mainpage-stat-value-mood">
-                {averageMood.toFixed(1)}
-              </div>
-              <div className="mainpage-stat-label">Avg Mood</div>
-            </CardContent>
-          </Card>
-          <Card className="mainpage-stat-card">
-            <CardContent className="p-4">
-              <div className="mainpage-stat-value mainpage-stat-value-attendance">
-                {subjects.length > 0
-                  ? Math.round((onTrackSubjects / subjects.length) * 100)
-                  : 0}
-                %
-              </div>
-              <div className="mainpage-stat-label">Attendance On Track</div>
-            </CardContent>
-          </Card>
+        <div className="homepage-stats-grid">
+          <div className="homepage-stat-card">
+            <div className="homepage-stat-value homepage-stat-value-completed">
+              {completedTasks}
+            </div>
+            <div className="homepage-stat-label">Tasks Completed</div>
+          </div>
+          <div className="homepage-stat-card">
+            <div className="homepage-stat-value homepage-stat-value-notes">
+              {notes.length}
+            </div>
+            <div className="homepage-stat-label">Notes Created</div>
+          </div>
+          <div className="homepage-stat-card">
+            <div className="homepage-stat-value homepage-stat-value-groups">
+              {studyGroups.length}
+            </div>
+            <div className="homepage-stat-label">Study Groups</div>
+          </div>
+          <div className="homepage-stat-card">
+            <div className="homepage-stat-value homepage-stat-value-mood">
+              {averageMood.toFixed(1)}
+            </div>
+            <div className="homepage-stat-label">Avg Mood</div>
+          </div>
+          <div className="homepage-stat-card">
+            <div className="homepage-stat-value homepage-stat-value-attendance">
+              {subjects.length > 0
+                ? Math.round((onTrackSubjects / subjects.length) * 100)
+                : 0}
+              %
+            </div>
+            <div className="homepage-stat-label">Attendance On Track</div>
+          </div>
         </div>
 
-        <div className="mainpage-features-grid">
+        <div className="homepage-features-grid">
           {features.map((feature, index) => (
-            <Link key={index} href={feature.href}>
-              <Card className="mainpage-feature-card">
-                <CardHeader>
-                  <div className="mainpage-feature-header">
-                    <div className="mainpage-feature-icon-container">
-                      <div className="mainpage-feature-icon-bg">
-                        <feature.icon className={feature.color} />
-                      </div>
-                      <div>
-                        <CardTitle className="mainpage-feature-title">
-                          {feature.title}
-                        </CardTitle>
-                        <Badge
-                          variant="outline"
-                          className="mainpage-feature-badge"
-                        >
-                          {feature.stats}
-                        </Badge>
-                      </div>
-                    </div>
+            <Link key={index} href={feature.href} className="homepage-feature-card">
+              <div className="homepage-feature-header">
+                <div className="homepage-feature-icon-container">
+                  <div className="homepage-feature-icon-bg">
+                    <feature.icon className={feature.color} />
                   </div>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription className="mainpage-feature-description">
-                    {feature.description}
-                  </CardDescription>
-                </CardContent>
-              </Card>
+                  <div>
+                    <h3 className="homepage-feature-title">
+                      {feature.title}
+                    </h3>
+                    <span className="homepage-feature-badge">
+                      {feature.stats}
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <p className="homepage-feature-description">
+                {feature.description}
+              </p>
             </Link>
           ))}
         </div>
 
-        <div className="mainpage-content-grid">
+        <div className="homepage-content-grid">
           {/* Upcoming Tasks */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="mainpage-section-header">
-                <Clock className="h-5 w-5" />
+          <div className="homepage-section-card">
+            <div style={{ padding: 'var(--space-6)' }}>
+              <h3 className="homepage-section-header">
+                <Clock />
                 Upcoming Tasks
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
+              </h3>
               {upcomingTasks.length === 0 ? (
-                <p className="text-muted-foreground text-center py-4">
+                <p style={{ 
+                  color: 'var(--foreground-muted)', 
+                  textAlign: 'center', 
+                  padding: 'var(--space-4) 0' 
+                }}>
                   No upcoming tasks
                 </p>
               ) : (
-                <div className="space-y-3">
+                <div>
                   {upcomingTasks.map((task) => {
                     const daysUntilDue = Math.ceil(
                       (new Date(task.dueDate!).getTime() -
@@ -260,31 +243,25 @@ export default function HomePage() {
                     );
 
                     return (
-                      <div key={task.id} className="mainpage-task-item">
-                        <div className="mainpage-task-details">
-                          <h4 className="mainpage-task-title">{task.title}</h4>
-                          <div className="mainpage-task-badges">
-                            <Badge
-                              variant="outline"
-                              className="mainpage-task-badge"
-                            >
+                      <div key={task.id} className="homepage-task-item">
+                        <div className="homepage-task-details">
+                          <h4 className="homepage-task-title">{task.title}</h4>
+                          <div className="homepage-task-badges">
+                            <span className="homepage-task-badge">
                               {task.category}
-                            </Badge>
-                            <Badge
-                              variant="outline"
-                              className="mainpage-task-badge"
-                            >
+                            </span>
+                            <span className="homepage-task-badge">
                               {task.priority}
-                            </Badge>
+                            </span>
                           </div>
                         </div>
                         <div
-                          className={`mainpage-task-due-date ${
+                          className={`homepage-task-due-date ${
                             daysUntilDue < 0
-                              ? "mainpage-task-due-date-overdue"
+                              ? "homepage-task-due-date-overdue"
                               : daysUntilDue < 3
-                              ? "mainpage-task-due-date-soon"
-                              : "mainpage-task-due-date-normal"
+                              ? "homepage-task-due-date-soon"
+                              : "homepage-task-due-date-normal"
                           }`}
                         >
                           {daysUntilDue < 0
@@ -299,16 +276,12 @@ export default function HomePage() {
                 </div>
               )}
               <Link href="/tasks">
-                <Button
-                  variant="outline"
-                  className="mainpage-view-all-button"
-                  size="sm"
-                >
+                <button className="homepage-view-all-button">
                   View All Tasks
-                </Button>
+                </button>
               </Link>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
 
           {/* Recent Notes */}
           <Card>

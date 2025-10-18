@@ -12,13 +12,13 @@
 .titleContainer {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: var(--space-2);
 }
 
 .timerIcon {
-  height: 1.25rem;
-  width: 1.25rem;
-  color: hsl(var(--destructive));
+  height: var(--space-5);
+  width: var(--space-5);
+  color: var(--color-destructive);
 }
 
 .settingsButton {
@@ -28,16 +28,16 @@
 .settingsContainer {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-  padding: 0.75rem;
-  background-color: hsl(var(--muted));
-  border-radius: 0.5rem;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  background-color: var(--color-muted);
+  border-radius: var(--radius-lg);
 }
 
 .settingsGrid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.75rem;
+  gap: var(--space-3);
 }
 
 .settingGroup {
@@ -48,7 +48,7 @@
 .settingLabel {
   font-size: 0.875rem;
   font-weight: 500;
-  margin-bottom: 0.25rem;
+  margin-bottom: var(--space-1);
 }
 
 .settingInput {
@@ -63,14 +63,13 @@
   text-align: center;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: var(--space-4);
 }
 
 .timeText {
   font-size: 3.75rem;
   line-height: 1;
-  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
-    "Liberation Mono", monospace;
+  font-family: var(--font-mono);
   font-weight: 700;
 }
 
@@ -82,60 +81,46 @@
 .controlsContainer {
   display: flex;
   justify-content: center;
-  gap: 0.5rem;
+  gap: var(--space-2);
 }
 
 .startButton {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: var(--space-2);
 }
 
-.controlButton {
-  /* Button styles will be inherited from the UI component */
-}
-
-.pauseButton {
-  /* Button styles will be inherited from the UI component */
-}
-
-.resumeButton {
-  /* Button styles will be inherited from the UI component */
-}
-
-.stopButton {
-  /* Button styles will be inherited from the UI component */
-}
+/* Control buttons inherit styles from the UI component library */
 
 .statsGrid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
+  gap: var(--space-4);
   text-align: center;
 }
 
 .statCard {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
-  padding: 0.75rem;
-  background-color: hsl(var(--muted));
-  border-radius: 0.5rem;
+  gap: var(--space-1);
+  padding: var(--space-3);
+  background-color: var(--color-muted);
+  border-radius: var(--radius-lg);
 }
 
 .workSessionsCount {
   font-size: 1.5rem;
   font-weight: 700;
-  color: hsl(var(--success));
+  color: var(--color-success-500);
 }
 
 .breakSessionsCount {
   font-size: 1.5rem;
   font-weight: 700;
-  color: hsl(var(--primary));
+  color: var(--color-primary);
 }
 
 .statLabel {
   font-size: 0.875rem;
-  color: hsl(var(--muted-foreground));
+  color: var(--color-muted-foreground);
 }

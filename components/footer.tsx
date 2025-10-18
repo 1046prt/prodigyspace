@@ -48,11 +48,6 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/notes" className="link">
-                  Sticky Notes
-                </Link>
-              </li>
-              <li>
                 <Link href="/tasks" className="link">
                   Study Planner
                 </Link>

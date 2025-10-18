@@ -2,24 +2,24 @@
   position: absolute;
   cursor: move;
   user-select: none;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-    0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  transition: transform 0.2s;
+  box-shadow: var(--shadow-lg);
+  transition: transform var(--transition-fast) var(--transition-ease);
   min-width: 200px;
   min-height: 150px;
+  border-radius: var(--radius-md);
 }
 
 .stickyNote.dragging {
-  z-index: 50;
+  z-index: var(--z-index-dropdown);
   transform: rotate(2deg) scale(1.05);
 }
 
 .stickyNote:not(.dragging) {
-  z-index: 10;
+  z-index: var(--z-index-dropdown);
 }
 
 .noteContent {
-  padding: 0.75rem;
+  padding: var(--space-3);
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -30,23 +30,23 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 0.5rem;
+  margin-bottom: var(--space-2);
 }
 
 .dragHandle {
   display: flex;
   align-items: center;
-  gap: 0.25rem;
+  gap: var(--space-1);
 }
 
 .iconSmall {
-  height: 0.75rem;
-  width: 0.75rem;
+  height: var(--space-3);
+  width: var(--space-3);
 }
 
 .iconMedium {
-  height: 1rem;
-  width: 1rem;
+  height: var(--space-4);
+  width: var(--space-4);
 }
 
 .opacity50 {
@@ -56,30 +56,35 @@
 .actionButtons {
   display: flex;
   align-items: center;
-  gap: 0.25rem;
+  gap: var(--space-1);
 }
 
 .editButton {
-  height: 1.5rem;
-  width: 1.5rem;
+  height: var(--space-6);
+  width: var(--space-6);
   padding: 0;
   background-color: transparent;
+  border-radius: var(--radius-sm);
+  transition: background-color var(--transition-fast) var(--transition-ease);
 }
 
 .editButton:hover {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: var(--color-muted);
 }
 
 .deleteButton {
-  height: 1.5rem;
-  width: 1.5rem;
+  height: var(--space-6);
+  width: var(--space-6);
   padding: 0;
   background-color: transparent;
-  color: #dc2626; /* red-600 */
+  color: var(--color-error-600);
+  border-radius: var(--radius-sm);
+  transition: background-color var(--transition-fast) var(--transition-ease);
 }
 
 .deleteButton:hover {
-  background-color: rgba(239, 68, 68, 0.2); /* red-500 with 20% opacity */
+  background-color: var(--color-error-500);
+  color: white;
 }
 
 /* Content */
@@ -87,7 +92,7 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: var(--space-2);
 }
 
 .editTitleInput {
@@ -95,10 +100,14 @@
   font-weight: 500;
   background-color: rgba(255, 255, 255, 0.5);
   border: 0;
+  border-radius: var(--radius-sm);
+  padding: var(--space-1);
+  transition: background-color var(--transition-fast) var(--transition-ease);
 }
 
 .editTitleInput:focus {
   background-color: rgba(255, 255, 255, 0.8);
+  outline: var(--border-width-1) solid var(--color-ring);
 }
 
 .editContentTextarea {
@@ -106,11 +115,15 @@
   font-size: 0.875rem;
   background-color: rgba(255, 255, 255, 0.5);
   border: 0;
+  border-radius: var(--radius-sm);
+  padding: var(--space-1);
   resize: none;
+  transition: background-color var(--transition-fast) var(--transition-ease);
 }
 
 .editContentTextarea:focus {
   background-color: rgba(255, 255, 255, 0.8);
+  outline: var(--border-width-1) solid var(--color-ring);
 }
 
 .noteTitle {
@@ -118,6 +131,7 @@
   font-size: 0.875rem;
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -131,27 +145,32 @@
 
 .buttonGroup {
   display: flex;
-  gap: 0.25rem;
+  gap: var(--space-1);
 }
 
 .saveButton {
-  height: 1.5rem;
+  height: var(--space-6);
   font-size: 0.75rem;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-  background-color: #16a34a; /* green-600 */
+  padding-left: var(--space-2);
+  padding-right: var(--space-2);
+  background-color: var(--color-success-600);
   color: white;
+  border-radius: var(--radius-sm);
+  transition: background-color var(--transition-fast) var(--transition-ease);
 }
 
 .saveButton:hover {
-  background-color: #15803d; /* green-700 */
+  background-color: var(--color-success-500);
 }
 
 .cancelButton {
-  height: 1.5rem;
+  height: var(--space-6);
   font-size: 0.75rem;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
+  padding-left: var(--space-2);
+  padding-right: var(--space-2);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-muted);
+  transition: background-color var(--transition-fast) var(--transition-ease);
 }
 
 /* Resize Handle */
@@ -159,10 +178,11 @@
   position: absolute;
   bottom: 0;
   right: 0;
-  width: 1rem;
-  height: 1rem;
+  width: var(--space-4);
+  height: var(--space-4);
   cursor: se-resize;
   opacity: 0.5;
+  transition: opacity var(--transition-fast) var(--transition-ease);
 }
 
 .resizeHandle:hover {
@@ -171,47 +191,101 @@
 
 .resizeIndicator {
   position: absolute;
-  bottom: 0.25rem;
-  right: 0.25rem;
-  width: 0.5rem;
-  height: 0.5rem;
-  border-right: 2px solid currentColor;
-  border-bottom: 2px solid currentColor;
+  bottom: var(--space-1);
+  right: var(--space-1);
+  width: var(--space-2);
+  height: var(--space-2);
+  border-right: var(--border-width-2) solid currentColor;
+  border-bottom: var(--border-width-2) solid currentColor;
 }
 
-/* Color Classes */
+/* Color Classes - Using CSS variables for easy theming */
+:root {
+  /* Sticky Note Colors - Light Mode */
+  --sticky-yellow-bg: #fef08a;
+  --sticky-yellow-border: #fde047;
+  --sticky-yellow-text: #713f12;
+
+  --sticky-blue-bg: #bfdbfe;
+  --sticky-blue-border: #93c5fd;
+  --sticky-blue-text: #1e3a8a;
+
+  --sticky-green-bg: #bbf7d0;
+  --sticky-green-border: #86efac;
+  --sticky-green-text: #14532d;
+
+  --sticky-pink-bg: #fbcfe8;
+  --sticky-pink-border: #f9a8d4;
+  --sticky-pink-text: #831843;
+
+  --sticky-purple-bg: #ddd6fe;
+  --sticky-purple-border: #c4b5fd;
+  --sticky-purple-text: #5b21b6;
+
+  --sticky-orange-bg: #fed7aa;
+  --sticky-orange-border: #fdba74;
+  --sticky-orange-text: #9a3412;
+}
+
+.dark {
+  /* Sticky Note Colors - Dark Mode */
+  --sticky-yellow-bg: #854d0e;
+  --sticky-yellow-border: #a16207;
+  --sticky-yellow-text: #fef08a;
+
+  --sticky-blue-bg: #1e40af;
+  --sticky-blue-border: #1d4ed8;
+  --sticky-blue-text: #bfdbfe;
+
+  --sticky-green-bg: #15803d;
+  --sticky-green-border: #166534;
+  --sticky-green-text: #bbf7d0;
+
+  --sticky-pink-bg: #9d174d;
+  --sticky-pink-border: #be185d;
+  --sticky-pink-text: #fbcfe8;
+
+  --sticky-purple-bg: #6d28d9;
+  --sticky-purple-border: #7c3aed;
+  --sticky-purple-text: #ddd6fe;
+
+  --sticky-orange-bg: #c2410c;
+  --sticky-orange-border: #ea580c;
+  --sticky-orange-text: #fed7aa;
+}
+
 .yellow {
-  background-color: #fef08a; /* yellow-200 */
-  border-color: #fde047; /* yellow-300 */
-  color: #713f12; /* yellow-900 */
+  background-color: var(--sticky-yellow-bg);
+  border-color: var(--sticky-yellow-border);
+  color: var(--sticky-yellow-text);
 }
 
 .blue {
-  background-color: #bfdbfe; /* blue-200 */
-  border-color: #93c5fd; /* blue-300 */
-  color: #1e3a8a; /* blue-900 */
+  background-color: var(--sticky-blue-bg);
+  border-color: var(--sticky-blue-border);
+  color: var(--sticky-blue-text);
 }
 
 .green {
-  background-color: #bbf7d0; /* green-200 */
-  border-color: #86efac; /* green-300 */
-  color: #14532d; /* green-900 */
+  background-color: var(--sticky-green-bg);
+  border-color: var(--sticky-green-border);
+  color: var(--sticky-green-text);
 }
 
 .pink {
-  background-color: #fbcfe8; /* pink-200 */
-  border-color: #f9a8d4; /* pink-300 */
-  color: #831843; /* pink-900 */
+  background-color: var(--sticky-pink-bg);
+  border-color: var(--sticky-pink-border);
+  color: var(--sticky-pink-text);
 }
 
 .purple {
-  background-color: #ddd6fe; /* purple-200 */
-  border-color: #c4b5fd; /* purple-300 */
-  color: #5b21b6; /* purple-900 */
+  background-color: var(--sticky-purple-bg);
+  border-color: var(--sticky-purple-border);
+  color: var(--sticky-purple-text);
 }
 
 .orange {
-  background-color: #fed7aa; /* orange-200 */
-  border-color: #fdba74; /* orange-300 */
-  color: #9a3412; /* orange-900 */
+  background-color: var(--sticky-orange-bg);
+  border-color: var(--sticky-orange-border);
+  color: var(--sticky-orange-text);
 }

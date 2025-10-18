@@ -7,6 +7,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import "@/styles/globals.css";
+import "@/styles/app.css";
 import { Suspense } from "react";
 
 export const metadata: Metadata = {
@@ -125,7 +126,15 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`font-sans ${GeistSans.variable} ${GeistMono.variable} antialiased min-h-screen flex flex-col`}
+        className={`${GeistSans.variable} ${GeistMono.variable}`}
+        style={{
+          fontFamily: "var(--font-sans)",
+          margin: 0,
+          padding: 0,
+          minHeight: "100vh",
+          display: "flex",
+          flexDirection: "column",
+        }}
       >
         <ThemeProvider
           attribute="class"
@@ -133,10 +142,22 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className="flex flex-col min-h-screen bg-background">
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              minHeight: "100vh",
+              backgroundColor: "var(--background)",
+            }}
+          >
             <Navigation />
-            <main className="flex-grow w-full">
-              <div className="w-full">
+            <main
+              style={{
+                flexGrow: 1,
+                width: "100%",
+              }}
+            >
+              <div style={{ width: "100%" }}>
                 <Suspense fallback={null}>{children}</Suspense>
               </div>
             </main>

@@ -1,106 +1,327 @@
+/* ===========================================
+   FOOTER COMPONENT STYLES
+   =========================================== */
+
 .footer {
-  background-color: #000;
-  color: #fff;
+  background-color: var(--background-secondary);
+  border-top: 1px solid var(--border);
+  margin-top: auto;
+  transition: all var(--transition-default);
 }
 
-.container {
-  padding: 2rem 1rem;
+.footer .container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: var(--space-6) var(--container-padding) var(--space-4);
 }
 
-.grid {
+.footer .grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 2rem;
+  gap: var(--space-8);
+  margin-bottom: var(--space-8);
 }
 
 @media (min-width: 768px) {
-  .grid {
-    grid-template-columns: repeat(3, 1fr);
+  .footer .grid {
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: var(--space-12);
   }
 }
+
+/* ===========================================
+   BRAND SECTION STYLES
+   =========================================== */
 
 .brand-section {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: var(--space-4);
 }
 
 .logo-container {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
 }
 
 .logo {
-  height: 1.5rem;
-  width: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, var(--color-primary-500) 0%, var(--color-primary-700) 100%);
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-default);
+}
+
+.logo:hover {
+  transform: scale(1.05);
+  box-shadow: var(--shadow-lg);
 }
 
 .brand-name {
-  font-size: 1.125rem;
-  font-weight: 700;
+  font-size: var(--text-xl);
+  font-weight: var(--font-bold);
+  color: var(--foreground);
+  letter-spacing: var(--tracking-tight);
 }
 
 .description {
-  font-size: 0.875rem;
-  color: #d1d5db;
+  color: var(--foreground-secondary);
+  line-height: var(--leading-relaxed);
+  font-size: var(--text-sm);
+  max-width: 20rem;
 }
 
-.links-section h3,
-.contact-section h3 {
-  font-size: 0.875rem;
-  font-weight: 600;
-  margin-bottom: 0.75rem;
-}
+/* ===========================================
+   LINKS SECTION STYLES
+   =========================================== */
 
-.links-list,
-.contact-list {
+.links-section {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  font-size: 0.875rem;
-  color: #d1d5db;
+  gap: var(--space-4);
+}
+
+.links-section h3 {
+  font-size: var(--text-lg);
+  font-weight: var(--font-semibold);
+  color: var(--foreground);
+  margin-bottom: var(--space-2);
+}
+
+.links-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.link,
-.social-link {
-  color: #d1d5db;
+.link {
+  color: var(--foreground-secondary);
   text-decoration: none;
-  transition: color 0.2s ease;
+  font-size: var(--text-sm);
+  transition: all var(--transition-default);
+  padding: var(--space-1) 0;
+  border-radius: var(--radius-sm);
 }
 
-.link:hover,
-.social-link:hover {
-  color: #fff;
+.link:hover {
+  color: var(--primary);
+  transform: translateX(4px);
+  text-decoration: none;
+}
+
+/* ===========================================
+   CONTACT SECTION STYLES
+   =========================================== */
+
+.contact-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.contact-section h3 {
+  font-size: var(--text-lg);
+  font-weight: var(--font-semibold);
+  color: var(--foreground);
+  margin-bottom: var(--space-2);
+}
+
+.contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .contact-item {
   display: flex;
-  align-items: flex-start;
-  gap: 0.5rem;
+  align-items: center;
+  gap: var(--space-3);
+  color: var(--foreground-secondary);
+  font-size: var(--text-sm);
+  transition: all var(--transition-default);
 }
 
 .contact-icon {
-  height: 1rem;
   width: 1rem;
-  margin-top: 0.125rem;
-  flex-shrink: 0;
+  height: 1rem;
+  color: var(--primary);
+  transition: all var(--transition-default);
 }
+
+.contact-item:hover .contact-icon {
+  color: var(--primary-hover);
+  transform: scale(1.1);
+}
+
+.contact-item:hover {
+  color: var(--foreground);
+  transform: translateX(4px);
+}
+
+/* ===========================================
+   SOCIAL LINKS STYLES
+   =========================================== */
 
 .social-links {
   display: flex;
-  gap: 1rem;
-  padding-top: 0.5rem;
+  gap: var(--space-3);
 }
 
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: var(--radius-lg);
+  background-color: var(--muted);
+  color: var(--foreground-secondary);
+  text-decoration: none;
+  transition: all var(--transition-default);
+  border: 1px solid var(--border);
+}
+
+.social-link:hover {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary);
+}
+
+.social-link svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* ===========================================
+   COPYRIGHT STYLES
+   =========================================== */
+
 .copyright {
-  margin-top: 2rem;
-  padding-top: 2rem;
-  border-top: 1px solid #1f2937;
+  border-top: 1px solid var(--border);
+  padding-top: var(--space-6);
   text-align: center;
-  font-size: 0.875rem;
-  color: #9ca3af;
+}
+
+.copyright p {
+  color: var(--foreground-muted);
+  font-size: var(--text-sm);
+  margin: 0;
+}
+
+/* ===========================================
+   RESPONSIVE DESIGN
+   =========================================== */
+
+@media (max-width: 767px) {
+  .footer .container {
+    padding: var(--space-8) var(--space-4) var(--space-6);
+  }
+  
+  .footer .grid {
+    gap: var(--space-6);
+  }
+  
+  .brand-section {
+    text-align: center;
+  }
+  
+  .logo-container {
+    justify-content: center;
+  }
+  
+  .description {
+    text-align: center;
+    max-width: none;
+  }
+  
+  .social-links {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer .container {
+    padding: var(--space-6) var(--space-3) var(--space-4);
+  }
+  
+  .footer .grid {
+    gap: var(--space-4);
+  }
+  
+  .links-section,
+  .contact-section {
+    text-align: center;
+  }
+  
+  .contact-list {
+    align-items: center;
+  }
+  
+  .social-links {
+    gap: var(--space-2);
+  }
+  
+  .social-link {
+    width: 2rem;
+    height: 2rem;
+  }
+}
+
+/* ===========================================
+   ANIMATIONS
+   =========================================== */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.footer {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* ===========================================
+   FOCUS STYLES
+   =========================================== */
+
+.link:focus-visible,
+.social-link:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+/* ===========================================
+   ACCESSIBILITY
+   =========================================== */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
 }

@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Menu, X, GraduationCap } from "lucide-react";
+import { Menu, X } from "lucide-react";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toggle";
 import "@/styles/header.css";
@@ -14,7 +15,6 @@ export function Header() {
     { href: "/", label: "Home" },
     { href: "/expenses", label: "Expenses" },
     { href: "/todos", label: "Tasks" },
-    { href: "/notes", label: "Notes" },
     { href: "/about", label: "About" },
   ];
 
@@ -24,7 +24,13 @@ export function Header() {
         {/* Logo and Title */}
         <Link href="/" className="logoContainer">
           <div className="logoIcon">
-            <GraduationCap className="menuButtonIcon" />
+            <Image
+              src="/logo.png"
+              alt="ProdigySpace Logo"
+              width={24}
+              height={24}
+              className="logo"
+            />
           </div>
           <span className="logoText">prodigyspace</span>
         </Link>
