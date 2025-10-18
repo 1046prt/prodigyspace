@@ -15,7 +15,7 @@ import {
   Check,
 } from "lucide-react";
 import type { MeditationSession, BreathingExercise } from "@/types/wellbeing";
-import styles from "@styles/meditation-center.module.css";
+import "@/styles/meditation-center.css";
 
 interface MeditationCenterProps {
   sessions: MeditationSession[];
@@ -257,110 +257,110 @@ export function MeditationCenter({
       : 0;
 
   return (
-    <div className={styles.meditationContainer}>
+    <div className="meditationContainer">
       {/* Stats */}
-      <div className={styles.statsGrid}>
-        <Card className={styles.statCard}>
-          <CardContent className={styles.statCardContent}>
-            <div className={`${styles.statValue} ${styles.statValueBlue}`}>
+      <div className="statsGrid">
+        <Card className="statCard">
+          <CardContent className="statCardContent">
+            <div className="statValue ${styles.statValueBlue}">
               {totalSessions}
             </div>
-            <div className={styles.statLabel}>Sessions</div>
+            <div className="statLabel">Sessions</div>
           </CardContent>
         </Card>
-        <Card className={styles.statCard}>
-          <CardContent className={styles.statCardContent}>
-            <div className={`${styles.statValue} ${styles.statValueGreen}`}>
+        <Card className="statCard">
+          <CardContent className="statCardContent">
+            <div className="statValue ${styles.statValueGreen}">
               {totalMinutes}
             </div>
-            <div className={styles.statLabel}>Minutes</div>
+            <div className="statLabel">Minutes</div>
           </CardContent>
         </Card>
-        <Card className={styles.statCard}>
-          <CardContent className={styles.statCardContent}>
-            <div className={`${styles.statValue} ${styles.statValuePurple}`}>
+        <Card className="statCard">
+          <CardContent className="statCardContent">
+            <div className="statValue ${styles.statValuePurple}">
               {averageRating.toFixed(1)}
             </div>
-            <div className={styles.statLabel}>Avg Rating</div>
+            <div className="statLabel">Avg Rating</div>
           </CardContent>
         </Card>
       </div>
 
-      <div className={styles.mainGrid}>
+      <div className="mainGrid">
         {/* Breathing Exercises */}
-        <Card className={styles.card}>
-          <CardHeader className={styles.cardHeader}>
-            <CardTitle className={styles.cardTitle}>
+        <Card className="card">
+          <CardHeader className="cardHeader">
+            <CardTitle className="cardTitle">
               Breathing Exercises
             </CardTitle>
           </CardHeader>
-          <CardContent className={styles.cardContent}>
+          <CardContent className="cardContent">
             {activeExercise ? (
-              <div className={styles.exerciseActiveContainer}>
-                <h3 className={styles.exerciseName}>{activeExercise.name}</h3>
-                <div className={styles.timeDisplay}>{timeLeft}</div>
-                <div className={styles.phaseDisplay}>{phase}</div>
-                <div className={styles.progressContainer}>
+              <div className="exerciseActiveContainer">
+                <h3 className="exerciseName">{activeExercise.name}</h3>
+                <div className="timeDisplay">{timeLeft}</div>
+                <div className="phaseDisplay">{phase}</div>
+                <div className="progressContainer">
                   <Progress
                     value={((currentCycle + 1) / activeExercise.cycles) * 100}
-                    className={styles.progressBar}
+                    className="progressBar"
                   />
                 </div>
-                <div className={styles.cycleInfo}>
+                <div className="cycleInfo">
                   Cycle {currentCycle + 1} of {activeExercise.cycles}
                 </div>
-                <div className={styles.controlsContainer}>
+                <div className="controlsContainer">
                   <Button
                     onClick={pauseExercise}
                     variant="outline"
-                    className={styles.controlButton}
+                    className="controlButton"
                   >
                     {isRunning ? (
-                      <Pause className={styles.buttonIcon} />
+                      <Pause className="buttonIcon" />
                     ) : (
-                      <Play className={styles.buttonIcon} />
+                      <Play className="buttonIcon" />
                     )}
                   </Button>
                   <Button
                     onClick={resetExercise}
                     variant="outline"
-                    className={styles.controlButton}
+                    className="controlButton"
                   >
-                    <RotateCcw className={styles.buttonIcon} />
+                    <RotateCcw className="buttonIcon" />
                   </Button>
                 </div>
               </div>
             ) : (
-              <div className={styles.exercisesList}>
+              <div className="exercisesList">
                 {breathingExercises.map((exercise) => (
-                  <Card key={exercise.id} className={styles.exerciseCard}>
-                    <CardContent className={styles.exerciseCardContent}>
-                      <div className={styles.exerciseHeader}>
-                        <div className={styles.exerciseInfo}>
-                          <h4 className={styles.exerciseName}>
+                  <Card key={exercise.id} className="exerciseCard">
+                    <CardContent className="exerciseCardContent">
+                      <div className="exerciseHeader">
+                        <div className="exerciseInfo">
+                          <h4 className="exerciseName">
                             {exercise.name}
                           </h4>
-                          <p className={styles.exerciseDescription}>
+                          <p className="exerciseDescription">
                             {exercise.description}
                           </p>
-                          <div className={styles.exerciseBadges}>
+                          <div className="exerciseBadges">
                             <Badge
                               variant="outline"
-                              className={styles.exerciseBadge}
+                              className="exerciseBadge"
                             >
                               {exercise.inhale}s inhale
                             </Badge>
                             {exercise.hold > 0 && (
                               <Badge
                                 variant="outline"
-                                className={styles.exerciseBadge}
+                                className="exerciseBadge"
                               >
                                 {exercise.hold}s hold
                               </Badge>
                             )}
                             <Badge
                               variant="outline"
-                              className={styles.exerciseBadge}
+                              className="exerciseBadge"
                             >
                               {exercise.exhale}s exhale
                             </Badge>
@@ -369,9 +369,9 @@ export function MeditationCenter({
                         <Button
                           onClick={() => startBreathingExercise(exercise)}
                           size="sm"
-                          className={styles.startButton}
+                          className="startButton"
                         >
-                          <Play className={styles.buttonIcon} />
+                          <Play className="buttonIcon" />
                         </Button>
                       </div>
                     </CardContent>
@@ -383,91 +383,91 @@ export function MeditationCenter({
         </Card>
 
         {/* Guided Meditations */}
-        <Card className={styles.card}>
-          <CardHeader className={styles.cardHeader}>
-            <CardTitle className={styles.cardTitle}>
+        <Card className="card">
+          <CardHeader className="cardHeader">
+            <CardTitle className="cardTitle">
               Guided Meditations
             </CardTitle>
           </CardHeader>
-          <CardContent className={styles.cardContent}>
+          <CardContent className="cardContent">
             {activeMeditation ? (
-              <div className={styles.meditationActiveContainer}>
-                <h3 className={styles.meditationName}>
+              <div className="meditationActiveContainer">
+                <h3 className="meditationName">
                   {
                     guidedMeditations.find(
                       (m) => m.type === activeMeditation.type
                     )?.name
                   }
                 </h3>
-                <div className={styles.timeDisplay}>
+                <div className="timeDisplay">
                   {formatTime(meditationTimeLeft)}
                 </div>
-                <div className={styles.sessionInfo}>
+                <div className="sessionInfo">
                   {activeMeditation.duration} minute session
                 </div>
-                <div className={styles.progressContainer}>
+                <div className="progressContainer">
                   <Progress
                     value={
                       ((activeMeditation.duration * 60 - meditationTimeLeft) /
                         (activeMeditation.duration * 60)) *
                       100
                     }
-                    className={styles.progressBar}
+                    className="progressBar"
                   />
                 </div>
-                <div className={styles.controlsContainer}>
+                <div className="controlsContainer">
                   <Button
                     onClick={pauseMeditation}
                     variant="outline"
-                    className={styles.controlButton}
+                    className="controlButton"
                   >
                     {isMeditationRunning ? (
-                      <Pause className={styles.buttonIcon} />
+                      <Pause className="buttonIcon" />
                     ) : (
-                      <Play className={styles.buttonIcon} />
+                      <Play className="buttonIcon" />
                     )}
                   </Button>
                   <Button
                     onClick={resetMeditation}
                     variant="outline"
-                    className={styles.controlButton}
+                    className="controlButton"
                   >
-                    <RotateCcw className={styles.buttonIcon} />
+                    <RotateCcw className="buttonIcon" />
                   </Button>
                   <Button
                     onClick={finishMeditation}
                     variant="outline"
-                    className={styles.controlButton}
+                    className="controlButton"
                   >
-                    <Check className={styles.buttonIcon} />
+                    <Check className="buttonIcon" />
                   </Button>
                 </div>
               </div>
             ) : showCompletion ? (
-              <div className={styles.completionContainer}>
-                <div className={styles.completionIcon}>
-                  <Check className={styles.completionCheckIcon} />
+              <div className="completionContainer">
+                <div className="completionIcon">
+                  <Check className="completionCheckIcon" />
                 </div>
-                <h3 className={styles.completionTitle}>Session Complete!</h3>
-                <p className={styles.completionMessage}>
+                <h3 className="completionTitle">Session Complete!</h3>
+                <p className="completionMessage">
                   Great job on your meditation practice
                 </p>
               </div>
             ) : (
-              <div className={styles.meditationsList}>
+              <div className="meditationsList">
                 {guidedMeditations.map((meditation) => (
-                  <Card key={meditation.type} className={styles.meditationCard}>
-                    <CardContent className={styles.meditationCardContent}>
-                      <div className={styles.meditationHeader}>
-                        <meditation.icon className={styles.meditationIcon} />
-                        <div className={styles.meditationInfo}>
-                          <h4 className={styles.meditationName}>
+                  <Card key={meditation.type} className="meditationCard">
+                    <CardContent className="meditationCardContent">
+                      <div className="meditationHeader">
+                        <meditation.icon className="meditationIcon" />
+                        <div className="meditationInfo">
+                          <h4 className="meditationName">
                             {meditation.name}
                           </h4>
-                          <p className={styles.meditationDescription}>
+                          <p className="meditationDescription">
                             {meditation.description}
                           </p>
-                          <div className={styles.durationButtons}>
+                          <div className="durationButtons">
                             {meditation.durations.map((duration) => (
                               <Button
                                 key={duration}
@@ -479,7 +479,7 @@ export function MeditationCenter({
                                     duration
                                   )
                                 }
-                                className={styles.durationButton}
+                                className="durationButton"
                               >
                                 {duration} min
                               </Button>

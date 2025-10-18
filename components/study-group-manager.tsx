@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/dialog";
 import { Users, Plus, Calendar, MessageCircle, Settings } from "lucide-react";
 import type { StudyGroup } from "@/types/collaboration";
-import styles from "@styles/sticky-group-manager.module.css";
+import "@/styles/sticky-group-manager.css";
 
 interface StudyGroupManagerProps {
   studyGroups: StudyGroup[];
@@ -53,12 +53,12 @@ export function StudyGroupManager({
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.header}>
-        <h2 className={styles.title}>Study Groups</h2>
+    <div className="container">
+      <div className="header">
+        <h2 className="title">Study Groups</h2>
         <Dialog open={showCreateDialog} onOpenChange={setShowCreateDialog}>
           <DialogTrigger asChild>
-            <Button className={styles.createButton}>
+            <Button className="createButton">
               <Plus className="h-4 w-4 mr-2" />
               Create Group
             </Button>
@@ -67,9 +67,9 @@ export function StudyGroupManager({
             <DialogHeader>
               <DialogTitle>Create Study Group</DialogTitle>
             </DialogHeader>
-            <div className={styles.dialogContent}>
+            <div className="dialogContent">
               <div>
-                <label className={styles.formLabel}>Group Name</label>
+                <label className="formLabel">Group Name</label>
                 <Input
                   value={groupName}
                   onChange={(e) => setGroupName(e.target.value)}
@@ -77,7 +77,7 @@ export function StudyGroupManager({
                 />
               </div>
               <div>
-                <label className={styles.formLabel}>Subject</label>
+                <label className="formLabel">Subject</label>
                 <Input
                   value={groupSubject}
                   onChange={(e) => setGroupSubject(e.target.value)}
@@ -85,7 +85,7 @@ export function StudyGroupManager({
                 />
               </div>
               <div>
-                <label className={styles.formLabel}>Description</label>
+                <label className="formLabel">Description</label>
                 <Textarea
                   value={groupDescription}
                   onChange={(e) => setGroupDescription(e.target.value)}
@@ -93,7 +93,7 @@ export function StudyGroupManager({
                   rows={3}
                 />
               </div>
-              <div className={styles.actionButtons}>
+              <div className="actionButtons">
                 <Button
                   variant="outline"
                   onClick={() => setShowCreateDialog(false)}
@@ -114,15 +114,15 @@ export function StudyGroupManager({
 
       {studyGroups.length === 0 ? (
         <Card>
-          <CardContent className={styles.emptyStateCard}>
-            <Users className={styles.emptyStateIcon} />
-            <h3 className={styles.emptyStateTitle}>No study groups yet</h3>
-            <p className={styles.emptyStateDescription}>
+          <CardContent className="emptyStateCard">
+            <Users className="emptyStateIcon" />
+            <h3 className="emptyStateTitle">No study groups yet</h3>
+            <p className="emptyStateDescription">
               Create your first study group to start collaborating!
             </p>
             <Button
               onClick={() => setShowCreateDialog(true)}
-              className={styles.createButton}
+              className="createButton"
             >
               <Plus className="h-4 w-4 mr-2" />
               Create Group
@@ -130,16 +130,16 @@ export function StudyGroupManager({
           </CardContent>
         </Card>
       ) : (
-        <div className={styles.groupsGrid}>
+        <div className="groupsGrid">
           {studyGroups.map((group) => (
-            <Card key={group.id} className={styles.groupCard}>
-              <CardHeader className={styles.cardHeader}>
-                <div className={styles.cardHeaderContent}>
+            <Card key={group.id} className="groupCard">
+              <CardHeader className="cardHeader">
+                <div className="cardHeaderContent">
                   <div>
-                    <CardTitle className={styles.cardTitle}>
+                    <CardTitle className="cardTitle">
                       {group.name}
                     </CardTitle>
-                    <Badge variant="outline" className={styles.subjectBadge}>
+                    <Badge variant="outline" className="subjectBadge">
                       {group.subject}
                     </Badge>
                   </div>
@@ -149,12 +149,12 @@ export function StudyGroupManager({
                 </div>
               </CardHeader>
               <CardContent>
-                <p className={styles.descriptionText}>
+                <p className="descriptionText">
                   {group.description || "No description"}
                 </p>
 
-                <div className={styles.membersContainer}>
-                  <div className={styles.avatarGroup}>
+                <div className="membersContainer">
+                  <div className="avatarGroup">
                     {group.members.slice(0, 3).map((member) => (
                       <Avatar
                         key={member.id}
@@ -166,18 +166,18 @@ export function StudyGroupManager({
                       </Avatar>
                     ))}
                   </div>
-                  <span className={styles.memberCount}>
+                  <span className="memberCount">
                     {group.members.length} member
                     {group.members.length !== 1 ? "s" : ""}
                   </span>
                 </div>
 
-                <div className={styles.actionButtonsGroup}>
+                <div className="actionButtonsGroup">
                   <Button
                     size="sm"
                     variant="outline"
                     onClick={() => onSelectGroup(group)}
-                    className={styles.chatButton}
+                    className="chatButton"
                   >
                     <MessageCircle className="h-3 w-3 mr-1" />
                     Chat

@@ -29,7 +29,7 @@ import { useStickyNotes } from "@/hooks/use-sticky-notes";
 import { StickyNote } from "@/components/sticky-note";
 import type { NoteColor } from "@/types/note";
 import { Plus, StickyNoteIcon, Palette, RotateCcw } from "lucide-react";
-import styles from "@styles/sticky-note-board.module.css";
+import "@/styles/sticky-note-board.css";
 
 const colorOptions: { value: NoteColor; label: string; class: string }[] = [
   { value: "yellow", label: "Yellow", class: styles.yellow },
@@ -81,33 +81,33 @@ export function StickyNotesBoard() {
   };
 
   if (loading) {
-    return <div className={styles.loading}>Loading...</div>;
+    return <div className="loading">Loading...</div>;
   }
 
   return (
-    <div className={styles.boardContainer}>
+    <div className="boardContainer">
       {/* Header */}
-      <div className={styles.headerSection}>
-        <div className={styles.headerText}>
-          <h2 className={styles.title}>Sticky Notes</h2>
-          <p className={styles.description}>
+      <div className="headerSection">
+        <div className="headerText">
+          <h2 className="title">Sticky Notes</h2>
+          <p className="description">
             Quick notes and reminders for your thoughts
           </p>
         </div>
-        <div className={styles.headerActions}>
+        <div className="headerActions">
           <Button
             onClick={resetLayout}
             variant="outline"
             size="sm"
-            className={styles.resetButton}
+            className="resetButton"
           >
-            <RotateCcw className={styles.iconSmall} />
+            <RotateCcw className="iconSmall" />
             Reset Layout
           </Button>
           <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
             <DialogTrigger asChild>
-              <Button className={styles.addButton}>
-                <Plus className={styles.iconSmall} />
+              <Button className="addButton">
+                <Plus className="iconSmall" />
                 Add Note
               </Button>
             </DialogTrigger>
@@ -118,24 +118,24 @@ export function StickyNotesBoard() {
                   Choose a color for your new note
                 </DialogDescription>
               </DialogHeader>
-              <div className={styles.dialogContent}>
+              <div className="dialogContent">
                 <div>
-                  <label className={styles.dialogLabel}>Color</label>
+                  <label className="dialogLabel">Color</label>
                   <Select
                     value={selectedColor}
                     onValueChange={(value: NoteColor) =>
                       setSelectedColor(value)
                     }
                   >
-                    <SelectTrigger className={styles.wFull}>
+                    <SelectTrigger className="wFull">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
                       {colorOptions.map((color) => (
                         <SelectItem key={color.value} value={color.value}>
-                          <div className={styles.colorOption}>
+                          <div className="colorOption">
                             <div
-                              className={`${styles.colorSwatch} ${color.class}`}
+                              className="colorSwatch ${color.class}"
                             />
                             {color.label}
                           </div>
@@ -144,7 +144,7 @@ export function StickyNotesBoard() {
                     </SelectContent>
                   </Select>
                 </div>
-                <Button onClick={handleAddNote} className={styles.createButton}>
+                <Button onClick={handleAddNote} className="createButton">
                   Create Note
                 </Button>
               </div>
@@ -154,26 +154,26 @@ export function StickyNotesBoard() {
       </div>
 
       {/* Stats Cards */}
-      <div className={styles.statsGrid}>
+      <div className="statsGrid">
         <Card>
-          <CardHeader className={styles.statCardHeader}>
-            <CardTitle className={styles.statCardTitle}>Total Notes</CardTitle>
-            <StickyNoteIcon className={styles.iconSmall} />
+          <CardHeader className="statCardHeader">
+            <CardTitle className="statCardTitle">Total Notes</CardTitle>
+            <StickyNoteIcon className="iconSmall" />
           </CardHeader>
-          <CardContent className={styles.statCardContent}>
-            <div className={styles.statCount}>{stats.total}</div>
-            <p className={styles.statDescription}>Sticky notes created</p>
+          <CardContent className="statCardContent">
+            <div className="statCount">{stats.total}</div>
+            <p className="statDescription">Sticky notes created</p>
           </CardContent>
         </Card>
         <Card>
-          <CardHeader className={styles.statCardHeader}>
-            <CardTitle className={styles.statCardTitle}>
+          <CardHeader className="statCardHeader">
+            <CardTitle className="statCardTitle">
               Color Distribution
             </CardTitle>
-            <Palette className={styles.iconSmall} />
+            <Palette className="iconSmall" />
           </CardHeader>
-          <CardContent className={styles.statCardContent}>
-            <div className={styles.colorDistribution}>
+          <CardContent className="statCardContent">
+            <div className="colorDistribution">
               {colorOptions.map((color) => {
                 const count = stats.colorBreakdown[color.value];
                 if (count === 0) return null;
@@ -181,9 +181,9 @@ export function StickyNotesBoard() {
                   <Badge
                     key={color.value}
                     variant="outline"
-                    className={styles.colorBadge}
+                    className="colorBadge"
                   >
-                    <div className={`${styles.colorDot} ${color.class}`} />
+                    <div className="colorDot ${color.class}" />
                     {count}
                   </Badge>
                 );
@@ -194,26 +194,26 @@ export function StickyNotesBoard() {
       </div>
 
       {/* Notes Board */}
-      <Card className={styles.notesBoard}>
-        <CardHeader className={styles.boardHeader}>
+      <Card className="notesBoard">
+        <CardHeader className="boardHeader">
           <CardTitle>Notes Board</CardTitle>
           <CardDescription>
             Drag notes around to organize them. Click and drag from the corners
             to resize.
           </CardDescription>
         </CardHeader>
-        <CardContent className={styles.boardContent}>
+        <CardContent className="boardContent">
           {notes.length === 0 ? (
-            <div className={styles.emptyState}>
-              <StickyNoteIcon className={styles.emptyStateIcon} />
-              <h3 className={styles.emptyStateTitle}>No notes yet</h3>
-              <p className={styles.emptyStateDescription}>
+            <div className="emptyState">
+              <StickyNoteIcon className="emptyStateIcon" />
+              <h3 className="emptyStateTitle">No notes yet</h3>
+              <p className="emptyStateDescription">
                 Create your first sticky note to start organizing your thoughts
                 and reminders.
               </p>
             </div>
           ) : (
-            <div className={styles.notesContainer}>
+            <div className="notesContainer">
               {notes.map((note) => (
                 <StickyNote
                   key={note.id}
@@ -234,31 +234,31 @@ export function StickyNotesBoard() {
         <CardHeader>
           <CardTitle>How to Use Sticky Notes</CardTitle>
         </CardHeader>
-        <CardContent className={styles.instructionsCard}>
-          <div className={styles.instructionsGrid}>
-            <div className={styles.instructionItem}>
-              <div className={styles.instructionNumber}>1</div>
-              <div className={styles.instructionContent}>
-                <h4 className={styles.instructionTitle}>Create & Edit</h4>
-                <p className={styles.instructionDescription}>
+        <CardContent className="instructionsCard">
+          <div className="instructionsGrid">
+            <div className="instructionItem">
+              <div className="instructionNumber">1</div>
+              <div className="instructionContent">
+                <h4 className="instructionTitle">Create & Edit</h4>
+                <p className="instructionDescription">
                   Add new notes and click the edit button to add content.
                 </p>
               </div>
             </div>
-            <div className={styles.instructionItem}>
-              <div className={styles.instructionNumber}>2</div>
-              <div className={styles.instructionContent}>
-                <h4 className={styles.instructionTitle}>Drag & Drop</h4>
-                <p className={styles.instructionDescription}>
+            <div className="instructionItem">
+              <div className="instructionNumber">2</div>
+              <div className="instructionContent">
+                <h4 className="instructionTitle">Drag & Drop</h4>
+                <p className="instructionDescription">
                   Click and drag notes to move them around the board.
                 </p>
               </div>
             </div>
-            <div className={styles.instructionItem}>
-              <div className={styles.instructionNumber}>3</div>
-              <div className={styles.instructionContent}>
-                <h4 className={styles.instructionTitle}>Resize</h4>
-                <p className={styles.instructionDescription}>
+            <div className="instructionItem">
+              <div className="instructionNumber">3</div>
+              <div className="instructionContent">
+                <h4 className="instructionTitle">Resize</h4>
+                <p className="instructionDescription">
                   Drag from the bottom-right corner to resize notes.
                 </p>
               </div>

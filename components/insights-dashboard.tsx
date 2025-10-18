@@ -19,7 +19,7 @@ import {
 import { TrendingUp, Activity, Brain, Heart } from "lucide-react";
 import { format, subDays } from "date-fns";
 import type { MoodEntry, MeditationSession } from "@/types/wellbeing";
-import styles from "@styles/insight-dashboard.module.css";
+import "@/styles/insight-dashboard.css";
 
 interface InsightsDashboardProps {
   moodEntries: MoodEntry[];

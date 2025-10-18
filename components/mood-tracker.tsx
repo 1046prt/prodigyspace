@@ -14,7 +14,7 @@ import {
 import { format } from "date-fns";
 import { CalendarIcon, TrendingUp } from "lucide-react";
 import type { MoodEntry } from "@/types/wellbeing";
-import styles from "@styles/mood-tracker.module.css";
+import "@/styles/mood-tracker.css";
 
 interface MoodTrackerProps {
   moodEntries: MoodEntry[];
@@ -87,24 +87,24 @@ export function MoodTracker({ moodEntries, onAddEntry }: MoodTrackerProps) {
     .slice(0, 7);
 
   return (
-    <div className={styles.moodTrackerContainer}>
-      <div className={styles.moodGrid}>
+    <div className="moodTrackerContainer">
+      <div className="moodGrid">
         {/* Mood Entry Form */}
         <Card>
           <CardHeader>
             <CardTitle>Log Your Mood</CardTitle>
           </CardHeader>
-          <CardContent className={styles.formSection}>
+          <CardContent className="formSection">
             <div>
-              <label className={styles.dateLabel}>Date</label>
+              <label className="dateLabel">Date</label>
               <Popover>
                 <PopoverTrigger asChild>
-                  <Button variant="outline" className={styles.dateButton}>
-                    <CalendarIcon className={styles.calendarIcon} />
+                  <Button variant="outline" className="dateButton">
+                    <CalendarIcon className="calendarIcon" />
                     {format(selectedDate, "PPP")}
                   </Button>
                 </PopoverTrigger>
-                <PopoverContent className={styles.calendarPopover}>
+                <PopoverContent className="calendarPopover">
                   <Calendar
                     mode="single"
                     selected={selectedDate}
@@ -115,8 +115,8 @@ export function MoodTracker({ moodEntries, onAddEntry }: MoodTrackerProps) {
             </div>
 
             <div>
-              <label className={styles.moodLabel}>Mood</label>
-              <div className={styles.moodButtons}>
+              <label className="moodLabel">Mood</label>
+              <div className="moodButtons">
                 {Object.entries(moodEmojis).map(([value, { emoji, label }]) => (
                   <Button
                     key={value}
@@ -127,25 +127,25 @@ export function MoodTracker({ moodEntries, onAddEntry }: MoodTrackerProps) {
                     onClick={() =>
                       setMood(Number.parseInt(value) as 1 | 2 | 3 | 4 | 5)
                     }
-                    className={styles.moodButton}
+                    className="moodButton"
                   >
-                    <span className={styles.moodEmoji}>{emoji}</span>
-                    <span className={styles.moodLabelSmall}>{label}</span>
+                    <span className="moodEmoji">{emoji}</span>
+                    <span className="moodLabelSmall">{label}</span>
                   </Button>
                 ))}
               </div>
             </div>
 
             <div>
-              <label className={styles.energyLabel}>Energy Level</label>
-              <div className={styles.levelButtons}>
+              <label className="energyLabel">Energy Level</label>
+              <div className="levelButtons">
                 {[1, 2, 3, 4, 5].map((level) => (
                   <Button
                     key={level}
                     variant={energy >= level ? "default" : "outline"}
                     size="sm"
                     onClick={() => setEnergy(level as 1 | 2 | 3 | 4 | 5)}
-                    className={styles.levelButton}
+                    className="levelButton"
                   >
                     {level}
                   </Button>
@@ -154,15 +154,15 @@ export function MoodTracker({ moodEntries, onAddEntry }: MoodTrackerProps) {
             </div>
 
             <div>
-              <label className={styles.stressLabel}>Stress Level</label>
-              <div className={styles.levelButtons}>
+              <label className="stressLabel">Stress Level</label>
+              <div className="levelButtons">
                 {[1, 2, 3, 4, 5].map((level) => (
                   <Button
                     key={level}
                     variant={stress >= level ? "destructive" : "outline"}
                     size="sm"
                     onClick={() => setStress(level as 1 | 2 | 3 | 4 | 5)}
-                    className={styles.levelButton}
+                    className="levelButton"
                   >
                     {level}
                   </Button>
@@ -171,8 +171,8 @@ export function MoodTracker({ moodEntries, onAddEntry }: MoodTrackerProps) {
             </div>
 
             <div>
-              <label className={styles.activitiesLabel}>Activities</label>
-              <div className={styles.activitiesContainer}>
+              <label className="activitiesLabel">Activities</label>
+              <div className="activitiesContainer">
                 {activities.map((activity) => (
                   <Badge
                     key={activity}
@@ -181,7 +181,7 @@ export function MoodTracker({ moodEntries, onAddEntry }: MoodTrackerProps) {
                         ? "default"
                         : "outline"
                     }
-                    className={styles.activityBadge}
+                    className="activityBadge"
                     onClick={() => toggleActivity(activity)}
                   >
                     {activity}
@@ -191,17 +191,17 @@ export function MoodTracker({ moodEntries, onAddEntry }: MoodTrackerProps) {
             </div>
 
             <div>
-              <label className={styles.notesLabel}>Notes (Optional)</label>
+              <label className="notesLabel">Notes (Optional)</label>
               <Textarea
                 value={notes}
                 onChange={(e) => setNotes(e.target.value)}
                 placeholder="How are you feeling today?"
                 rows={3}
-                className={styles.notesTextarea}
+                className="notesTextarea"
               />
             </div>
 
-            <Button onClick={handleSubmit} className={styles.submitButton}>
+            <Button onClick={handleSubmit} className="submitButton">
               Log Mood
             </Button>
           </CardContent>
@@ -210,54 +210,48 @@ export function MoodTracker({ moodEntries, onAddEntry }: MoodTrackerProps) {
         {/* Mood Overview */}
         <Card>
           <CardHeader>
-            <CardTitle className={styles.overviewHeader}>
-              <TrendingUp className={styles.trendIcon} />
+            <CardTitle className="overviewHeader">
+              <TrendingUp className="trendIcon" />
               Mood Overview
             </CardTitle>
           </CardHeader>
-          <CardContent className={styles.overviewContent}>
-            <div className={styles.overviewContainer}>
-              <div className={styles.averageMoodContainer}>
-                <div className={styles.averageMoodEmoji}>
+          <CardContent className="overviewContent">
+            <div className="overviewContainer">
+              <div className="averageMoodContainer">
+                <div className="averageMoodEmoji">
                   {moodEntries.length > 0
                     ? moodEmojis[
                         Math.round(getAverageMood()) as 1 | 2 | 3 | 4 | 5
                       ].emoji
                     : "😐"}
                 </div>
-                <p className={styles.averageMoodText}>
+                <p className="averageMoodText">
                   Average Mood: {getAverageMood().toFixed(1)}/5 (
                   {moodEntries.length} entries)
                 </p>
               </div>
 
-              <div className={styles.recentEntriesContainer}>
-                <h4 className={styles.recentEntriesTitle}>Recent Entries</h4>
+              <div className="recentEntriesContainer">
+                <h4 className="recentEntriesTitle">Recent Entries</h4>
                 {recentEntries.length === 0 ? (
-                  <p className={styles.noEntriesText}>No mood entries yet</p>
+                  <p className="noEntriesText">No mood entries yet</p>
                 ) : (
-                  <div className={styles.entriesList}>
+                  <div className="entriesList">
                     {recentEntries.map((entry) => (
-                      <div key={entry.id} className={styles.entryItem}>
-                        <div className={styles.entryInfo}>
-                          <span className={styles.entryEmoji}>
+                      <div key={entry.id} className="entryItem">
+                        <div className="entryInfo">
+                          <span className="entryEmoji">
                             {moodEmojis[entry.mood].emoji}
                           </span>
-                          <span className={styles.entryDate}>
+                          <span className="entryDate">
                             {format(entry.date, "MMM d")}
                           </span>
                         </div>
-                        <div className={styles.entryBadges}>
-                          <Badge
-                            variant="outline"
-                            className={styles.entryBadge}
-                          >
+                        <div className="entryBadges">
+                          <Badge variant="outline" className="entryBadge">
                             E: {entry.energy}
                           </Badge>
-                          <Badge
-                            variant="outline"
-                            className={styles.entryBadge}
-                          >
+                          <Badge variant="outline" className="entryBadge">
                             S: {entry.stress}
                           </Badge>
                         </div>

@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/select";
 import { Bookmark, Plus, ExternalLink, Trash2, Edit } from "lucide-react";
 import { useBookmarks } from "@/hooks/use-bookmarks";
-import styles from "@styles/bookmark-manager.module.css";
+import "@/styles/bookmark-manager.css";
 
 export function BookmarkManager() {
   const {
@@ -80,25 +80,25 @@ export function BookmarkManager() {
   };
 
   return (
-    <Card className={styles.bookmarkManager}>
-      <CardHeader className={styles.header}>
-        <CardTitle className={styles.titleContainer}>
-          <Bookmark className={`${styles.icon} text-purple-500`} />
+    <Card className="bookmarkManager">
+      <CardHeader className="header">
+        <CardTitle className="titleContainer">
+          <Bookmark className="icon text-purple-500" />
           Bookmarks
         </CardTitle>
         <Button
           onClick={() => setShowAddForm(!showAddForm)}
           size="sm"
-          className={styles.addButton}
+          className="addButton"
         >
-          <Plus className={styles.icon} />
+          <Plus className="icon" />
         </Button>
       </CardHeader>
-      <CardContent className={styles.content}>
+      <CardContent className="content">
         {showAddForm && (
-          <form onSubmit={handleSubmit} className={styles.addForm}>
-            <div className={styles.formGroup}>
-              <Label htmlFor="title" className={styles.formLabel}>
+          <form onSubmit={handleSubmit} className="addForm">
+            <div className="formGroup">
+              <Label htmlFor="title" className="formLabel">
                 Title
               </Label>
               <Input
@@ -109,11 +109,11 @@ export function BookmarkManager() {
                 }
                 placeholder="Enter bookmark title"
                 required
-                className={styles.formInput}
+                className="formInput"
               />
             </div>
-            <div className={styles.formGroup}>
-              <Label htmlFor="url" className={styles.formLabel}>
+            <div className="formGroup">
+              <Label htmlFor="url" className="formLabel">
                 URL
               </Label>
               <Input
@@ -124,11 +124,11 @@ export function BookmarkManager() {
                 }
                 placeholder="https://example.com"
                 required
-                className={styles.formInput}
+                className="formInput"
               />
             </div>
-            <div className={styles.formGroup}>
-              <Label htmlFor="category" className={styles.formLabel}>
+            <div className="formGroup">
+              <Label htmlFor="category" className="formLabel">
                 Category
               </Label>
               <Select
@@ -137,7 +137,7 @@ export function BookmarkManager() {
                   setFormData({ ...formData, category: value })
                 }
               >
-                <SelectTrigger className={styles.formSelect}>
+                <SelectTrigger className="formSelect">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -149,7 +149,7 @@ export function BookmarkManager() {
                 </SelectContent>
               </Select>
             </div>
-            <div className={styles.buttonGroup}>
+            <div className="buttonGroup">
               <Button type="submit">
                 {editingId ? "Update" : "Add"} Bookmark
               </Button>
@@ -161,13 +161,13 @@ export function BookmarkManager() {
         )}
 
         {allCategories.length > 0 && (
-          <div className={styles.formGroup}>
-            <Label className={styles.formLabel}>Filter by Category</Label>
+          <div className="formGroup">
+            <Label className="formLabel">Filter by Category</Label>
             <Select
               value={selectedCategory}
               onValueChange={setSelectedCategory}
             >
-              <SelectTrigger className={styles.formSelect}>
+              <SelectTrigger className="formSelect">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -182,45 +182,45 @@ export function BookmarkManager() {
           </div>
         )}
 
-        <div className={styles.bookmarkListContainer}>
+        <div className="bookmarkListContainer">
           {displayedBookmarks.length === 0 ? (
-            <div className={styles.emptyState}>
+            <div className="emptyState">
               No bookmarks yet. Add your first bookmark!
             </div>
           ) : (
             displayedBookmarks.map((bookmark) => (
-              <div key={bookmark.id} className={styles.bookmarkItem}>
-                <div className={styles.bookmarkInfo}>
-                  <div className={styles.bookmarkTitle}>{bookmark.title}</div>
-                  <div className={styles.bookmarkUrl}>{bookmark.url}</div>
-                  <div className={styles.bookmarkCategory}>
+              <div key={bookmark.id} className="bookmarkItem">
+                <div className="bookmarkInfo">
+                  <div className="bookmarkTitle">{bookmark.title}</div>
+                  <div className="bookmarkUrl">{bookmark.url}</div>
+                  <div className="bookmarkCategory">
                     {bookmark.category}
                   </div>
                 </div>
-                <div className={styles.actionButtons}>
+                <div className="actionButtons">
                   <Button
                     variant="ghost"
                     size="sm"
                     onClick={() => window.open(bookmark.url, "_blank")}
-                    className={styles.actionButton}
+                    className="actionButton"
                   >
-                    <ExternalLink className={styles.icon} />
+                    <ExternalLink className="icon" />
                   </Button>
                   <Button
                     variant="ghost"
                     size="sm"
                     onClick={() => handleEdit(bookmark)}
-                    className={styles.actionButton}
+                    className="actionButton"
                   >
-                    <Edit className={styles.icon} />
+                    <Edit className="icon" />
                   </Button>
                   <Button
                     variant="ghost"
                     size="sm"
                     onClick={() => removeBookmark(bookmark.id)}
-                    className={styles.actionButton}
+                    className="actionButton"
                   >
-                    <Trash2 className={styles.icon} />
+                    <Trash2 className="icon" />
                   </Button>
                 </div>
               </div>

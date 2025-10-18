@@ -51,7 +51,7 @@ import {
   Pie,
   Cell,
 } from "recharts";
-import styles from "@styles/expense.module.css";
+import "@/styles/expense.css";
 
 const categoryLabels: Record<ExpenseCategory, string> = {
   food: "Food & Dining",
@@ -143,30 +143,28 @@ export function ExpenseTracker() {
   }));
 
   if (loading) {
-    return (
-      <div className={styles["mainpage-loading-container"]}>Loading...</div>
-    );
+    return <div className="mainpage-loading-container">Loading...</div>;
   }
 
   return (
-    <div className={styles["mainpage-expense-tracker"]}>
+    <div className="mainpage-expense-tracker">
       {/* Header */}
-      <div className={styles["mainpage-expense-header"]}>
+      <div className="mainpage-expense-header">
         <div>
-          <h2 className={styles["mainpage-expense-title"]}>Expense Tracker</h2>
-          <p className={styles["mainpage-expense-subtitle"]}>
+          <h2 className="mainpage-expense-title">Expense Tracker</h2>
+          <p className="mainpage-expense-subtitle">
             Track your spending and manage your budget
           </p>
         </div>
-        <div className={styles["mainpage-button-group"]}>
+        <div className="mainpage-button-group">
           <Button onClick={handleExportCSV} variant="outline" size="sm">
-            <Download className="h-4 w-4 mr-2" />
+            <Download className="icon icon-download" />
             Export CSV
           </Button>
           <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
             <DialogTrigger asChild>
               <Button>
-                <Plus className="h-4 w-4 mr-2" />
+                <Plus className="icon icon-plus" />
                 Add Expense
               </Button>
             </DialogTrigger>
@@ -177,7 +175,7 @@ export function ExpenseTracker() {
                   Record a new expense to track your spending
                 </DialogDescription>
               </DialogHeader>
-              <div className="space-y-4">
+              <div className="form-container">
                 <div>
                   <Label htmlFor="amount">Amount</Label>
                   <Input
@@ -242,7 +240,10 @@ export function ExpenseTracker() {
                     }
                   />
                 </div>
-                <Button onClick={handleAddExpense} className="w-full">
+                <Button
+                  onClick={handleAddExpense}
+                  className="button-full-width"
+                >
                   Add Expense
                 </Button>
               </div>
@@ -252,60 +253,58 @@ export function ExpenseTracker() {
       </div>
 
       {/* Stats Cards */}
-      <div className={styles["mainpage-stats-grid"]}>
+      <div className="mainpage-stats-grid">
         <Card>
-          <CardHeader className={styles["mainpage-card-header-flex"]}>
-            <CardTitle className={styles["mainpage-card-title-small"]}>
+          <CardHeader className="mainpage-card-header-flex">
+            <CardTitle className="mainpage-card-title-small">
               Total Spent
             </CardTitle>
-            <DollarSign className="h-4 w-4 text-muted-foreground" />
+            <DollarSign className="icon icon-dollar" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">
-              {formatINR(stats.totalSpent)}
-            </div>
-            <p className="text-xs text-muted-foreground">This month</p>
+            <div className="amount-display">{formatINR(stats.totalSpent)}</div>
+            <p className="period-label">This month</p>
           </CardContent>
         </Card>
         <Card>
-          <CardHeader className={styles["mainpage-card-header-flex"]}>
-            <CardTitle className={styles["mainpage-card-title-small"]}>
+          <CardHeader className="mainpage-card-header-flex">
+            <CardTitle className="mainpage-card-title-small">
               Budget Remaining
             </CardTitle>
-            <TrendingUp className="h-4 w-4 text-muted-foreground" />
+            <TrendingUp className="icon icon-trending" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">
+            <div className="amount-display">
               {formatINR(stats.budgetRemaining)}
             </div>
-            <p className="text-xs text-muted-foreground">
+            <p className="period-label">
               {stats.budgetRemaining >= 0 ? "Under budget" : "Over budget"}
             </p>
           </CardContent>
         </Card>
         <Card>
-          <CardHeader className={styles["mainpage-card-header-flex"]}>
-            <CardTitle className={styles["mainpage-card-title-small"]}>
+          <CardHeader className="mainpage-card-header-flex">
+            <CardTitle className="mainpage-card-title-small">
               Expenses
             </CardTitle>
-            <RechartsPieChart className="h-4 w-4 text-muted-foreground" />
+            <RechartsPieChart className="icon icon-pie-chart" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{expenses.length}</div>
-            <p className="text-xs text-muted-foreground">Total recorded</p>
+            <div className="amount-display">{expenses.length}</div>
+            <p className="period-label">Total recorded</p>
           </CardContent>
         </Card>
       </div>
 
-      <Tabs defaultValue="overview" className="space-y-4">
-        <TabsList className={styles["mainpage-tabs-list"]}>
+      <Tabs defaultValue="overview" className="tabs-container">
+        <TabsList className="mainpage-tabs-list">
           <TabsTrigger value="overview">Overview</TabsTrigger>
           <TabsTrigger value="expenses">Expenses</TabsTrigger>
           <TabsTrigger value="budgets">Budgets</TabsTrigger>
         </TabsList>
 
-        <TabsContent value="overview" className="space-y-4">
-          <div className={styles["mainpage-chart-container"]}>
+        <TabsContent value="overview" className="tabs-content">
+          <div className="mainpage-chart-container">
             {/* Weekly Spending Chart */}
             <Card>
               <CardHeader>
@@ -365,7 +364,7 @@ export function ExpenseTracker() {
                     </RechartsPieChart>
                   </ResponsiveContainer>
                 ) : (
-                  <div className={styles["mainpage-no-data-message"]}>
+                  <div className="mainpage-no-data-message">
                     No expenses recorded yet
                   </div>
                 )}
@@ -374,7 +373,7 @@ export function ExpenseTracker() {
           </div>
         </TabsContent>
 
-        <TabsContent value="expenses" className="space-y-4">
+        <TabsContent value="expenses" className="tabs-content">
           <Card>
             <CardHeader>
               <CardTitle>Recent Expenses</CardTitle>
@@ -382,44 +381,38 @@ export function ExpenseTracker() {
             </CardHeader>
             <CardContent>
               {expenses.length === 0 ? (
-                <div className={styles["mainpage-no-expenses-message"]}>
+                <div className="mainpage-no-expenses-message">
                   No expenses recorded yet. Add your first expense to get
                   started!
                 </div>
               ) : (
-                <div className="space-y-2">
+                <div className="expenses-list">
                   {expenses.slice(0, 10).map((expense) => (
-                    <div
-                      key={expense.id}
-                      className={styles["mainpage-expense-item"]}
-                    >
-                      <div className={styles["mainpage-expense-details"]}>
+                    <div key={expense.id} className="mainpage-expense-item">
+                      <div className="mainpage-expense-details">
                         <div
-                          className={styles["mainpage-category-indicator"]}
-                          style={{
-                            backgroundColor: categoryColors[expense.category],
-                          }}
+                          className={`mainpage-category-indicator category-${expense.category}`}
                         />
                         <div>
-                          <div className="font-medium">
+                          <div className="expense-description">
                             {expense.description}
                           </div>
-                          <div className="text-sm text-muted-foreground">
+                          <div className="expense-meta">
                             {categoryLabels[expense.category]} • {expense.date}
                           </div>
                         </div>
                       </div>
-                      <div className={styles["mainpage-expense-actions"]}>
-                        <span className="font-bold">
+                      <div className="mainpage-expense-actions">
+                        <span className="amount">
                           {formatINR(expense.amount)}
                         </span>
                         <Button
                           variant="ghost"
                           size="sm"
                           onClick={() => deleteExpense(expense.id)}
-                          className="text-destructive hover:text-destructive"
+                          className="delete-button"
                         >
-                          <Trash2 className="h-4 w-4" />
+                          <Trash2 className="icon icon-trash" />
                         </Button>
                       </div>
                     </div>
@@ -430,7 +423,7 @@ export function ExpenseTracker() {
           </Card>
         </TabsContent>
 
-        <TabsContent value="budgets" className="space-y-4">
+        <TabsContent value="budgets" className="tabs-content">
           <Card>
             <CardHeader>
               <CardTitle>Budget Management</CardTitle>
@@ -439,7 +432,7 @@ export function ExpenseTracker() {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="space-y-4">
+              <div className="budgets-list">
                 {budgets.map((budget) => {
                   const spent = stats.categoryBreakdown[budget.category];
                   const percentage =
@@ -447,28 +440,25 @@ export function ExpenseTracker() {
                   const isOverBudget = spent > budget.limit;
 
                   return (
-                    <div
-                      key={budget.category}
-                      className={styles["mainpage-budget-item"]}
-                    >
-                      <div className={styles["mainpage-budget-header"]}>
-                        <div className={styles["mainpage-budget-category"]}>
+                    <div key={budget.category} className="mainpage-budget-item">
+                      <div className="mainpage-budget-header">
+                        <div className="mainpage-budget-category">
                           <div
-                            className={styles["mainpage-category-indicator"]}
-                            style={{
-                              backgroundColor: categoryColors[budget.category],
-                            }}
+                            className={`mainpage-category-indicator category-${budget.category}`}
                           />
-                          <span className="font-medium">
+                          <span className="category-name">
                             {categoryLabels[budget.category]}
                           </span>
                         </div>
-                        <div className="flex items-center gap-2">
-                          <span className={styles["mainpage-budget-amount"]}>
+                        <div className="budget-status">
+                          <span className="mainpage-budget-amount">
                             {formatINR(spent)} / {formatINR(budget.limit)}
                           </span>
                           {isOverBudget && (
-                            <Badge variant="destructive" className="text-xs">
+                            <Badge
+                              variant="destructive"
+                              className="budget-warning"
+                            >
                               Over Budget
                             </Badge>
                           )}
@@ -476,10 +466,8 @@ export function ExpenseTracker() {
                       </div>
                       <Progress
                         value={Math.min(percentage, 100)}
-                        className={`${styles["mainpage-progress-container"]} ${
-                          isOverBudget
-                            ? styles["mainpage-progress-over-budget"]
-                            : ""
+                        className={`mainpage-progress-container ${
+                          isOverBudget ? "mainpage-progress-over-budget" : ""
                         }`}
                       />
                     </div>

@@ -1,5 +1,6 @@
 /* Expense Tracker Component Styles */
 
+/* General layout */
 .mainpage-expense-tracker {
   margin-top: 1.5rem;
 }
@@ -8,6 +9,7 @@
   margin-top: 1.5rem;
 }
 
+/* Header Styles */
 .mainpage-expense-header {
   display: flex;
   align-items: center;
@@ -18,7 +20,7 @@
   font-size: 1.5rem;
   line-height: 2rem;
   font-weight: 700;
-  color: hsl(var(--foreground));
+  color: #333;
 }
 
 .mainpage-expense-subtitle {
@@ -149,4 +151,133 @@
   align-items: center;
   justify-content: center;
   padding: 2rem;
+}
+
+/* Icon styles */
+.icon {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+.icon-download,
+.icon-plus,
+.icon-dollar,
+.icon-trending,
+.icon-pie-chart,
+.icon-trash {
+  width: 16px;
+  height: 16px;
+}
+
+/* Form styles */
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.button-full-width {
+  width: 100%;
+}
+
+/* Amount display */
+.amount-display {
+  font-size: 1.5rem;
+  font-weight: bold;
+  line-height: 1.2;
+  margin-bottom: 4px;
+}
+
+.period-label {
+  font-size: 0.75rem;
+  color: #666;
+}
+
+/* Tabs */
+.tabs-container {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.tabs-content {
+  margin-top: 16px;
+}
+
+/* Expenses list */
+.expenses-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.expense-description {
+  font-weight: 500;
+}
+
+.expense-meta {
+  font-size: 0.875rem;
+  color: #666;
+}
+
+.amount {
+  font-weight: bold;
+}
+
+.delete-button {
+  color: #e53e3e;
+}
+
+.delete-button:hover {
+  color: #c53030;
+}
+
+/* Budget styles */
+.budgets-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.category-name {
+  font-weight: 500;
+}
+
+.budget-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.budget-warning {
+  font-size: 0.75rem;
+}
+
+/* Category color indicators */
+.category-food {
+  background-color: #15803d;
+}
+
+.category-travel {
+  background-color: #84cc16;
+}
+
+.category-study {
+  background-color: #d97706;
+}
+
+.category-entertainment {
+  background-color: #374151;
+}
+
+.category-health {
+  background-color: #f0fdf4;
+}
+
+.category-other {
+  background-color: #e5e7eb;
 }
