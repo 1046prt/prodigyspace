@@ -10,39 +10,39 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Home, ArrowLeft, Search } from "lucide-react";
-import styles from "@/styles/not-found.module.css";
+import "@/styles/not-found.css";
 
 export default function NotFound() {
   return (
-    <div className={styles.container}>
-      <div className={styles.content}>
-        <Card className={styles.card}>
-          <CardHeader className={styles.cardHeader}>
-            <div className={styles.iconContainer}>
+    <div className="container">
+      <div className="content">
+        <Card className="card">
+          <CardHeader className="cardHeader">
+            <div className="iconContainer">
               <span className="text-4xl">🤔</span>
             </div>
-            <CardTitle className={styles.title}>Page Not Found</CardTitle>
-            <CardDescription className={styles.description}>
+            <CardTitle className="title">Page Not Found</CardTitle>
+            <CardDescription className="description">
               Sorry, we couldn&apos;t find the page you&apos;re looking for. It
               might have been moved or doesn&apos;t exist.
             </CardDescription>
           </CardHeader>
-          <CardContent className={styles.cardContent}>
-            <div className={styles.buttonGrid}>
-              <Link href="/" className={styles.homeButton}>
-                <Button className={styles.button} variant="default">
+          <CardContent className="cardContent">
+            <div className="buttonGrid">
+              <Link href="/" className="homeButton">
+                <Button className="button" variant="default">
                   <Home className="mr-2 h-4 w-4" />
                   Go Home
                 </Button>
               </Link>
-              <Link href="/expenses" className={styles.browseButton}>
-                <Button className={styles.button} variant="outline">
+              <Link href="/expenses" className="browseButton">
+                <Button className="button" variant="outline">
                   <Search className="mr-2 h-4 w-4" />
                   Browse Features
                 </Button>
               </Link>
               <Button
-                className={styles.backButton}
+                className="backButton"
                 variant="ghost"
                 onClick={() => window.history.back()}
               >

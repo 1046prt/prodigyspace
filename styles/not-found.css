@@ -77,14 +77,14 @@
 }
 
 .homeButton {
-  composes: button;
+  width: 100%;
 }
 
 .browseButton {
-  composes: button;
+  width: 100%;
   background: transparent;
 }
 
 .backButton {
-  composes: button;
+  width: 100%;
 }

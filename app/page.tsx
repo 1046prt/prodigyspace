@@ -27,7 +27,7 @@ import { useNotes } from "@/hooks/use-notes";
 import { useCollaboration } from "@/hooks/use-collaboration";
 import { useWellbeing } from "@/hooks/use-wellbeing";
 import { useAttendance } from "@/hooks/use-attendance";
-import styles from "@/styles/page.module.css";
+import "@/styles/page.css";
 
 export default function HomePage() {
   const { tasks } = useTasks();
@@ -141,98 +141,84 @@ export default function HomePage() {
   ];
 
   return (
-    <div className={styles["mainpage-container"]}>
+    <div className="mainpage-container">
       <div className="w-full px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <header className={styles["mainpage-header"]}>
-          <div className={styles["mainpage-logo-container"]}>
-            <div className={styles["mainpage-logo-icon"]}>
+        <header className="mainpage-header">
+          <div className="mainpage-logo-container">
+            <div className="mainpage-logo-icon">
               <BookOpen className="h-8 w-8 text-white" />
             </div>
-            <h1 className={styles["mainpage-logo-title"]}>ProdigySpace</h1>
+            <h1 className="mainpage-logo-title">ProdigySpace</h1>
           </div>
-          <p className={styles["mainpage-subtitle"]}>
+          <p className="mainpage-subtitle">
             Your comprehensive digital workspace for academic success,
             collaboration, and well-being
           </p>
         </header>
 
-        <div className={styles["mainpage-stats-grid"]}>
-          <Card className={styles["mainpage-stat-card"]}>
+        <div className="mainpage-stats-grid">
+          <Card className="mainpage-stat-card">
             <CardContent className="p-4">
-              <div
-                className={`${styles["mainpage-stat-value"]} ${styles["mainpage-stat-value-completed"]}`}
-              >
+              <div className="mainpage-stat-value mainpage-stat-value-completed">
                 {completedTasks}
               </div>
-              <div className={styles["mainpage-stat-label"]}>
-                Tasks Completed
-              </div>
+              <div className="mainpage-stat-label">Tasks Completed</div>
             </CardContent>
           </Card>
-          <Card className={styles["mainpage-stat-card"]}>
+          <Card className="mainpage-stat-card">
             <CardContent className="p-4">
-              <div
-                className={`${styles["mainpage-stat-value"]} ${styles["mainpage-stat-value-notes"]}`}
-              >
+              <div className="mainpage-stat-value mainpage-stat-value-notes">
                 {notes.length}
               </div>
-              <div className={styles["mainpage-stat-label"]}>Notes Created</div>
+              <div className="mainpage-stat-label">Notes Created</div>
             </CardContent>
           </Card>
-          <Card className={styles["mainpage-stat-card"]}>
+          <Card className="mainpage-stat-card">
             <CardContent className="p-4">
-              <div
-                className={`${styles["mainpage-stat-value"]} ${styles["mainpage-stat-value-groups"]}`}
-              >
+              <div className="mainpage-stat-value mainpage-stat-value-groups">
                 {studyGroups.length}
               </div>
-              <div className={styles["mainpage-stat-label"]}>Study Groups</div>
+              <div className="mainpage-stat-label">Study Groups</div>
             </CardContent>
           </Card>
-          <Card className={styles["mainpage-stat-card"]}>
+          <Card className="mainpage-stat-card">
             <CardContent className="p-4">
-              <div
-                className={`${styles["mainpage-stat-value"]} ${styles["mainpage-stat-value-mood"]}`}
-              >
+              <div className="mainpage-stat-value mainpage-stat-value-mood">
                 {averageMood.toFixed(1)}
               </div>
-              <div className={styles["mainpage-stat-label"]}>Avg Mood</div>
+              <div className="mainpage-stat-label">Avg Mood</div>
             </CardContent>
           </Card>
-          <Card className={styles["mainpage-stat-card"]}>
+          <Card className="mainpage-stat-card">
             <CardContent className="p-4">
-              <div
-                className={`${styles["mainpage-stat-value"]} ${styles["mainpage-stat-value-attendance"]}`}
-              >
+              <div className="mainpage-stat-value mainpage-stat-value-attendance">
                 {subjects.length > 0
                   ? Math.round((onTrackSubjects / subjects.length) * 100)
                   : 0}
                 %
               </div>
-              <div className={styles["mainpage-stat-label"]}>
-                Attendance On Track
-              </div>
+              <div className="mainpage-stat-label">Attendance On Track</div>
             </CardContent>
           </Card>
         </div>
 
-        <div className={styles["mainpage-features-grid"]}>
+        <div className="mainpage-features-grid">
           {features.map((feature, index) => (
             <Link key={index} href={feature.href}>
-              <Card className={styles["mainpage-feature-card"]}>
+              <Card className="mainpage-feature-card">
                 <CardHeader>
-                  <div className={styles["mainpage-feature-header"]}>
-                    <div className={styles["mainpage-feature-icon-container"]}>
-                      <div className={styles["mainpage-feature-icon-bg"]}>
+                  <div className="mainpage-feature-header">
+                    <div className="mainpage-feature-icon-container">
+                      <div className="mainpage-feature-icon-bg">
                         <feature.icon className={feature.color} />
                       </div>
                       <div>
-                        <CardTitle className={styles["mainpage-feature-title"]}>
+                        <CardTitle className="mainpage-feature-title">
                           {feature.title}
                         </CardTitle>
                         <Badge
                           variant="outline"
-                          className={styles["mainpage-feature-badge"]}
+                          className="mainpage-feature-badge"
                         >
                           {feature.stats}
                         </Badge>
@@ -241,9 +227,7 @@ export default function HomePage() {
                   </div>
                 </CardHeader>
                 <CardContent>
-                  <CardDescription
-                    className={styles["mainpage-feature-description"]}
-                  >
+                  <CardDescription className="mainpage-feature-description">
                     {feature.description}
                   </CardDescription>
                 </CardContent>
@@ -252,11 +236,11 @@ export default function HomePage() {
           ))}
         </div>
 
-        <div className={styles["mainpage-content-grid"]}>
+        <div className="mainpage-content-grid">
           {/* Upcoming Tasks */}
           <Card>
             <CardHeader>
-              <CardTitle className={styles["mainpage-section-header"]}>
+              <CardTitle className="mainpage-section-header">
                 <Clock className="h-5 w-5" />
                 Upcoming Tasks
               </CardTitle>
@@ -276,36 +260,31 @@ export default function HomePage() {
                     );
 
                     return (
-                      <div
-                        key={task.id}
-                        className={styles["mainpage-task-item"]}
-                      >
-                        <div className={styles["mainpage-task-details"]}>
-                          <h4 className={styles["mainpage-task-title"]}>
-                            {task.title}
-                          </h4>
-                          <div className={styles["mainpage-task-badges"]}>
+                      <div key={task.id} className="mainpage-task-item">
+                        <div className="mainpage-task-details">
+                          <h4 className="mainpage-task-title">{task.title}</h4>
+                          <div className="mainpage-task-badges">
                             <Badge
                               variant="outline"
-                              className={styles["mainpage-task-badge"]}
+                              className="mainpage-task-badge"
                             >
                               {task.category}
                             </Badge>
                             <Badge
                               variant="outline"
-                              className={styles["mainpage-task-badge"]}
+                              className="mainpage-task-badge"
                             >
                               {task.priority}
                             </Badge>
                           </div>
                         </div>
                         <div
-                          className={`${styles["mainpage-task-due-date"]} ${
+                          className={`mainpage-task-due-date ${
                             daysUntilDue < 0
-                              ? styles["mainpage-task-due-date-overdue"]
+                              ? "mainpage-task-due-date-overdue"
                               : daysUntilDue < 3
-                              ? styles["mainpage-task-due-date-soon"]
-                              : styles["mainpage-task-due-date-normal"]
+                              ? "mainpage-task-due-date-soon"
+                              : "mainpage-task-due-date-normal"
                           }`}
                         >
                           {daysUntilDue < 0
@@ -322,7 +301,7 @@ export default function HomePage() {
               <Link href="/tasks">
                 <Button
                   variant="outline"
-                  className={styles["mainpage-view-all-button"]}
+                  className="mainpage-view-all-button"
                   size="sm"
                 >
                   View All Tasks
@@ -334,7 +313,7 @@ export default function HomePage() {
           {/* Recent Notes */}
           <Card>
             <CardHeader>
-              <CardTitle className={styles["mainpage-section-header"]}>
+              <CardTitle className="mainpage-section-header">
                 <FileText className="h-5 w-5" />
                 Recent Notes
               </CardTitle>
@@ -347,25 +326,23 @@ export default function HomePage() {
               ) : (
                 <div className="space-y-3">
                   {recentNotes.map((note) => (
-                    <div key={note.id} className={styles["mainpage-note-item"]}>
-                      <div className={styles["mainpage-note-details"]}>
-                        <div className={styles["mainpage-note-title"]}>
-                          {note.title}
-                        </div>
-                        <p className={styles["mainpage-note-content"]}>
+                    <div key={note.id} className="mainpage-note-item">
+                      <div className="mainpage-note-details">
+                        <div className="mainpage-note-title">{note.title}</div>
+                        <p className="mainpage-note-content">
                           {note.content || "No content"}
                         </p>
-                        <div className={styles["mainpage-note-badges"]}>
+                        <div className="mainpage-note-badges">
                           <Badge
                             variant="outline"
-                            className={styles["mainpage-note-badge"]}
+                            className="mainpage-note-badge"
                           >
                             {note.category}
                           </Badge>
                           {note.isPinned && (
                             <Badge
                               variant="outline"
-                              className={styles["mainpage-note-badge"]}
+                              className="mainpage-note-badge"
                             >
                               Pinned
                             </Badge>
@@ -379,7 +356,7 @@ export default function HomePage() {
               <Link href="/notes">
                 <Button
                   variant="outline"
-                  className={styles["mainpage-view-all-button"]}
+                  className="mainpage-view-all-button"
                   size="sm"
                 >
                   View All Notes
@@ -390,17 +367,17 @@ export default function HomePage() {
         </div>
 
         {tasks.length > 0 && (
-          <Card className={styles["mainpage-progress-section"]}>
+          <Card className="mainpage-progress-section">
             <CardHeader>
-              <CardTitle className={styles["mainpage-section-header"]}>
+              <CardTitle className="mainpage-section-header">
                 <TrendingUp className="h-5 w-5" />
                 Progress Overview
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className={styles["mainpage-progress-grid"]}>
+              <div className="mainpage-progress-grid">
                 <div>
-                  <div className={styles["mainpage-progress-header"]}>
+                  <div className="mainpage-progress-header">
                     <span>Task Completion</span>
                     <span>
                       {completedTasks}/{tasks.length}
@@ -408,27 +385,27 @@ export default function HomePage() {
                   </div>
                   <Progress
                     value={(completedTasks / tasks.length) * 100}
-                    className={styles["mainpage-progress-bar"]}
+                    className="mainpage-progress-bar"
                   />
                 </div>
                 <div>
-                  <div className={styles["mainpage-progress-header"]}>
+                  <div className="mainpage-progress-header">
                     <span>Pending Tasks</span>
                     <span>{pendingTasks}</span>
                   </div>
                   <Progress
                     value={(pendingTasks / tasks.length) * 100}
-                    className={styles["mainpage-progress-bar"]}
+                    className="mainpage-progress-bar"
                   />
                 </div>
                 <div>
-                  <div className={styles["mainpage-progress-header"]}>
+                  <div className="mainpage-progress-header">
                     <span>Overdue Tasks</span>
                     <span className="text-red-600">{overdueTasks}</span>
                   </div>
                   <Progress
                     value={(overdueTasks / tasks.length) * 100}
-                    className={`${styles["mainpage-progress-bar"]} ${styles["mainpage-progress-bar-overdue"]}`}
+                    className="mainpage-progress-bar mainpage-progress-bar-overdue"
                   />
                 </div>
               </div>
