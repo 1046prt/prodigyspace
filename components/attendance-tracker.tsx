@@ -54,26 +54,74 @@ export function AttendanceTracker() {
     targetPercentage: "75",
   });
 
+  const [error, setError] = useState<string | null>(null);
+  const [feedback, setFeedback] = useState<{
+    message: string;
+    type: "success" | "error";
+  } | null>(null);
+
   const handleAddSubject = () => {
-    if (!newSubject.name.trim()) return;
+    // Reset any previous errors
+    setError(null);
+
+    // Validate inputs
+    if (!newSubject.name.trim()) {
+      setError("Subject name is required");
+      return;
+    }
 
     const total = parseInt(newSubject.totalClasses) || 0;
     const attended = parseInt(newSubject.attendedClasses) || 0;
     const target = parseInt(newSubject.targetPercentage) || 75;
 
-    if (attended > total) return;
+    if (attended > total) {
+      setError("Attended classes cannot be more than total classes");
+      return;
+    }
 
-    addSubject(newSubject.name, total, attended, target);
+    try {
+      // Check for duplicate names
+      const duplicateName = subjects.some(
+        (subject) =>
+          subject.name.toLowerCase() === newSubject.name.trim().toLowerCase()
+      );
 
-    setNewSubject({
-      name: "",
-      totalClasses: "",
-      attendedClasses: "",
-      targetPercentage: "75",
-    });
-    setIsAddDialogOpen(false);
+      if (duplicateName) {
+        setError("A subject with this name already exists");
+        return;
+      }
+
+      // Call the addSubject function with the proper values
+      addSubject(newSubject.name.trim(), total, attended, target);
+
+      // Show success feedback
+      setFeedback({
+        message: `Added subject: ${newSubject.name}`,
+        type: "success",
+      });
+
+      // Reset form first
+      setNewSubject({
+        name: "",
+        totalClasses: "",
+        attendedClasses: "",
+        targetPercentage: "75",
+      });
+
+      // Close the dialog immediately
+      setIsAddDialogOpen(false);
+
+      // Clear feedback after 3 seconds
+      setTimeout(() => setFeedback(null), 3000);
+    } catch (err) {
+      console.error("Failed to add subject:", err);
+      setError(
+        `Failed to add subject: ${
+          err instanceof Error ? err.message : "Unknown error"
+        }`
+      );
+    }
   };
-
   if (loading) {
     return (
       <Card className="attendance-loading-card">
@@ -91,6 +139,20 @@ export function AttendanceTracker() {
 
   return (
     <div className="attendance-container">
+      {/* Feedback Toast */}
+      {feedback && (
+        <div
+          className={`attendance-feedback attendance-feedback-${feedback.type}`}
+        >
+          {feedback.type === "success" ? (
+            <Check className="attendance-feedback-icon" />
+          ) : (
+            <X className="attendance-feedback-icon" />
+          )}
+          <span>{feedback.message}</span>
+        </div>
+      )}
+
       {/* Header */}
       <Card className="attendance-header">
         <CardHeader>
@@ -106,26 +168,46 @@ export function AttendanceTracker() {
                 Track your class attendance and maintain your target percentage
               </CardDescription>
             </div>
+            <Button
+              className="attendance-btn attendance-btn-primary attendance-btn-scale"
+              onClick={() => setIsAddDialogOpen(true)}
+            >
+              <Plus className="attendance-btn-icon" />
+              Add Subject
+            </Button>
             <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
-              <DialogTrigger asChild>
-                <Button className="attendance-btn attendance-btn-primary attendance-btn-scale">
-                  <Plus className="attendance-btn-icon" />
-                  Add Subject
-                </Button>
-              </DialogTrigger>
-              <DialogContent>
-                <DialogHeader>
-                  <DialogTitle>Add New Subject</DialogTitle>
-                  <DialogDescription>
+              <DialogContent
+                className="attendance-dialog-content"
+                showCloseButton={false}
+              >
+                <button
+                  onClick={() => setIsAddDialogOpen(false)}
+                  className="attendance-dialog-close-btn"
+                  aria-label="Close dialog"
+                >
+                  <X />
+                </button>
+                <DialogHeader className="attendance-dialog-header">
+                  <DialogTitle className="attendance-dialog-title">
+                    <Plus className="attendance-dialog-icon" />
+                    Add New Subject
+                  </DialogTitle>
+                  <DialogDescription className="attendance-dialog-description">
                     Enter the subject details and current attendance status
                   </DialogDescription>
                 </DialogHeader>
-                <div className="space-y-4">
-                  <div>
-                    <Label htmlFor="subject-name">Subject Name</Label>
+                <div className="attendance-dialog-form">
+                  <div className="attendance-form-group">
+                    <Label
+                      htmlFor="subject-name"
+                      className="attendance-form-label"
+                    >
+                      Subject Name
+                    </Label>
                     <Input
                       id="subject-name"
                       placeholder="e.g., Mathematics"
+                      className="attendance-form-input"
                       value={newSubject.name}
                       onChange={(e) =>
                         setNewSubject((prev) => ({
@@ -135,14 +217,20 @@ export function AttendanceTracker() {
                       }
                     />
                   </div>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <Label htmlFor="total-classes">Total Classes</Label>
+                  <div className="attendance-form-row">
+                    <div className="attendance-form-group">
+                      <Label
+                        htmlFor="total-classes"
+                        className="attendance-form-label"
+                      >
+                        Total Classes
+                      </Label>
                       <Input
                         id="total-classes"
                         type="number"
                         min="0"
                         placeholder="0"
+                        className="attendance-form-input"
                         value={newSubject.totalClasses}
                         onChange={(e) =>
                           setNewSubject((prev) => ({
@@ -152,14 +240,20 @@ export function AttendanceTracker() {
                         }
                       />
                     </div>
-                    <div>
-                      <Label htmlFor="attended-classes">Classes Attended</Label>
+                    <div className="attendance-form-group">
+                      <Label
+                        htmlFor="attended-classes"
+                        className="attendance-form-label"
+                      >
+                        Classes Attended
+                      </Label>
                       <Input
                         id="attended-classes"
                         type="number"
                         min="0"
                         max={newSubject.totalClasses || "0"}
                         placeholder="0"
+                        className="attendance-form-input"
                         value={newSubject.attendedClasses}
                         onChange={(e) =>
                           setNewSubject((prev) => ({
@@ -170,27 +264,96 @@ export function AttendanceTracker() {
                       />
                     </div>
                   </div>
-                  <div>
-                    <Label htmlFor="target-percentage">Target Percentage</Label>
-                    <Input
-                      id="target-percentage"
-                      type="number"
-                      min="0"
-                      max="100"
-                      placeholder="75"
-                      value={newSubject.targetPercentage}
-                      onChange={(e) =>
-                        setNewSubject((prev) => ({
-                          ...prev,
-                          targetPercentage: e.target.value,
-                        }))
-                      }
-                    />
+                  <div className="attendance-form-group">
+                    <div className="attendance-form-label-container">
+                      <Label
+                        htmlFor="target-percentage"
+                        className="attendance-form-label"
+                      >
+                        Target Percentage
+                      </Label>
+                      <span className="attendance-target-explanation">
+                        Minimum attendance goal
+                      </span>
+                    </div>
+                    <div className="attendance-target-container">
+                      <div
+                        className="attendance-percentage-preview"
+                        style={{
+                          background: `conic-gradient(
+                          var(--color-primary-400) ${newSubject.targetPercentage}%, 
+                          var(--muted) ${newSubject.targetPercentage}% 100%
+                        )`,
+                        }}
+                      >
+                        <div className="attendance-percentage-inner">
+                          <span className="attendance-percentage-value">
+                            {newSubject.targetPercentage}%
+                          </span>
+                        </div>
+                      </div>
+                      <div className="attendance-slider-controls">
+                        <div className="attendance-range-container">
+                          <Input
+                            id="target-percentage"
+                            type="range"
+                            min="0"
+                            max="100"
+                            step="5"
+                            className="attendance-range-input"
+                            style={
+                              {
+                                "--value": newSubject.targetPercentage,
+                              } as React.CSSProperties
+                            }
+                            value={newSubject.targetPercentage}
+                            onChange={(e) =>
+                              setNewSubject((prev) => ({
+                                ...prev,
+                                targetPercentage: e.target.value,
+                              }))
+                            }
+                          />
+                          <div className="attendance-range-marks">
+                            <span>0%</span>
+                            <span>25%</span>
+                            <span>50%</span>
+                            <span>75%</span>
+                            <span>100%</span>
+                          </div>
+                        </div>
+                        <div className="attendance-preset-buttons">
+                          {[75, 80, 85, 90].map((value) => (
+                            <button
+                              key={value}
+                              type="button"
+                              className={`attendance-preset-btn ${
+                                parseInt(newSubject.targetPercentage) === value
+                                  ? "active"
+                                  : ""
+                              }`}
+                              onClick={() =>
+                                setNewSubject((prev) => ({
+                                  ...prev,
+                                  targetPercentage: value.toString(),
+                                }))
+                              }
+                            >
+                              {value}%
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
                   </div>
+                  {error && (
+                    <div className="attendance-error-message">{error}</div>
+                  )}
                   <Button
                     onClick={handleAddSubject}
-                    className="attendance-add-button"
+                    className="attendance-dialog-submit-btn"
                   >
+                    <Plus className="attendance-btn-icon" />
                     Add Subject
                   </Button>
                 </div>
@@ -213,7 +376,7 @@ export function AttendanceTracker() {
             </p>
             <Button
               onClick={() => setIsAddDialogOpen(true)}
-              className="attendance-btn attendance-btn-primary attendance-btn-first pulse-animation"
+              className="attendance-btn attendance-btn-primary attendance-btn-first"
             >
               <Plus className="attendance-btn-icon" />
               Add Your First Subject
@@ -244,14 +407,51 @@ export function AttendanceTracker() {
                         </span>
                       </CardDescription>
                     </div>
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => deleteSubject(subject.id)}
-                      className="attendance-delete-btn"
-                    >
-                      <Trash2 className="attendance-icon-small" />
-                    </Button>
+                    <Dialog>
+                      <DialogTrigger asChild>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="attendance-delete-btn"
+                        >
+                          <Trash2 className="attendance-icon-small" />
+                        </Button>
+                      </DialogTrigger>
+                      <DialogContent className="attendance-delete-dialog">
+                        <DialogHeader>
+                          <DialogTitle>Delete Subject</DialogTitle>
+                          <DialogDescription>
+                            Are you sure you want to delete &ldquo;
+                            {subject.name}&rdquo;? This action cannot be undone.
+                          </DialogDescription>
+                        </DialogHeader>
+                        <div className="attendance-delete-actions">
+                          <Button
+                            variant="outline"
+                            onClick={() => {
+                              const closeButton = document.querySelector(
+                                '.attendance-delete-dialog button[data-state="open"]'
+                              ) as HTMLButtonElement | null;
+                              if (closeButton) closeButton.click();
+                            }}
+                          >
+                            Cancel
+                          </Button>
+                          <Button
+                            variant="destructive"
+                            onClick={() => {
+                              deleteSubject(subject.id);
+                              const closeButton = document.querySelector(
+                                '.attendance-delete-dialog button[data-state="open"]'
+                              ) as HTMLButtonElement | null;
+                              if (closeButton) closeButton.click();
+                            }}
+                          >
+                            Delete
+                          </Button>
+                        </div>
+                      </DialogContent>
+                    </Dialog>
                   </div>
                 </CardHeader>
                 <CardContent className="attendance-subject-content">
@@ -278,6 +478,7 @@ export function AttendanceTracker() {
                     <div className="attendance-progress-bar">
                       <Progress
                         value={Math.min(stats.currentPercentage, 100)}
+                        max={100}
                         className={`h-2 attendance-progress-fill ${
                           stats.isOnTrack
                             ? "attendance-progress-fill-on-track"
@@ -319,7 +520,14 @@ export function AttendanceTracker() {
                   {/* Action Buttons */}
                   <div className="attendance-actions attendance-footer">
                     <Button
-                      onClick={() => markPresent(subject.id)}
+                      onClick={() => {
+                        markPresent(subject.id);
+                        setFeedback({
+                          message: `Marked ${subject.name} as present`,
+                          type: "success",
+                        });
+                        setTimeout(() => setFeedback(null), 3000);
+                      }}
                       size="sm"
                       className="attendance-btn attendance-btn-present"
                     >
@@ -327,7 +535,14 @@ export function AttendanceTracker() {
                       Present
                     </Button>
                     <Button
-                      onClick={() => markAbsent(subject.id)}
+                      onClick={() => {
+                        markAbsent(subject.id);
+                        setFeedback({
+                          message: `Marked ${subject.name} as absent`,
+                          type: "success",
+                        });
+                        setTimeout(() => setFeedback(null), 3000);
+                      }}
                       variant="destructive"
                       size="sm"
                       className="attendance-btn attendance-btn-absent"

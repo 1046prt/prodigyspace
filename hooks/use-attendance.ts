@@ -10,26 +10,28 @@ export function useAttendance() {
   // Load data from localStorage on mount
   useEffect(() => {
     try {
-      const savedSubjects = localStorage.getItem("attendance-subjects");
-      if (savedSubjects) {
-        const parsed = JSON.parse(savedSubjects);
-        setSubjects(
-          parsed.map(
-            (
-              subject: AttendanceSubject & {
-                createdAt: string;
-                updatedAt: string;
-              }
-            ) => ({
-              ...subject,
-              createdAt: new Date(subject.createdAt),
-              updatedAt: new Date(subject.updatedAt),
-            })
-          )
-        );
+      if (typeof window !== "undefined") {
+        const savedSubjects = localStorage.getItem("attendance-subjects");
+        if (savedSubjects) {
+          const parsed = JSON.parse(savedSubjects);
+          setSubjects(
+            parsed.map(
+              (
+                subject: AttendanceSubject & {
+                  createdAt: string;
+                  updatedAt: string;
+                }
+              ) => ({
+                ...subject,
+                createdAt: new Date(subject.createdAt),
+                updatedAt: new Date(subject.updatedAt),
+              })
+            )
+          );
+        }
       }
-    } catch (error) {
-      console.error("Error loading attendance data:", error);
+    } catch {
+      // Error handling for loading attendance data
     } finally {
       setLoading(false);
     }
@@ -37,8 +39,11 @@ export function useAttendance() {
 
   // Save to localStorage whenever subjects change
   useEffect(() => {
-    if (!loading) {
-      localStorage.setItem("attendance-subjects", JSON.stringify(subjects));
+    if (!loading && typeof window !== "undefined") {
+      try {
+        const serialized = JSON.stringify(subjects);
+        localStorage.setItem("attendance-subjects", serialized);
+      } catch {}
     }
   }, [subjects, loading]);
 
@@ -48,17 +53,75 @@ export function useAttendance() {
     attendedClasses: number,
     targetPercentage: number = 75
   ) => {
-    const newSubject: AttendanceSubject = {
-      id: crypto.randomUUID(),
-      name: name.trim(),
-      totalClasses,
-      attendedClasses,
-      targetPercentage,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    };
+    try {
+      // Ensure we have valid data
+      if (!name.trim()) {
+        throw new Error("Subject name cannot be empty");
+      }
 
-    setSubjects((prev) => [...prev, newSubject]);
+      // Ensure the counts are positive numbers
+      const validTotalClasses = Math.max(0, totalClasses || 0);
+      const validAttendedClasses = Math.max(
+        0,
+        Math.min(validTotalClasses, attendedClasses || 0)
+      );
+      const validTargetPercentage = Math.max(
+        0,
+        Math.min(100, targetPercentage || 75)
+      );
+
+      // Generate a unique ID
+      let id;
+      if (typeof crypto !== "undefined" && crypto.randomUUID) {
+        id = crypto.randomUUID();
+      } else {
+        id = `subject-${Date.now()}-${Math.random()
+          .toString(36)
+          .substring(2, 9)}`;
+      }
+
+      const newSubject: AttendanceSubject = {
+        id,
+        name: name.trim(),
+        totalClasses: validTotalClasses,
+        attendedClasses: validAttendedClasses,
+        targetPercentage: validTargetPercentage,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      };
+
+      // Use a callback to ensure we have the latest state
+      setSubjects((prev) => {
+        // First check if we already have this subject (by name)
+        if (
+          prev.some(
+            (subject) =>
+              subject.name.toLowerCase() === name.trim().toLowerCase()
+          )
+        ) {
+          // Subject with this name already exists
+          // Return unchanged - could also throw an error here
+          return prev;
+        }
+
+        const updatedSubjects = [...prev, newSubject];
+
+        // Save to localStorage immediately to avoid race conditions
+        try {
+          localStorage.setItem(
+            "attendance-subjects",
+            JSON.stringify(updatedSubjects)
+          );
+        } catch {
+          // Failed to save to localStorage
+        }
+
+        return updatedSubjects;
+      });
+    } catch (error) {
+      console.error("Error adding subject:", error);
+      throw error; // Re-throw the error so the component can handle it
+    }
   };
 
   const updateSubject = (id: string, updates: Partial<AttendanceSubject>) => {
@@ -72,36 +135,86 @@ export function useAttendance() {
   };
 
   const deleteSubject = (id: string) => {
-    setSubjects((prev) => prev.filter((subject) => subject.id !== id));
+    try {
+      if (!id) {
+        console.error("Invalid subject ID");
+        return;
+      }
+
+      setSubjects((prev) => {
+        // Check if subject exists before filtering
+        const subjectExists = prev.some((subject) => subject.id === id);
+        if (!subjectExists) {
+          console.error("Subject not found for deletion");
+          return prev;
+        }
+
+        return prev.filter((subject) => subject.id !== id);
+      });
+    } catch (error) {
+      console.error("Error deleting subject:", error);
+    }
   };
 
   const markPresent = (id: string) => {
-    setSubjects((prev) =>
-      prev.map((subject) =>
-        subject.id === id
-          ? {
-              ...subject,
-              totalClasses: subject.totalClasses + 1,
-              attendedClasses: subject.attendedClasses + 1,
-              updatedAt: new Date(),
-            }
-          : subject
-      )
-    );
+    try {
+      if (!id) {
+        console.error("Invalid subject ID");
+        return;
+      }
+
+      setSubjects((prev) => {
+        // First find the subject to verify it exists
+        const subjectExists = prev.some((subject) => subject.id === id);
+        if (!subjectExists) {
+          console.error("Subject not found");
+          return prev;
+        }
+
+        return prev.map((subject) =>
+          subject.id === id
+            ? {
+                ...subject,
+                totalClasses: subject.totalClasses + 1,
+                attendedClasses: subject.attendedClasses + 1,
+                updatedAt: new Date(),
+              }
+            : subject
+        );
+      });
+    } catch (error) {
+      console.error("Error marking subject as present:", error);
+    }
   };
 
   const markAbsent = (id: string) => {
-    setSubjects((prev) =>
-      prev.map((subject) =>
-        subject.id === id
-          ? {
-              ...subject,
-              totalClasses: subject.totalClasses + 1,
-              updatedAt: new Date(),
-            }
-          : subject
-      )
-    );
+    try {
+      if (!id) {
+        console.error("Invalid subject ID");
+        return;
+      }
+
+      setSubjects((prev) => {
+        // First find the subject to verify it exists
+        const subjectExists = prev.some((subject) => subject.id === id);
+        if (!subjectExists) {
+          console.error("Subject not found");
+          return prev;
+        }
+
+        return prev.map((subject) =>
+          subject.id === id
+            ? {
+                ...subject,
+                totalClasses: subject.totalClasses + 1,
+                updatedAt: new Date(),
+              }
+            : subject
+        );
+      });
+    } catch (error) {
+      console.error("Error marking subject as absent:", error);
+    }
   };
 
   const calculateStats = (subject: AttendanceSubject): AttendanceStats => {
