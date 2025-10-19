@@ -51,7 +51,11 @@
   width: 2.5rem;
   height: 2.5rem;
   border-radius: var(--radius-lg);
-  background: linear-gradient(135deg, var(--color-primary-500) 0%, var(--color-primary-700) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--color-primary-500) 0%,
+    var(--color-primary-700) 100%
+  );
   box-shadow: var(--shadow-md);
   transition: all var(--transition-default);
   position: relative;
@@ -59,13 +63,17 @@
 }
 
 .navigation-logo-icon::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, var(--color-secondary-500) 0%, var(--color-accent-500) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--color-secondary-500) 0%,
+    var(--color-accent-500) 100%
+  );
   opacity: 0;
   transition: opacity var(--transition-default);
 }
@@ -163,6 +171,12 @@
   gap: var(--space-3);
 }
 
+.navigation-right-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
 .navigation-mobile-trigger {
   display: flex;
   align-items: center;
@@ -175,6 +189,9 @@
   border: 1px solid var(--border);
   transition: all var(--transition-default);
   cursor: pointer;
+  padding: 0;
+  min-width: 2.5rem;
+  z-index: 50;
 }
 
 .navigation-mobile-trigger:hover {
@@ -186,6 +203,7 @@
 .navigation-mobile-trigger-icon {
   width: 1.25rem;
   height: 1.25rem;
+  min-width: 1.25rem;
 }
 
 @media (min-width: 768px) {
@@ -198,17 +216,27 @@
    MOBILE SHEET STYLES
    =========================================== */
 
+.navigation-sheet-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
 .navigation-sheet {
   background-color: var(--background);
   border-left: 1px solid var(--border);
   width: 20rem;
   padding: var(--space-6);
+  z-index: 999 !important;
+  position: fixed !important;
+  right: 0;
+  top: 0;
+  height: 100vh;
 }
 
 .navigation-sheet-header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   margin-bottom: var(--space-4);
   padding-bottom: var(--space-4);
   border-bottom: 1px solid var(--border);
@@ -218,11 +246,13 @@
   font-size: var(--text-lg);
   font-weight: var(--font-semibold);
   color: var(--foreground);
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .navigation-sheet-close {
-  width: 2rem;
-  height: 2rem;
+  width: 2.5rem;
+  height: 2.5rem;
   padding: 0;
   border-radius: var(--radius-md);
   background-color: transparent;
@@ -230,6 +260,9 @@
   border: none;
   cursor: pointer;
   transition: all var(--transition-default);
+  margin-right: 0;
+  position: relative;
+  left: -0.5rem;
 }
 
 .navigation-sheet-close:hover {
@@ -241,6 +274,10 @@
 .navigation-sheet-close-icon {
   width: 1rem;
   height: 1rem;
+}
+
+.navigation-sheet-link {
+  text-decoration: none;
 }
 
 .navigation-sheet-content {
@@ -303,16 +340,16 @@
   .navigation-container {
     padding: 0 var(--space-4);
   }
-  
+
   .navigation-logo {
     font-size: var(--text-lg);
   }
-  
+
   .navigation-logo-icon {
     width: 2rem;
     height: 2rem;
   }
-  
+
   .navigation-logo-image {
     width: 1rem;
     height: 1rem;
@@ -323,14 +360,19 @@
   .navigation-container {
     padding: 0 var(--space-3);
   }
-  
+
   .navigation-logo-text {
     display: none;
   }
-  
+
   .navigation-logo-icon {
     width: 2.5rem;
     height: 2.5rem;
+  }
+
+  .navigation-sheet {
+    width: 100% !important;
+    max-width: 100% !important;
   }
 }
 
@@ -351,6 +393,16 @@
 
 .navigation-sheet {
   animation: slideInFromRight 0.3s ease-out;
+}
+
+/* Override any Shadcn UI default styles that might conflict */
+div[data-radix-popper-content-wrapper] {
+  z-index: 1000 !important;
+  position: fixed !important;
+}
+
+[role="dialog"] {
+  z-index: 1000 !important;
 }
 
 /* ===========================================

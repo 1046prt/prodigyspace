@@ -7,9 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { ThemeToggle } from "@/components/theme-toggle";
 import {
-  FileText,
   CheckSquare,
-  Users,
   Heart,
   Menu,
   Home,
@@ -71,13 +69,7 @@ export function Navigation() {
         </nav>
 
         {/* Right side controls */}
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "var(--space-3)",
-          }}
-        >
+        <div className="navigation-right-controls">
           <ThemeToggle />
 
           {/* Mobile Navigation */}
@@ -85,74 +77,26 @@ export function Navigation() {
             <SheetTrigger asChild>
               <Button
                 variant="ghost"
-                size="sm"
+                size="icon"
                 className="navigation-mobile-trigger"
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = "var(--accent)";
-                  e.currentTarget.style.transform = "scale(1.05)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = "var(--muted)";
-                  e.currentTarget.style.transform = "scale(1)";
-                }}
+                onClick={() => setIsOpen(true)}
               >
-                <Menu
-                  style={{
-                    width: "1.25rem",
-                    height: "1.25rem",
-                  }}
-                />
+                <Menu className="navigation-mobile-trigger-icon" />
                 <span className="sr-only">Open menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent
-              side="right"
-              style={{
-                backgroundColor: "var(--background)",
-                borderLeft: "1px solid var(--border)",
-                width: "20rem",
-                padding: "var(--space-6)",
-              }}
-            >
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "var(--space-2)",
-                }}
-              >
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    marginBottom: "var(--space-4)",
-                    paddingBottom: "var(--space-4)",
-                    borderBottom: "1px solid var(--border)",
-                  }}
-                >
-                  <h2
-                    style={{
-                      fontSize: "var(--text-lg)",
-                      fontWeight: "var(--font-semibold)",
-                      color: "var(--foreground)",
-                    }}
-                  >
-                    Navigation
-                  </h2>
+            <SheetContent side="right" className="navigation-sheet" forceMount>
+              <div className="navigation-sheet-container">
+                <div className="navigation-sheet-header">
                   <Button
                     variant="ghost"
                     size="sm"
                     onClick={() => setIsOpen(false)}
-                    style={{
-                      width: "2rem",
-                      height: "2rem",
-                      padding: 0,
-                      borderRadius: "var(--radius-md)",
-                    }}
+                    className="navigation-sheet-close"
                   >
-                    <X style={{ width: "1rem", height: "1rem" }} />
+                    <X className="navigation-sheet-close-icon" />
                   </Button>
+                  <h2 className="navigation-sheet-title">Navigation</h2>
                 </div>
 
                 {navigation.map((item) => {
@@ -162,54 +106,16 @@ export function Navigation() {
                       key={item.name}
                       href={item.href}
                       onClick={() => setIsOpen(false)}
-                      style={{
-                        textDecoration: "none",
-                      }}
+                      className="navigation-sheet-link"
                     >
                       <Button
                         variant={isActive ? "default" : "ghost"}
                         size="sm"
-                        style={{
-                          width: "100%",
-                          justifyContent: "flex-start",
-                          padding: "var(--space-3) var(--space-4)",
-                          borderRadius: "var(--radius-lg)",
-                          fontWeight: "var(--font-medium)",
-                          transition: "all var(--transition-default)",
-                          backgroundColor: isActive
-                            ? "var(--primary)"
-                            : "transparent",
-                          color: isActive
-                            ? "var(--primary-foreground)"
-                            : "var(--foreground-secondary)",
-                          border: isActive ? "none" : "1px solid transparent",
-                          boxShadow: isActive ? "var(--shadow-sm)" : "none",
-                        }}
-                        onMouseEnter={(e) => {
-                          if (!isActive) {
-                            e.currentTarget.style.backgroundColor =
-                              "var(--muted)";
-                            e.currentTarget.style.color = "var(--foreground)";
-                            e.currentTarget.style.transform = "translateX(4px)";
-                          }
-                        }}
-                        onMouseLeave={(e) => {
-                          if (!isActive) {
-                            e.currentTarget.style.backgroundColor =
-                              "transparent";
-                            e.currentTarget.style.color =
-                              "var(--foreground-secondary)";
-                            e.currentTarget.style.transform = "translateX(0)";
-                          }
-                        }}
+                        className={`navigation-sheet-item ${
+                          isActive ? "active" : ""
+                        }`}
                       >
-                        <item.icon
-                          style={{
-                            width: "1.25rem",
-                            height: "1.25rem",
-                            marginRight: "var(--space-3)",
-                          }}
-                        />
+                        <item.icon className="navigation-sheet-item-icon" />
                         {item.name}
                       </Button>
                     </Link>
