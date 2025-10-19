@@ -76,33 +76,40 @@ export function AttendanceTracker() {
 
   if (loading) {
     return (
-      <Card>
-        <CardContent className="p-6">
-          <div className="animate-pulse">Loading attendance data...</div>
+      <Card className="attendance-loading-card">
+        <CardContent>
+          <div className="attendance-loading-content">
+            <div className="attendance-loading-spinner"></div>
+            <div className="attendance-loading-text">
+              Loading attendance data...
+            </div>
+          </div>
         </CardContent>
       </Card>
     );
   }
 
   return (
-    <div className="space-y-6">
+    <div className="attendance-container">
       {/* Header */}
-      <Card>
+      <Card className="attendance-header">
         <CardHeader>
-          <div className="flex items-center justify-between">
+          <div className="attendance-header-content">
             <div>
-              <CardTitle className="flex items-center gap-2">
-                <GraduationCap className="h-5 w-5" />
-                Attendance Tracker
+              <CardTitle className="attendance-title">
+                <GraduationCap className="attendance-title-icon" />
+                <span className="attendance-title-text">
+                  Attendance Tracker
+                </span>
               </CardTitle>
-              <CardDescription>
+              <CardDescription className="attendance-subtitle">
                 Track your class attendance and maintain your target percentage
               </CardDescription>
             </div>
             <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
               <DialogTrigger asChild>
-                <Button>
-                  <Plus className="h-4 w-4 mr-2" />
+                <Button className="attendance-btn attendance-btn-primary attendance-btn-scale">
+                  <Plus className="attendance-btn-icon" />
                   Add Subject
                 </Button>
               </DialogTrigger>
@@ -180,7 +187,10 @@ export function AttendanceTracker() {
                       }
                     />
                   </div>
-                  <Button onClick={handleAddSubject} className="w-full">
+                  <Button
+                    onClick={handleAddSubject}
+                    className="attendance-add-button"
+                  >
                     Add Subject
                   </Button>
                 </div>
@@ -192,72 +202,90 @@ export function AttendanceTracker() {
 
       {/* Subjects List */}
       {subjects.length === 0 ? (
-        <Card>
-          <CardContent className="text-center py-12">
-            <BookOpen className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
-            <h3 className="text-lg font-semibold mb-2">
-              No subjects added yet
-            </h3>
-            <p className="text-muted-foreground mb-4">
+        <Card className="attendance-empty-state">
+          <CardContent className="attendance-empty-content">
+            <div className="attendance-empty-icon-container">
+              <BookOpen className="attendance-empty-icon" />
+            </div>
+            <h3 className="attendance-empty-title">No subjects added yet</h3>
+            <p className="attendance-empty-description">
               Start tracking your attendance by adding a subject
             </p>
-            <Button onClick={() => setIsAddDialogOpen(true)}>
-              <Plus className="h-4 w-4 mr-2" />
+            <Button
+              onClick={() => setIsAddDialogOpen(true)}
+              className="attendance-btn attendance-btn-primary attendance-btn-first pulse-animation"
+            >
+              <Plus className="attendance-btn-icon" />
               Add Your First Subject
             </Button>
           </CardContent>
         </Card>
       ) : (
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <div className="attendance-subjects-grid">
           {subjects.map((subject) => {
             const stats = calculateStats(subject);
 
             return (
-              <Card key={subject.id} className="relative">
-                <CardHeader className="pb-3">
-                  <div className="flex items-start justify-between">
+              <Card
+                key={subject.id}
+                className="relative attendance-subject-card"
+              >
+                <CardHeader className="attendance-subject-header-inner">
+                  <div className="attendance-subject-header-content">
                     <div>
-                      <CardTitle className="text-lg">{subject.name}</CardTitle>
-                      <CardDescription>
-                        {subject.attendedClasses}/{subject.totalClasses} classes
+                      <CardTitle className="attendance-subject-name">
+                        {subject.name}
+                      </CardTitle>
+                      <CardDescription className="attendance-classes-info">
+                        <BookOpen className="attendance-classes-icon" />
+                        <span>
+                          {subject.attendedClasses}/{subject.totalClasses}{" "}
+                          classes
+                        </span>
                       </CardDescription>
                     </div>
                     <Button
                       variant="ghost"
                       size="sm"
                       onClick={() => deleteSubject(subject.id)}
-                      className="text-muted-foreground hover:text-destructive"
+                      className="attendance-delete-btn"
                     >
-                      <Trash2 className="h-4 w-4" />
+                      <Trash2 className="attendance-icon-small" />
                     </Button>
                   </div>
                 </CardHeader>
-                <CardContent className="space-y-4">
+                <CardContent className="attendance-subject-content">
                   {/* Attendance Percentage */}
-                  <div className="space-y-2">
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm font-medium">
+                  <div className="space-y-2 attendance-progress-section">
+                    <div className="attendance-progress-header">
+                      <span className="attendance-progress-label">
                         Current Attendance
                       </span>
-                      <div className="flex items-center gap-2">
+                      <div className="attendance-progress-value-container">
                         <Badge
                           variant={stats.isOnTrack ? "default" : "destructive"}
-                          className="text-xs"
+                          className="attendance-progress-value"
                         >
                           {stats.currentPercentage.toFixed(1)}%
                         </Badge>
                         {stats.isOnTrack ? (
-                          <TrendingUp className="h-3 w-3 text-green-600" />
+                          <TrendingUp className="attendance-trend-icon attendance-trend-up" />
                         ) : (
-                          <TrendingDown className="h-3 w-3 text-red-600" />
+                          <TrendingDown className="attendance-trend-icon attendance-trend-down" />
                         )}
                       </div>
                     </div>
-                    <Progress
-                      value={Math.min(stats.currentPercentage, 100)}
-                      className="h-2"
-                    />
-                    <div className="flex items-center justify-between text-xs text-muted-foreground">
+                    <div className="attendance-progress-bar">
+                      <Progress
+                        value={Math.min(stats.currentPercentage, 100)}
+                        className={`h-2 attendance-progress-fill ${
+                          stats.isOnTrack
+                            ? "attendance-progress-fill-on-track"
+                            : "attendance-progress-fill-danger"
+                        }`}
+                      />
+                    </div>
+                    <div className="attendance-target-info">
                       <span>Target: {subject.targetPercentage}%</span>
                       <span>
                         {stats.currentPercentage >= subject.targetPercentage
@@ -270,16 +298,16 @@ export function AttendanceTracker() {
                   {/* Stats */}
                   <div className="space-y-2">
                     {stats.isOnTrack ? (
-                      <div className="flex items-center gap-2 text-sm text-green-600">
-                        <Target className="h-3 w-3" />
+                      <div className="attendance-trend attendance-trend-up">
+                        <Target className="attendance-target-icon" />
                         <span>
                           Can skip {stats.classesToSkip} more class
                           {stats.classesToSkip !== 1 ? "es" : ""}
                         </span>
                       </div>
                     ) : (
-                      <div className="flex items-center gap-2 text-sm text-red-600">
-                        <Target className="h-3 w-3" />
+                      <div className="attendance-trend attendance-trend-down">
+                        <Target className="attendance-target-icon" />
                         <span>
                           Need to attend {stats.classesNeeded} more class
                           {stats.classesNeeded !== 1 ? "es" : ""} consecutively
@@ -289,22 +317,22 @@ export function AttendanceTracker() {
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="flex gap-2 pt-2">
+                  <div className="attendance-actions attendance-footer">
                     <Button
                       onClick={() => markPresent(subject.id)}
                       size="sm"
-                      className="flex-1 bg-green-600 hover:bg-green-700"
+                      className="attendance-btn attendance-btn-present"
                     >
-                      <Check className="h-3 w-3 mr-1" />
+                      <Check className="attendance-icon-small" />
                       Present
                     </Button>
                     <Button
                       onClick={() => markAbsent(subject.id)}
                       variant="destructive"
                       size="sm"
-                      className="flex-1"
+                      className="attendance-btn attendance-btn-absent"
                     >
-                      <X className="h-3 w-3 mr-1" />
+                      <X className="attendance-icon-small" />
                       Absent
                     </Button>
                   </div>
@@ -317,38 +345,36 @@ export function AttendanceTracker() {
 
       {/* Overall Stats */}
       {subjects.length > 0 && (
-        <Card>
+        <Card className="attendance-stats-card-container">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Calendar className="h-5 w-5" />
+            <CardTitle className="attendance-stats-title">
+              <Calendar className="attendance-stats-icon" />
               Overall Statistics
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <div className="text-center">
-                <div className="text-2xl font-bold">{subjects.length}</div>
-                <div className="text-sm text-muted-foreground">Subjects</div>
+            <div className="attendance-stats-grid">
+              <div className="attendance-stat-card">
+                <div className="attendance-stat-value">{subjects.length}</div>
+                <div className="attendance-stat-label">Subjects</div>
               </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold">
+              <div className="attendance-stat-card">
+                <div className="attendance-stat-value">
                   {subjects.reduce((sum, s) => sum + s.totalClasses, 0)}
                 </div>
-                <div className="text-sm text-muted-foreground">
-                  Total Classes
-                </div>
+                <div className="attendance-stat-label">Total Classes</div>
               </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold">
+              <div className="attendance-stat-card">
+                <div className="attendance-stat-value">
                   {subjects.reduce((sum, s) => sum + s.attendedClasses, 0)}
                 </div>
-                <div className="text-sm text-muted-foreground">Attended</div>
+                <div className="attendance-stat-label">Attended</div>
               </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-green-600">
+              <div className="attendance-stat-card">
+                <div className="attendance-stat-value attendance-stat-value-on-track">
                   {subjects.filter((s) => calculateStats(s).isOnTrack).length}
                 </div>
-                <div className="text-sm text-muted-foreground">On Track</div>
+                <div className="attendance-stat-label">On Track</div>
               </div>
             </div>
           </CardContent>

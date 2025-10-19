@@ -4,7 +4,11 @@
 
 .attendance {
   min-height: 100vh;
-  background: linear-gradient(135deg, var(--background) 0%, var(--background-secondary) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--background) 0%,
+    var(--background-secondary) 100%
+  );
   padding: var(--space-8) 0;
 }
 
@@ -14,7 +18,13 @@
   padding: 0 var(--container-padding);
 }
 
+/* Header Styles with Gradient */
 .attendance-header {
+  background: linear-gradient(
+    135deg,
+    var(--background) 0%,
+    var(--background-secondary) 100%
+  );
   text-align: center;
   margin-bottom: var(--space-8);
 }
@@ -24,10 +34,29 @@
   font-weight: var(--font-bold);
   color: var(--foreground);
   margin-bottom: var(--space-4);
-  background: linear-gradient(135deg, var(--color-primary-600) 0%, var(--color-secondary-600) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--color-primary-600) 0%,
+    var(--color-secondary-600) 100%
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.attendance-title-icon {
+  color: var(--color-primary-600);
+  height: 1.5rem;
+  width: 1.5rem;
+  flex-shrink: 0;
+}
+
+.attendance-title-text {
+  position: relative;
+  top: 1px;
 }
 
 .attendance-subtitle {
@@ -35,17 +64,64 @@
   color: var(--foreground-secondary);
   max-width: 42rem;
   margin: 0 auto;
+  margin-top: var(--space-2);
 }
 
 /* ===========================================
    STATS CARDS
    =========================================== */
 
+.attendance-stats-card-container {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-default);
+  position: relative;
+  overflow: hidden;
+  animation: fadeInUp 0.5s ease-out;
+  margin-bottom: var(--space-8);
+}
+
+.attendance-stats-card-container:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary);
+}
+
+.attendance-stats-card-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    var(--color-primary-500),
+    var(--color-secondary-500)
+  );
+  z-index: 1;
+}
+
 .attendance-stats-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: var(--space-6);
-  margin-bottom: var(--space-8);
+}
+
+.attendance-stats-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xl);
+  color: var(--foreground);
+  font-weight: var(--font-semibold);
+}
+
+.attendance-stats-icon {
+  height: 1.25rem;
+  width: 1.25rem;
 }
 
 .attendance-stat-card {
@@ -60,13 +136,17 @@
 }
 
 .attendance-stat-card::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, var(--color-primary-500), var(--color-secondary-500));
+  background: linear-gradient(
+    90deg,
+    var(--color-primary-500),
+    var(--color-secondary-500)
+  );
 }
 
 .attendance-stat-card:hover {
@@ -118,14 +198,33 @@
   border: 1px solid var(--border);
   border-radius: var(--radius-xl);
   padding: var(--space-6);
-  box-shadow: var(--shadow-sm);
-  transition: all var(--transition-default);
+  box-shadow: var(--shadow-md);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
 }
 
 .attendance-subject-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: var(--shadow-lg), 0 10px 25px rgba(0, 0, 0, 0.1);
   border-color: var(--primary);
+}
+
+.attendance-subject-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(
+    90deg,
+    var(--color-primary-500),
+    var(--color-secondary-500)
+  );
+  z-index: 1;
+  box-shadow: 0 0 10px rgba(var(--color-primary-500-rgb, 0, 100, 255), 0.5);
 }
 
 .attendance-subject-header {
@@ -138,8 +237,31 @@
 .attendance-subject-name {
   font-size: var(--text-xl);
   font-weight: var(--font-semibold);
-  color: var(--foreground);
+  color: var(--color-primary-600);
   margin: 0;
+}
+
+.attendance-classes-info {
+  display: flex;
+  align-items: center;
+  margin-top: var(--space-1);
+}
+
+.attendance-classes-icon {
+  height: 0.75rem;
+  width: 0.75rem;
+  margin-right: var(--space-1);
+  color: var(--foreground-muted);
+}
+
+.attendance-delete-btn {
+  border-radius: 9999px;
+  height: 2rem;
+  width: 2rem;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .attendance-subject-code {
@@ -162,6 +284,32 @@
   margin-bottom: var(--space-2);
 }
 
+.attendance-trend {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+}
+
+.attendance-trend-up {
+  color: var(--color-success-600);
+}
+
+.attendance-trend-down {
+  color: var(--color-error-600);
+}
+
+.attendance-trend-icon {
+  height: 0.75rem;
+  width: 0.75rem;
+}
+
+.attendance-target-icon {
+  height: 0.75rem;
+  width: 0.75rem;
+  margin-right: var(--space-1);
+}
+
 .attendance-progress-label {
   font-size: var(--text-sm);
   font-weight: var(--font-medium);
@@ -180,31 +328,92 @@
   background: var(--muted);
   overflow: hidden;
   position: relative;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .attendance-progress-fill {
   height: 100%;
   border-radius: var(--radius-full);
-  transition: width var(--transition-default);
+  transition: all var(--transition-default);
   position: relative;
+  background-size: 30px 30px;
+  animation: progressAnimation 2s linear infinite;
 }
 
 .attendance-progress-fill-on-track {
-  background: linear-gradient(90deg, var(--color-success-500), var(--color-success-400));
+  background: linear-gradient(
+    90deg,
+    var(--color-success-500),
+    var(--color-success-400)
+  );
+  background-image: linear-gradient(
+    -45deg,
+    rgba(255, 255, 255, 0.15) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.15) 75%,
+    transparent 75%,
+    transparent
+  );
+  box-shadow: 0 0 6px rgba(0, 200, 0, 0.3);
 }
 
 .attendance-progress-fill-warning {
-  background: linear-gradient(90deg, var(--color-warning-500), var(--color-warning-400));
+  background: linear-gradient(
+    90deg,
+    var(--color-warning-500),
+    var(--color-warning-400)
+  );
+  background-image: linear-gradient(
+    -45deg,
+    rgba(255, 255, 255, 0.15) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.15) 75%,
+    transparent 75%,
+    transparent
+  );
+  box-shadow: 0 0 6px rgba(255, 200, 0, 0.3);
 }
 
 .attendance-progress-fill-danger {
-  background: linear-gradient(90deg, var(--color-error-500), var(--color-error-400));
+  background: linear-gradient(
+    90deg,
+    var(--color-error-500),
+    var(--color-error-400)
+  );
+  background-image: linear-gradient(
+    -45deg,
+    rgba(255, 255, 255, 0.15) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.15) 75%,
+    transparent 75%,
+    transparent
+  );
+  box-shadow: 0 0 6px rgba(200, 0, 0, 0.3);
+}
+
+@keyframes progressAnimation {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 30px 30px;
+  }
 }
 
 .attendance-actions {
   display: flex;
   gap: var(--space-2);
   flex-wrap: wrap;
+}
+
+.attendance-actions .attendance-btn {
+  flex: 1;
 }
 
 .attendance-btn {
@@ -222,27 +431,80 @@
 }
 
 .attendance-btn-primary {
-  background: var(--primary);
-  color: var(--primary-foreground);
+  background: linear-gradient(
+    135deg,
+    var(--color-primary-600) 0%,
+    var(--color-primary-700) 100%
+  );
+  color: white;
   border-color: var(--primary);
 }
 
 .attendance-btn-primary:hover {
-  background: var(--primary-hover);
+  background: linear-gradient(
+    135deg,
+    var(--color-primary-500) 0%,
+    var(--color-primary-600) 100%
+  );
   transform: translateY(-1px);
   box-shadow: var(--shadow-md);
+}
+
+.attendance-btn-icon {
+  position: relative;
+  top: -1px;
 }
 
 .attendance-btn-secondary {
-  background: var(--secondary);
-  color: var(--secondary-foreground);
-  border-color: var(--secondary);
+  background: var(--destructive);
+  color: white;
+  border-color: var(--destructive);
 }
 
 .attendance-btn-secondary:hover {
-  background: var(--secondary-hover);
+  background: var(--destructive-hover);
   transform: translateY(-1px);
   box-shadow: var(--shadow-md);
+}
+
+.attendance-btn-present {
+  background: linear-gradient(
+    135deg,
+    var(--color-success-500) 0%,
+    var(--color-success-600) 100%
+  );
+  color: white;
+  border-color: var(--color-success-600);
+}
+
+.attendance-btn-present:hover {
+  background: linear-gradient(
+    135deg,
+    var(--color-success-400) 0%,
+    var(--color-success-500) 100%
+  );
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(0, 150, 0, 0.25);
+}
+
+.attendance-btn-absent {
+  background: linear-gradient(
+    135deg,
+    var(--color-error-500) 0%,
+    var(--color-error-600) 100%
+  );
+  color: white;
+  border-color: var(--color-error-600);
+}
+
+.attendance-btn-absent:hover {
+  background: linear-gradient(
+    135deg,
+    var(--color-error-400) 0%,
+    var(--color-error-500) 100%
+  );
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(150, 0, 0, 0.25);
 }
 
 .attendance-btn-outline {
@@ -333,6 +595,80 @@
 }
 
 /* ===========================================
+   LAYOUT CLASSES
+   =========================================== */
+
+.attendance-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem; /* equivalent to space-y-6 */
+}
+
+.attendance-header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.attendance-loading-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem; /* equivalent to space-y-4 */
+  padding: 1.5rem 0; /* py-6 */
+}
+
+.attendance-empty-content {
+  text-align: center;
+  padding: 3rem 0; /* py-12 */
+}
+
+.attendance-empty-title {
+  font-size: var(--text-lg);
+  font-weight: var(--font-semibold);
+  margin-bottom: 0.5rem; /* mb-2 */
+}
+
+.attendance-empty-description {
+  color: var(--foreground-muted);
+  margin-bottom: 1rem; /* mb-4 */
+}
+
+.attendance-subject-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; /* space-y-4 */
+}
+
+.attendance-subject-header-inner {
+  padding-bottom: 0.75rem; /* pb-3 */
+}
+
+.attendance-subject-header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.attendance-add-button {
+  width: 100%; /* w-full */
+}
+
+.attendance-footer {
+  margin-top: 1.5rem; /* mt-6 */
+  padding-top: 0.5rem; /* pt-2 */
+}
+
+.attendance-target-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.75rem; /* text-xs */
+  color: var(--foreground-muted);
+}
+
+/* ===========================================
    RESPONSIVE DESIGN
    =========================================== */
 
@@ -340,25 +676,25 @@
   .attendance {
     padding: var(--space-4) 0;
   }
-  
+
   .attendance-container {
     padding: 0 var(--space-4);
   }
-  
+
   .attendance-title {
     font-size: var(--text-3xl);
   }
-  
+
   .attendance-stats-grid {
     grid-template-columns: 1fr;
     gap: var(--space-4);
   }
-  
+
   .attendance-subjects-grid {
     grid-template-columns: 1fr;
     gap: var(--space-4);
   }
-  
+
   .attendance-form-grid {
     grid-template-columns: 1fr;
   }
@@ -368,19 +704,19 @@
   .attendance-container {
     padding: 0 var(--space-3);
   }
-  
+
   .attendance-title {
     font-size: var(--text-2xl);
   }
-  
+
   .attendance-subject-card {
     padding: var(--space-4);
   }
-  
+
   .attendance-actions {
     flex-direction: column;
   }
-  
+
   .attendance-btn {
     justify-content: center;
   }
@@ -407,10 +743,18 @@
   animation: fadeInUp 0.6s ease-out;
 }
 
-.attendance-stat-card:nth-child(1) { animation-delay: 0.1s; }
-.attendance-stat-card:nth-child(2) { animation-delay: 0.2s; }
-.attendance-stat-card:nth-child(3) { animation-delay: 0.3s; }
-.attendance-stat-card:nth-child(4) { animation-delay: 0.4s; }
+.attendance-stat-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.attendance-stat-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.attendance-stat-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.attendance-stat-card:nth-child(4) {
+  animation-delay: 0.4s;
+}
 
 /* ===========================================
    FOCUS STYLES
@@ -421,6 +765,26 @@
 .attendance-form-submit:focus-visible {
   outline: 2px solid var(--ring);
   outline-offset: 2px;
+}
+
+.attendance-btn:active {
+  transform: scale(0.98);
+  transition: transform 0.1s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.attendance-btn-scale:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+}
+
+.attendance-stat-card {
+  text-align: center;
+}
+
+.attendance-btn-first {
+  padding: 0.75rem 1.5rem;
+  font-weight: var(--font-medium);
 }
 
 /* ===========================================
@@ -437,4 +801,139 @@
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border-width: 0;
+}
+
+/* ===========================================
+   ENHANCED ANIMATIONS
+   =========================================== */
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(var(--color-primary-500-rgb, 0, 100, 255), 0.7);
+  }
+  70% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 10px rgba(var(--color-primary-500-rgb, 0, 100, 255), 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(var(--color-primary-500-rgb, 0, 100, 255), 0);
+  }
+}
+
+/* Empty State Styling */
+.attendance-empty-state {
+  background: var(--card);
+  border: 2px dashed var(--border);
+  border-radius: var(--radius-xl);
+  transition: all 0.3s ease;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.attendance-empty-state:hover {
+  border-color: var(--primary);
+  box-shadow: var(--shadow-md);
+}
+
+.attendance-empty-icon-container {
+  margin: 0 auto;
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--muted);
+  border-radius: 50%;
+  margin-bottom: var(--space-4);
+}
+
+.attendance-empty-icon {
+  height: 3rem;
+  width: 3rem;
+  color: var(--foreground-muted);
+  margin: 0 auto;
+  margin-bottom: 1rem;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.attendance-icon-small {
+  height: 0.75rem;
+  width: 0.75rem;
+  margin-right: 0.25rem;
+}
+
+.attendance-progress-value-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.attendance-progress-value {
+  font-size: var(--text-xs);
+}
+
+.pulse-animation {
+  animation: pulse 2s infinite;
+}
+
+/* Loading State Styling */
+.attendance-loading-card {
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.attendance-loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--muted);
+  border-radius: 50%;
+  border-top-color: var(--primary);
+  animation: spinner 1s linear infinite;
+}
+
+.attendance-loading-text {
+  color: var(--foreground-secondary);
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  letter-spacing: var(--tracking-wide);
+}
+
+@keyframes spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.attendance-header {
+  animation: fadeInUp 0.4s ease-out;
+}
+
+.attendance-title {
+  background-size: 200% 200%;
+  animation: gradientShift 5s ease infinite;
+}
+
+.attendance-subject-card:nth-child(3n + 1) {
+  animation-delay: 0.1s;
+}
+.attendance-subject-card:nth-child(3n + 2) {
+  animation-delay: 0.2s;
+}
+.attendance-subject-card:nth-child(3n + 3) {
+  animation-delay: 0.3s;
 }
