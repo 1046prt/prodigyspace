@@ -149,25 +149,25 @@ export function InsightsDashboard({
       : 0;
 
   return (
-    <div className={styles["insight-container"]}>
-      <div className={styles["header-container"]}>
-        <h2 className={styles["title"]}>Well-being Insights</h2>
-        <div className={styles["time-range-buttons"]}>
+    <div className="insight-container">
+      <div className="header-container">
+        <h2 className="title">Well-being Insights</h2>
+        <div className="time-range-buttons">
           <button
-            className={`${styles["time-button"]} ${
+            className={`time-button ${
               timeRange === "week"
-                ? styles["time-button-active"]
-                : styles["time-button-inactive"]
+                ? "time-button-active"
+                : "time-button-inactive"
             }`}
             onClick={() => setTimeRange("week")}
           >
             Week
           </button>
           <button
-            className={`${styles["time-button"]} ${
+            className={`time-button ${
               timeRange === "month"
-                ? styles["time-button-active"]
-                : styles["time-button-inactive"]
+                ? "time-button-active"
+                : "time-button-inactive"
             }`}
             onClick={() => setTimeRange("month")}
           >
@@ -177,68 +177,58 @@ export function InsightsDashboard({
       </div>
 
       {/* Stats Cards */}
-      <div className={styles["stats-grid"]}>
+      <div className="stats-grid">
         <Card>
-          <CardContent className={styles["stat-card-content"]}>
-            <div className={styles["stat-content"]}>
-              <div
-                className={`${styles["icon-container"]} ${styles["mood-icon-bg"]}`}
-              >
-                <Heart className={`${styles["mood-icon"]}`} />
+          <CardContent className="stat-card-content">
+            <div className="stat-content">
+              <div className="icon-container mood-icon-bg">
+                <Heart className="mood-icon" />
               </div>
               <div>
-                <p className={styles["stat-text"]}>Mood Entries</p>
-                <p className={styles["stat-value"]}>{totalMoodEntries}</p>
+                <p className="stat-text">Mood Entries</p>
+                <p className="stat-value">{totalMoodEntries}</p>
               </div>
             </div>
           </CardContent>
         </Card>
 
         <Card>
-          <CardContent className={styles["stat-card-content"]}>
-            <div className={styles["stat-content"]}>
-              <div
-                className={`${styles["icon-container"]} ${styles["activity-icon-bg"]}`}
-              >
-                <Activity className={`${styles["activity-icon"]}`} />
+          <CardContent className="stat-card-content">
+            <div className="stat-content">
+              <div className="icon-container activity-icon-bg">
+                <Activity className="activity-icon" />
               </div>
               <div>
-                <p className={styles["stat-text"]}>Avg Mood</p>
-                <p className={styles["stat-value"]}>{averageMood}/5</p>
+                <p className="stat-text">Avg Mood</p>
+                <p className="stat-value">{averageMood}/5</p>
               </div>
             </div>
           </CardContent>
         </Card>
 
         <Card>
-          <CardContent className={styles["stat-card-content"]}>
-            <div className={styles["stat-content"]}>
-              <div
-                className={`${styles["icon-container"]} ${styles["brain-icon-bg"]}`}
-              >
-                <Brain className={`${styles["brain-icon"]}`} />
+          <CardContent className="stat-card-content">
+            <div className="stat-content">
+              <div className="icon-container brain-icon-bg">
+                <Brain className="brain-icon" />
               </div>
               <div>
-                <p className={styles["stat-text"]}>Meditation</p>
-                <p className={styles["stat-value"]}>
-                  {totalMeditationMinutes}m
-                </p>
+                <p className="stat-text">Meditation</p>
+                <p className="stat-value">{totalMeditationMinutes}m</p>
               </div>
             </div>
           </CardContent>
         </Card>
 
         <Card>
-          <CardContent className={styles["stat-card-content"]}>
-            <div className={styles["stat-content"]}>
-              <div
-                className={`${styles["icon-container"]} ${styles["trend-icon-bg"]}`}
-              >
-                <TrendingUp className={`${styles["trend-icon"]}`} />
+          <CardContent className="stat-card-content">
+            <div className="stat-content">
+              <div className="icon-container trend-icon-bg">
+                <TrendingUp className="trend-icon" />
               </div>
               <div>
-                <p className={styles["stat-text"]}>Avg Session</p>
-                <p className={styles["stat-value"]}>{avgMeditationDuration}m</p>
+                <p className="stat-text">Avg Session</p>
+                <p className="stat-value">{avgMeditationDuration}m</p>
               </div>
             </div>
           </CardContent>
@@ -246,13 +236,13 @@ export function InsightsDashboard({
       </div>
 
       {/* Charts */}
-      <div className={styles["charts-grid"]}>
+      <div className="charts-grid">
         <Card>
-          <CardHeader className={styles["chart-header"]}>
+          <CardHeader className="chart-header">
             <CardTitle>Mood Trend</CardTitle>
           </CardHeader>
-          <CardContent className={styles["chart-content"]}>
-            <div className={styles["chart-wrapper"]}>
+          <CardContent className="chart-content">
+            <div className="chart-wrapper">
               <ResponsiveContainer width="100%" height="100%">
                 <LineChart data={moodData}>
                   <CartesianGrid strokeDasharray="3 3" />
@@ -273,11 +263,11 @@ export function InsightsDashboard({
         </Card>
 
         <Card>
-          <CardHeader className={styles["chart-header"]}>
+          <CardHeader className="chart-header">
             <CardTitle>Meditation Minutes</CardTitle>
           </CardHeader>
-          <CardContent className={styles["chart-content"]}>
-            <div className={styles["chart-wrapper"]}>
+          <CardContent className="chart-content">
+            <div className="chart-wrapper">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={meditationData}>
                   <CartesianGrid strokeDasharray="3 3" />
@@ -291,12 +281,12 @@ export function InsightsDashboard({
           </CardContent>
         </Card>
 
-        <Card className={styles["full-width-chart"]}>
-          <CardHeader className={styles["chart-header"]}>
+        <Card className="full-width-chart">
+          <CardHeader className="chart-header">
             <CardTitle>Meditation Types</CardTitle>
           </CardHeader>
-          <CardContent className={styles["chart-content"]}>
-            <div className={styles["pie-chart-wrapper"]}>
+          <CardContent className="chart-content">
+            <div className="pie-chart-wrapper">
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
                   <Pie
