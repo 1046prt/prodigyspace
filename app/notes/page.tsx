@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import "@/styles/notes.css";
 import "@/styles/note-editor.css";
 import "@/styles/sticky-note.css";
 import "@/styles/sticky-note-board.css";
@@ -87,8 +88,8 @@ export default function NotesPage() {
 
   if (showEditor) {
     return (
-      <div className="w-full py-6">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="notes">
+        <div className="notes-container">
           <NoteEditor
             note={editingNote}
             onSave={handleSaveNote}
@@ -100,74 +101,80 @@ export default function NotesPage() {
   }
 
   return (
-    <div className="w-full py-6">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between mb-6">
-          <h1 className="text-3xl font-bold">Notes & Documents</h1>
-          <Button onClick={() => setShowEditor(true)}>
+    <div className="notes">
+      <div className="notes-container">
+        <div className="notes-header">
+          <h1 className="notes-title">Notes & Documents</h1>
+          <Button className="notes-new-btn" onClick={() => setShowEditor(true)}>
             <Plus className="h-4 w-4 mr-2" />
             New Note
           </Button>
         </div>
 
-        <Tabs defaultValue="notes" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="notes" className="flex items-center gap-2">
+        <Tabs defaultValue="notes" className="notes-tabs">
+          <TabsList className="notes-tabs-list notes-tabs-list-grid-2">
+            <TabsTrigger value="notes" className="notes-tab-trigger">
               <FileText className="h-4 w-4" />
               Notes ({notes.length})
             </TabsTrigger>
-            <TabsTrigger value="scanner" className="flex items-center gap-2">
+            <TabsTrigger value="scanner" className="notes-tab-trigger">
               <Camera className="h-4 w-4" />
               Scanner ({scannedDocs.length})
             </TabsTrigger>
           </TabsList>
 
-          <TabsContent value="notes" className="space-y-6">
+          <TabsContent value="notes" className="notes-tab-content">
             {/* Search and Filter */}
-            <div className="flex flex-col sm:flex-row gap-4">
-              <div className="relative flex-1">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
-                <Input
-                  placeholder="Search notes..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10"
-                />
+            <div className="notes-search-container">
+              <div className="notes-search-row">
+                <div className="notes-search-input-container">
+                  <Search className="notes-search-icon h-4 w-4" />
+                  <Input
+                    placeholder="Search notes..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="notes-search-input"
+                  />
+                </div>
+                <Select
+                  value={categoryFilter}
+                  onValueChange={setCategoryFilter}
+                >
+                  <SelectTrigger className="notes-filter-select">
+                    <SelectValue placeholder="Filter by category" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">All Categories</SelectItem>
+                    <SelectItem value="lecture">Lecture</SelectItem>
+                    <SelectItem value="research">Research</SelectItem>
+                    <SelectItem value="personal">Personal</SelectItem>
+                    <SelectItem value="assignment">Assignment</SelectItem>
+                    <SelectItem value="meeting">Meeting</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
-              <Select value={categoryFilter} onValueChange={setCategoryFilter}>
-                <SelectTrigger className="w-full sm:w-48">
-                  <SelectValue placeholder="Filter by category" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">All Categories</SelectItem>
-                  <SelectItem value="lecture">Lecture</SelectItem>
-                  <SelectItem value="research">Research</SelectItem>
-                  <SelectItem value="personal">Personal</SelectItem>
-                  <SelectItem value="assignment">Assignment</SelectItem>
-                  <SelectItem value="meeting">Meeting</SelectItem>
-                </SelectContent>
-              </Select>
             </div>
 
             {/* Notes Grid */}
             {filteredNotes.length === 0 ? (
-              <Card>
-                <CardContent className="text-center py-12">
-                  <FileText className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-                  <h3 className="text-lg font-medium mb-2">No notes found</h3>
-                  <p className="text-muted-foreground mb-4">
-                    {searchTerm || categoryFilter !== "all"
-                      ? "Try adjusting your search or filter criteria."
-                      : "Create your first note to get started!"}
-                  </p>
-                  <Button onClick={() => setShowEditor(true)}>
-                    <Plus className="h-4 w-4 mr-2" />
-                    Create Note
-                  </Button>
-                </CardContent>
-              </Card>
+              <div className="notes-empty">
+                <FileText className="notes-empty-icon" />
+                <h3 className="notes-empty-title">No notes found</h3>
+                <p className="notes-empty-text">
+                  {searchTerm || categoryFilter !== "all"
+                    ? "Try adjusting your search or filter criteria."
+                    : "Create your first note to get started!"}
+                </p>
+                <Button
+                  className="notes-new-btn"
+                  onClick={() => setShowEditor(true)}
+                >
+                  <Plus className="h-4 w-4 mr-2" />
+                  Create Note
+                </Button>
+              </div>
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="notes-grid">
                 {filteredNotes.map((note) => (
                   <Card
                     key={note.id}
@@ -236,7 +243,7 @@ export default function NotesPage() {
             )}
           </TabsContent>
 
-          <TabsContent value="scanner">
+          <TabsContent value="scanner" className="notes-tab-content">
             <DocumentScanner
               onSave={addScannedDoc}
               scannedDocs={scannedDocs}

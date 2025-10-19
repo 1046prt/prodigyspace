@@ -24,48 +24,48 @@ export default function WellbeingPage() {
   } = useWellbeing();
 
   return (
-    <div className="w-full py-6">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mb-6">
-          <h1 className="text-3xl font-bold mb-2">Well-being Center</h1>
-          <p className="text-muted-foreground">
+    <div className="wellbeing">
+      <div className="wellbeing-container">
+        <div className="wellbeing-header">
+          <h1 className="wellbeing-title">Well-being Center</h1>
+          <p className="wellbeing-subtitle">
             Track your mental health, practice mindfulness, and maintain balance
             in your student life.
           </p>
         </div>
 
-        <Tabs defaultValue="mood" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-4">
-            <TabsTrigger value="mood" className="flex items-center gap-2">
-              <Heart className="h-4 w-4" />
-              Mood
+        <Tabs defaultValue="mood" className="wellbeing-tabs">
+          <TabsList className="wellbeing-tabs-list wellbeing-tabs-list-grid-4">
+            <TabsTrigger value="mood" className="wellbeing-tab-trigger">
+              <Heart className="h-5 w-5 mr-1.5" />
+              <span>Mood</span>
             </TabsTrigger>
-            <TabsTrigger value="meditation" className="flex items-center gap-2">
-              <Brain className="h-4 w-4" />
-              Meditation
+            <TabsTrigger value="meditation" className="wellbeing-tab-trigger">
+              <Brain className="h-5 w-5 mr-1.5" />
+              <span>Meditation</span>
             </TabsTrigger>
-            <TabsTrigger value="goals" className="flex items-center gap-2">
-              <Target className="h-4 w-4" />
-              Goals
+            <TabsTrigger value="goals" className="wellbeing-tab-trigger">
+              <Target className="h-5 w-5 mr-1.5" />
+              <span>Goals</span>
             </TabsTrigger>
-            <TabsTrigger value="insights" className="flex items-center gap-2">
-              <TrendingUp className="h-4 w-4" />
-              Insights
+            <TabsTrigger value="insights" className="wellbeing-tab-trigger">
+              <TrendingUp className="h-5 w-5 mr-1.5" />
+              <span>Insights</span>
             </TabsTrigger>
           </TabsList>
 
-          <TabsContent value="mood">
+          <TabsContent value="mood" className="wellbeing-tab-content">
             <MoodTracker moodEntries={moodEntries} onAddEntry={addMoodEntry} />
           </TabsContent>
 
-          <TabsContent value="meditation">
+          <TabsContent value="meditation" className="wellbeing-tab-content">
             <MeditationCenter
               sessions={meditationSessions}
               onAddSession={addMeditationSession}
             />
           </TabsContent>
 
-          <TabsContent value="goals">
+          <TabsContent value="goals" className="wellbeing-tab-content">
             <GoalsManager
               goals={wellbeingGoals}
               onAddGoal={addWellbeingGoal}
@@ -73,7 +73,7 @@ export default function WellbeingPage() {
             />
           </TabsContent>
 
-          <TabsContent value="insights">
+          <TabsContent value="insights" className="wellbeing-tab-content">
             <InsightsDashboard
               moodEntries={moodEntries}
               meditationSessions={meditationSessions}

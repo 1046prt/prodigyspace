@@ -19,42 +19,37 @@ export default function TasksPage() {
   } = useTasks();
 
   return (
-    <div className="w-full py-6">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mb-6">
-          <h1 className="text-3xl font-bold mb-2">
-            Task Management & Study Planner
-          </h1>
-          <p className="text-muted-foreground">
+    <div className="tasks">
+      <div className="tasks-container">
+        <div className="tasks-header">
+          <h1 className="tasks-title">Task Management & Study Planner</h1>
+          <p className="tasks-subtitle">
             Organize your assignments, plan study sessions, and track your
             academic progress.
           </p>
         </div>
 
-        <Tabs defaultValue="tasks" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-4">
-            <TabsTrigger value="tasks" className="flex items-center gap-2">
+        <Tabs defaultValue="tasks" className="tasks-tabs">
+          <TabsList className="tasks-tabs-list tasks-tabs-list-grid-4">
+            <TabsTrigger value="tasks" className="tasks-tab-trigger">
               <CheckSquare className="h-4 w-4" />
               Tasks ({tasks.length})
             </TabsTrigger>
-            <TabsTrigger value="planner" className="flex items-center gap-2">
+            <TabsTrigger value="planner" className="tasks-tab-trigger">
               <Calendar className="h-4 w-4" />
               Study Planner
             </TabsTrigger>
-            <TabsTrigger
-              value="assignments"
-              className="flex items-center gap-2"
-            >
+            <TabsTrigger value="assignments" className="tasks-tab-trigger">
               <GraduationCap className="h-4 w-4" />
               Assignments ({assignments.length})
             </TabsTrigger>
-            <TabsTrigger value="sessions" className="flex items-center gap-2">
+            <TabsTrigger value="sessions" className="tasks-tab-trigger">
               <BookOpen className="h-4 w-4" />
               Sessions ({studySessions.length})
             </TabsTrigger>
           </TabsList>
 
-          <TabsContent value="tasks">
+          <TabsContent value="tasks" className="tasks-tab-content">
             <TaskManager
               tasks={tasks}
               onAddTask={addTask}
@@ -63,7 +58,7 @@ export default function TasksPage() {
             />
           </TabsContent>
 
-          <TabsContent value="planner">
+          <TabsContent value="planner" className="tasks-tab-content">
             <StudyPlanner
               studySessions={studySessions}
               tasks={tasks}
@@ -71,21 +66,21 @@ export default function TasksPage() {
             />
           </TabsContent>
 
-          <TabsContent value="assignments">
-            <div className="text-center py-12">
-              <GraduationCap className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-              <h3 className="text-lg font-medium mb-2">Assignment Tracker</h3>
-              <p className="text-muted-foreground">
+          <TabsContent value="assignments" className="tasks-tab-content">
+            <div className="tasks-placeholder">
+              <GraduationCap className="tasks-placeholder-icon" />
+              <h3 className="tasks-placeholder-title">Assignment Tracker</h3>
+              <p className="tasks-placeholder-text">
                 Track your assignments, deadlines, and grades.
               </p>
             </div>
           </TabsContent>
 
-          <TabsContent value="sessions">
-            <div className="text-center py-12">
-              <BookOpen className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-              <h3 className="text-lg font-medium mb-2">Study Sessions</h3>
-              <p className="text-muted-foreground">
+          <TabsContent value="sessions" className="tasks-tab-content">
+            <div className="tasks-placeholder">
+              <BookOpen className="tasks-placeholder-icon" />
+              <h3 className="tasks-placeholder-title">Study Sessions</h3>
+              <p className="tasks-placeholder-text">
                 Review your study session history and analytics.
               </p>
             </div>

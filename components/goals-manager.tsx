@@ -6,7 +6,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Progress } from "@/components/ui/progress";
 import {
   Select,
   SelectContent,
@@ -21,9 +20,17 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { format } from "date-fns";
-import { CalendarIcon, Plus, Target as TargetIcon } from "lucide-react";
+import {
+  CalendarIcon,
+  Plus,
+  Target as TargetIcon,
+  Check,
+  AlertTriangle,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { WellbeingGoal } from "@/types/wellbeing";
+
+import "@/styles/goals-manager.css";
 
 interface GoalsManagerProps {
   goals: WellbeingGoal[];
@@ -99,26 +106,32 @@ export function GoalsManager({
   };
 
   return (
-    <div className="space-y-6">
-      <div className="flex justify-between items-center">
-        <h2 className="text-2xl font-bold">Well-being Goals</h2>
-        <Button onClick={() => setShowAddForm(!showAddForm)}>
-          <Plus className="h-4 w-4 mr-2" />
+    <div className="goals-container">
+      <div className="goals-header">
+        <h2 className="goals-title">Well-being Goals</h2>
+        <Button
+          className={showAddForm ? "cancel-goal-btn" : "add-goal-btn"}
+          onClick={() => setShowAddForm(!showAddForm)}
+        >
+          <Plus className="goal-btn-icon" />
           {showAddForm ? "Cancel" : "Add Goal"}
         </Button>
       </div>
 
       {showAddForm && (
-        <Card>
-          <CardHeader>
-            <CardTitle>Create New Goal</CardTitle>
+        <Card className="goal-form-card">
+          <CardHeader className="goal-form-header">
+            <CardTitle className="goal-form-title">Create New Goal</CardTitle>
           </CardHeader>
-          <CardContent>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="title">Goal Title</Label>
+          <CardContent className="goal-form-content">
+            <form onSubmit={handleSubmit} className="goal-form">
+              <div className="goal-form-group">
+                <Label htmlFor="title" className="goal-form-label">
+                  Goal Title
+                </Label>
                 <Input
                   id="title"
+                  className="goal-form-input"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                   placeholder="e.g., Meditate for 10 days"
@@ -126,26 +139,31 @@ export function GoalsManager({
                 />
               </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="description">Description</Label>
+              <div className="goal-form-group">
+                <Label htmlFor="description" className="goal-form-label">
+                  Description
+                </Label>
                 <Textarea
                   id="description"
+                  className="goal-form-input"
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                   placeholder="Describe your goal..."
                 />
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label htmlFor="category">Category</Label>
+              <div className="goal-form-grid">
+                <div className="goal-form-group">
+                  <Label htmlFor="category" className="goal-form-label">
+                    Category
+                  </Label>
                   <Select
                     value={category}
                     onValueChange={(value: WellbeingGoal["category"]) =>
                       setCategory(value)
                     }
                   >
-                    <SelectTrigger>
+                    <SelectTrigger className="goal-form-input">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
@@ -158,10 +176,13 @@ export function GoalsManager({
                   </Select>
                 </div>
 
-                <div className="space-y-2">
-                  <Label htmlFor="target">Target</Label>
+                <div className="goal-form-group">
+                  <Label htmlFor="target" className="goal-form-label">
+                    Target
+                  </Label>
                   <Input
                     id="target"
+                    className="goal-form-input"
                     type="number"
                     min="1"
                     value={target}
@@ -171,11 +192,14 @@ export function GoalsManager({
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label htmlFor="unit">Unit</Label>
+              <div className="goal-form-grid">
+                <div className="goal-form-group">
+                  <Label htmlFor="unit" className="goal-form-label">
+                    Unit
+                  </Label>
                   <Input
                     id="unit"
+                    className="goal-form-input"
                     value={unit}
                     onChange={(e) => setUnit(e.target.value)}
                     placeholder="e.g., sessions, minutes, days"
@@ -183,18 +207,18 @@ export function GoalsManager({
                   />
                 </div>
 
-                <div className="space-y-2">
-                  <Label>Deadline</Label>
+                <div className="goal-form-group">
+                  <Label className="goal-form-label">Deadline</Label>
                   <Popover>
                     <PopoverTrigger asChild>
                       <Button
                         variant="outline"
                         className={cn(
-                          "w-full justify-start text-left font-normal",
-                          !deadline && "text-muted-foreground"
+                          "goal-date-picker",
+                          !deadline && "goal-date-picker-empty"
                         )}
                       >
-                        <CalendarIcon className="mr-2 h-4 w-4" />
+                        <CalendarIcon className="calendar-icon" />
                         {deadline ? (
                           format(deadline, "PPP")
                         ) : (
@@ -214,41 +238,61 @@ export function GoalsManager({
                 </div>
               </div>
 
-              <Button type="submit" className="w-full">
-                Create Goal
-              </Button>
+              <div className="goal-form-actions">
+                <Button type="submit" className="goal-submit-btn add-goal-btn">
+                  Create Goal
+                </Button>
+                <Button
+                  type="button"
+                  className="cancel-goal-btn"
+                  onClick={() => setShowAddForm(false)}
+                >
+                  Cancel
+                </Button>
+              </div>
             </form>
           </CardContent>
         </Card>
       )}
 
       {goals.length === 0 ? (
-        <div className="text-center py-12">
-          <TargetIcon className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-          <h3 className="text-lg font-medium mb-2">No goals yet</h3>
-          <p className="text-muted-foreground mb-4">
-            Create your first well-being goal to get started.
+        <div className="goals-empty-state">
+          <TargetIcon className="goals-empty-icon" />
+          <h3 className="goals-empty-title">No goals yet</h3>
+          <p className="goals-empty-description">
+            Create your first well-being goal to get started on your path to
+            better health.
           </p>
-          <Button onClick={() => setShowAddForm(true)}>
+          <Button
+            className="goals-empty-btn add-goal-btn"
+            onClick={() => setShowAddForm(true)}
+          >
             Create Your First Goal
           </Button>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="goals-grid">
           {goals.map((goal) => (
             <Card
               key={goal.id}
-              className={isGoalOverdue(goal) ? "border-red-500" : ""}
+              className={cn(
+                "goal-card",
+                isGoalOverdue(goal) ? "goal-card-overdue" : ""
+              )}
             >
-              <CardHeader>
-                <div className="flex justify-between items-start">
+              <CardHeader className="goal-card-header">
+                <div className="goal-card-title-row">
                   <div>
-                    <CardTitle className="text-lg">{goal.title}</CardTitle>
-                    <p className="text-sm text-muted-foreground">
-                      {goal.description}
-                    </p>
+                    <CardTitle className="goal-card-title">
+                      {goal.title}
+                    </CardTitle>
+                    {goal.description && (
+                      <p className="goal-card-description">
+                        {goal.description}
+                      </p>
+                    )}
                   </div>
-                  <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">
+                  <span className="goal-card-tag">
                     {
                       goalCategories.find((c) => c.value === goal.category)
                         ?.label
@@ -256,18 +300,24 @@ export function GoalsManager({
                   </span>
                 </div>
               </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="space-y-2">
-                  <div className="flex justify-between text-sm">
+              <CardContent className="goal-card-content">
+                <div className="goal-progress-container">
+                  <div className="goal-progress-header">
                     <span>
                       {goal.current} of {goal.target} {goal.unit}
                     </span>
                     <span>{getProgressPercentage(goal)}%</span>
                   </div>
-                  <Progress value={getProgressPercentage(goal)} />
+                  <div className="goal-progress-bar">
+                    <div
+                      className={`goal-progress-fill progress-${
+                        Math.round(getProgressPercentage(goal) / 5) * 5
+                      }`}
+                    ></div>
+                  </div>
                 </div>
 
-                <div className="flex justify-between text-sm text-muted-foreground">
+                <div className="goal-dates">
                   <span>
                     Deadline: {format(new Date(goal.deadline), "MMM d, yyyy")}
                   </span>
@@ -277,17 +327,16 @@ export function GoalsManager({
                 </div>
 
                 {!isGoalCompleted(goal) && (
-                  <div className="flex gap-2">
+                  <div className="goal-actions">
                     <Button
-                      size="sm"
+                      className="goal-action-btn goal-action-primary"
                       onClick={() => handleProgressUpdate(goal.id, 1)}
                       disabled={isGoalCompleted(goal)}
                     >
                       +1 {goal.unit}
                     </Button>
                     <Button
-                      variant="outline"
-                      size="sm"
+                      className="goal-action-btn goal-action-secondary"
                       onClick={() => handleProgressUpdate(goal.id, 5)}
                       disabled={isGoalCompleted(goal)}
                     >
@@ -297,13 +346,15 @@ export function GoalsManager({
                 )}
 
                 {isGoalCompleted(goal) && (
-                  <div className="text-sm text-green-600 font-medium">
+                  <div className="goal-status-complete">
+                    <Check className="goal-status-icon" />
                     Goal completed! 🎉
                   </div>
                 )}
 
                 {isGoalOverdue(goal) && !isGoalCompleted(goal) && (
-                  <div className="text-sm text-red-600 font-medium">
+                  <div className="goal-status-overdue">
+                    <AlertTriangle className="goal-status-icon" />
                     Goal overdue!
                   </div>
                 )}

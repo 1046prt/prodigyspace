@@ -1,23 +1,33 @@
 /* Mood Tracker Component Styles */
 
 .moodTrackerContainer {
-  @apply space-y-6;
+  width: 100%;
+  margin-bottom: var(--space-6);
 }
 
 .moodGrid {
-  @apply grid grid-cols-1 lg:grid-cols-2 gap-6;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-6);
+  width: 100%;
 }
 
 .formSection {
-  @apply space-y-4;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
 }
 
 .overviewContent {
   /* Card content padding is handled by the UI component */
+  height: 100%;
 }
 
 .overviewContainer {
-  @apply space-y-4;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  height: 100%;
 }
 
 .dateLabel,
@@ -26,117 +36,192 @@
 .stressLabel,
 .activitiesLabel,
 .notesLabel {
-  @apply text-sm font-medium mb-2 block;
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  margin-bottom: var(--space-2);
+  display: block;
 }
 
 .dateButton {
-  @apply w-full justify-start text-left font-normal bg-transparent;
+  width: 100%;
+  justify-content: flex-start;
+  text-align: left;
+  font-weight: var(--font-normal);
+  background: transparent;
 }
 
 .calendarIcon {
-  @apply mr-2 h-4 w-4;
+  margin-right: var(--space-2);
+  height: 1rem;
+  width: 1rem;
 }
 
 .calendarPopover {
-  @apply w-auto p-0;
+  width: auto;
+  padding: 0;
 }
 
 .moodButtons {
-  @apply flex gap-2;
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
 }
 
 .moodButton {
-  @apply flex-1 flex-col h-auto py-2;
+  flex: 1;
+  flex-direction: column;
+  height: auto;
+  padding: var(--space-2) 0;
+  min-width: 60px;
 }
 
 .moodEmoji {
-  @apply text-lg;
+  font-size: var(--text-lg);
+  display: block;
+  margin-bottom: var(--space-1);
 }
 
 .moodLabelSmall {
-  @apply text-xs;
+  font-size: var(--text-xs);
 }
 
 .levelButtons {
-  @apply flex gap-1;
+  display: flex;
+  gap: var(--space-1);
 }
 
 .levelButton {
-  @apply flex-1;
+  flex: 1;
 }
 
 .activitiesContainer {
-  @apply flex flex-wrap gap-2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
 }
 
 .activityBadge {
-  @apply cursor-pointer;
+  cursor: pointer;
 }
 
 .notesTextarea {
-  /* Styles handled by the UI component */
+  width: 100%;
+  resize: vertical;
 }
 
 .submitButton {
-  @apply w-full;
+  width: 100%;
+  margin-top: var(--space-2);
 }
 
 .overviewHeader {
-  @apply flex items-center gap-2;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
 }
 
 .trendIcon {
-  @apply h-5 w-5;
+  height: 1.25rem;
+  width: 1.25rem;
 }
 
 .averageMoodContainer {
-  @apply text-center;
+  text-align: center;
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  background: var(--muted);
 }
 
 .averageMoodEmoji {
-  @apply text-3xl mb-2;
+  font-size: var(--text-3xl);
+  margin-bottom: var(--space-2);
 }
 
 .averageMoodText {
-  @apply text-sm text-muted-foreground;
+  font-size: var(--text-sm);
+  color: var(--muted-foreground);
 }
 
 .recentEntriesContainer {
-  /* Container styles */
+  margin-top: var(--space-4);
 }
 
 .recentEntriesTitle {
-  @apply font-medium mb-2;
+  font-size: var(--text-md);
+  font-weight: var(--font-medium);
+  margin-bottom: var(--space-3);
 }
 
 .noEntriesText {
-  @apply text-sm text-muted-foreground text-center py-4;
+  color: var(--muted-foreground);
+  text-align: center;
+  padding: var(--space-4) 0;
 }
 
 .entriesList {
-  @apply space-y-2;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
 }
 
 .entryItem {
-  @apply flex items-center justify-between p-2 rounded border;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-2);
+  border-radius: var(--radius-md);
+  background: var(--muted);
+  transition: all var(--transition-default);
+}
+
+.entryItem:hover {
+  background: var(--accent);
 }
 
 .entryInfo {
-  @apply flex items-center gap-2;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
 }
 
 .entryEmoji {
-  @apply text-lg;
+  font-size: var(--text-lg);
 }
 
 .entryDate {
-  @apply text-sm;
+  font-size: var(--text-sm);
 }
 
 .entryBadges {
-  @apply flex gap-1 text-xs;
+  display: flex;
+  gap: var(--space-1);
 }
 
 .entryBadge {
-  /* Badge styles are handled by the UI component */
+  font-size: var(--text-xs);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .moodGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .moodButtons {
+    flex-wrap: wrap;
+  }
+
+  .moodButton {
+    min-width: calc(20% - var(--space-2));
+  }
+}
+
+@media (max-width: 480px) {
+  .moodButton {
+    min-width: calc(33% - var(--space-2));
+  }
+
+  .levelButtons {
+    width: 100%;
+  }
 }

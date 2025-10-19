@@ -72,35 +72,35 @@ const mockGoals = [
 
 export default function UtilitiesPage() {
   return (
-    <div className="w-full py-6">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
-        <div className="text-center space-y-2">
-          <h1 className="text-3xl font-bold">Student Utilities</h1>
-          <p className="text-muted-foreground">
+    <div className="utilities">
+      <div className="utilities-container">
+        <div className="utilities-header">
+          <h1 className="utilities-title">Student Utilities</h1>
+          <p className="utilities-subtitle">
             Essential tools to boost your productivity and maintain healthy
             habits
           </p>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          <div className="md:col-span-1">
+        <div className="utilities-grid utilities-grid-md-3">
+          <div className="utilities-card">
             <WaterTracker />
           </div>
-          <div className="md:col-span-1">
+          <div className="utilities-card">
             <PomodoroTimer />
           </div>
-          <div className="md:col-span-2 lg:col-span-1">
+          <div className="utilities-card">
             <BookmarkManager />
           </div>
 
           {/* New Utilities */}
-          <div className="md:col-span-2">
+          <div className="utilities-card utilities-card-full">
             <UnitConverter />
           </div>
-          <div className="md:col-span-2 lg:col-span-3">
+          <div className="utilities-card utilities-card-full">
             <AttendanceTracker />
           </div>
-          <div className="md:col-span-2 lg:col-span-3">
+          <div className="utilities-card utilities-card-full">
             <DocumentScanner
               onSave={() => {
                 /* Handle save document */
@@ -111,7 +111,7 @@ export default function UtilitiesPage() {
               }}
             />
           </div>
-          <div className="md:col-span-2 lg:col-span-3">
+          <div className="utilities-card utilities-card-full">
             <StudyPlanner
               studySessions={mockStudySessions}
               tasks={mockTasks}
@@ -120,7 +120,7 @@ export default function UtilitiesPage() {
               }}
             />
           </div>
-          <div className="md:col-span-2 lg:col-span-3">
+          <div className="utilities-card utilities-card-full">
             <GoalsManager
               goals={mockGoals}
               onAddGoal={() => {

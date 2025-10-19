@@ -3,8 +3,14 @@ import "@/styles/todos.css";
 
 export default function TodosPage() {
   return (
-    <div className="w-full py-6">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="todos">
+      <div className="todos-container">
+        <div className="todos-header">
+          <h1 className="todos-title">Todo Manager</h1>
+          <p className="todos-subtitle">
+            Organize and manage your tasks and activities
+          </p>
+        </div>
         <TodoManager />
       </div>
     </div>

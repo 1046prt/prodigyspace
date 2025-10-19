@@ -1,0 +1,249 @@
+/* ===========================================
+   NOTES COMPONENT STYLES
+   =========================================== */
+
+.notes {
+  min-height: 100vh;
+  background: linear-gradient(
+    135deg,
+    var(--background) 0%,
+    var(--background-secondary) 100%
+  );
+  padding: var(--space-8) 0;
+}
+
+.notes-container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+}
+
+.notes-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-6);
+}
+
+.notes-title {
+  font-size: var(--text-3xl);
+  font-weight: var(--font-bold);
+  color: var(--foreground);
+  margin-bottom: var(--space-2);
+  background: linear-gradient(
+    135deg,
+    var(--color-primary-600) 0%,
+    var(--color-secondary-600) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.notes-new-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-md);
+  background: var(--primary);
+  color: var(--primary-foreground);
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  cursor: pointer;
+  transition: all var(--transition-default);
+  border: none;
+}
+
+.notes-new-btn:hover {
+  background: var(--primary-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ===========================================
+   NOTES TABS
+   =========================================== */
+
+.notes-tabs {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.notes-tabs-list {
+  display: grid;
+  width: 100%;
+}
+
+.notes-tabs-list-grid-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.notes-tab-trigger {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-2);
+  background: var(--card);
+  color: var(--foreground-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  text-align: center;
+  cursor: pointer;
+  transition: all var(--transition-default);
+}
+
+.notes-tab-trigger:hover {
+  background: var(--muted);
+  color: var(--foreground);
+}
+
+.notes-tab-trigger[data-state="active"] {
+  background: var(--primary);
+  color: var(--primary-foreground);
+  border-color: var(--primary);
+}
+
+.notes-tab-content {
+  border-radius: var(--radius-xl);
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ===========================================
+   SEARCH AND FILTER
+   =========================================== */
+
+.notes-search-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.notes-search-row {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.notes-search-input-container {
+  position: relative;
+  flex: 1;
+}
+
+.notes-search-icon {
+  position: absolute;
+  left: var(--space-3);
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--muted-foreground);
+}
+
+.notes-search-input {
+  width: 100%;
+  padding: var(--space-2) var(--space-10);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--input);
+  color: var(--foreground);
+}
+
+.notes-filter-select {
+  width: 100%;
+  max-width: 100%;
+}
+
+/* ===========================================
+   NOTES GRID
+   =========================================== */
+
+.notes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--space-6);
+}
+
+/* ===========================================
+   EMPTY STATE
+   =========================================== */
+
+.notes-empty {
+  text-align: center;
+  padding: var(--space-12) var(--space-6);
+  color: var(--foreground-secondary);
+}
+
+.notes-empty-icon {
+  width: 3rem;
+  height: 3rem;
+  margin: 0 auto var(--space-4);
+  color: var(--muted-foreground);
+}
+
+.notes-empty-title {
+  font-size: var(--text-lg);
+  font-weight: var(--font-medium);
+  margin-bottom: var(--space-2);
+  color: var(--foreground);
+}
+
+.notes-empty-text {
+  font-size: var(--text-sm);
+  color: var(--muted-foreground);
+  margin-bottom: var(--space-6);
+}
+
+/* ===========================================
+   RESPONSIVE DESIGN
+   =========================================== */
+
+@media (min-width: 640px) {
+  .notes-search-row {
+    flex-direction: row;
+  }
+
+  .notes-filter-select {
+    width: 12rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .notes {
+    padding: var(--space-4) 0;
+  }
+
+  .notes-container {
+    padding: 0 var(--space-4);
+  }
+
+  .notes-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-4);
+  }
+
+  .notes-title {
+    font-size: var(--text-2xl);
+  }
+
+  .notes-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===========================================
+   FOCUS STYLES
+   =========================================== */
+
+.notes-new-btn:focus-visible,
+.notes-search-input:focus-visible,
+.notes-tab-trigger:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}

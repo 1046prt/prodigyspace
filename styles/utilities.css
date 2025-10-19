@@ -4,7 +4,11 @@
 
 .utilities {
   min-height: 100vh;
-  background: linear-gradient(135deg, var(--background) 0%, var(--background-secondary) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--background) 0%,
+    var(--background-secondary) 100%
+  );
   padding: var(--space-8) 0;
 }
 
@@ -24,7 +28,11 @@
   font-weight: var(--font-bold);
   color: var(--foreground);
   margin-bottom: var(--space-4);
-  background: linear-gradient(135deg, var(--color-primary-600) 0%, var(--color-secondary-600) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--color-primary-600) 0%,
+    var(--color-secondary-600) 100%
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -60,13 +68,17 @@
 }
 
 .utilities-tool-card::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, var(--color-primary-500), var(--color-secondary-500));
+  background: linear-gradient(
+    90deg,
+    var(--color-primary-500),
+    var(--color-secondary-500)
+  );
 }
 
 .utilities-tool-card:hover {
@@ -389,7 +401,11 @@
 
 .utilities-water-fill {
   height: 100%;
-  background: linear-gradient(90deg, var(--color-info-500), var(--color-info-400));
+  background: linear-gradient(
+    90deg,
+    var(--color-info-500),
+    var(--color-info-400)
+  );
   border-radius: var(--radius-full);
   transition: width var(--transition-default);
   position: relative;
@@ -499,37 +515,37 @@
   .utilities {
     padding: var(--space-4) 0;
   }
-  
+
   .utilities-container {
     padding: 0 var(--space-4);
   }
-  
+
   .utilities-title {
     font-size: var(--text-3xl);
   }
-  
+
   .utilities-tools-grid {
     grid-template-columns: 1fr;
     gap: var(--space-4);
   }
-  
+
   .utilities-converter-form {
     grid-template-columns: 1fr;
   }
-  
+
   .utilities-pomodoro-display {
     font-size: var(--text-4xl);
   }
-  
+
   .utilities-pomodoro-controls {
     flex-direction: column;
     width: 100%;
   }
-  
+
   .utilities-pomodoro-btn {
     justify-content: center;
   }
-  
+
   .utilities-notes-actions {
     grid-template-columns: 1fr;
   }
@@ -539,23 +555,23 @@
   .utilities-container {
     padding: 0 var(--space-3);
   }
-  
+
   .utilities-title {
     font-size: var(--text-2xl);
   }
-  
+
   .utilities-tool-card {
     padding: var(--space-4);
   }
-  
+
   .utilities-pomodoro-display {
     font-size: var(--text-3xl);
   }
-  
+
   .utilities-water-actions {
     flex-direction: column;
   }
-  
+
   .utilities-water-btn {
     justify-content: center;
   }
@@ -577,7 +593,8 @@
 }
 
 @keyframes pulse {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1);
   }
   50% {
@@ -593,13 +610,56 @@
   animation: fadeInUp 0.6s ease-out;
 }
 
-.utilities-tool-card:nth-child(1) { animation-delay: 0.1s; }
-.utilities-tool-card:nth-child(2) { animation-delay: 0.2s; }
-.utilities-tool-card:nth-child(3) { animation-delay: 0.3s; }
-.utilities-tool-card:nth-child(4) { animation-delay: 0.4s; }
+.utilities-tool-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.utilities-tool-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.utilities-tool-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.utilities-tool-card:nth-child(4) {
+  animation-delay: 0.4s;
+}
 
 .utilities-pomodoro-btn-start.running {
   animation: pulse 2s infinite;
+}
+
+/* ===========================================
+   UTILITIES GRID
+   =========================================== */
+
+.utilities-grid {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.utilities-grid-md-2 {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.utilities-grid-md-3 {
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.utilities-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-default);
+}
+
+.utilities-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.utilities-card-full {
+  grid-column: 1 / -1;
 }
 
 /* ===========================================
