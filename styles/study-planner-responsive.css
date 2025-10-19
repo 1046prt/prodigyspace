@@ -1,0 +1,34 @@
+/* Study Planner Responsive Styles */
+@media (max-width: 640px) {
+  .calendar-container {
+    padding: 0.25rem;
+  }
+
+  .enhanced-calendar {
+    padding: 0.5rem;
+  }
+
+  .week-day .grid {
+    grid-template-columns: auto 1fr !important;
+    grid-template-rows: auto auto;
+  }
+
+  .week-day-button {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    width: 100%;
+    margin-top: 0.75rem;
+  }
+
+  .week-day-name {
+    border-right: none;
+    padding-right: 0.5rem;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .week-day-date {
+    margin-top: 0;
+  }
+}
