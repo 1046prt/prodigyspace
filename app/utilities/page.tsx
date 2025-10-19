@@ -7,11 +7,11 @@ import { DocumentScanner } from "@/components/document-scanner";
 import { StudyPlanner } from "@/components/study-planner";
 import { GoalsManager } from "@/components/goals-manager";
 import { UnitConverter } from "@/components/unit-converter";
-import { AttendanceTracker } from "@/components/attendance-tracker";
 import "@/styles/utilities.css";
 import "@/styles/pomodoro-timer.css";
 import "@/styles/bookmark-manager.css";
 import "@/styles/attendance.css";
+import "@/styles/water-tracker.css";
 
 // Mock data for the new components
 const mockScannedDocs = [
@@ -82,13 +82,18 @@ export default function UtilitiesPage() {
           </p>
         </div>
 
-        <div className="utilities-grid utilities-grid-md-3">
-          <div className="utilities-card">
+        {/* First row with Water Tracker and Pomodoro Timer */}
+        <div className="utilities-row utilities-featured-row">
+          <div className="utilities-card utilities-card-equal utilities-featured-card">
             <WaterTracker />
           </div>
-          <div className="utilities-card">
+          <div className="utilities-card utilities-card-equal utilities-featured-card">
             <PomodoroTimer />
           </div>
+        </div>
+
+        {/* Rest of the utilities */}
+        <div className="utilities-grid utilities-grid-md-3">
           <div className="utilities-card">
             <BookmarkManager />
           </div>
@@ -96,9 +101,6 @@ export default function UtilitiesPage() {
           {/* New Utilities */}
           <div className="utilities-card utilities-card-full">
             <UnitConverter />
-          </div>
-          <div className="utilities-card utilities-card-full">
-            <AttendanceTracker />
           </div>
           <div className="utilities-card utilities-card-full">
             <DocumentScanner

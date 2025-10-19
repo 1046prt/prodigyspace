@@ -1,693 +1,130 @@
-/* ===========================================
-   UTILITIES COMPONENT STYLES
-   =========================================== */
-
-.utilities {
-  min-height: 100vh;
-  background: linear-gradient(
-    135deg,
-    var(--background) 0%,
-    var(--background-secondary) 100%
-  );
-  padding: var(--space-8) 0;
-}
-
 .utilities-container {
-  max-width: var(--container-max-width);
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 var(--container-padding);
+  padding: 32px;
 }
 
 .utilities-header {
+  margin-bottom: 36px;
   text-align: center;
-  margin-bottom: var(--space-8);
+  padding: 0 16px;
 }
 
 .utilities-title {
-  font-size: var(--text-4xl);
-  font-weight: var(--font-bold);
-  color: var(--foreground);
-  margin-bottom: var(--space-4);
-  background: linear-gradient(
-    135deg,
-    var(--color-primary-600) 0%,
-    var(--color-secondary-600) 100%
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 8px;
 }
 
 .utilities-subtitle {
-  font-size: var(--text-lg);
-  color: var(--foreground-secondary);
-  max-width: 42rem;
+  color: #666;
+  max-width: 600px;
   margin: 0 auto;
 }
 
-/* ===========================================
-   UTILITY TOOLS GRID
-   =========================================== */
-
-.utilities-tools-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: var(--space-6);
-  margin-bottom: var(--space-8);
-}
-
-.utilities-tool-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-xl);
-  padding: var(--space-6);
-  box-shadow: var(--shadow-sm);
-  transition: all var(--transition-default);
-  position: relative;
-  overflow: hidden;
-}
-
-.utilities-tool-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(
-    90deg,
-    var(--color-primary-500),
-    var(--color-secondary-500)
-  );
-}
-
-.utilities-tool-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
-  border-color: var(--primary);
-}
-
-.utilities-tool-header {
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
-  margin-bottom: var(--space-4);
-}
-
-.utilities-tool-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 3rem;
-  height: 3rem;
-  border-radius: var(--radius-lg);
-  background: var(--muted);
-  color: var(--primary);
-  flex-shrink: 0;
-}
-
-.utilities-tool-title {
-  font-size: var(--text-xl);
-  font-weight: var(--font-semibold);
-  color: var(--foreground);
-  margin: 0;
-}
-
-.utilities-tool-description {
-  color: var(--foreground-secondary);
-  font-size: var(--text-sm);
-  line-height: var(--leading-relaxed);
-  margin-bottom: var(--space-4);
-}
-
-.utilities-tool-actions {
-  display: flex;
-  gap: var(--space-2);
-  flex-wrap: wrap;
-}
-
-.utilities-tool-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  padding: var(--space-2) var(--space-4);
-  border-radius: var(--radius-lg);
-  font-size: var(--text-sm);
-  font-weight: var(--font-medium);
-  text-decoration: none;
-  transition: all var(--transition-default);
-  border: 1px solid transparent;
-  cursor: pointer;
-}
-
-.utilities-tool-btn-primary {
-  background: var(--primary);
-  color: var(--primary-foreground);
-  border-color: var(--primary);
-}
-
-.utilities-tool-btn-primary:hover {
-  background: var(--primary-hover);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-md);
-}
-
-.utilities-tool-btn-secondary {
-  background: var(--secondary);
-  color: var(--secondary-foreground);
-  border-color: var(--secondary);
-}
-
-.utilities-tool-btn-secondary:hover {
-  background: var(--secondary-hover);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-md);
-}
-
-.utilities-tool-btn-outline {
-  background: transparent;
-  color: var(--foreground);
-  border-color: var(--border);
-}
-
-.utilities-tool-btn-outline:hover {
-  background: var(--muted);
-  border-color: var(--border-strong);
-  transform: translateY(-1px);
-}
-
-/* ===========================================
-   UNIT CONVERTER
-   =========================================== */
-
-.utilities-converter {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-xl);
-  padding: var(--space-6);
-  box-shadow: var(--shadow-sm);
-  margin-bottom: var(--space-8);
-}
-
-.utilities-converter-title {
-  font-size: var(--text-xl);
-  font-weight: var(--font-semibold);
-  color: var(--foreground);
-  margin-bottom: var(--space-4);
-}
-
-.utilities-converter-form {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: var(--space-4);
-  margin-bottom: var(--space-4);
-}
-
-.utilities-converter-group {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-}
-
-.utilities-converter-label {
-  font-size: var(--text-sm);
-  font-weight: var(--font-medium);
-  color: var(--foreground);
-}
-
-.utilities-converter-input,
-.utilities-converter-select {
-  width: 100%;
-  height: var(--input-height-md);
-  border-radius: var(--radius-md);
-  border: 1px solid var(--input-border);
-  background: var(--input);
-  padding: var(--input-padding-y) var(--input-padding-x);
-  font-size: var(--text-sm);
-  color: var(--foreground);
-  transition: all var(--transition-default);
-}
-
-.utilities-converter-input:focus,
-.utilities-converter-select:focus {
-  outline: none;
-  border-color: var(--input-focus);
-  box-shadow: 0 0 0 3px var(--ring);
-}
-
-.utilities-converter-result {
-  background: var(--muted);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: var(--space-4);
-  text-align: center;
-  font-size: var(--text-lg);
-  font-weight: var(--font-semibold);
-  color: var(--foreground);
-}
-
-/* ===========================================
-   POMODORO TIMER
-   =========================================== */
-
-.utilities-pomodoro {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-xl);
-  padding: var(--space-6);
-  box-shadow: var(--shadow-sm);
-  margin-bottom: var(--space-8);
-}
-
-.utilities-pomodoro-title {
-  font-size: var(--text-xl);
-  font-weight: var(--font-semibold);
-  color: var(--foreground);
-  margin-bottom: var(--space-4);
-}
-
-.utilities-pomodoro-timer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-4);
-  margin-bottom: var(--space-4);
-}
-
-.utilities-pomodoro-display {
-  font-size: var(--text-5xl);
-  font-weight: var(--font-bold);
-  color: var(--primary);
-  font-family: var(--font-family-mono);
-  text-align: center;
-}
-
-.utilities-pomodoro-phase {
-  font-size: var(--text-lg);
-  font-weight: var(--font-semibold);
-  color: var(--foreground-secondary);
-  text-transform: uppercase;
-  letter-spacing: var(--tracking-wide);
-}
-
-.utilities-pomodoro-controls {
-  display: flex;
-  gap: var(--space-3);
-  justify-content: center;
-}
-
-.utilities-pomodoro-btn {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  padding: var(--space-3) var(--space-6);
-  border-radius: var(--radius-lg);
-  font-size: var(--text-sm);
-  font-weight: var(--font-medium);
-  border: none;
-  cursor: pointer;
-  transition: all var(--transition-default);
-}
-
-.utilities-pomodoro-btn-start {
-  background: var(--color-success-500);
-  color: white;
-}
-
-.utilities-pomodoro-btn-start:hover {
-  background: var(--color-success-600);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-md);
-}
-
-.utilities-pomodoro-btn-pause {
-  background: var(--color-warning-500);
-  color: white;
-}
-
-.utilities-pomodoro-btn-pause:hover {
-  background: var(--color-warning-600);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-md);
-}
-
-.utilities-pomodoro-btn-reset {
-  background: var(--color-error-500);
-  color: white;
-}
-
-.utilities-pomodoro-btn-reset:hover {
-  background: var(--color-error-600);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-md);
-}
-
-/* ===========================================
-   WATER TRACKER
-   =========================================== */
-
-.utilities-water-tracker {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-xl);
-  padding: var(--space-6);
-  box-shadow: var(--shadow-sm);
-  margin-bottom: var(--space-8);
-}
-
-.utilities-water-title {
-  font-size: var(--text-xl);
-  font-weight: var(--font-semibold);
-  color: var(--foreground);
-  margin-bottom: var(--space-4);
-}
-
-.utilities-water-progress {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-  margin-bottom: var(--space-4);
-}
-
-.utilities-water-goal {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: var(--space-2);
-  font-size: var(--text-sm);
-  font-weight: var(--font-medium);
-  color: var(--foreground);
-}
-
-.utilities-water-goal-text {
-  font-size: var(--text-sm);
-  font-weight: var(--font-medium);
-  color: var(--foreground);
-}
-
-.utilities-water-goal-value {
-  font-size: var(--text-sm);
-  font-weight: var(--font-semibold);
-  color: var(--primary);
-}
-
-.utilities-water-bar {
-  height: 1rem;
-  border-radius: var(--radius-full);
-  background: var(--muted);
-  overflow: hidden;
-  position: relative;
-}
-
-.utilities-water-fill {
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    var(--color-info-500),
-    var(--color-info-400)
-  );
-  border-radius: var(--radius-full);
-  transition: width var(--transition-default);
-  position: relative;
-}
-
-.utilities-water-actions {
-  display: flex;
-  gap: var(--space-2);
-  justify-content: center;
-}
-
-.utilities-water-btn {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  padding: var(--space-2) var(--space-4);
-  border-radius: var(--radius-lg);
-  font-size: var(--text-sm);
-  font-weight: var(--font-medium);
-  border: none;
-  cursor: pointer;
-  transition: all var(--transition-default);
-  background: var(--color-info-500);
-  color: white;
-}
-
-.utilities-water-btn:hover {
-  background: var(--color-info-600);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-md);
-}
-
-/* ===========================================
-   NOTES UTILITIES
-   =========================================== */
-
-.utilities-notes {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-xl);
-  padding: var(--space-6);
-  box-shadow: var(--shadow-sm);
-}
-
-.utilities-notes-title {
-  font-size: var(--text-xl);
-  font-weight: var(--font-semibold);
-  color: var(--foreground);
-  margin-bottom: var(--space-4);
-}
-
-.utilities-notes-actions {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: var(--space-4);
-}
-
-.utilities-notes-btn {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  padding: var(--space-4);
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--border);
-  background: var(--muted);
-  color: var(--foreground);
-  text-decoration: none;
-  transition: all var(--transition-default);
-  cursor: pointer;
-}
-
-.utilities-notes-btn:hover {
-  background: var(--accent);
-  border-color: var(--primary);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
-}
-
-.utilities-notes-btn-icon {
-  width: 1.5rem;
-  height: 1.5rem;
-  color: var(--primary);
-}
-
-.utilities-notes-btn-content {
-  flex: 1;
-}
-
-.utilities-notes-btn-title {
-  font-size: var(--text-sm);
-  font-weight: var(--font-semibold);
-  color: var(--foreground);
-  margin: 0 0 var(--space-1) 0;
-}
-
-.utilities-notes-btn-description {
-  font-size: var(--text-xs);
-  color: var(--foreground-secondary);
-  margin: 0;
-}
-
-/* ===========================================
-   RESPONSIVE DESIGN
-   =========================================== */
-
-@media (max-width: 768px) {
-  .utilities {
-    padding: var(--space-4) 0;
-  }
-
-  .utilities-container {
-    padding: 0 var(--space-4);
-  }
-
-  .utilities-title {
-    font-size: var(--text-3xl);
-  }
-
-  .utilities-tools-grid {
-    grid-template-columns: 1fr;
-    gap: var(--space-4);
-  }
-
-  .utilities-converter-form {
-    grid-template-columns: 1fr;
-  }
-
-  .utilities-pomodoro-display {
-    font-size: var(--text-4xl);
-  }
-
-  .utilities-pomodoro-controls {
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .utilities-pomodoro-btn {
-    justify-content: center;
-  }
-
-  .utilities-notes-actions {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 480px) {
-  .utilities-container {
-    padding: 0 var(--space-3);
-  }
-
-  .utilities-title {
-    font-size: var(--text-2xl);
-  }
-
-  .utilities-tool-card {
-    padding: var(--space-4);
-  }
-
-  .utilities-pomodoro-display {
-    font-size: var(--text-3xl);
-  }
-
-  .utilities-water-actions {
-    flex-direction: column;
-  }
-
-  .utilities-water-btn {
-    justify-content: center;
-  }
-}
-
-/* ===========================================
-   ANIMATIONS
-   =========================================== */
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes pulse {
-  0%,
-  100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.05);
-  }
-}
-
-.utilities-tool-card,
-.utilities-converter,
-.utilities-pomodoro,
-.utilities-water-tracker,
-.utilities-notes {
-  animation: fadeInUp 0.6s ease-out;
-}
-
-.utilities-tool-card:nth-child(1) {
-  animation-delay: 0.1s;
-}
-.utilities-tool-card:nth-child(2) {
-  animation-delay: 0.2s;
-}
-.utilities-tool-card:nth-child(3) {
-  animation-delay: 0.3s;
-}
-.utilities-tool-card:nth-child(4) {
-  animation-delay: 0.4s;
-}
-
-.utilities-pomodoro-btn-start.running {
-  animation: pulse 2s infinite;
-}
-
-/* ===========================================
-   UTILITIES GRID
-   =========================================== */
-
 .utilities-grid {
   display: grid;
-  gap: var(--space-6);
+  gap: 32px;
+  grid-template-columns: 1fr;
+  margin-top: 8px;
 }
 
-.utilities-grid-md-2 {
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-}
+@media (min-width: 768px) {
+  .utilities-grid-md-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
 
-.utilities-grid-md-3 {
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  .utilities-grid-md-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 .utilities-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-xl);
-  padding: var(--space-6);
-  box-shadow: var(--shadow-sm);
-  transition: all var(--transition-default);
-}
-
-.utilities-card:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
-}
-
-.utilities-card-full {
-  grid-column: 1 / -1;
-}
-
-/* ===========================================
-   FOCUS STYLES
-   =========================================== */
-
-.utilities-tool-btn:focus-visible,
-.utilities-converter-input:focus-visible,
-.utilities-converter-select:focus-visible,
-.utilities-pomodoro-btn:focus-visible,
-.utilities-water-btn:focus-visible,
-.utilities-notes-btn:focus-visible {
-  outline: 2px solid var(--ring);
-  outline-offset: 2px;
-}
-
-/* ===========================================
-   ACCESSIBILITY
-   =========================================== */
-
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
+  height: 100%;
   overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.utilities-card-half {
+  grid-column: span 1;
+}
+
+/* Special row for the water tracker and pomodoro timer */
+.utilities-row {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  margin-bottom: 40px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.utilities-card-equal {
+  width: 100%;
+  padding: 4px;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.utilities-card-equal:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+@media (min-width: 768px) {
+  .utilities-card-half {
+    grid-column: span 1;
+  }
+
+  .utilities-card-full {
+    grid-column: 1 / -1;
+  }
+
+  /* Make the row horizontal on tablet and up */
+  .utilities-row {
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  .utilities-card-equal {
+    flex: 1;
+    margin: 0 6px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .utilities-grid-md-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Ensure equal width for the two components on large screens */
+  .utilities-card-equal {
+    flex-basis: 0;
+    flex-grow: 1;
+    margin: 0 8px;
+  }
+}
+
+/* Featured row styling */
+.utilities-featured-row {
+  background-color: rgba(245, 247, 250, 0.5);
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 48px;
+}
+
+.utilities-featured-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+@media (min-width: 768px) {
+  .utilities-featured-row {
+    padding: 24px;
+  }
+
+  .utilities-featured-card {
+    margin: 0 12px;
+  }
 }

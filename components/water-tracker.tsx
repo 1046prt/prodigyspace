@@ -5,9 +5,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Progress } from "@/components/ui/progress";
 import { Droplets, Plus, Minus, Settings } from "lucide-react";
 import { useWaterTracker } from "@/hooks/use-water-tracker";
+import "@/styles/water-tracker.css";
 
 export function WaterTracker() {
   const {
@@ -25,7 +25,7 @@ export function WaterTracker() {
 
   const todayIntake = getTodayIntake();
   const todayIntakes = getTodayIntakes();
-  const progress = Math.min((todayIntake / dailyGoal) * 100, 100);
+  const progress = Math.min((todayIntake / dailyGoal) * 100, 100); // Calculate percentage for custom progress bar
 
   const quickAmounts = [250, 500, 750, 1000];
 
@@ -46,101 +46,128 @@ export function WaterTracker() {
   };
 
   return (
-    <Card>
-      <CardHeader className="flex flex-row items-center justify-between">
-        <CardTitle className="flex items-center gap-2">
-          <Droplets className="h-5 w-5 text-blue-500" />
+    <Card className="water-tracker-card">
+      <CardHeader className="water-tracker-header flex flex-row items-center justify-between">
+        <CardTitle className="water-tracker-title flex items-center gap-2">
+          <Droplets className="water-tracker-icon h-5 w-5" />
           Water Tracker
         </CardTitle>
         <Button
           variant="ghost"
           size="sm"
           onClick={() => setShowSettings(!showSettings)}
+          aria-label="Settings"
         >
           <Settings className="h-4 w-4" />
         </Button>
       </CardHeader>
-      <CardContent className="space-y-4">
+      <CardContent className="space-y-6 p-6 pt-4 pb-8">
         {showSettings && (
-          <div className="space-y-2 p-3 bg-muted rounded-lg">
-            <Label htmlFor="goal">Daily Goal (ml)</Label>
-            <div className="flex gap-2">
+          <div className="settings-container">
+            <Label htmlFor="goal" className="settings-label">
+              Daily Goal (ml)
+            </Label>
+            <div className="settings-input-group">
               <Input
                 id="goal"
                 value={goalInput}
                 onChange={(e) => setGoalInput(e.target.value)}
                 placeholder="2000"
+                className="settings-input"
               />
-              <Button onClick={handleGoalUpdate}>Save</Button>
+              <Button onClick={handleGoalUpdate} className="settings-button">
+                Save
+              </Button>
             </div>
           </div>
         )}
 
-        <div className="text-center space-y-2">
-          <div className="text-2xl font-bold text-blue-600">
+        <div className="water-stats">
+          <div className="water-drop"></div>
+          <div className="water-drop"></div>
+          <div className="water-drop"></div>
+          <div className="water-drop"></div>
+          <div className="water-drop"></div>
+          <div className="water-amount">
             {todayIntake}ml / {dailyGoal}ml
           </div>
-          <Progress value={progress} className="h-3" />
-          <div className="text-sm text-muted-foreground">
+          <div className="water-progress">
+            <div
+              className="water-progress-fill"
+              style={{ width: `${progress}%` }}
+            ></div>
+          </div>
+          <div
+            className={`water-remaining ${
+              progress >= 100 ? "goal-achieved" : ""
+            }`}
+          >
             {progress >= 100
               ? "Goal achieved! 🎉"
               : `${dailyGoal - todayIntake}ml remaining`}
           </div>
+          <div className="water-wave"></div>
         </div>
 
-        <div className="space-y-3">
-          <Label>Quick Add</Label>
-          <div className="grid grid-cols-2 gap-2">
+        <div>
+          <Label className="section-label">Quick Add</Label>
+          <div className="quick-add-container">
             {quickAmounts.map((amount) => (
-              <Button
+              <button
                 key={amount}
-                variant="outline"
                 onClick={() => addWaterIntake(amount)}
-                className="flex items-center gap-2"
+                className="quick-add-button"
               >
                 <Plus className="h-4 w-4" />
                 {amount}ml
-              </Button>
+              </button>
             ))}
           </div>
         </div>
 
-        <div className="space-y-2">
-          <Label>Custom Amount</Label>
-          <div className="flex gap-2">
+        <div>
+          <Label className="section-label">Custom Amount</Label>
+          <div className="custom-amount">
             <Input
               value={customAmount}
               onChange={(e) => setCustomAmount(e.target.value)}
               placeholder="Enter amount in ml"
               type="number"
+              className="custom-input"
             />
-            <Button onClick={handleCustomAdd}>Add</Button>
+            <Button onClick={handleCustomAdd} className="add-button">
+              Add
+            </Button>
           </div>
         </div>
 
         {todayIntakes.length > 0 && (
-          <div className="space-y-2">
-            <Label>Today&apos;s Intake</Label>
-            <div className="space-y-1 max-h-32 overflow-y-auto">
+          <div>
+            <Label className="section-label">Today&apos;s Intake</Label>
+            <div className="intakes-history">
               {todayIntakes
                 .slice(-5)
                 .reverse()
                 .map((intake) => (
-                  <div
-                    key={intake.id}
-                    className="flex items-center justify-between text-sm bg-muted p-2 rounded"
-                  >
-                    <span>
-                      {intake.amount}ml at{" "}
-                      {new Date(intake.timestamp).toLocaleTimeString()}
-                    </span>
-                    <Button
-                      variant="ghost"
-                      size="sm"
+                  <div key={intake.id} className="intake-item">
+                    <div>
+                      <span className="intake-amount">{intake.amount}ml</span>
+                      <span className="intake-time">
+                        {" "}
+                        at{" "}
+                        {new Date(intake.timestamp).toLocaleTimeString([], {
+                          hour: "2-digit",
+                          minute: "2-digit",
+                        })}
+                      </span>
+                    </div>
+                    <button
+                      className="delete-button"
                       onClick={() => removeWaterIntake(intake.id)}
+                      aria-label="Delete intake"
                     >
                       <Minus className="h-3 w-3" />
-                    </Button>
+                    </button>
                   </div>
                 ))}
             </div>

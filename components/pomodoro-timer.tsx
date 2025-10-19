@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Timer, Play, Pause, Square, Settings } from "lucide-react";
 import { usePomodoro } from "@/hooks/use-pomodoro";
-import styles from "@/styles/pomodoro-timer.css";
+import "@/styles/pomodoro-timer.css";
 
 export function PomodoroTimer() {
   const {
@@ -43,30 +43,36 @@ export function PomodoroTimer() {
     return currentSession.type === "work" ? "break" : "work";
   };
 
+  // Calculate progress percentage
+  const timerProgress = currentSession
+    ? ((currentSession.duration * 60 - timeLeft) /
+        (currentSession.duration * 60)) *
+      100
+    : 0;
+
   return (
-    <Card className={styles.timerCard}>
-      <CardHeader className={styles.cardHeader}>
-        <CardTitle className={styles.titleContainer}>
-          <Timer className={styles.timerIcon} />
+    <Card className="pomodoro-card">
+      <CardHeader className="pomodoro-header flex flex-row items-center justify-between">
+        <CardTitle className="pomodoro-title">
+          <Timer className="timer-icon h-5 w-5" />
           Pomodoro Timer
         </CardTitle>
         <Button
           variant="ghost"
           size="sm"
           onClick={() => setShowSettings(!showSettings)}
-          className={styles.settingsButton}
+          className="settings-button"
+          aria-label="Settings"
         >
           <Settings className="h-4 w-4" />
         </Button>
       </CardHeader>
-      <CardContent className="space-y-4">
+      <CardContent className="space-y-4 p-6 pt-4 pb-8">
         {showSettings && (
-          <div className={styles.settingsContainer}>
-            <div className={styles.settingsGrid}>
-              <div className={styles.settingGroup}>
-                <Label className={styles.settingLabel}>
-                  Work Duration (min)
-                </Label>
+          <div className="settings-container">
+            <div className="settings-grid">
+              <div className="setting-group">
+                <Label className="setting-label">Work Duration (min)</Label>
                 <Input
                   type="number"
                   value={settingsForm.workDuration}
@@ -76,11 +82,11 @@ export function PomodoroTimer() {
                       workDuration: Number.parseInt(e.target.value) || 25,
                     })
                   }
-                  className={styles.settingInput}
+                  className="setting-input"
                 />
               </div>
-              <div className={styles.settingGroup}>
-                <Label className={styles.settingLabel}>Short Break (min)</Label>
+              <div className="setting-group">
+                <Label className="setting-label">Short Break (min)</Label>
                 <Input
                   type="number"
                   value={settingsForm.shortBreakDuration}
@@ -90,11 +96,11 @@ export function PomodoroTimer() {
                       shortBreakDuration: Number.parseInt(e.target.value) || 5,
                     })
                   }
-                  className={styles.settingInput}
+                  className="setting-input"
                 />
               </div>
-              <div className={styles.settingGroup}>
-                <Label className={styles.settingLabel}>Long Break (min)</Label>
+              <div className="setting-group">
+                <Label className="setting-label">Long Break (min)</Label>
                 <Input
                   type="number"
                   value={settingsForm.longBreakDuration}
@@ -104,11 +110,11 @@ export function PomodoroTimer() {
                       longBreakDuration: Number.parseInt(e.target.value) || 15,
                     })
                   }
-                  className={styles.settingInput}
+                  className="setting-input"
                 />
               </div>
-              <div className={styles.settingGroup}>
-                <Label className={styles.settingLabel}>
+              <div className="setting-group">
+                <Label className="setting-label">
                   Sessions Until Long Break
                 </Label>
                 <Input
@@ -121,75 +127,82 @@ export function PomodoroTimer() {
                         Number.parseInt(e.target.value) || 4,
                     })
                   }
-                  className={styles.settingInput}
+                  className="setting-input"
                 />
               </div>
             </div>
             <Button
               onClick={handleSettingsUpdate}
-              className={styles.saveSettingsButton}
+              className="save-settings-button"
             >
               Save Settings
             </Button>
           </div>
         )}
 
-        <div className={styles.timerDisplay}>
-          <div className={styles.timeText}>{formatTime(timeLeft)}</div>
+        <div className={`timer-display ${isRunning ? "running" : ""}`}>
+          <div className="timer-progress">
+            <div
+              className="timer-progress-fill"
+              style={{ width: `${timerProgress}%` }}
+            ></div>
+          </div>
+          <div className="time-text">{formatTime(timeLeft)}</div>
 
           {currentSession && (
-            <div className={styles.sessionTypeText}>
+            <div className="session-type">
               {currentSession.type === "work" ? "Work Session" : "Break Time"}
             </div>
           )}
 
-          <div className={styles.controlsContainer}>
+          <div className="controls">
             {!currentSession ? (
-              <Button
+              <button
                 onClick={() => startSession(getNextSessionType())}
-                className={styles.startButton}
+                className="start-button"
+                aria-label={`Start ${getNextSessionType()} session`}
               >
-                <Play className="h-4 w-4" />
-                Start {getNextSessionType() === "work" ? "Work" : "Break"}
-              </Button>
+                <Play />
+              </button>
             ) : (
               <>
                 {isRunning ? (
-                  <Button
+                  <button
                     onClick={pauseSession}
-                    variant="outline"
-                    className={styles.pauseButton}
+                    className="pause-button"
+                    aria-label="Pause session"
                   >
-                    <Pause className="h-4 w-4" />
-                  </Button>
+                    <Pause />
+                  </button>
                 ) : (
-                  <Button
+                  <button
                     onClick={resumeSession}
-                    className={styles.resumeButton}
+                    className="resume-button"
+                    aria-label="Resume session"
                   >
-                    <Play className="h-4 w-4" />
-                  </Button>
+                    <Play />
+                  </button>
                 )}
-                <Button
+                <button
                   onClick={stopSession}
-                  variant="destructive"
-                  className={styles.stopButton}
+                  className="stop-button"
+                  aria-label="Stop session"
                 >
-                  <Square className="h-4 w-4" />
-                </Button>
+                  <Square />
+                </button>
               </>
             )}
           </div>
         </div>
 
-        <div className={styles.statsGrid}>
-          <div className={styles.statCard}>
-            <div className={styles.workSessionsCount}>{workSessions}</div>
-            <div className={styles.statLabel}>Work Sessions</div>
+        <div className="stats-container">
+          <div className="stat-card">
+            <div className="work-count">{workSessions}</div>
+            <div className="stat-label">Work Sessions</div>
           </div>
-          <div className={styles.statCard}>
-            <div className={styles.breakSessionsCount}>{breakSessions}</div>
-            <div className={styles.statLabel}>Break Sessions</div>
+          <div className="stat-card">
+            <div className="break-count">{breakSessions}</div>
+            <div className="stat-label">Break Sessions</div>
           </div>
         </div>
       </CardContent>
