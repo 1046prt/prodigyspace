@@ -45,7 +45,9 @@ export default function CollaborationPage() {
             <StudyGroupManager
               studyGroups={studyGroups}
               onCreateGroup={createStudyGroup}
-              onSelectGroup={(group) => console.log("Selected group:", group)}
+              onSelectGroup={() => {
+                /* Handle select group */
+              }}
             />
           </TabsContent>
 

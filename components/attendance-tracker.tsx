@@ -114,7 +114,6 @@ export function AttendanceTracker() {
       // Clear feedback after 3 seconds
       setTimeout(() => setFeedback(null), 3000);
     } catch (err) {
-      console.error("Failed to add subject:", err);
       setError(
         `Failed to add subject: ${
           err instanceof Error ? err.message : "Unknown error"

@@ -23,8 +23,8 @@ export class LocalStorageManager {
         version: this.version,
       };
       localStorage.setItem(key, JSON.stringify(item));
-    } catch (error) {
-      console.error("Error saving to localStorage:", error);
+    } catch {
+      // Error saving to localStorage
     }
   }
 
@@ -37,15 +37,13 @@ export class LocalStorageManager {
 
       // Check version compatibility
       if (parsed.version !== this.version) {
-        console.warn(
-          `Version mismatch for ${key}. Expected ${this.version}, got ${parsed.version}`
-        );
+        // Version mismatch detected
         // Could implement migration logic here
       }
 
       return parsed.data;
-    } catch (error) {
-      console.error("Error reading from localStorage:", error);
+    } catch {
+      // Error reading from localStorage
       return null;
     }
   }
@@ -53,16 +51,16 @@ export class LocalStorageManager {
   removeItem(key: string): void {
     try {
       localStorage.removeItem(key);
-    } catch (error) {
-      console.error("Error removing from localStorage:", error);
+    } catch {
+      // Error removing from localStorage
     }
   }
 
   clear(): void {
     try {
       localStorage.clear();
-    } catch (error) {
-      console.error("Error clearing localStorage:", error);
+    } catch {
+      // Error clearing localStorage
     }
   }
 
@@ -83,8 +81,8 @@ export class LocalStorageManager {
       Object.entries(data).forEach(([key, value]) => {
         localStorage.setItem(key, value as string);
       });
-    } catch (error) {
-      console.error("Error importing data:", error);
+    } catch {
+      // Error importing data
     }
   }
 }

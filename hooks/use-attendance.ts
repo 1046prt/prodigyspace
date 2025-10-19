@@ -119,7 +119,6 @@ export function useAttendance() {
         return updatedSubjects;
       });
     } catch (error) {
-      console.error("Error adding subject:", error);
       throw error; // Re-throw the error so the component can handle it
     }
   };
@@ -137,7 +136,6 @@ export function useAttendance() {
   const deleteSubject = (id: string) => {
     try {
       if (!id) {
-        console.error("Invalid subject ID");
         return;
       }
 
@@ -145,21 +143,19 @@ export function useAttendance() {
         // Check if subject exists before filtering
         const subjectExists = prev.some((subject) => subject.id === id);
         if (!subjectExists) {
-          console.error("Subject not found for deletion");
           return prev;
         }
 
         return prev.filter((subject) => subject.id !== id);
       });
-    } catch (error) {
-      console.error("Error deleting subject:", error);
+    } catch {
+      // Error handling for deleting subject
     }
   };
 
   const markPresent = (id: string) => {
     try {
       if (!id) {
-        console.error("Invalid subject ID");
         return;
       }
 
@@ -167,7 +163,6 @@ export function useAttendance() {
         // First find the subject to verify it exists
         const subjectExists = prev.some((subject) => subject.id === id);
         if (!subjectExists) {
-          console.error("Subject not found");
           return prev;
         }
 
@@ -182,15 +177,14 @@ export function useAttendance() {
             : subject
         );
       });
-    } catch (error) {
-      console.error("Error marking subject as present:", error);
+    } catch {
+      // Error handling for marking subject as present
     }
   };
 
   const markAbsent = (id: string) => {
     try {
       if (!id) {
-        console.error("Invalid subject ID");
         return;
       }
 
@@ -198,7 +192,6 @@ export function useAttendance() {
         // First find the subject to verify it exists
         const subjectExists = prev.some((subject) => subject.id === id);
         if (!subjectExists) {
-          console.error("Subject not found");
           return prev;
         }
 
@@ -212,8 +205,8 @@ export function useAttendance() {
             : subject
         );
       });
-    } catch (error) {
-      console.error("Error marking subject as absent:", error);
+    } catch {
+      // Error handling for marking subject as absent
     }
   };
 

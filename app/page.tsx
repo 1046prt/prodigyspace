@@ -41,11 +41,11 @@ export default function HomePage() {
     if ("serviceWorker" in navigator) {
       navigator.serviceWorker
         .register("/sw.js")
-        .then((registration) => {
-          console.log("SW registered: ", registration);
+        .then(() => {
+          // Service worker registered successfully
         })
-        .catch((registrationError) => {
-          console.log("SW registration failed: ", registrationError);
+        .catch(() => {
+          // Service worker registration failed
         });
     }
 
@@ -194,16 +194,18 @@ export default function HomePage() {
 
         <div className="homepage-features-grid">
           {features.map((feature, index) => (
-            <Link key={index} href={feature.href} className="homepage-feature-card">
+            <Link
+              key={index}
+              href={feature.href}
+              className="homepage-feature-card"
+            >
               <div className="homepage-feature-header">
                 <div className="homepage-feature-icon-container">
                   <div className="homepage-feature-icon-bg">
                     <feature.icon className={feature.color} />
                   </div>
                   <div>
-                    <h3 className="homepage-feature-title">
-                      {feature.title}
-                    </h3>
+                    <h3 className="homepage-feature-title">{feature.title}</h3>
                     <span className="homepage-feature-badge">
                       {feature.stats}
                     </span>
@@ -220,17 +222,19 @@ export default function HomePage() {
         <div className="homepage-content-grid">
           {/* Upcoming Tasks */}
           <div className="homepage-section-card">
-            <div style={{ padding: 'var(--space-6)' }}>
+            <div style={{ padding: "var(--space-6)" }}>
               <h3 className="homepage-section-header">
                 <Clock />
                 Upcoming Tasks
               </h3>
               {upcomingTasks.length === 0 ? (
-                <p style={{ 
-                  color: 'var(--foreground-muted)', 
-                  textAlign: 'center', 
-                  padding: 'var(--space-4) 0' 
-                }}>
+                <p
+                  style={{
+                    color: "var(--foreground-muted)",
+                    textAlign: "center",
+                    padding: "var(--space-4) 0",
+                  }}
+                >
                   No upcoming tasks
                 </p>
               ) : (

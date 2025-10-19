@@ -98,25 +98,33 @@ export default function UtilitiesPage() {
           </div>
           <div className="md:col-span-2 lg:col-span-3">
             <DocumentScanner
-              onSave={(docData) => console.log("Save document:", docData)}
+              onSave={(_docData) => {
+                /* Handle save document */
+              }}
               scannedDocs={mockScannedDocs}
-              onDelete={(id) => console.log("Delete document:", id)}
+              onDelete={(_id) => {
+                /* Handle delete document */
+              }}
             />
           </div>
           <div className="md:col-span-2 lg:col-span-3">
             <StudyPlanner
               studySessions={mockStudySessions}
               tasks={mockTasks}
-              onAddSession={(session) => console.log("Add session:", session)}
+              onAddSession={(_session) => {
+                /* Handle add session */
+              }}
             />
           </div>
           <div className="md:col-span-2 lg:col-span-3">
             <GoalsManager
               goals={mockGoals}
-              onAddGoal={(goal) => console.log("Add goal:", goal)}
-              onUpdateProgress={(goalId, progress) =>
-                console.log("Update progress:", goalId, progress)
-              }
+              onAddGoal={() => {
+                /* Handle add goal */
+              }}
+              onUpdateProgress={() => {
+                /* Handle update progress */
+              }}
             />
           </div>
         </div>

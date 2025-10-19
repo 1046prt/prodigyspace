@@ -4,7 +4,6 @@ export function exportToCSV<T extends Record<string, unknown>>(
   headers?: string[]
 ): void {
   if (data.length === 0) {
-    console.warn("No data to export");
     return;
   }
 
