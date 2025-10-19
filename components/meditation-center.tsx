@@ -262,23 +262,19 @@ export function MeditationCenter({
       <div className="statsGrid">
         <Card className="statCard">
           <CardContent className="statCardContent">
-            <div className="statValue ${styles.statValueBlue}">
-              {totalSessions}
-            </div>
+            <div className="statValue statValueBlue">{totalSessions}</div>
             <div className="statLabel">Sessions</div>
           </CardContent>
         </Card>
         <Card className="statCard">
           <CardContent className="statCardContent">
-            <div className="statValue ${styles.statValueGreen}">
-              {totalMinutes}
-            </div>
+            <div className="statValue statValueGreen">{totalMinutes}</div>
             <div className="statLabel">Minutes</div>
           </CardContent>
         </Card>
         <Card className="statCard">
           <CardContent className="statCardContent">
-            <div className="statValue ${styles.statValuePurple}">
+            <div className="statValue statValuePurple">
               {averageRating.toFixed(1)}
             </div>
             <div className="statLabel">Avg Rating</div>
@@ -290,9 +286,7 @@ export function MeditationCenter({
         {/* Breathing Exercises */}
         <Card className="card">
           <CardHeader className="cardHeader">
-            <CardTitle className="cardTitle">
-              Breathing Exercises
-            </CardTitle>
+            <CardTitle className="cardTitle">Breathing Exercises</CardTitle>
           </CardHeader>
           <CardContent className="cardContent">
             {activeExercise ? (
@@ -337,17 +331,12 @@ export function MeditationCenter({
                     <CardContent className="exerciseCardContent">
                       <div className="exerciseHeader">
                         <div className="exerciseInfo">
-                          <h4 className="exerciseName">
-                            {exercise.name}
-                          </h4>
+                          <h4 className="exerciseName">{exercise.name}</h4>
                           <p className="exerciseDescription">
                             {exercise.description}
                           </p>
                           <div className="exerciseBadges">
-                            <Badge
-                              variant="outline"
-                              className="exerciseBadge"
-                            >
+                            <Badge variant="outline" className="exerciseBadge">
                               {exercise.inhale}s inhale
                             </Badge>
                             {exercise.hold > 0 && (
@@ -358,10 +347,7 @@ export function MeditationCenter({
                                 {exercise.hold}s hold
                               </Badge>
                             )}
-                            <Badge
-                              variant="outline"
-                              className="exerciseBadge"
-                            >
+                            <Badge variant="outline" className="exerciseBadge">
                               {exercise.exhale}s exhale
                             </Badge>
                           </div>
@@ -385,9 +371,7 @@ export function MeditationCenter({
         {/* Guided Meditations */}
         <Card className="card">
           <CardHeader className="cardHeader">
-            <CardTitle className="cardTitle">
-              Guided Meditations
-            </CardTitle>
+            <CardTitle className="cardTitle">Guided Meditations</CardTitle>
           </CardHeader>
           <CardContent className="cardContent">
             {activeMeditation ? (
@@ -461,9 +445,7 @@ export function MeditationCenter({
                       <div className="meditationHeader">
                         <meditation.icon className="meditationIcon" />
                         <div className="meditationInfo">
-                          <h4 className="meditationName">
-                            {meditation.name}
-                          </h4>
+                          <h4 className="meditationName">{meditation.name}</h4>
                           <p className="meditationDescription">
                             {meditation.description}
                           </p>
