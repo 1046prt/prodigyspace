@@ -161,7 +161,7 @@ export function BookmarkManager() {
         )}
 
         {allCategories.length > 0 && (
-          <div className="formGroup">
+          <div className="formGroup categoryFilterContainer">
             <Label className="formLabel">Filter by Category</Label>
             <Select
               value={selectedCategory}
@@ -174,7 +174,9 @@ export function BookmarkManager() {
                 <SelectItem value="all">All Categories</SelectItem>
                 {allCategories.map((category) => (
                   <SelectItem key={category} value={category}>
-                    {category}
+                    <span className={`category-pill category-${category}`}>
+                      {category}
+                    </span>
                   </SelectItem>
                 ))}
               </SelectContent>
@@ -193,7 +195,9 @@ export function BookmarkManager() {
                 <div className="bookmarkInfo">
                   <div className="bookmarkTitle">{bookmark.title}</div>
                   <div className="bookmarkUrl">{bookmark.url}</div>
-                  <div className="bookmarkCategory">
+                  <div
+                    className={`bookmarkCategory category-${bookmark.category}`}
+                  >
                     {bookmark.category}
                   </div>
                 </div>

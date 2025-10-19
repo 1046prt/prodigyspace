@@ -4,7 +4,6 @@ import type React from "react";
 
 import { useState, useRef } from "react";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import {
@@ -12,9 +11,9 @@ import {
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue,
 } from "@/components/ui/select";
 import { Camera, Upload, FileText, Trash2 } from "lucide-react";
+import "@/styles/document-scanner.css";
 import type { ScanDocument } from "@/types/notes";
 
 interface DocumentScannerProps {
@@ -76,56 +75,85 @@ export function DocumentScanner({
   return (
     <div className="space-y-6">
       {/* Scanner Interface */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Camera className="h-5 w-5" />
+      <Card className="document-scanner-card">
+        <CardHeader className="document-scanner-header">
+          <CardTitle className="document-scanner-title">
+            <Camera className="scanner-icon h-5 w-5" />
             Document Scanner
           </CardTitle>
         </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label className="text-sm font-medium mb-2 block">
-                Document Name
-              </label>
+        <CardContent className="document-scanner-content">
+          <div className="document-form-grid">
+            <div className="form-group">
+              <label className="form-label">Document Name</label>
               <Input
+                className="document-name-input"
                 value={docName}
                 onChange={(e) => setDocName(e.target.value)}
                 placeholder="Enter document name..."
               />
             </div>
-            <div>
-              <label className="text-sm font-medium mb-2 block">Category</label>
+            <div className="form-group">
+              <label className="form-label">Category</label>
               <Select
                 value={category}
                 onValueChange={(value: ScanDocument["category"]) =>
                   setCategory(value)
                 }
               >
-                <SelectTrigger>
-                  <SelectValue />
+                <SelectTrigger className="category-select">
+                  <div className="selected-category-wrapper">
+                    <span className={`category-pill category-${category}`}>
+                      {category.charAt(0).toUpperCase() + category.slice(1)}
+                    </span>
+                  </div>
                 </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="textbook">Textbook</SelectItem>
-                  <SelectItem value="handout">Handout</SelectItem>
-                  <SelectItem value="assignment">Assignment</SelectItem>
-                  <SelectItem value="notes">Notes</SelectItem>
-                  <SelectItem value="other">Other</SelectItem>
+                <SelectContent className="category-dropdown-content">
+                  <div className="category-dropdown-label">Document Types</div>
+                  <SelectItem
+                    value="textbook"
+                    className="category-dropdown-item"
+                  >
+                    <span className="category-pill category-textbook">
+                      Textbook
+                    </span>
+                  </SelectItem>
+                  <SelectItem
+                    value="handout"
+                    className="category-dropdown-item"
+                  >
+                    <span className="category-pill category-handout">
+                      Handout
+                    </span>
+                  </SelectItem>
+                  <SelectItem
+                    value="assignment"
+                    className="category-dropdown-item"
+                  >
+                    <span className="category-pill category-assignment">
+                      Assignment
+                    </span>
+                  </SelectItem>
+                  <SelectItem value="notes" className="category-dropdown-item">
+                    <span className="category-pill category-notes">Notes</span>
+                  </SelectItem>
+                  <SelectItem value="other" className="category-dropdown-item">
+                    <span className="category-pill category-other">Other</span>
+                  </SelectItem>
                 </SelectContent>
               </Select>
             </div>
           </div>
 
-          <div className="flex gap-2">
-            <Button
+          <div className="upload-buttons">
+            <button
+              type="button"
               onClick={() => fileInputRef.current?.click()}
-              variant="outline"
-              className="flex-1"
+              className="upload-button"
             >
-              <Upload className="h-4 w-4 mr-2" />
+              <Upload className="h-4 w-4" />
               Upload Images
-            </Button>
+            </button>
             <input
               ref={fileInputRef}
               type="file"
@@ -134,96 +162,106 @@ export function DocumentScanner({
               onChange={handleFileUpload}
               className="hidden"
             />
+
+            <button type="button" className="upload-button">
+              <Camera className="h-4 w-4" />
+              Scan Document
+            </button>
           </div>
 
           {scannedPages.length > 0 && (
-            <div>
-              <label className="text-sm font-medium mb-2 block">
+            <div className="scanned-pages-container">
+              <label className="scanned-pages-label">
                 Scanned Pages ({scannedPages.length})
               </label>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-2 max-h-60 overflow-y-auto">
+              <div className="scanned-pages-grid">
                 {scannedPages.map((page, index) => (
-                  <div key={index} className="relative group">
+                  <div key={index} className="page-thumbnail">
                     <Image
                       src={page || "/placeholder.svg"}
                       alt={`Page ${index + 1}`}
                       width={96}
                       height={96}
-                      className="w-full h-24 object-cover rounded border"
+                      className="thumbnail-image"
                     />
-                    <Button
-                      size="sm"
-                      variant="destructive"
-                      className="absolute top-1 right-1 opacity-0 group-hover:opacity-100 transition-opacity h-6 w-6 p-0"
+                    <button
+                      type="button"
+                      className="delete-button"
                       onClick={() => removePage(index)}
                     >
                       <Trash2 className="h-3 w-3" />
-                    </Button>
+                    </button>
                   </div>
                 ))}
               </div>
             </div>
           )}
 
-          <Button
+          <button
             onClick={handleSaveDocument}
             disabled={!docName.trim() || scannedPages.length === 0}
-            className="w-full"
+            className="save-button"
           >
-            <FileText className="h-4 w-4 mr-2" />
+            <FileText className="h-4 w-4" />
             Save Document
-          </Button>
+          </button>
         </CardContent>
       </Card>
 
       {/* Scanned Documents List */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Scanned Documents ({scannedDocs.length})</CardTitle>
+      <Card className="documents-card">
+        <CardHeader className="documents-header">
+          <CardTitle className="documents-title">
+            Scanned Documents ({scannedDocs.length})
+          </CardTitle>
         </CardHeader>
-        <CardContent>
+        <CardContent className="documents-content">
           {scannedDocs.length === 0 ? (
-            <p className="text-muted-foreground text-center py-8">
+            <p className="documents-empty">
               No scanned documents yet. Upload some images to get started!
             </p>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="documents-grid">
               {scannedDocs.map((doc) => (
-                <Card
-                  key={doc.id}
-                  className="hover:shadow-md transition-shadow"
-                >
-                  <CardContent className="p-4">
-                    <div className="flex items-start justify-between mb-2">
-                      <h3 className="font-medium truncate">{doc.name}</h3>
-                      <Button
-                        size="sm"
-                        variant="ghost"
+                <div key={doc.id} className="document-card">
+                  <div className="document-card-content">
+                    <div className="document-header">
+                      <h3 className="document-title">{doc.name}</h3>
+                      <button
+                        type="button"
                         onClick={() => onDelete(doc.id)}
-                        className="text-destructive hover:text-destructive h-6 w-6 p-0"
+                        className="document-delete"
                       >
-                        <Trash2 className="h-3 w-3" />
-                      </Button>
+                        <Trash2 className="h-4 w-4" />
+                      </button>
                     </div>
-                    <p className="text-sm text-muted-foreground mb-2">
-                      {doc.category} • {doc.pages.length} pages
-                    </p>
-                    <p className="text-xs text-muted-foreground">
+                    <div className="document-meta">
+                      <span
+                        className={`document-category category-${doc.category}`}
+                      >
+                        {doc.category}
+                      </span>
+                      <span className="document-pages">
+                        {doc.pages.length}{" "}
+                        {doc.pages.length === 1 ? "page" : "pages"}
+                      </span>
+                    </div>
+                    <p className="document-date">
                       {doc.createdAt.toLocaleDateString()}
                     </p>
                     {doc.pages.length > 0 && (
-                      <div className="mt-2">
+                      <div className="document-preview">
                         <Image
                           src={doc.pages[0] || "/placeholder.svg"}
                           alt="Document preview"
                           width={64}
                           height={64}
-                          className="w-full h-16 object-cover rounded border"
+                          className="w-full h-80px object-cover"
                         />
                       </div>
                     )}
-                  </CardContent>
-                </Card>
+                  </div>
+                </div>
               ))}
             </div>
           )}

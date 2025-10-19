@@ -12,29 +12,41 @@ import {
 
 import { Label } from "@/components/ui/label";
 import { useConverter } from "@/hooks/use-converter";
-import { Calculator } from "lucide-react";
-import { useState } from "react";
+import {
+  Calculator,
+  Database,
+  Clock,
+  Ruler,
+  Thermometer,
+  ArrowRight,
+} from "lucide-react";
+import React, { useState } from "react";
+import "@/styles/unit-converter.css";
 
 const unitCategories = [
   {
     id: "data",
     name: "Data",
     units: ["bits", "bytes", "kb", "mb", "gb", "tb"],
+    icon: Database,
   },
   {
     id: "time",
     name: "Time",
     units: ["milliseconds", "seconds", "minutes", "hours", "days"],
+    icon: Clock,
   },
   {
     id: "length",
     name: "Length",
     units: ["mm", "cm", "m", "km", "inch", "feet", "yard", "mile"],
+    icon: Ruler,
   },
   {
     id: "temperature",
     name: "Temperature",
     units: ["celsius", "fahrenheit", "kelvin"],
+    icon: Thermometer,
   },
 ];
 
@@ -53,24 +65,37 @@ export function UnitConverter() {
   const currentCategory = unitCategories.find((cat) => cat.id === category);
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <Calculator className="h-5 w-5" />
+    <Card className="unit-converter-card">
+      <CardHeader className="unit-converter-header">
+        <CardTitle className="unit-converter-title">
+          <Calculator className="calculator-icon h-5 w-5" />
           Unit Converter
         </CardTitle>
       </CardHeader>
-      <CardContent className="space-y-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="space-y-2">
-            <Label>Category</Label>
+      <CardContent className="unit-converter-content">
+        <div className={`unit-selector-grid category-${category}`}>
+          <div className="input-group">
+            <Label className="input-label">Category</Label>
             <Select value={category} onValueChange={setCategory}>
-              <SelectTrigger>
+              <SelectTrigger className="category-select">
+                {currentCategory &&
+                  React.createElement(currentCategory.icon, {
+                    className: `category-icon h-4 w-4`,
+                    size: 16,
+                  })}
                 <SelectValue />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="select-content">
                 {unitCategories.map((cat) => (
-                  <SelectItem key={cat.id} value={cat.id}>
+                  <SelectItem
+                    key={cat.id}
+                    value={cat.id}
+                    className="select-item"
+                  >
+                    {React.createElement(cat.icon, {
+                      className: `category-icon h-4 w-4 mr-2`,
+                      size: 16,
+                    })}
                     {cat.name}
                   </SelectItem>
                 ))}
@@ -78,15 +103,15 @@ export function UnitConverter() {
             </Select>
           </div>
 
-          <div className="space-y-2">
-            <Label>From</Label>
+          <div className="input-group">
+            <Label className="input-label">From</Label>
             <Select value={fromUnit} onValueChange={setFromUnit}>
-              <SelectTrigger>
+              <SelectTrigger className="unit-select">
                 <SelectValue />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="select-content">
                 {currentCategory?.units.map((unit) => (
-                  <SelectItem key={unit} value={unit}>
+                  <SelectItem key={unit} value={unit} className="select-item">
                     {unit}
                   </SelectItem>
                 ))}
@@ -94,15 +119,15 @@ export function UnitConverter() {
             </Select>
           </div>
 
-          <div className="space-y-2">
-            <Label>To</Label>
+          <div className="input-group">
+            <Label className="input-label">To</Label>
             <Select value={toUnit} onValueChange={setToUnit}>
-              <SelectTrigger>
+              <SelectTrigger className="unit-select">
                 <SelectValue />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="select-content">
                 {currentCategory?.units.map((unit) => (
-                  <SelectItem key={unit} value={unit}>
+                  <SelectItem key={unit} value={unit} className="select-item">
                     {unit}
                   </SelectItem>
                 ))}
@@ -111,10 +136,11 @@ export function UnitConverter() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="space-y-2">
-            <Label>Value</Label>
+        <div className="value-grid">
+          <div className="input-group">
+            <Label className="input-label">Value</Label>
             <Input
+              className="value-input"
               type="number"
               value={fromValue}
               onChange={(e) => setFromValue(e.target.value)}
@@ -122,18 +148,22 @@ export function UnitConverter() {
             />
           </div>
 
-          <div className="space-y-2">
-            <Label>Result</Label>
-            <Input
-              type="text"
-              value={getResult()}
-              readOnly
-              placeholder="Result"
-            />
+          <div className="input-group">
+            <Label className="input-label">Result</Label>
+            <div className="result-wrapper">
+              <Input
+                className="result-input"
+                type="text"
+                value={getResult()}
+                readOnly
+                placeholder="Result"
+              />
+              <ArrowRight className="result-arrow" size={18} />
+            </div>
           </div>
         </div>
 
-        <div className="text-sm text-muted-foreground">
+        <div className="help-text">
           <p>
             Quick conversions for students: file sizes, time durations,
             measurements, and temperature.

@@ -12,6 +12,8 @@ import "@/styles/pomodoro-timer.css";
 import "@/styles/bookmark-manager.css";
 import "@/styles/attendance.css";
 import "@/styles/water-tracker.css";
+import "@/styles/unit-converter.css";
+import "@/styles/document-scanner.css";
 
 // Mock data for the new components
 const mockScannedDocs = [
@@ -104,12 +106,16 @@ export default function UtilitiesPage() {
           </div>
           <div className="utilities-card utilities-card-full">
             <DocumentScanner
-              onSave={() => {
-                /* Handle save document */
+              onSave={(docData) => {
+                console.log("Document saved:", docData);
+                // In a real implementation, we would add the document to state
+                alert("Document saved successfully!");
               }}
               scannedDocs={mockScannedDocs}
-              onDelete={() => {
-                /* Handle delete document */
+              onDelete={(id) => {
+                console.log("Deleting document with id:", id);
+                // In a real implementation, we would remove the document from state
+                alert("Document deleted successfully!");
               }}
             />
           </div>
