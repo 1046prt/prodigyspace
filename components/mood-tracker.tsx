@@ -100,7 +100,7 @@ export function MoodTracker({ moodEntries, onAddEntry }: MoodTrackerProps) {
               <Popover>
                 <PopoverTrigger asChild>
                   <Button variant="outline" className="dateButton">
-                    <CalendarIcon className="calendarIcon" />
+                    <CalendarIcon className="calendarIcon mr-2" />
                     {format(selectedDate, "PPP")}
                   </Button>
                 </PopoverTrigger>
@@ -201,7 +201,11 @@ export function MoodTracker({ moodEntries, onAddEntry }: MoodTrackerProps) {
               />
             </div>
 
-            <Button onClick={handleSubmit} className="submitButton">
+            <Button
+              onClick={handleSubmit}
+              className="submitButton"
+              variant="default"
+            >
               Log Mood
             </Button>
           </CardContent>
