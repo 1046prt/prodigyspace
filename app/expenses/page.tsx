@@ -1,4 +1,5 @@
 import { ExpenseTracker } from "@/components/expense-tracker";
+import "@/styles/expenses.css";
 
 export default function ExpensesPage() {
   return (

@@ -6,6 +6,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { GraduationCap, Target, Users, Zap } from "lucide-react";
+import "@/styles/about.css";
 
 export default function AboutPage() {
   const values = [

@@ -8,6 +8,10 @@ import { StudyPlanner } from "@/components/study-planner";
 import { GoalsManager } from "@/components/goals-manager";
 import { UnitConverter } from "@/components/unit-converter";
 import { AttendanceTracker } from "@/components/attendance-tracker";
+import "@/styles/utilities.css";
+import "@/styles/pomodoro-timer.css";
+import "@/styles/bookmark-manager.css";
+import "@/styles/attendance.css";
 
 // Mock data for the new components
 const mockScannedDocs = [
@@ -98,11 +102,11 @@ export default function UtilitiesPage() {
           </div>
           <div className="md:col-span-2 lg:col-span-3">
             <DocumentScanner
-              onSave={(_docData) => {
+              onSave={() => {
                 /* Handle save document */
               }}
               scannedDocs={mockScannedDocs}
-              onDelete={(_id) => {
+              onDelete={() => {
                 /* Handle delete document */
               }}
             />
@@ -111,7 +115,7 @@ export default function UtilitiesPage() {
             <StudyPlanner
               studySessions={mockStudySessions}
               tasks={mockTasks}
-              onAddSession={(_session) => {
+              onAddSession={() => {
                 /* Handle add session */
               }}
             />

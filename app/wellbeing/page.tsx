@@ -7,6 +7,10 @@ import { GoalsManager } from "@/components/goals-manager";
 import { InsightsDashboard } from "@/components/insights-dashboard";
 import { useWellbeing } from "@/hooks/use-wellbeing";
 import { Heart, Brain, Target, TrendingUp } from "lucide-react";
+import "@/styles/wellbeing.css";
+import "@/styles/mood-tracker.css";
+import "@/styles/meditation-center.css";
+import "@/styles/insight-dashboard.css";
 
 export default function WellbeingPage() {
   const {

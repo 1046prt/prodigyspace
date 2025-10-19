@@ -5,6 +5,8 @@ import { StudyGroupManager } from "@/components/study-group-manager";
 import { ProjectCollaboration } from "@/components/project-collaboration";
 import { useCollaboration } from "@/hooks/use-collaboration";
 import { Users, FolderOpen, Calendar, MessageSquare } from "lucide-react";
+import "@/styles/project-collaboration.css";
+import "@/styles/sticky-group-manager.css";
 
 export default function CollaborationPage() {
   const { studyGroups, projects, createStudyGroup, createProject } =

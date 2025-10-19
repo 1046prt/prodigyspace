@@ -1,4 +1,5 @@
 import { AlarmManager } from "@/components/alarm-manager";
+import "@/styles/alarms.css";
 
 export default function AlarmsPage() {
   return (

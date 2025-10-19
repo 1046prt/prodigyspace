@@ -5,6 +5,7 @@ import { TaskManager } from "@/components/task-manager";
 import { StudyPlanner } from "@/components/study-planner";
 import { useTasks } from "@/hooks/use-tasks";
 import { CheckSquare, Calendar, BookOpen, GraduationCap } from "lucide-react";
+import "@/styles/tasks.css";
 
 export default function TasksPage() {
   const {

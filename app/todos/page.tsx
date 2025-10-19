@@ -1,4 +1,5 @@
 import { TodoManager } from "@/components/todo-manager";
+import "@/styles/todos.css";
 
 export default function TodosPage() {
   return (
