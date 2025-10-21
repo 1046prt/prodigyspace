@@ -201,57 +201,30 @@
 
 /* Color Classes - Using CSS variables for easy theming */
 :root {
-  /* Sticky Note Colors - Light Mode */
-  --sticky-yellow-bg: #fef08a;
-  --sticky-yellow-border: #fde047;
-  --sticky-yellow-text: #713f12;
+  /* Sticky Note Colors - Light and Dark Mode combined with light-dark() */
+  --sticky-yellow-bg: light-dark(#fef08a, #854d0e);
+  --sticky-yellow-border: light-dark(#fde047, #a16207);
+  --sticky-yellow-text: light-dark(#713f12, #fef08a);
 
-  --sticky-blue-bg: #bfdbfe;
-  --sticky-blue-border: #93c5fd;
-  --sticky-blue-text: #1e3a8a;
+  --sticky-blue-bg: light-dark(#bfdbfe, #1e40af);
+  --sticky-blue-border: light-dark(#93c5fd, #1d4ed8);
+  --sticky-blue-text: light-dark(#1e3a8a, #bfdbfe);
 
-  --sticky-green-bg: #bbf7d0;
-  --sticky-green-border: #86efac;
-  --sticky-green-text: #14532d;
+  --sticky-green-bg: light-dark(#bbf7d0, #15803d);
+  --sticky-green-border: light-dark(#86efac, #166534);
+  --sticky-green-text: light-dark(#14532d, #bbf7d0);
 
-  --sticky-pink-bg: #fbcfe8;
-  --sticky-pink-border: #f9a8d4;
-  --sticky-pink-text: #831843;
+  --sticky-pink-bg: light-dark(#fbcfe8, #9d174d);
+  --sticky-pink-border: light-dark(#f9a8d4, #be185d);
+  --sticky-pink-text: light-dark(#831843, #fbcfe8);
 
-  --sticky-purple-bg: #ddd6fe;
-  --sticky-purple-border: #c4b5fd;
-  --sticky-purple-text: #5b21b6;
+  --sticky-purple-bg: light-dark(#ddd6fe, #6d28d9);
+  --sticky-purple-border: light-dark(#c4b5fd, #7c3aed);
+  --sticky-purple-text: light-dark(#5b21b6, #ddd6fe);
 
-  --sticky-orange-bg: #fed7aa;
-  --sticky-orange-border: #fdba74;
-  --sticky-orange-text: #9a3412;
-}
-
-.dark {
-  /* Sticky Note Colors - Dark Mode */
-  --sticky-yellow-bg: #854d0e;
-  --sticky-yellow-border: #a16207;
-  --sticky-yellow-text: #fef08a;
-
-  --sticky-blue-bg: #1e40af;
-  --sticky-blue-border: #1d4ed8;
-  --sticky-blue-text: #bfdbfe;
-
-  --sticky-green-bg: #15803d;
-  --sticky-green-border: #166534;
-  --sticky-green-text: #bbf7d0;
-
-  --sticky-pink-bg: #9d174d;
-  --sticky-pink-border: #be185d;
-  --sticky-pink-text: #fbcfe8;
-
-  --sticky-purple-bg: #6d28d9;
-  --sticky-purple-border: #7c3aed;
-  --sticky-purple-text: #ddd6fe;
-
-  --sticky-orange-bg: #c2410c;
-  --sticky-orange-border: #ea580c;
-  --sticky-orange-text: #fed7aa;
+  --sticky-orange-bg: light-dark(#fed7aa, #c2410c);
+  --sticky-orange-border: light-dark(#fdba74, #ea580c);
+  --sticky-orange-text: light-dark(#9a3412, #fed7aa);
 }
 
 .yellow {

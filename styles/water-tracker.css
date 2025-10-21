@@ -1,6 +1,6 @@
 .water-tracker-card {
   border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0, 120, 255, 0.15);
+  box-shadow: 0 8px 24px rgba(0, 120, 255, light-dark(0.15, 0.2));
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   overflow: hidden;
   border: 1px solid rgba(0, 120, 255, 0.15);
@@ -15,20 +15,14 @@
 }
 
 .water-tracker-header {
-  background: linear-gradient(135deg, #e0f7ff, #d5efff);
-  border-bottom: 1px solid rgba(0, 120, 255, 0.15);
+  background: light-dark(
+    linear-gradient(135deg, #e0f7ff, #d5efff),
+    linear-gradient(135deg, rgba(0, 120, 255, 0.2), rgba(0, 100, 200, 0.25))
+  );
+  border-bottom: 1px solid rgba(0, 120, 255, light-dark(0.15, 0.3));
   margin: 2px;
   padding: 16px;
   border-radius: 11px 11px 0 0;
-}
-
-.dark .water-tracker-header {
-  background: linear-gradient(
-    135deg,
-    rgba(0, 120, 255, 0.2),
-    rgba(0, 100, 200, 0.25)
-  );
-  border-bottom: 1px solid rgba(0, 120, 255, 0.3);
 }
 
 .water-tracker-title {
@@ -42,18 +36,16 @@
 }
 
 .water-stats {
-  background-color: rgba(235, 248, 255, 0.7);
+  background-color: light-dark(
+    rgba(235, 248, 255, 0.7),
+    rgba(0, 120, 255, 0.1)
+  );
   border-radius: 12px;
   padding: 32px 28px;
   text-align: center;
   position: relative;
   margin: 16px 16px;
-  box-shadow: 0 4px 12px rgba(0, 120, 255, 0.12);
-}
-
-.dark .water-stats {
-  background-color: rgba(0, 120, 255, 0.1);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 12px rgba(0, 120, 255, light-dark(0.12, 0.2));
 }
 
 .water-amount {
@@ -87,13 +79,9 @@
 
 .water-remaining {
   font-size: 14px;
-  color: #4a5568;
+  color: light-dark(#4a5568, #a0aec0);
   margin-top: 12px;
   padding: 4px 0;
-}
-
-.dark .water-remaining {
-  color: #a0aec0;
 }
 
 .goal-achieved {
@@ -186,17 +174,14 @@
   max-height: 200px;
   overflow-y: auto;
   border-radius: 10px;
-  background-color: rgba(235, 248, 255, 0.5);
+  background-color: light-dark(
+    rgba(235, 248, 255, 0.5),
+    rgba(0, 120, 255, 0.05)
+  );
   padding: 20px;
-  border: 1px solid rgba(0, 136, 255, 0.15);
+  border: 1px solid rgba(0, 136, 255, light-dark(0.15, 0.3));
   margin: 20px 16px 16px;
-  box-shadow: inset 0 2px 6px rgba(0, 120, 255, 0.08);
-}
-
-.dark .intakes-history {
-  background-color: rgba(0, 120, 255, 0.05);
-  border: 1px solid rgba(0, 136, 255, 0.3);
-  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 2px 6px rgba(0, 120, 255, light-dark(0.08, 0.2));
 }
 
 .intake-item {
@@ -206,24 +191,14 @@
   padding: 12px 16px;
   border-radius: 8px;
   margin-bottom: 12px;
-  background-color: white;
-  border-left: 4px solid #0088ff;
+  background-color: light-dark(white, rgba(30, 41, 59, 0.8));
+  border-left: 4px solid light-dark(#0088ff, #3b82f6);
   transition: all 0.2s ease;
-  box-shadow: 0 2px 5px rgba(0, 120, 255, 0.12);
+  box-shadow: 0 2px 5px rgba(0, 120, 255, light-dark(0.12, 0.3));
 }
 
 .intake-item:hover {
-  background-color: rgba(235, 248, 255, 0.8);
-}
-
-.dark .intake-item {
-  background-color: rgba(30, 41, 59, 0.8);
-  border-left: 4px solid #3b82f6;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-}
-
-.dark .intake-item:hover {
-  background-color: rgba(30, 41, 59, 1);
+  background-color: light-dark(rgba(235, 248, 255, 0.8), rgba(30, 41, 59, 1));
 }
 
 .intake-amount {
@@ -233,11 +208,7 @@
 
 .intake-time {
   font-size: 12px;
-  color: #718096;
-}
-
-.dark .intake-time {
-  color: #a0aec0;
+  color: light-dark(#718096, #a0aec0);
 }
 
 .delete-button {
@@ -260,13 +231,16 @@
 }
 
 .settings-container {
-  background-color: rgba(235, 248, 255, 0.8);
+  background-color: light-dark(
+    rgba(235, 248, 255, 0.8),
+    rgba(0, 120, 255, 0.1)
+  );
   border-radius: 8px;
   padding: 24px;
   margin: 0 12px 24px;
   border: 1px solid rgba(0, 136, 255, 0.2);
   animation: fadeIn 0.3s ease-in-out;
-  box-shadow: 0 2px 8px rgba(0, 120, 255, 0.08);
+  box-shadow: 0 2px 8px rgba(0, 120, 255, light-dark(0.08, 0.2));
 }
 
 @keyframes fadeIn {
@@ -284,7 +258,7 @@
   display: block;
   font-weight: 500;
   margin-bottom: 8px;
-  color: #2d3748;
+  color: light-dark(#2d3748, #e2e8f0);
 }
 
 .settings-input-group {
@@ -311,7 +285,7 @@
 .section-label {
   font-size: 14px;
   font-weight: 500;
-  color: #4a5568;
+  color: light-dark(#4a5568, #cbd5e1);
   margin-bottom: 8px;
   display: block;
 }

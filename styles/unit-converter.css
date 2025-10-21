@@ -2,23 +2,24 @@
 
 .unit-converter-card {
   border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(70, 130, 180, 0.15);
+  box-shadow: light-dark(
+    0 8px 24px rgba(70, 130, 180, 0.15),
+    0 8px 24px rgba(0, 0, 0, 0.2)
+  );
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   overflow: hidden;
-  border: 1px solid rgba(70, 130, 180, 0.15);
+  border: 1px solid
+    light-dark(rgba(70, 130, 180, 0.15), rgba(70, 130, 180, 0.3));
   height: 100%;
-  background: linear-gradient(to bottom right, #ffffff, #f0f7ff);
-  padding: 3px;
-}
-
-.dark .unit-converter-card {
-  background: linear-gradient(
-    to bottom right,
-    rgba(30, 41, 59, 0.8),
-    rgba(15, 23, 42, 0.95)
+  background: light-dark(
+    linear-gradient(to bottom right, #ffffff, #f0f7ff),
+    linear-gradient(
+      to bottom right,
+      rgba(30, 41, 59, 0.8),
+      rgba(15, 23, 42, 0.95)
+    )
   );
-  border: 1px solid rgba(70, 130, 180, 0.3);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  padding: 3px;
 }
 
 .unit-converter-header {
@@ -26,20 +27,15 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  background: linear-gradient(135deg, #edf5ff, #e1eeff);
-  border-bottom: 1px solid rgba(70, 130, 180, 0.15);
+  background: light-dark(
+    linear-gradient(135deg, #edf5ff, #e1eeff),
+    linear-gradient(135deg, rgba(70, 130, 180, 0.2), rgba(70, 130, 180, 0.3))
+  );
+  border-bottom: 1px solid
+    light-dark(rgba(70, 130, 180, 0.15), rgba(70, 130, 180, 0.3));
   padding: 18px 24px;
   margin: 2px;
   border-radius: 10px 10px 0 0;
-}
-
-.dark .unit-converter-header {
-  background: linear-gradient(
-    135deg,
-    rgba(70, 130, 180, 0.2),
-    rgba(70, 130, 180, 0.3)
-  );
-  border-bottom: 1px solid rgba(70, 130, 180, 0.3);
 }
 
 .unit-converter-title {
@@ -58,12 +54,8 @@
 
 .unit-converter-content {
   padding: 24px;
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: light-dark(rgba(255, 255, 255, 0.6), rgba(30, 41, 59, 0.3));
   border-radius: 0 0 10px 10px;
-}
-
-.dark .unit-converter-content {
-  background-color: rgba(30, 41, 59, 0.3);
 }
 
 .unit-selector-grid {
@@ -100,13 +92,9 @@
 
 .input-label {
   font-weight: 500;
-  color: #2c5282;
+  color: light-dark(#2c5282, #90cdf4);
   font-size: 14px;
   margin-left: 2px;
-}
-
-.dark .input-label {
-  color: #90cdf4;
 }
 
 .category-select,
@@ -114,10 +102,13 @@
   border-color: rgba(70, 130, 180, 0.2);
   border-radius: 8px;
   transition: all 0.25s ease;
-  background: linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0.9),
-    rgba(237, 242, 247, 0.4)
+  background: light-dark(
+    linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.9),
+      rgba(237, 242, 247, 0.4)
+    ),
+    linear-gradient(to bottom, #1e293b, #0f172a)
   );
   height: 42px;
   width: 100% !important;
@@ -132,7 +123,10 @@
 
 .category-select:hover,
 .unit-select:hover {
-  background: linear-gradient(to bottom, #ffffff, rgba(237, 242, 247, 0.6));
+  background: light-dark(
+    linear-gradient(to bottom, #ffffff, rgba(237, 242, 247, 0.6)),
+    linear-gradient(to bottom, #1e293b, #0f172a)
+  );
   border-color: rgba(70, 130, 180, 0.35);
   box-shadow: 0 3px 8px rgba(70, 130, 180, 0.08);
 }
@@ -168,7 +162,7 @@
 .result-input {
   padding: 10px 14px;
   border-color: rgba(70, 130, 180, 0.2);
-  background-color: rgba(237, 242, 247, 0.6);
+  background-color: light-dark(rgba(237, 242, 247, 0.6), #1e293b);
   border-radius: 8px;
   font-weight: 500;
   color: #2c5282;
@@ -176,68 +170,48 @@
 }
 
 .help-text {
-  color: #718096;
+  color: light-dark(#718096, #a0aec0);
   font-size: 0.875rem;
   margin-top: 16px;
   padding: 12px 16px;
-  background-color: rgba(237, 242, 247, 0.5);
+  background-color: light-dark(rgba(237, 242, 247, 0.5), rgba(30, 41, 59, 0.5));
   border-radius: 8px;
-  border-left: 3px solid #3182ce;
-}
-
-.dark .help-text {
-  color: #a0aec0;
-  background-color: rgba(30, 41, 59, 0.5);
-  border-left: 3px solid #4299e1;
+  border-left: 3px solid light-dark(#3182ce, #4299e1);
 }
 
 /* Dropdown Content Styles */
 [data-slot="select-content"] {
-  background-color: white !important;
-  border-color: rgba(70, 130, 180, 0.2) !important;
+  background-color: light-dark(white, #1e293b) !important;
+  border-color: rgba(70, 130, 180, light-dark(0.2, 0.4)) !important;
   border-radius: 8px !important;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1) !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, light-dark(0.1, 0.3)) !important;
   overflow: hidden;
   padding: 5px !important;
   z-index: 100;
-}
-
-.dark [data-slot="select-content"] {
-  background-color: #1e293b !important;
-  border-color: rgba(70, 130, 180, 0.4) !important;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3) !important;
 }
 
 [data-slot="select-item"] {
   border-radius: 6px !important;
   margin: 2px 0;
   transition: all 0.15s ease;
-  color: #2c5282;
-}
-
-.dark [data-slot="select-item"] {
-  color: #90cdf4;
+  color: light-dark(#2c5282, #90cdf4);
 }
 
 [data-slot="select-item"]:hover {
-  background-color: rgba(70, 130, 180, 0.12) !important;
+  background-color: light-dark(
+    rgba(70, 130, 180, 0.12),
+    rgba(70, 130, 180, 0.25)
+  ) !important;
   transform: translateX(2px);
 }
 
-.dark [data-slot="select-item"]:hover {
-  background-color: rgba(70, 130, 180, 0.25) !important;
-}
-
 [data-slot="select-item"][data-highlighted] {
-  background-color: rgba(70, 130, 180, 0.18) !important;
-  color: #2c5282 !important;
-  box-shadow: 0 1px 3px rgba(70, 130, 180, 0.1);
-}
-
-.dark [data-slot="select-item"][data-highlighted] {
-  background-color: rgba(70, 130, 180, 0.35) !important;
-  color: #90cdf4 !important;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  background-color: light-dark(
+    rgba(70, 130, 180, 0.18),
+    rgba(70, 130, 180, 0.35)
+  ) !important;
+  color: light-dark(#2c5282, #90cdf4) !important;
+  box-shadow: 0 1px 3px rgba(70, 130, 180, light-dark(0.1, 0.3));
 }
 
 [data-slot="select-item"] [data-slot="select-item-text"] {
@@ -299,10 +273,10 @@
 .select-content {
   padding: 8px !important;
   margin-top: 8px !important;
-  background-color: white !important;
+  background-color: light-dark(white, #1e293b) !important;
   border-radius: 10px !important;
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1) !important;
-  border: 1px solid rgba(70, 130, 180, 0.15) !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, light-dark(0.1, 0.3)) !important;
+  border: 1px solid rgba(70, 130, 180, light-dark(0.15, 0.3)) !important;
   width: var(--radix-select-trigger-width) !important;
   z-index: 50;
   overflow: hidden;

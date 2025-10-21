@@ -26,12 +26,8 @@
 
 .heroSubtitle {
   font-size: 1.25rem;
-  color: #4b5563;
+  color: light-dark(#4b5563, #d1d5db);
   line-height: 1.625;
-}
-
-.heroSubtitle.dark {
-  color: #d1d5db;
 }
 
 /* Mission Section */
@@ -63,12 +59,8 @@
 
 .missionDescription {
   font-size: 1.125rem;
-  color: #4b5563;
+  color: light-dark(#4b5563, #d1d5db);
   line-height: 1.625;
-}
-
-.missionDescription.dark {
-  color: #d1d5db;
 }
 
 /* Values Section */
@@ -126,12 +118,8 @@
   border-radius: 0.5rem;
 }
 
-.valueIconWrapper.light {
-  background-color: #dbeafe;
-}
-
-.valueIconWrapper.dark {
-  background-color: rgba(37, 99, 235, 0.1);
+.valueIconWrapper {
+  background-color: light-dark(#dbeafe, rgba(37, 99, 235, 0.1));
 }
 
 .valueCardTitle {
@@ -145,13 +133,9 @@
 }
 
 .valueDescription {
-  color: #4b5563;
+  color: light-dark(#4b5563, #d1d5db);
   font-size: 1rem;
   line-height: 1.625;
-}
-
-.valueDescription.dark {
-  color: #d1d5db;
 }
 
 /* Features Section */
@@ -193,27 +177,15 @@
 }
 
 .featureIconWrapper.emerald {
-  background-color: #dcfce7;
-}
-
-.featureIconWrapper.emerald.dark {
-  background-color: rgba(16, 185, 129, 0.1);
+  background-color: light-dark(#dcfce7, rgba(16, 185, 129, 0.1));
 }
 
 .featureIconWrapper.blue {
-  background-color: #dbeafe;
-}
-
-.featureIconWrapper.blue.dark {
-  background-color: rgba(37, 99, 235, 0.1);
+  background-color: light-dark(#dbeafe, rgba(37, 99, 235, 0.1));
 }
 
 .featureIconWrapper.amber {
-  background-color: #fef3c7;
-}
-
-.featureIconWrapper.amber.dark {
-  background-color: rgba(245, 158, 11, 0.1);
+  background-color: light-dark(#fef3c7, rgba(245, 158, 11, 0.1));
 }
 
 .featureTitle {
@@ -224,11 +196,7 @@
 }
 
 .featureDescription {
-  color: #4b5563;
-}
-
-.featureDescription.dark {
-  color: #d1d5db;
+  color: light-dark(#4b5563, #d1d5db);
 }
 
 /* Responsive styles */

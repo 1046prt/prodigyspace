@@ -1,27 +1,23 @@
 /* Custom styling for the view select dropdown */
 .view-select-trigger {
   border-color: var(--study-accent) !important;
-  background: linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0.9),
-    rgba(248, 250, 252, 0.9)
+  background: light-dark(
+    linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.9),
+      rgba(248, 250, 252, 0.9)
+    ),
+    linear-gradient(to bottom, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.9))
   ) !important;
   border-radius: 0.5rem !important;
   font-weight: 500 !important;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05) !important;
+  box-shadow: light-dark(
+    0 2px 5px rgba(0, 0, 0, 0.05),
+    0 2px 5px rgba(0, 0, 0, 0.2)
+  ) !important;
   transition: all 0.3s ease !important;
   padding: 0.5rem 0.75rem !important;
-}
-
-.dark .view-select-trigger {
-  border-color: var(--study-accent) !important;
-  background: linear-gradient(
-    to bottom,
-    rgba(30, 41, 59, 0.9),
-    rgba(15, 23, 42, 0.9)
-  ) !important;
-  color: var(--color-text) !important;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2) !important;
+  color: light-dark(#000000, var(--color-text)) !important;
 }
 
 .view-select-trigger:hover {
@@ -40,24 +36,23 @@
   border-radius: 0.5rem !important;
   border-color: var(--study-accent) !important;
   overflow: hidden !important;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08) !important;
+  box-shadow: light-dark(
+    0 4px 15px rgba(0, 0, 0, 0.08),
+    0 4px 15px rgba(0, 0, 0, 0.2)
+  ) !important;
+  background-color: light-dark(
+    #ffffff,
+    var(--color-background-card)
+  ) !important;
 }
 
 .view-select-content [data-state="checked"] {
-  background-color: rgba(79, 70, 229, 0.1) !important;
-  color: var(--study-primary) !important;
+  background-color: light-dark(
+    rgba(79, 70, 229, 0.1),
+    rgba(99, 102, 241, 0.2)
+  ) !important;
+  color: light-dark(var(--study-primary), var(--study-dark)) !important;
   font-weight: 500 !important;
-}
-
-.dark .view-select-content {
-  background-color: var(--color-background-card) !important;
-  border-color: var(--study-accent) !important;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
-}
-
-.dark .view-select-content [data-state="checked"] {
-  background-color: rgba(99, 102, 241, 0.2) !important;
-  color: var(--study-dark) !important;
 }
 
 .view-select-content [role="option"] {
@@ -68,13 +63,12 @@
 }
 
 .view-select-content [role="option"]:hover {
-  background-color: rgba(79, 70, 229, 0.05) !important;
+  background-color: light-dark(
+    rgba(79, 70, 229, 0.05),
+    rgba(99, 102, 241, 0.1)
+  ) !important;
 }
 
-.dark .view-select-content [role="option"] {
-  color: var(--color-text) !important;
-}
-
-.dark .view-select-content [role="option"]:hover {
-  background-color: rgba(99, 102, 241, 0.1) !important;
+.view-select-content [role="option"] {
+  color: light-dark(#000000, var(--color-text)) !important;
 }

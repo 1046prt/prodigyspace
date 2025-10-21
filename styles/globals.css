@@ -78,53 +78,113 @@
 }
 
 /* ===========================================
-   THEME VARIABLES - LIGHT MODE (DEFAULT)
+   THEME VARIABLES - LIGHT AND DARK MODES COMBINED
    =========================================== */
 :root {
-  /* Main theme colors */
-  --color-background: var(--color-gray-50);
-  --color-background-secondary: var(--color-gray-100);
-  --color-foreground: var(--color-gray-900);
-  --color-foreground-secondary: var(--color-gray-700);
-  --color-foreground-muted: var(--color-gray-500);
+  /* Main theme colors using light-dark() function */
+  --color-background: light-dark(var(--color-gray-50), var(--color-gray-950));
+  --color-background-secondary: light-dark(
+    var(--color-gray-100),
+    var(--color-gray-900)
+  );
+  --color-foreground: light-dark(var(--color-gray-900), var(--color-gray-50));
+  --color-foreground-secondary: light-dark(
+    var(--color-gray-700),
+    var(--color-gray-300)
+  );
+  --color-foreground-muted: light-dark(
+    var(--color-gray-500),
+    var(--color-gray-400)
+  );
 
-  --color-card: #ffffff;
-  --color-card-foreground: var(--color-gray-900);
-  --color-card-hover: var(--color-gray-50);
+  --color-card: light-dark(#ffffff, var(--color-gray-900));
+  --color-card-foreground: light-dark(
+    var(--color-gray-900),
+    var(--color-gray-50)
+  );
+  --color-card-hover: light-dark(var(--color-gray-50), var(--color-gray-800));
 
-  --color-popover: #ffffff;
-  --color-popover-foreground: var(--color-gray-900);
+  --color-popover: light-dark(#ffffff, var(--color-gray-900));
+  --color-popover-foreground: light-dark(
+    var(--color-gray-900),
+    var(--color-gray-50)
+  );
 
-  --color-primary: var(--color-primary-600);
-  --color-primary-foreground: #ffffff;
-  --color-primary-hover: var(--color-primary-700);
-  --color-primary-light: var(--color-primary-50);
+  --color-primary: light-dark(
+    var(--color-primary-600),
+    var(--color-primary-500)
+  );
+  --color-primary-foreground: light-dark(#ffffff, var(--color-gray-950));
+  --color-primary-hover: light-dark(
+    var(--color-primary-700),
+    var(--color-primary-400)
+  );
+  --color-primary-light: light-dark(
+    var(--color-primary-50),
+    var(--color-primary-950)
+  );
 
-  --color-secondary: var(--color-secondary-100);
-  --color-secondary-foreground: var(--color-secondary-900);
-  --color-secondary-hover: var(--color-secondary-200);
+  --color-secondary: light-dark(
+    var(--color-secondary-100),
+    var(--color-gray-800)
+  );
+  --color-secondary-foreground: light-dark(
+    var(--color-secondary-900),
+    var(--color-gray-50)
+  );
+  --color-secondary-hover: light-dark(
+    var(--color-secondary-200),
+    var(--color-gray-700)
+  );
 
-  --color-muted: var(--color-gray-100);
-  --color-muted-foreground: var(--color-gray-600);
+  --color-muted: light-dark(var(--color-gray-100), var(--color-gray-800));
+  --color-muted-foreground: light-dark(
+    var(--color-gray-600),
+    var(--color-gray-400)
+  );
 
-  --color-accent: var(--color-accent-100);
-  --color-accent-foreground: var(--color-accent-900);
-  --color-accent-hover: var(--color-accent-200);
+  --color-accent: light-dark(var(--color-accent-100), var(--color-accent-900));
+  --color-accent-foreground: light-dark(
+    var(--color-accent-900),
+    var(--color-accent-50)
+  );
+  --color-accent-hover: light-dark(
+    var(--color-accent-200),
+    var(--color-accent-800)
+  );
 
-  --color-destructive: var(--color-error-500);
-  --color-destructive-foreground: #ffffff;
-  --color-destructive-hover: var(--color-error-600);
+  --color-destructive: light-dark(
+    var(--color-error-500),
+    var(--color-error-500)
+  );
+  --color-destructive-foreground: light-dark(#ffffff, var(--color-gray-50));
+  --color-destructive-hover: light-dark(
+    var(--color-error-600),
+    var(--color-error-400)
+  );
 
-  --color-border: var(--color-gray-200);
-  --color-border-light: var(--color-gray-100);
-  --color-border-strong: var(--color-gray-300);
+  --color-border: light-dark(var(--color-gray-200), var(--color-gray-800));
+  --color-border-light: light-dark(
+    var(--color-gray-100),
+    var(--color-gray-700)
+  );
+  --color-border-strong: light-dark(
+    var(--color-gray-300),
+    var(--color-gray-600)
+  );
 
-  --color-input: #ffffff;
-  --color-input-border: var(--color-gray-300);
-  --color-input-focus: var(--color-primary-500);
+  --color-input: light-dark(#ffffff, var(--color-gray-900));
+  --color-input-border: light-dark(
+    var(--color-gray-300),
+    var(--color-gray-700)
+  );
+  --color-input-focus: light-dark(
+    var(--color-primary-500),
+    var(--color-primary-500)
+  );
 
-  --color-ring: var(--color-primary-500);
-  --color-ring-offset: #ffffff;
+  --color-ring: light-dark(var(--color-primary-500), var(--color-primary-500));
+  --color-ring-offset: light-dark(#ffffff, var(--color-gray-950));
 
   /* ===========================================
      SPACING SYSTEM
@@ -237,18 +297,48 @@
      SHADOWS SYSTEM
      =========================================== */
 
-  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
-  --shadow-base: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -2px rgba(0, 0, 0, 0.1);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -2px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-    0 4px 6px -4px rgba(0, 0, 0, 0.1);
-  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
-    0 8px 10px -6px rgba(0, 0, 0, 0.1);
-  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-  --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.05);
+  --shadow-xs: light-dark(
+    0 1px 2px 0 rgba(0, 0, 0, 0.05),
+    0 1px 2px 0 rgba(0, 0, 0, 0.3)
+  );
+  --shadow-sm: light-dark(
+    0 1px 3px 0 rgba(0, 0, 0, 0.1),
+    0 1px 2px -1px rgba(0, 0, 0, 0.1),
+    0 1px 3px 0 rgba(0, 0, 0, 0.4),
+    0 1px 2px -1px rgba(0, 0, 0, 0.4)
+  );
+  --shadow-base: light-dark(
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -2px rgba(0, 0, 0, 0.1),
+    0 4px 6px -1px rgba(0, 0, 0, 0.4),
+    0 2px 4px -2px rgba(0, 0, 0, 0.4)
+  );
+  --shadow-md: light-dark(
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -2px rgba(0, 0, 0, 0.1),
+    0 4px 6px -1px rgba(0, 0, 0, 0.4),
+    0 2px 4px -2px rgba(0, 0, 0, 0.4)
+  );
+  --shadow-lg: light-dark(
+    0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -4px rgba(0, 0, 0, 0.1),
+    0 10px 15px -3px rgba(0, 0, 0, 0.4),
+    0 4px 6px -4px rgba(0, 0, 0, 0.4)
+  );
+  --shadow-xl: light-dark(
+    0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 8px 10px -6px rgba(0, 0, 0, 0.1),
+    0 20px 25px -5px rgba(0, 0, 0, 0.4),
+    0 8px 10px -6px rgba(0, 0, 0, 0.4)
+  );
+  --shadow-2xl: light-dark(
+    0 25px 50px -12px rgba(0, 0, 0, 0.25),
+    0 25px 50px -12px rgba(0, 0, 0, 0.5)
+  );
+  --shadow-inner: light-dark(
+    inset 0 2px 4px 0 rgba(0, 0, 0, 0.05),
+    inset 0 2px 4px 0 rgba(0, 0, 0, 0.3)
+  );
   --shadow-none: 0 0 #0000;
 
   /* ===========================================
@@ -358,70 +448,6 @@
   --gap-16: var(--space-16);
   --gap-20: var(--space-20);
   --gap-24: var(--space-24);
-}
-
-/* ===========================================
-   DARK MODE VARIABLES
-   =========================================== */
-
-.dark {
-  --color-background: var(--color-gray-950);
-  --color-background-secondary: var(--color-gray-900);
-  --color-foreground: var(--color-gray-50);
-  --color-foreground-secondary: var(--color-gray-300);
-  --color-foreground-muted: var(--color-gray-400);
-
-  --color-card: var(--color-gray-900);
-  --color-card-foreground: var(--color-gray-50);
-  --color-card-hover: var(--color-gray-800);
-
-  --color-popover: var(--color-gray-900);
-  --color-popover-foreground: var(--color-gray-50);
-
-  --color-primary: var(--color-primary-500);
-  --color-primary-foreground: var(--color-gray-950);
-  --color-primary-hover: var(--color-primary-400);
-  --color-primary-light: var(--color-primary-950);
-
-  --color-secondary: var(--color-gray-800);
-  --color-secondary-foreground: var(--color-gray-50);
-  --color-secondary-hover: var(--color-gray-700);
-
-  --color-muted: var(--color-gray-800);
-  --color-muted-foreground: var(--color-gray-400);
-
-  --color-accent: var(--color-accent-900);
-  --color-accent-foreground: var(--color-accent-50);
-  --color-accent-hover: var(--color-accent-800);
-
-  --color-destructive: var(--color-error-500);
-  --color-destructive-foreground: var(--color-gray-50);
-  --color-destructive-hover: var(--color-error-400);
-
-  --color-border: var(--color-gray-800);
-  --color-border-light: var(--color-gray-700);
-  --color-border-strong: var(--color-gray-600);
-
-  --color-input: var(--color-gray-900);
-  --color-input-border: var(--color-gray-700);
-  --color-input-focus: var(--color-primary-500);
-
-  --color-ring: var(--color-primary-500);
-  --color-ring-offset: var(--color-gray-950);
-
-  /* Dark Mode Shadows */
-  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
-  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.4), 0 1px 2px -1px rgba(0, 0, 0, 0.4);
-  --shadow-base: 0 4px 6px -1px rgba(0, 0, 0, 0.4),
-    0 2px 4px -2px rgba(0, 0, 0, 0.4);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4),
-    0 2px 4px -2px rgba(0, 0, 0, 0.4);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4),
-    0 4px 6px -4px rgba(0, 0, 0, 0.4);
-  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.4),
-    0 8px 10px -6px rgba(0, 0, 0, 0.4);
-  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-  --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.3);
 }
 
 /* ===========================================
