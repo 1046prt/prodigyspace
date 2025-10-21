@@ -9,6 +9,16 @@
   padding: 3px;
 }
 
+.dark .bookmarkManager {
+  background: linear-gradient(
+    to bottom right,
+    var(--color-background-card),
+    var(--color-background-card-hover)
+  );
+  border-color: rgba(124, 58, 237, 0.25);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
 .header {
   display: flex;
   flex-direction: row;
@@ -21,6 +31,15 @@
   border-radius: 10px 10px 0 0;
 }
 
+.dark .header {
+  background: linear-gradient(
+    135deg,
+    rgba(124, 58, 237, 0.1),
+    rgba(124, 58, 237, 0.2)
+  );
+  border-bottom: 1px solid rgba(124, 58, 237, 0.2);
+}
+
 .titleContainer {
   display: flex;
   align-items: center;
@@ -28,6 +47,10 @@
   font-weight: 600;
   color: #6b21a8;
   font-size: 18px;
+}
+
+.dark .titleContainer {
+  color: #c084fc; /* Lighter purple for dark mode */
 }
 
 .addButton {
@@ -48,6 +71,16 @@
   transform: scale(1.05);
 }
 
+.dark .addButton {
+  background-color: rgba(124, 58, 237, 0.2);
+  color: #c084fc; /* Lighter purple for dark mode */
+  border-color: rgba(124, 58, 237, 0.3);
+}
+
+.dark .addButton:hover {
+  background-color: rgba(124, 58, 237, 0.3);
+}
+
 .content {
   display: flex;
   flex-direction: column;
@@ -55,6 +88,10 @@
   padding: 20px;
   height: calc(100% - 80px); /* Subtract the approximate header height */
   overflow: hidden; /* Prevent overflow from expanding the container */
+}
+
+.dark .content {
+  background-color: rgba(17, 24, 39, 0.4);
 }
 
 .addForm {
@@ -67,6 +104,12 @@
   border: 1px solid rgba(124, 58, 237, 0.1);
   box-shadow: 0 4px 12px rgba(124, 58, 237, 0.08);
   margin-bottom: 8px;
+}
+
+.dark .addForm {
+  background-color: rgba(124, 58, 237, 0.08);
+  border-color: rgba(124, 58, 237, 0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .formGroup {
@@ -82,6 +125,10 @@
   margin-left: 2px;
 }
 
+.dark .formLabel {
+  color: #c084fc; /* Lighter purple for dark mode */
+}
+
 .formInput {
   border-color: rgba(124, 58, 237, 0.2);
   border-radius: 8px;
@@ -91,6 +138,17 @@
 .formInput:focus {
   border-color: rgba(124, 58, 237, 0.5);
   box-shadow: 0 0 0 2px rgba(124, 58, 237, 0.1);
+}
+
+.dark .formInput {
+  background-color: var(--color-background);
+  border-color: rgba(124, 58, 237, 0.3);
+  color: var(--color-text);
+}
+
+.dark .formInput:focus {
+  border-color: rgba(124, 58, 237, 0.6);
+  box-shadow: 0 0 0 2px rgba(124, 58, 237, 0.2);
 }
 
 .formSelect {
@@ -104,11 +162,27 @@
   background-color: rgba(124, 58, 237, 0.02);
 }
 
+.dark .formSelect {
+  background-color: var(--color-background);
+  border-color: rgba(124, 58, 237, 0.3);
+  color: var(--color-text);
+}
+
+.dark .formSelect:hover {
+  border-color: rgba(124, 58, 237, 0.5);
+  background-color: rgba(124, 58, 237, 0.1);
+}
+
 .categoryFilterContainer {
   background-color: rgba(124, 58, 237, 0.05);
   border-radius: 8px;
   padding: 12px;
   border: 1px solid rgba(124, 58, 237, 0.1);
+}
+
+.dark .categoryFilterContainer {
+  background-color: rgba(124, 58, 237, 0.08);
+  border-color: rgba(124, 58, 237, 0.2);
 }
 
 .category-pill {
@@ -134,7 +208,7 @@
 
 .emptyState {
   text-align: center;
-  color: hsl(var(--muted-foreground));
+  color: hsl(var(--color-muted-foreground));
   padding: 1rem;
 }
 
@@ -143,7 +217,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 0.75rem;
-  background-color: hsl(var(--muted));
+  background-color: hsl(var(--color-muted));
   border-radius: calc(var(--radius) - 2px);
 }
 
@@ -161,10 +235,14 @@
 
 .bookmarkUrl {
   font-size: 0.875rem;
-  color: hsl(var(--muted-foreground));
+  color: hsl(var(--color-muted-foreground));
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.dark .bookmarkUrl {
+  color: var(--color-text-muted);
 }
 
 .bookmarkCategory {
@@ -176,6 +254,11 @@
   font-weight: 500;
   display: inline-block;
   margin-top: 4px;
+}
+
+.dark .bookmarkCategory {
+  background-color: rgba(124, 58, 237, 0.2);
+  color: #c084fc;
 }
 
 .actionButtons {
@@ -215,4 +298,30 @@
 .category-Other {
   background-color: rgba(100, 116, 139, 0.1); /* Gray like other */
   color: #64748b;
+}
+
+/* Dark mode category colors */
+.dark .category-Study {
+  background-color: rgba(139, 92, 246, 0.2); /* Purple like textbook */
+  color: #a78bfa;
+}
+
+.dark .category-Research {
+  background-color: rgba(34, 197, 94, 0.2); /* Green like notes */
+  color: #4ade80;
+}
+
+.dark .category-Tools {
+  background-color: rgba(14, 165, 233, 0.2); /* Blue like handout */
+  color: #38bdf8;
+}
+
+.dark .category-Entertainment {
+  background-color: rgba(236, 72, 153, 0.2); /* Pink */
+  color: #f472b6;
+}
+
+.dark .category-Other {
+  background-color: rgba(100, 116, 139, 0.2); /* Gray like other */
+  color: #94a3b8;
 }

@@ -11,6 +11,16 @@
   padding: 3px;
 }
 
+.dark .unit-converter-card {
+  background: linear-gradient(
+    to bottom right,
+    rgba(30, 41, 59, 0.8),
+    rgba(15, 23, 42, 0.95)
+  );
+  border: 1px solid rgba(70, 130, 180, 0.3);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
 .unit-converter-header {
   display: flex;
   flex-direction: row;
@@ -21,6 +31,15 @@
   padding: 18px 24px;
   margin: 2px;
   border-radius: 10px 10px 0 0;
+}
+
+.dark .unit-converter-header {
+  background: linear-gradient(
+    135deg,
+    rgba(70, 130, 180, 0.2),
+    rgba(70, 130, 180, 0.3)
+  );
+  border-bottom: 1px solid rgba(70, 130, 180, 0.3);
 }
 
 .unit-converter-title {
@@ -41,6 +60,10 @@
   padding: 24px;
   background-color: rgba(255, 255, 255, 0.6);
   border-radius: 0 0 10px 10px;
+}
+
+.dark .unit-converter-content {
+  background-color: rgba(30, 41, 59, 0.3);
 }
 
 .unit-selector-grid {
@@ -80,6 +103,10 @@
   color: #2c5282;
   font-size: 14px;
   margin-left: 2px;
+}
+
+.dark .input-label {
+  color: #90cdf4;
 }
 
 .category-select,
@@ -158,6 +185,12 @@
   border-left: 3px solid #3182ce;
 }
 
+.dark .help-text {
+  color: #a0aec0;
+  background-color: rgba(30, 41, 59, 0.5);
+  border-left: 3px solid #4299e1;
+}
+
 /* Dropdown Content Styles */
 [data-slot="select-content"] {
   background-color: white !important;
@@ -169,6 +202,12 @@
   z-index: 100;
 }
 
+.dark [data-slot="select-content"] {
+  background-color: #1e293b !important;
+  border-color: rgba(70, 130, 180, 0.4) !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3) !important;
+}
+
 [data-slot="select-item"] {
   border-radius: 6px !important;
   margin: 2px 0;
@@ -176,15 +215,29 @@
   color: #2c5282;
 }
 
+.dark [data-slot="select-item"] {
+  color: #90cdf4;
+}
+
 [data-slot="select-item"]:hover {
   background-color: rgba(70, 130, 180, 0.12) !important;
   transform: translateX(2px);
+}
+
+.dark [data-slot="select-item"]:hover {
+  background-color: rgba(70, 130, 180, 0.25) !important;
 }
 
 [data-slot="select-item"][data-highlighted] {
   background-color: rgba(70, 130, 180, 0.18) !important;
   color: #2c5282 !important;
   box-shadow: 0 1px 3px rgba(70, 130, 180, 0.1);
+}
+
+.dark [data-slot="select-item"][data-highlighted] {
+  background-color: rgba(70, 130, 180, 0.35) !important;
+  color: #90cdf4 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 [data-slot="select-item"] [data-slot="select-item-text"] {

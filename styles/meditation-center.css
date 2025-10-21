@@ -73,7 +73,7 @@
 .statLabel {
   font-size: 1rem;
   font-weight: 500;
-  color: hsl(var(--muted-foreground));
+  color: hsl(var(--color-muted-foreground));
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
@@ -117,7 +117,7 @@
 .cardTitle {
   font-size: 1.25rem;
   font-weight: 600;
-  color: hsl(var(--foreground));
+  color: hsl(var(--color-foreground));
   display: flex;
   align-items: center;
   gap: 0.75rem;
@@ -130,7 +130,7 @@
 .exerciseActiveContainer {
   text-align: center;
   padding: 1rem;
-  background-color: rgba(var(--card), 0.4);
+  background-color: rgba(var(--color-card), 0.4);
   border-radius: var(--radius-lg);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   animation: fadeIn 0.5s ease;
@@ -182,12 +182,12 @@
   height: 0.6rem;
   border-radius: 999px;
   overflow: hidden;
-  background-color: rgba(var(--primary), 0.1);
+  background-color: rgba(var(--color-primary), 0.1);
 }
 
 .cycleInfo {
   font-size: 1rem;
-  color: hsl(var(--muted-foreground));
+  color: hsl(var(--color-muted-foreground));
   margin-bottom: 1.25rem;
   font-weight: 500;
 }
@@ -208,10 +208,10 @@
   justify-content: center;
   background: linear-gradient(
     135deg,
-    rgba(var(--primary), 0.1),
-    rgba(var(--primary), 0.2)
+    rgba(var(--color-primary), 0.1),
+    rgba(var(--color-primary), 0.2)
   );
-  border: 1px solid rgba(var(--primary), 0.2);
+  border: 1px solid rgba(var(--color-primary), 0.2);
   transition: all 0.3s ease;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
 }
@@ -221,8 +221,8 @@
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
   background: linear-gradient(
     135deg,
-    rgba(var(--primary), 0.2),
-    rgba(var(--primary), 0.3)
+    rgba(var(--color-primary), 0.2),
+    rgba(var(--color-primary), 0.3)
   );
 }
 
@@ -247,10 +247,10 @@
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   background: linear-gradient(
     135deg,
-    rgba(var(--primary), 0.05),
-    rgba(var(--primary), 0.1)
+    rgba(var(--color-primary), 0.05),
+    rgba(var(--color-primary), 0.1)
   );
-  border-color: rgba(var(--primary), 0.2);
+  border-color: rgba(var(--color-primary), 0.2);
 }
 
 .exerciseCardContent {
@@ -270,7 +270,7 @@
 
 .exerciseDescription {
   font-size: 0.875rem;
-  color: hsl(var(--muted-foreground));
+  color: hsl(var(--color-muted-foreground));
   margin-bottom: 0.75rem;
   line-height: 1.4;
 }
@@ -287,15 +287,15 @@
   padding: 0.25rem 0.75rem;
   font-size: 0.75rem;
   font-weight: 500;
-  border: 1px solid rgba(var(--primary), 0.3);
-  background: rgba(var(--primary), 0.05);
+  border: 1px solid rgba(var(--color-primary), 0.3);
+  background: rgba(var(--color-primary), 0.05);
   color: var(--color-primary-600);
   transition: all 0.2s ease;
 }
 
 .exerciseBadge:hover {
-  background: rgba(var(--primary), 0.1);
-  border-color: rgba(var(--primary), 0.4);
+  background: rgba(var(--color-primary), 0.1);
+  border-color: rgba(var(--color-primary), 0.4);
 }
 
 .startButton {
@@ -330,7 +330,7 @@
 .meditationActiveContainer {
   text-align: center;
   padding: 1.5rem;
-  background-color: rgba(var(--card), 0.4);
+  background-color: rgba(var(--color-card), 0.4);
   border-radius: var(--radius-lg);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   animation: fadeIn 0.5s ease;
@@ -342,7 +342,7 @@
 
 .sessionInfo {
   font-size: 1rem;
-  color: hsl(var(--muted-foreground));
+  color: hsl(var(--color-muted-foreground));
   font-weight: 500;
   letter-spacing: 0.5px;
 }
@@ -374,10 +374,10 @@
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   background: linear-gradient(
     135deg,
-    rgba(var(--primary), 0.05),
-    rgba(var(--primary), 0.1)
+    rgba(var(--color-primary), 0.05),
+    rgba(var(--color-primary), 0.1)
   );
-  border-color: rgba(var(--primary), 0.2);
+  border-color: rgba(var(--color-primary), 0.2);
 }
 
 .meditationCardContent {
@@ -396,7 +396,7 @@
   color: var(--color-primary-500);
   margin-top: 0.25rem;
   padding: 0.25rem;
-  background: rgba(var(--primary), 0.1);
+  background: rgba(var(--color-primary), 0.1);
   border-radius: 50%;
 }
 
@@ -406,7 +406,7 @@
 
 .meditationDescription {
   font-size: 0.875rem;
-  color: hsl(var(--muted-foreground));
+  color: hsl(var(--color-muted-foreground));
   margin-bottom: 1rem;
   line-height: 1.4;
 }
@@ -423,16 +423,16 @@
   border-radius: var(--radius-md);
   font-size: 0.875rem;
   font-weight: 500;
-  background: rgba(var(--primary), 0.1);
+  background: rgba(var(--color-primary), 0.1);
   color: var(--color-primary-600);
-  border: 1px solid rgba(var(--primary), 0.2);
+  border: 1px solid rgba(var(--color-primary), 0.2);
   transition: all 0.2s ease;
   min-width: 80px;
 }
 
 .durationButton:hover {
-  background: rgba(var(--primary), 0.15);
-  border-color: rgba(var(--primary), 0.3);
+  background: rgba(var(--color-primary), 0.15);
+  border-color: rgba(var(--color-primary), 0.3);
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -472,7 +472,7 @@
 
 .completionMessage {
   font-size: 1rem;
-  color: hsl(var(--muted-foreground));
+  color: hsl(var(--color-muted-foreground));
   max-width: 300px;
   margin: 0 auto;
 }

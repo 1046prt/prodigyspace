@@ -22,6 +22,15 @@
   border-radius: 11px 11px 0 0;
 }
 
+.dark .water-tracker-header {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 120, 255, 0.2),
+    rgba(0, 100, 200, 0.25)
+  );
+  border-bottom: 1px solid rgba(0, 120, 255, 0.3);
+}
+
 .water-tracker-title {
   font-weight: 600;
   color: #0066cc;
@@ -40,6 +49,11 @@
   position: relative;
   margin: 16px 16px;
   box-shadow: 0 4px 12px rgba(0, 120, 255, 0.12);
+}
+
+.dark .water-stats {
+  background-color: rgba(0, 120, 255, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .water-amount {
@@ -76,6 +90,10 @@
   color: #4a5568;
   margin-top: 12px;
   padding: 4px 0;
+}
+
+.dark .water-remaining {
+  color: #a0aec0;
 }
 
 .goal-achieved {
@@ -175,6 +193,12 @@
   box-shadow: inset 0 2px 6px rgba(0, 120, 255, 0.08);
 }
 
+.dark .intakes-history {
+  background-color: rgba(0, 120, 255, 0.05);
+  border: 1px solid rgba(0, 136, 255, 0.3);
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
 .intake-item {
   display: flex;
   justify-content: space-between;
@@ -192,6 +216,16 @@
   background-color: rgba(235, 248, 255, 0.8);
 }
 
+.dark .intake-item {
+  background-color: rgba(30, 41, 59, 0.8);
+  border-left: 4px solid #3b82f6;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.dark .intake-item:hover {
+  background-color: rgba(30, 41, 59, 1);
+}
+
 .intake-amount {
   font-weight: 500;
   color: #0066cc;
@@ -200,6 +234,10 @@
 .intake-time {
   font-size: 12px;
   color: #718096;
+}
+
+.dark .intake-time {
+  color: #a0aec0;
 }
 
 .delete-button {

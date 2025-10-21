@@ -20,7 +20,7 @@
   font-size: 2.25rem;
   font-weight: 700;
   letter-spacing: -0.025em;
-  color: var(--foreground);
+  color: var(--color-foreground);
   margin-bottom: 1.5rem;
 }
 
@@ -54,7 +54,7 @@
 .missionCardTitle {
   font-size: 1.5rem;
   font-weight: 700;
-  color: var(--foreground);
+  color: var(--color-foreground);
 }
 
 .missionCardContent {
@@ -81,7 +81,7 @@
   font-size: 1.875rem;
   font-weight: 700;
   text-align: center;
-  color: var(--foreground);
+  color: var(--color-foreground);
   margin-bottom: 3rem;
 }
 
@@ -164,7 +164,7 @@
   font-size: 1.875rem;
   font-weight: 700;
   text-align: center;
-  color: var(--foreground);
+  color: var(--color-foreground);
   margin-bottom: 3rem;
 }
 
@@ -219,7 +219,7 @@
 .featureTitle {
   font-size: 1.125rem;
   font-weight: 600;
-  color: var(--foreground);
+  color: var(--color-foreground);
   margin-bottom: 0.5rem;
 }
 

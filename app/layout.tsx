@@ -147,7 +147,7 @@ export default function RootLayout({
               display: "flex",
               flexDirection: "column",
               minHeight: "100vh",
-              backgroundColor: "var(--background)",
+              backgroundColor: "var(--color-background)",
             }}
           >
             <Navigation />

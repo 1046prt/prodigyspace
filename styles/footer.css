@@ -3,8 +3,8 @@
    =========================================== */
 
 .footer {
-  background-color: var(--background-secondary);
-  border-top: 1px solid var(--border);
+  background-color: var(--color-background-secondary);
+  border-top: 1px solid var(--color-border);
   margin-top: auto;
   transition: all var(--transition-default);
 }
@@ -66,12 +66,12 @@
 .brand-name {
   font-size: var(--text-xl);
   font-weight: var(--font-bold);
-  color: var(--foreground);
+  color: var(--color-foreground);
   letter-spacing: var(--tracking-tight);
 }
 
 .description {
-  color: var(--foreground-secondary);
+  color: var(--color-foreground-secondary);
   line-height: var(--leading-relaxed);
   font-size: var(--text-sm);
   max-width: 20rem;
@@ -90,7 +90,7 @@
 .links-section h3 {
   font-size: var(--text-lg);
   font-weight: var(--font-semibold);
-  color: var(--foreground);
+  color: var(--color-foreground);
   margin-bottom: var(--space-2);
 }
 
@@ -104,7 +104,7 @@
 }
 
 .link {
-  color: var(--foreground-secondary);
+  color: var(--color-foreground-secondary);
   text-decoration: none;
   font-size: var(--text-sm);
   transition: all var(--transition-default);
@@ -113,7 +113,7 @@
 }
 
 .link:hover {
-  color: var(--primary);
+  color: var(--color-primary);
   transform: translateX(4px);
   text-decoration: none;
 }
@@ -131,7 +131,7 @@
 .contact-section h3 {
   font-size: var(--text-lg);
   font-weight: var(--font-semibold);
-  color: var(--foreground);
+  color: var(--color-foreground);
   margin-bottom: var(--space-2);
 }
 
@@ -148,7 +148,7 @@
   display: flex;
   align-items: center;
   gap: var(--space-3);
-  color: var(--foreground-secondary);
+  color: var(--color-foreground-secondary);
   font-size: var(--text-sm);
   transition: all var(--transition-default);
 }
@@ -156,17 +156,17 @@
 .contact-icon {
   width: 1rem;
   height: 1rem;
-  color: var(--primary);
+  color: var(--color-primary);
   transition: all var(--transition-default);
 }
 
 .contact-item:hover .contact-icon {
-  color: var(--primary-hover);
+  color: var(--color-primary-hover);
   transform: scale(1.1);
 }
 
 .contact-item:hover {
-  color: var(--foreground);
+  color: var(--color-foreground);
   transform: translateX(4px);
 }
 
@@ -186,19 +186,19 @@
   width: 2.5rem;
   height: 2.5rem;
   border-radius: var(--radius-lg);
-  background-color: var(--muted);
-  color: var(--foreground-secondary);
+  background-color: var(--color-muted);
+  color: var(--color-foreground-secondary);
   text-decoration: none;
   transition: all var(--transition-default);
-  border: 1px solid var(--border);
+  border: 1px solid var(--color-border);
 }
 
 .social-link:hover {
-  background-color: var(--primary);
-  color: var(--primary-foreground);
+  background-color: var(--color-primary);
+  color: var(--color-primary-foreground);
   transform: translateY(-2px);
   box-shadow: var(--shadow-lg);
-  border-color: var(--primary);
+  border-color: var(--color-primary);
 }
 
 .social-link svg {
@@ -211,13 +211,13 @@
    =========================================== */
 
 .copyright {
-  border-top: 1px solid var(--border);
+  border-top: 1px solid var(--color-border);
   padding-top: var(--space-6);
   text-align: center;
 }
 
 .copyright p {
-  color: var(--foreground-muted);
+  color: var(--color-foreground-muted);
   font-size: var(--text-sm);
   margin: 0;
 }
@@ -306,7 +306,7 @@
 
 .link:focus-visible,
 .social-link:focus-visible {
-  outline: 2px solid var(--ring);
+  outline: 2px solid var(--color-ring);
   outline-offset: 2px;
 }
 

@@ -24,7 +24,7 @@
 }
 
 .mainpage-expense-subtitle {
-  color: hsl(var(--muted-foreground));
+  color: hsl(var(--color-muted-foreground));
 }
 
 .mainpage-button-group {
@@ -62,7 +62,7 @@
   text-align: center;
   padding-top: 2rem;
   padding-bottom: 2rem;
-  color: hsl(var(--muted-foreground));
+  color: hsl(var(--color-muted-foreground));
 }
 
 .mainpage-expense-item {
@@ -118,7 +118,7 @@
 }
 
 .mainpage-progress-over-budget {
-  background-color: hsla(var(--destructive) / 0.2);
+  background-color: hsla(var(--color-destructive) / 0.2);
 }
 
 .mainpage-tabs-list {
@@ -143,7 +143,7 @@
   align-items: center;
   justify-content: center;
   height: 300px;
-  color: hsl(var(--muted-foreground));
+  color: hsl(var(--color-muted-foreground));
 }
 
 .mainpage-loading-container {

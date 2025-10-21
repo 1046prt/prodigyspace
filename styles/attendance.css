@@ -6,8 +6,8 @@
   min-height: 100vh;
   background: linear-gradient(
     135deg,
-    var(--background) 0%,
-    var(--background-secondary) 100%
+    var(--color-background) 0%,
+    var(--color-background-secondary) 100%
   );
   padding: var(--space-8) 0;
 }
@@ -22,8 +22,8 @@
 .attendance-header {
   background: linear-gradient(
     135deg,
-    var(--background) 0%,
-    var(--background-secondary) 100%
+    var(--color-background) 0%,
+    var(--color-background-secondary) 100%
   );
   text-align: center;
   margin-bottom: var(--space-8);
@@ -66,7 +66,7 @@
 
 .attendance-subtitle {
   font-size: var(--text-lg);
-  color: var(--foreground-secondary);
+  color: var(--color-foreground-secondary);
   max-width: 42rem;
   margin: 0 auto;
   margin-top: var(--space-2);
@@ -77,8 +77,8 @@
    =========================================== */
 
 .attendance-stats-card-container {
-  background: var(--card);
-  border: 1px solid var(--border);
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-md);
   transition: all var(--transition-default);
@@ -92,7 +92,7 @@
 .attendance-stats-card-container:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-lg);
-  border-color: var(--primary);
+  border-color: var(--color-primary);
 }
 
 .attendance-stats-card-container::before {
@@ -123,7 +123,7 @@
   align-items: center;
   gap: var(--space-2);
   font-size: var(--text-xl);
-  color: var(--foreground);
+  color: var(--color-foreground);
   font-weight: var(--font-semibold);
 }
 
@@ -133,8 +133,8 @@
 }
 
 .attendance-stat-card {
-  background: var(--card);
-  border: 1px solid var(--border);
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-xl);
   padding: var(--space-6);
   box-shadow: var(--shadow-sm);
@@ -160,7 +160,7 @@
 .attendance-stat-card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-lg);
-  border-color: var(--primary);
+  border-color: var(--color-primary);
 }
 
 .attendance-stat-value {
@@ -183,7 +183,7 @@
 }
 
 .attendance-stat-label {
-  color: var(--foreground-secondary);
+  color: var(--color-foreground-secondary);
   font-size: var(--text-sm);
   font-weight: var(--font-medium);
   text-transform: uppercase;
@@ -202,8 +202,8 @@
 }
 
 .attendance-subject-card {
-  background: var(--card);
-  border: 1px solid var(--border);
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-xl);
   padding: var(--space-6);
   box-shadow: var(--shadow-md);
@@ -216,7 +216,7 @@
 .attendance-subject-card:hover {
   transform: translateY(-6px) scale(1.01);
   box-shadow: var(--shadow-lg), 0 10px 25px rgba(0, 0, 0, 0.1);
-  border-color: var(--primary);
+  border-color: var(--color-primary);
 }
 
 .attendance-subject-card::before {
@@ -259,7 +259,7 @@
   height: 0.75rem;
   width: 0.75rem;
   margin-right: var(--space-1);
-  color: var(--foreground-muted);
+  color: var(--color-foreground-muted);
 }
 
 .attendance-delete-btn {
@@ -274,8 +274,8 @@
 
 .attendance-subject-code {
   font-size: var(--text-sm);
-  color: var(--foreground-secondary);
-  background: var(--muted);
+  color: var(--color-foreground-secondary);
+  background: var(--color-muted);
   padding: var(--space-1) var(--space-2);
   border-radius: var(--radius-md);
   font-weight: var(--font-medium);
@@ -321,19 +321,19 @@
 .attendance-progress-label {
   font-size: var(--text-sm);
   font-weight: var(--font-medium);
-  color: var(--foreground);
+  color: var(--color-foreground);
 }
 
 .attendance-progress-value {
   font-size: var(--text-sm);
   font-weight: var(--font-semibold);
-  color: var(--foreground);
+  color: var(--color-foreground);
 }
 
 .attendance-progress-bar {
   height: 0.75rem;
   border-radius: var(--radius-full);
-  background: var(--muted);
+  background: var(--color-muted);
   overflow: hidden;
   position: relative;
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -408,7 +408,7 @@
     var(--color-primary-700) 100%
   );
   color: white;
-  border-color: var(--primary);
+  border-color: var(--color-primary);
 }
 
 .attendance-btn-primary:hover {
@@ -427,13 +427,13 @@
 }
 
 .attendance-btn-secondary {
-  background: var(--destructive);
+  background: var(--color-destructive);
   color: white;
-  border-color: var(--destructive);
+  border-color: var(--color-destructive);
 }
 
 .attendance-btn-secondary:hover {
-  background: var(--destructive-hover);
+  background: var(--color-destructive-hover);
   transform: translateY(-1px);
   box-shadow: var(--shadow-md);
 }
@@ -472,13 +472,13 @@
 
 .attendance-btn-outline {
   background: transparent;
-  color: var(--foreground);
-  border-color: var(--border);
+  color: var(--color-foreground);
+  border-color: var(--color-border);
 }
 
 .attendance-btn-outline:hover {
-  background: var(--muted);
-  border-color: var(--border-strong);
+  background: var(--color-muted);
+  border-color: var(--color-border-strong);
   transform: translateY(-1px);
 }
 
@@ -487,8 +487,8 @@
    =========================================== */
 
 .attendance-add-form {
-  background: var(--card);
-  border: 1px solid var(--border);
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-xl);
   padding: var(--space-6);
   box-shadow: var(--shadow-sm);
@@ -498,7 +498,7 @@
 .attendance-form-title {
   font-size: var(--text-xl);
   font-weight: var(--font-semibold);
-  color: var(--foreground);
+  color: var(--color-foreground);
   margin-bottom: var(--space-4);
 }
 
@@ -518,30 +518,30 @@
 .attendance-form-label {
   font-size: var(--text-sm);
   font-weight: var(--font-medium);
-  color: var(--foreground);
+  color: var(--color-foreground);
 }
 
 .attendance-form-input {
   width: 100%;
   height: var(--input-height-md);
   border-radius: var(--radius-md);
-  border: 1px solid var(--input-border);
-  background: var(--input);
+  border: 1px solid var(--color-input-border);
+  background: var(--color-input);
   padding: var(--input-padding-y) var(--input-padding-x);
   font-size: var(--text-sm);
-  color: var(--foreground);
+  color: var(--color-foreground);
   transition: all var(--transition-default);
 }
 
 .attendance-form-input:focus {
   outline: none;
-  border-color: var(--input-focus);
-  box-shadow: 0 0 0 3px var(--ring);
+  border-color: var(--color-input-focus);
+  box-shadow: 0 0 0 3px var(--color-ring);
 }
 
 .attendance-form-submit {
-  background: var(--primary);
-  color: var(--primary-foreground);
+  background: var(--color-primary);
+  color: var(--color-primary-foreground);
   border: none;
   border-radius: var(--radius-lg);
   padding: var(--space-3) var(--space-6);
@@ -552,7 +552,7 @@
 }
 
 .attendance-form-submit:hover {
-  background: var(--primary-hover);
+  background: var(--color-primary-hover);
   transform: translateY(-1px);
   box-shadow: var(--shadow-md);
 }
@@ -594,7 +594,7 @@
 }
 
 .attendance-empty-description {
-  color: var(--foreground-muted);
+  color: var(--color-foreground-muted);
   margin-bottom: 1rem; /* mb-4 */
 }
 
@@ -628,7 +628,7 @@
   align-items: center;
   justify-content: space-between;
   font-size: 0.75rem; /* text-xs */
-  color: var(--foreground-muted);
+  color: var(--color-foreground-muted);
 }
 
 /* ===========================================
@@ -726,7 +726,7 @@
 .attendance-btn:focus-visible,
 .attendance-form-input:focus-visible,
 .attendance-form-submit:focus-visible {
-  outline: 2px solid var(--ring);
+  outline: 2px solid var(--color-ring);
   outline-offset: 2px;
 }
 
@@ -799,15 +799,15 @@
 
 /* Empty State Styling */
 .attendance-empty-state {
-  background: var(--card);
-  border: 2px dashed var(--border);
+  background: var(--color-card);
+  border: 2px dashed var(--color-border);
   border-radius: var(--radius-xl);
   transition: all 0.3s ease;
   animation: fadeInUp 0.6s ease-out;
 }
 
 .attendance-empty-state:hover {
-  border-color: var(--primary);
+  border-color: var(--color-primary);
   box-shadow: var(--shadow-md);
 }
 
@@ -818,7 +818,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--muted);
+  background: var(--color-muted);
   border-radius: 50%;
   margin-bottom: var(--space-4);
 }
@@ -826,7 +826,7 @@
 .attendance-empty-icon {
   height: 3rem;
   width: 3rem;
-  color: var(--foreground-muted);
+  color: var(--color-foreground-muted);
   margin: 0 auto;
   margin-bottom: 1rem;
   animation: fadeInUp 0.8s ease-out;
@@ -863,14 +863,14 @@
 .attendance-loading-spinner {
   width: 40px;
   height: 40px;
-  border: 3px solid var(--muted);
+  border: 3px solid var(--color-muted);
   border-radius: 50%;
-  border-top-color: var(--primary);
+  border-top-color: var(--color-primary);
   animation: spinner 1s linear infinite;
 }
 
 .attendance-loading-text {
-  color: var(--foreground-secondary);
+  color: var(--color-foreground-secondary);
   font-size: var(--text-sm);
   font-weight: var(--font-medium);
   letter-spacing: var(--tracking-wide);
@@ -928,8 +928,8 @@
 .attendance-dialog-content {
   z-index: 9999;
   max-width: 500px;
-  background: var(--card);
-  border: 1px solid var(--border);
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-lg);
   padding: 1.75rem;
@@ -953,17 +953,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--muted);
+  background: var(--color-muted);
   border: none;
-  color: var(--foreground-muted);
+  color: var(--color-foreground-muted);
   cursor: pointer;
   transition: all 0.2s ease;
   z-index: 10;
 }
 
 .attendance-dialog-close-btn:hover {
-  background: var(--accent);
-  color: var(--foreground);
+  background: var(--color-accent);
+  color: var(--color-foreground);
 }
 
 @keyframes fadeInDialog {
@@ -991,13 +991,13 @@
 .attendance-dialog-header {
   margin-bottom: 1.5rem;
   padding-bottom: 1rem;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .attendance-dialog-title {
   font-size: var(--text-xl);
   font-weight: var(--font-semibold);
-  color: var(--foreground);
+  color: var(--color-foreground);
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -1014,14 +1014,14 @@
 }
 
 .attendance-dialog-icon {
-  color: var(--primary);
+  color: var(--color-primary);
   height: 1.25rem;
   width: 1.25rem;
 }
 
 .attendance-dialog-description {
   font-size: var(--text-sm);
-  color: var(--foreground-secondary);
+  color: var(--color-foreground-secondary);
 }
 
 .attendance-dialog-form {
@@ -1074,27 +1074,27 @@
 .attendance-form-label {
   font-size: var(--text-sm);
   font-weight: var(--font-medium);
-  color: var(--foreground);
+  color: var(--color-foreground);
 }
 
 .attendance-target-explanation {
   font-size: 0.7rem;
-  color: var(--foreground-muted);
+  color: var(--color-foreground-muted);
   font-style: italic;
 }
 
 .attendance-form-input {
   transition: all 0.2s ease;
-  border-color: var(--border);
+  border-color: var(--color-border);
 }
 
 .attendance-form-input:hover {
-  border-color: var(--primary);
+  border-color: var(--color-primary);
   transform: translateY(-1px);
 }
 
 .attendance-form-input:focus {
-  border-color: var(--primary);
+  border-color: var(--color-primary);
   box-shadow: 0 0 0 1px rgba(var(--color-primary-500-rgb, 0, 100, 255), 0.15);
   transform: translateY(-1px);
 }
@@ -1114,7 +1114,7 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
   flex-shrink: 0;
-  border: 1px solid var(--border);
+  border: 1px solid var(--color-border);
 }
 
 .attendance-percentage-inner {
@@ -1124,13 +1124,13 @@
   transform: translate(-50%, -50%);
   width: 80%;
   height: 80%;
-  background: var(--card);
+  background: var(--color-card);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.08);
-  border: 1px solid var(--border);
+  border: 1px solid var(--color-border);
 }
 
 .attendance-percentage-value {
@@ -1159,10 +1159,10 @@
   appearance: none;
   background: linear-gradient(
     to right,
-    var(--primary) 0%,
-    var(--primary) calc(var(--value, 75) * 1%),
-    var(--muted) calc(var(--value, 75) * 1%),
-    var(--muted) 100%
+    var(--color-primary) 0%,
+    var(--color-primary) calc(var(--value, 75) * 1%),
+    var(--color-muted) calc(var(--value, 75) * 1%),
+    var(--color-muted) 100%
   );
   border-radius: var(--radius-full);
 }
@@ -1197,7 +1197,7 @@
 
 .attendance-range-marks span {
   font-size: 0.7rem;
-  color: var(--foreground-muted);
+  color: var(--color-foreground-muted);
 }
 
 .attendance-preset-buttons {
@@ -1210,8 +1210,8 @@
   min-width: 40px;
   padding: 0.25rem 0.5rem;
   font-size: 0.8rem;
-  background: var(--muted);
-  color: var(--foreground);
+  background: var(--color-muted);
+  color: var(--color-foreground);
   border: none;
   border-radius: var(--radius-md);
   cursor: pointer;
@@ -1219,13 +1219,13 @@
 }
 
 .attendance-preset-btn:hover {
-  background: var(--primary);
+  background: var(--color-primary);
   color: white;
   transform: translateY(-1px);
 }
 
 .attendance-preset-btn.active {
-  background: var(--primary);
+  background: var(--color-primary);
   color: white;
   font-weight: var(--font-medium);
   box-shadow: 0 2px 5px rgba(var(--color-primary-500-rgb, 0, 100, 255), 0.3);

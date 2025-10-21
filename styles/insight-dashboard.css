@@ -12,7 +12,7 @@
   align-items: center;
   margin-bottom: 2rem;
   padding: 0.5rem 0;
-  border-bottom: 1px solid rgba(var(--border), 0.2);
+  border-bottom: 1px solid rgba(var(--color-border), 0.2);
 }
 
 .title {
@@ -35,7 +35,7 @@
   background: rgba(var(--muted-rgb), 0.2);
   padding: 0.25rem;
   border-radius: 9999px;
-  border: 1px solid rgba(var(--border), 0.2);
+  border: 1px solid rgba(var(--color-border), 0.2);
 }
 
 .time-button {
@@ -56,13 +56,13 @@
     var(--color-primary-600)
   );
   color: white;
-  box-shadow: 0 2px 8px rgba(var(--primary), 0.4);
+  box-shadow: 0 2px 8px rgba(var(--color-primary), 0.4);
   transform: translateY(-1px);
 }
 
 .time-button-inactive {
   background-color: transparent;
-  color: hsl(var(--muted-foreground));
+  color: hsl(var(--color-muted-foreground));
 }
 
 .time-button-inactive:hover {
@@ -157,7 +157,7 @@
 .stat-text {
   font-size: 0.875rem;
   font-weight: 500;
-  color: hsl(var(--muted-foreground));
+  color: hsl(var(--color-muted-foreground));
   text-transform: uppercase;
   letter-spacing: 0.5px;
   margin-bottom: 0.25rem;

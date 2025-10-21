@@ -53,15 +53,15 @@
   font-weight: var(--font-normal);
   background: transparent;
   min-width: 120px;
-  border: 1px solid var(--border);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   transition: all 0.2s ease;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
 .dateButton:hover {
-  background: var(--accent);
-  border-color: var(--accent);
+  background: var(--color-accent);
+  border-color: var(--color-accent);
 }
 
 .calendarIcon {
@@ -154,7 +154,7 @@
   width: 100%;
   margin: var(--space-2) 0 0 0;
   min-width: 120px;
-  background: var(--primary);
+  background: var(--color-primary);
   border: none;
   color: white;
   font-weight: var(--font-medium);
@@ -166,7 +166,7 @@
 }
 
 .submitButton:hover {
-  background: var(--primary-dark, var(--primary));
+  background: var(--primary-dark, var(--color-primary));
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
@@ -186,7 +186,7 @@
   text-align: center;
   padding: var(--space-4);
   border-radius: var(--radius-md);
-  background: var(--muted);
+  background: var(--color-muted);
 }
 
 .averageMoodEmoji {
@@ -196,7 +196,7 @@
 
 .averageMoodText {
   font-size: var(--text-sm);
-  color: var(--muted-foreground);
+  color: var(--color-muted-foreground);
 }
 
 .recentEntriesContainer {
@@ -210,7 +210,7 @@
 }
 
 .noEntriesText {
-  color: var(--muted-foreground);
+  color: var(--color-muted-foreground);
   text-align: center;
   padding: var(--space-4) 0;
 }
@@ -227,12 +227,12 @@
   align-items: center;
   padding: var(--space-2);
   border-radius: var(--radius-md);
-  background: var(--muted);
+  background: var(--color-muted);
   transition: all var(--transition-default);
 }
 
 .entryItem:hover {
-  background: var(--accent);
+  background: var(--color-accent);
 }
 
 .entryInfo {

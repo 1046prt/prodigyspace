@@ -4,7 +4,7 @@
 
 .expenses {
   min-height: 100vh;
-  background: linear-gradient(135deg, var(--background) 0%, var(--background-secondary) 100%);
+  background: linear-gradient(135deg, var(--color-background) 0%, var(--color-background-secondary) 100%);
   padding: var(--space-8) 0;
 }
 
@@ -22,7 +22,7 @@
 .expenses-title {
   font-size: var(--text-4xl);
   font-weight: var(--font-bold);
-  color: var(--foreground);
+  color: var(--color-foreground);
   margin-bottom: var(--space-4);
   background: linear-gradient(135deg, var(--color-primary-600) 0%, var(--color-secondary-600) 100%);
   -webkit-background-clip: text;
@@ -32,7 +32,7 @@
 
 .expenses-subtitle {
   font-size: var(--text-lg);
-  color: var(--foreground-secondary);
+  color: var(--color-foreground-secondary);
   max-width: 42rem;
   margin: 0 auto;
 }
@@ -49,8 +49,8 @@
 }
 
 .expenses-stat-card {
-  background: var(--card);
-  border: 1px solid var(--border);
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-xl);
   padding: var(--space-6);
   box-shadow: var(--shadow-sm);
@@ -72,7 +72,7 @@
 .expenses-stat-card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-lg);
-  border-color: var(--primary);
+  border-color: var(--color-primary);
 }
 
 .expenses-stat-value {
@@ -99,7 +99,7 @@
 }
 
 .expenses-stat-label {
-  color: var(--foreground-secondary);
+  color: var(--color-foreground-secondary);
   font-size: var(--text-sm);
   font-weight: var(--font-medium);
   text-transform: uppercase;
@@ -111,8 +111,8 @@
    =========================================== */
 
 .expenses-add-form {
-  background: var(--card);
-  border: 1px solid var(--border);
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-xl);
   padding: var(--space-6);
   box-shadow: var(--shadow-sm);
@@ -122,7 +122,7 @@
 .expenses-form-title {
   font-size: var(--text-xl);
   font-weight: var(--font-semibold);
-  color: var(--foreground);
+  color: var(--color-foreground);
   margin-bottom: var(--space-4);
 }
 
@@ -142,7 +142,7 @@
 .expenses-form-label {
   font-size: var(--text-sm);
   font-weight: var(--font-medium);
-  color: var(--foreground);
+  color: var(--color-foreground);
 }
 
 .expenses-form-input,
@@ -151,11 +151,11 @@
   width: 100%;
   height: var(--input-height-md);
   border-radius: var(--radius-md);
-  border: 1px solid var(--input-border);
-  background: var(--input);
+  border: 1px solid var(--color-input-border);
+  background: var(--color-input);
   padding: var(--input-padding-y) var(--input-padding-x);
   font-size: var(--text-sm);
-  color: var(--foreground);
+  color: var(--color-foreground);
   transition: all var(--transition-default);
 }
 
@@ -169,13 +169,13 @@
 .expenses-form-select:focus,
 .expenses-form-textarea:focus {
   outline: none;
-  border-color: var(--input-focus);
-  box-shadow: 0 0 0 3px var(--ring);
+  border-color: var(--color-input-focus);
+  box-shadow: 0 0 0 3px var(--color-ring);
 }
 
 .expenses-form-submit {
-  background: var(--primary);
-  color: var(--primary-foreground);
+  background: var(--color-primary);
+  color: var(--color-primary-foreground);
   border: none;
   border-radius: var(--radius-lg);
   padding: var(--space-3) var(--space-6);
@@ -186,7 +186,7 @@
 }
 
 .expenses-form-submit:hover {
-  background: var(--primary-hover);
+  background: var(--color-primary-hover);
   transform: translateY(-1px);
   box-shadow: var(--shadow-md);
 }
@@ -213,23 +213,23 @@
   font-weight: var(--font-medium);
   text-decoration: none;
   transition: all var(--transition-default);
-  border: 1px solid var(--border);
-  background: var(--card);
-  color: var(--foreground-secondary);
+  border: 1px solid var(--color-border);
+  background: var(--color-card);
+  color: var(--color-foreground-secondary);
   cursor: pointer;
 }
 
 .expenses-filter-btn:hover {
-  background: var(--muted);
-  color: var(--foreground);
+  background: var(--color-muted);
+  color: var(--color-foreground);
   transform: translateY(-1px);
   box-shadow: var(--shadow-sm);
 }
 
 .expenses-filter-btn.active {
-  background: var(--primary);
-  color: var(--primary-foreground);
-  border-color: var(--primary);
+  background: var(--color-primary);
+  color: var(--color-primary-foreground);
+  border-color: var(--color-primary);
   box-shadow: var(--shadow-md);
 }
 
@@ -244,8 +244,8 @@
 }
 
 .expenses-expense-item {
-  background: var(--card);
-  border: 1px solid var(--border);
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
   padding: var(--space-4);
   box-shadow: var(--shadow-sm);
@@ -258,7 +258,7 @@
 .expenses-expense-item:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
-  border-color: var(--border-strong);
+  border-color: var(--color-border-strong);
 }
 
 .expenses-expense-icon {
@@ -268,8 +268,8 @@
   width: 3rem;
   height: 3rem;
   border-radius: var(--radius-lg);
-  background: var(--muted);
-  color: var(--foreground-secondary);
+  background: var(--color-muted);
+  color: var(--color-foreground-secondary);
   flex-shrink: 0;
 }
 
@@ -283,13 +283,13 @@
 .expenses-expense-title {
   font-size: var(--text-base);
   font-weight: var(--font-semibold);
-  color: var(--foreground);
+  color: var(--color-foreground);
   margin: 0;
 }
 
 .expenses-expense-description {
   font-size: var(--text-sm);
-  color: var(--foreground-secondary);
+  color: var(--color-foreground-secondary);
   margin: 0;
 }
 
@@ -298,7 +298,7 @@
   align-items: center;
   gap: var(--space-2);
   font-size: var(--text-xs);
-  color: var(--foreground-secondary);
+  color: var(--color-foreground-secondary);
 }
 
 .expenses-expense-category {
@@ -308,14 +308,14 @@
   padding: var(--space-1) var(--space-2);
   border-radius: var(--radius-md);
   font-weight: var(--font-medium);
-  background: var(--muted);
-  color: var(--foreground-secondary);
+  background: var(--color-muted);
+  color: var(--color-foreground-secondary);
 }
 
 .expenses-expense-amount {
   font-size: var(--text-lg);
   font-weight: var(--font-bold);
-  color: var(--foreground);
+  color: var(--color-foreground);
   margin-left: auto;
 }
 
@@ -347,14 +347,14 @@
   border-radius: var(--radius-md);
   border: none;
   background: transparent;
-  color: var(--foreground-secondary);
+  color: var(--color-foreground-secondary);
   cursor: pointer;
   transition: all var(--transition-default);
 }
 
 .expenses-expense-btn:hover {
-  background: var(--muted);
-  color: var(--foreground);
+  background: var(--color-muted);
+  color: var(--color-foreground);
   transform: scale(1.1);
 }
 
@@ -368,8 +368,8 @@
    =========================================== */
 
 .expenses-chart {
-  background: var(--card);
-  border: 1px solid var(--border);
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-xl);
   padding: var(--space-6);
   box-shadow: var(--shadow-sm);
@@ -379,7 +379,7 @@
 .expenses-chart-title {
   font-size: var(--text-xl);
   font-weight: var(--font-semibold);
-  color: var(--foreground);
+  color: var(--color-foreground);
   margin-bottom: var(--space-4);
 }
 
@@ -388,7 +388,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--foreground-secondary);
+  color: var(--color-foreground-secondary);
   font-size: var(--text-sm);
 }
 
@@ -399,20 +399,20 @@
 .expenses-empty {
   text-align: center;
   padding: var(--space-12) var(--space-6);
-  color: var(--foreground-secondary);
+  color: var(--color-foreground-secondary);
 }
 
 .expenses-empty-icon {
   width: 4rem;
   height: 4rem;
   margin: 0 auto var(--space-4);
-  color: var(--foreground-muted);
+  color: var(--color-foreground-muted);
 }
 
 .expenses-empty-title {
   font-size: var(--text-xl);
   font-weight: var(--font-semibold);
-  color: var(--foreground);
+  color: var(--color-foreground);
   margin-bottom: var(--space-2);
 }
 
@@ -423,8 +423,8 @@
 }
 
 .expenses-empty-btn {
-  background: var(--primary);
-  color: var(--primary-foreground);
+  background: var(--color-primary);
+  color: var(--color-primary-foreground);
   border: none;
   border-radius: var(--radius-lg);
   padding: var(--space-3) var(--space-6);
@@ -435,7 +435,7 @@
 }
 
 .expenses-empty-btn:hover {
-  background: var(--primary-hover);
+  background: var(--color-primary-hover);
   transform: translateY(-1px);
   box-shadow: var(--shadow-md);
 }
@@ -563,7 +563,7 @@
 .expenses-form-submit:focus-visible,
 .expenses-expense-btn:focus-visible,
 .expenses-empty-btn:focus-visible {
-  outline: 2px solid var(--ring);
+  outline: 2px solid var(--color-ring);
   outline-offset: 2px;
 }
 
