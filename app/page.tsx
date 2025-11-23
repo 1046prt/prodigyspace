@@ -1,15 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import Link from "next/link";
 import {
@@ -288,41 +280,37 @@ export default function HomePage() {
           </div>
 
           {/* Recent Notes */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="mainpage-section-header">
-                <FileText className="h-5 w-5" />
+          <div className="homepage-section-card">
+            <div style={{ padding: "var(--space-6)" }}>
+              <h3 className="homepage-section-header">
+                <FileText />
                 Recent Notes
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
+              </h3>
               {recentNotes.length === 0 ? (
-                <p className="text-muted-foreground text-center py-4">
+                <p
+                  style={{
+                    color: "var(--foreground-muted)",
+                    textAlign: "center",
+                    padding: "var(--space-4) 0",
+                  }}
+                >
                   No notes yet
                 </p>
               ) : (
-                <div className="space-y-3">
+                <div>
                   {recentNotes.map((note) => (
-                    <div key={note.id} className="mainpage-note-item">
-                      <div className="mainpage-note-details">
-                        <div className="mainpage-note-title">{note.title}</div>
-                        <p className="mainpage-note-content">
+                    <div key={note.id} className="homepage-note-item">
+                      <div className="homepage-note-details">
+                        <div className="homepage-note-title">{note.title}</div>
+                        <p className="homepage-note-content">
                           {note.content || "No content"}
                         </p>
-                        <div className="mainpage-note-badges">
-                          <Badge
-                            variant="outline"
-                            className="mainpage-note-badge"
-                          >
+                        <div className="homepage-note-badges">
+                          <span className="homepage-note-badge">
                             {note.category}
-                          </Badge>
+                          </span>
                           {note.isPinned && (
-                            <Badge
-                              variant="outline"
-                              className="mainpage-note-badge"
-                            >
-                              Pinned
-                            </Badge>
+                            <span className="homepage-note-badge">Pinned</span>
                           )}
                         </div>
                       </div>
@@ -331,16 +319,12 @@ export default function HomePage() {
                 </div>
               )}
               <Link href="/notes">
-                <Button
-                  variant="outline"
-                  className="mainpage-view-all-button"
-                  size="sm"
-                >
+                <button className="homepage-view-all-button">
                   View All Notes
-                </Button>
+                </button>
               </Link>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
         </div>
 
         {tasks.length > 0 && (

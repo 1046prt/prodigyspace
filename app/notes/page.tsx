@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import "@/styles/notes.css";
@@ -158,7 +157,7 @@ export default function NotesPage() {
             {/* Notes Grid */}
             {filteredNotes.length === 0 ? (
               <div className="notes-empty">
-                <FileText className="notes-empty-icon" />
+                <div className="notes-empty-icon" />
                 <h3 className="notes-empty-title">No notes found</h3>
                 <p className="notes-empty-text">
                   {searchTerm || categoryFilter !== "all"
@@ -176,52 +175,49 @@ export default function NotesPage() {
             ) : (
               <div className="notes-grid">
                 {filteredNotes.map((note) => (
-                  <Card
-                    key={note.id}
-                    className="hover:shadow-md transition-shadow"
-                  >
-                    <CardHeader className="pb-3">
-                      <div className="flex items-start justify-between">
-                        <CardTitle className="text-lg flex items-center gap-2">
+                  <div key={note.id} className="notes-card">
+                    <div className="notes-card-header">
+                      <div className="notes-card-title-row">
+                        <div className="notes-card-title">
                           {note.isPinned && (
-                            <Pin className="h-4 w-4 text-yellow-600" />
+                            <Pin className="h-4 w-4 text-yellow-600 fill-yellow-600" />
                           )}
                           <span className="truncate">{note.title}</span>
-                        </CardTitle>
-                        <div className="flex gap-1">
+                        </div>
+                        <div className="notes-card-actions">
                           <Button
                             size="sm"
                             variant="ghost"
                             onClick={() => handleEditNote(note)}
-                            className="h-8 w-8 p-0"
+                            className="h-8 w-8 p-0 hover:bg-primary/10 hover:text-primary"
                           >
-                            <Edit className="h-3 w-3" />
+                            <Edit className="h-4 w-4" />
                           </Button>
                           <Button
                             size="sm"
                             variant="ghost"
                             onClick={() => deleteNote(note.id)}
-                            className="h-8 w-8 p-0 text-destructive hover:text-destructive"
+                            className="h-8 w-8 p-0 hover:bg-destructive/10 hover:text-destructive"
                           >
-                            <Trash2 className="h-3 w-3" />
+                            <Trash2 className="h-4 w-4" />
                           </Button>
                         </div>
                       </div>
                       <Badge variant="outline" className="w-fit">
                         {note.category}
                       </Badge>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-sm text-muted-foreground mb-3 line-clamp-3">
+                    </div>
+                    <div className="notes-card-content">
+                      <p className="notes-card-text">
                         {note.content || "No content"}
                       </p>
                       {note.tags.length > 0 && (
-                        <div className="flex flex-wrap gap-1 mb-3">
+                        <div className="flex flex-wrap gap-1 mb-4">
                           {note.tags.slice(0, 3).map((tag) => (
                             <Badge
                               key={tag}
                               variant="secondary"
-                              className="text-xs"
+                              className="text-xs font-normal"
                             >
                               {tag}
                             </Badge>
@@ -233,11 +229,20 @@ export default function NotesPage() {
                           )}
                         </div>
                       )}
-                      <p className="text-xs text-muted-foreground">
-                        Updated {note.updatedAt.toLocaleDateString()}
-                      </p>
-                    </CardContent>
-                  </Card>
+                      <div className="notes-card-footer">
+                        <span className="notes-card-date">
+                          {new Date(note.updatedAt).toLocaleDateString(
+                            undefined,
+                            {
+                              month: "short",
+                              day: "numeric",
+                              year: "numeric",
+                            }
+                          )}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
                 ))}
               </div>
             )}

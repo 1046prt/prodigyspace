@@ -80,158 +80,184 @@ export function BookmarkManager() {
   };
 
   return (
-    <Card className="bookmarkManager">
-      <CardHeader className="header">
-        <CardTitle className="titleContainer">
-          <Bookmark className="icon text-purple-500" />
-          Bookmarks
-        </CardTitle>
-        <Button
-          onClick={() => setShowAddForm(!showAddForm)}
-          size="sm"
-          className="addButton"
-        >
-          <Plus className="icon" />
-        </Button>
-      </CardHeader>
-      <CardContent className="content">
-        {showAddForm && (
-          <form onSubmit={handleSubmit} className="addForm">
-            <div className="formGroup">
-              <Label htmlFor="title" className="formLabel">
-                Title
-              </Label>
-              <Input
-                id="title"
-                value={formData.title}
-                onChange={(e) =>
-                  setFormData({ ...formData, title: e.target.value })
-                }
-                placeholder="Enter bookmark title"
-                required
-                className="formInput"
-              />
+    <div className="bookmark-manager-container">
+      <Card className="bookmark-manager">
+        <CardHeader className="bookmark-header">
+          <CardTitle className="bookmark-title-container">
+            <Bookmark className="bookmark-icon" />
+            <span>Bookmarks</span>
+          </CardTitle>
+          <Button
+            onClick={() => setShowAddForm(!showAddForm)}
+            size="sm"
+            className="bookmark-add-button"
+          >
+            <Plus className="h-4 w-4" />
+          </Button>
+        </CardHeader>
+        <CardContent className="bookmark-content">
+          {showAddForm && (
+            <div className="bookmark-form-container">
+              <form onSubmit={handleSubmit} className="bookmark-form">
+                <div className="bookmark-form-grid">
+                  <div className="bookmark-form-group">
+                    <Label htmlFor="title" className="bookmark-form-label">
+                      Title
+                    </Label>
+                    <Input
+                      id="title"
+                      value={formData.title}
+                      onChange={(e) =>
+                        setFormData({ ...formData, title: e.target.value })
+                      }
+                      placeholder="Enter bookmark title"
+                      required
+                      className="bookmark-form-input"
+                    />
+                  </div>
+                  <div className="bookmark-form-group">
+                    <Label htmlFor="url" className="bookmark-form-label">
+                      URL
+                    </Label>
+                    <Input
+                      id="url"
+                      value={formData.url}
+                      onChange={(e) =>
+                        setFormData({ ...formData, url: e.target.value })
+                      }
+                      placeholder="https://example.com"
+                      required
+                      className="bookmark-form-input"
+                    />
+                  </div>
+                  <div className="bookmark-form-group">
+                    <Label htmlFor="category" className="bookmark-form-label">
+                      Category
+                    </Label>
+                    <Select
+                      value={formData.category}
+                      onValueChange={(value) =>
+                        setFormData({ ...formData, category: value })
+                      }
+                    >
+                      <SelectTrigger className="bookmark-form-select">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {categories.map((category) => (
+                          <SelectItem key={category} value={category}>
+                            {category}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+                <div className="bookmark-button-group">
+                  <Button type="submit" className="bookmark-submit-button">
+                    {editingId ? "Update" : "Add"} Bookmark
+                  </Button>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={handleCancel}
+                    className="bookmark-cancel-button"
+                  >
+                    Cancel
+                  </Button>
+                </div>
+              </form>
             </div>
-            <div className="formGroup">
-              <Label htmlFor="url" className="formLabel">
-                URL
-              </Label>
-              <Input
-                id="url"
-                value={formData.url}
-                onChange={(e) =>
-                  setFormData({ ...formData, url: e.target.value })
-                }
-                placeholder="https://example.com"
-                required
-                className="formInput"
-              />
-            </div>
-            <div className="formGroup">
-              <Label htmlFor="category" className="formLabel">
-                Category
-              </Label>
+          )}
+
+          {allCategories.length > 0 && (
+            <div className="bookmark-filter-container">
+              <Label className="bookmark-form-label">Filter by Category</Label>
               <Select
-                value={formData.category}
-                onValueChange={(value) =>
-                  setFormData({ ...formData, category: value })
-                }
+                value={selectedCategory}
+                onValueChange={setSelectedCategory}
               >
-                <SelectTrigger className="formSelect">
+                <SelectTrigger className="bookmark-form-select">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  {categories.map((category) => (
+                  <SelectItem value="all">All Categories</SelectItem>
+                  {allCategories.map((category) => (
                     <SelectItem key={category} value={category}>
-                      {category}
+                      <span
+                        className={`bookmark-category-pill category-${category}`}
+                      >
+                        {category}
+                      </span>
                     </SelectItem>
                   ))}
                 </SelectContent>
               </Select>
             </div>
-            <div className="buttonGroup">
-              <Button type="submit">
-                {editingId ? "Update" : "Add"} Bookmark
-              </Button>
-              <Button type="button" variant="outline" onClick={handleCancel}>
-                Cancel
-              </Button>
-            </div>
-          </form>
-        )}
-
-        {allCategories.length > 0 && (
-          <div className="formGroup categoryFilterContainer">
-            <Label className="formLabel">Filter by Category</Label>
-            <Select
-              value={selectedCategory}
-              onValueChange={setSelectedCategory}
-            >
-              <SelectTrigger className="formSelect">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">All Categories</SelectItem>
-                {allCategories.map((category) => (
-                  <SelectItem key={category} value={category}>
-                    <span className={`category-pill category-${category}`}>
-                      {category}
-                    </span>
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-        )}
-
-        <div className="bookmarkListContainer">
-          {displayedBookmarks.length === 0 ? (
-            <div className="emptyState">
-              No bookmarks yet. Add your first bookmark!
-            </div>
-          ) : (
-            displayedBookmarks.map((bookmark) => (
-              <div key={bookmark.id} className="bookmarkItem">
-                <div className="bookmarkInfo">
-                  <div className="bookmarkTitle">{bookmark.title}</div>
-                  <div className="bookmarkUrl">{bookmark.url}</div>
-                  <div
-                    className={`bookmarkCategory category-${bookmark.category}`}
-                  >
-                    {bookmark.category}
-                  </div>
-                </div>
-                <div className="actionButtons">
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => window.open(bookmark.url, "_blank")}
-                    className="actionButton"
-                  >
-                    <ExternalLink className="icon" />
-                  </Button>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => handleEdit(bookmark)}
-                    className="actionButton"
-                  >
-                    <Edit className="icon" />
-                  </Button>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => removeBookmark(bookmark.id)}
-                    className="actionButton"
-                  >
-                    <Trash2 className="icon" />
-                  </Button>
-                </div>
-              </div>
-            ))
           )}
-        </div>
-      </CardContent>
-    </Card>
+
+          <div className="bookmark-list-container">
+            {displayedBookmarks.length === 0 ? (
+              <div className="bookmark-empty-state">
+                <Bookmark className="bookmark-empty-icon" />
+                <h3 className="bookmark-empty-title">No bookmarks yet</h3>
+                <p className="bookmark-empty-description">
+                  Add your first bookmark to get started!
+                </p>
+              </div>
+            ) : (
+              <div className="bookmark-list">
+                {displayedBookmarks.map((bookmark) => (
+                  <div key={bookmark.id} className="bookmark-item">
+                    <div className="bookmark-item-content">
+                      <div className="bookmark-item-header">
+                        <h4 className="bookmark-item-title">
+                          {bookmark.title}
+                        </h4>
+                        <span
+                          className={`bookmark-category-badge category-${bookmark.category}`}
+                        >
+                          {bookmark.category}
+                        </span>
+                      </div>
+                      <p className="bookmark-item-url">{bookmark.url}</p>
+                    </div>
+                    <div className="bookmark-item-actions">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => window.open(bookmark.url, "_blank")}
+                        className="bookmark-action-button"
+                        title="Open bookmark"
+                      >
+                        <ExternalLink className="h-4 w-4" />
+                      </Button>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => handleEdit(bookmark)}
+                        className="bookmark-action-button"
+                        title="Edit bookmark"
+                      >
+                        <Edit className="h-4 w-4" />
+                      </Button>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => removeBookmark(bookmark.id)}
+                        className="bookmark-action-button bookmark-delete-button"
+                        title="Delete bookmark"
+                      >
+                        <Trash2 className="h-4 w-4" />
+                      </Button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </CardContent>
+      </Card>
+    </div>
   );
 }

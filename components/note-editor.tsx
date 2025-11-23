@@ -1,43 +1,51 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Save, Tag, Pin, PinOff } from "lucide-react"
-import type { Note } from "@/types/notes"
-import styles from "@/styles/note-editor.css"
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Save, Tag, Pin, PinOff } from "lucide-react";
+import type { Note } from "@/types/notes";
+import "@/styles/note-editor.css";
 
 interface NoteEditorProps {
-  note?: Note
-  onSave: (noteData: Omit<Note, "id" | "createdAt" | "updatedAt">) => void
-  onCancel: () => void
+  note?: Note;
+  onSave: (noteData: Omit<Note, "id" | "createdAt" | "updatedAt">) => void;
+  onCancel: () => void;
 }
 
 export function NoteEditor({ note, onSave, onCancel }: NoteEditorProps) {
-  const [title, setTitle] = useState(note?.title || "")
-  const [content, setContent] = useState(note?.content || "")
-  const [category, setCategory] = useState<Note["category"]>(note?.category || "personal")
-  const [tags, setTags] = useState<string[]>(note?.tags || [])
-  const [newTag, setNewTag] = useState("")
-  const [isPinned, setIsPinned] = useState(note?.isPinned || false)
+  const [title, setTitle] = useState(note?.title || "");
+  const [content, setContent] = useState(note?.content || "");
+  const [category, setCategory] = useState<Note["category"]>(
+    note?.category || "personal"
+  );
+  const [tags, setTags] = useState<string[]>(note?.tags || []);
+  const [newTag, setNewTag] = useState("");
+  const [isPinned, setIsPinned] = useState(note?.isPinned || false);
 
   const handleAddTag = () => {
     if (newTag.trim() && !tags.includes(newTag.trim())) {
-      setTags([...tags, newTag.trim()])
-      setNewTag("")
+      setTags([...tags, newTag.trim()]);
+      setNewTag("");
     }
-  }
+  };
 
   const handleRemoveTag = (tagToRemove: string) => {
-    setTags(tags.filter((tag) => tag !== tagToRemove))
-  }
+    setTags(tags.filter((tag) => tag !== tagToRemove));
+  };
 
   const handleSave = () => {
-    if (!title.trim()) return
+    if (!title.trim()) return;
 
     onSave({
       title: title.trim(),
@@ -45,38 +53,45 @@ export function NoteEditor({ note, onSave, onCancel }: NoteEditorProps) {
       category,
       tags,
       isPinned,
-    })
-  }
+    });
+  };
 
   return (
-    <Card className={styles.noteEditorCard}>
-      <CardHeader className={styles.cardHeader}>
+    <Card className="note-editor-card">
+      <CardHeader className="card-header">
         <CardTitle>
           <span>{note ? "Edit Note" : "New Note"}</span>
           <Button
             variant="ghost"
             size="sm"
             onClick={() => setIsPinned(!isPinned)}
-            className={isPinned ? styles.pinButtonPinned : styles.pinButtonUnpinned}
+            className={isPinned ? "pin-button-pinned" : "pin-button-unpinned"}
           >
-            {isPinned ? <Pin className="h-4 w-4" /> : <PinOff className="h-4 w-4" />}
+            {isPinned ? (
+              <Pin className="h-4 w-4" />
+            ) : (
+              <PinOff className="h-4 w-4" />
+            )}
           </Button>
         </CardTitle>
       </CardHeader>
-      <CardContent>
-        <div className={styles.formGrid}>
-          <div>
-            <label className={styles.formLabel}>Title</label>
+      <CardContent className="space-y-6">
+        <div className="form-grid">
+          <div className="space-y-2">
+            <label className="form-label">Title</label>
             <Input
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               placeholder="Enter note title..."
             />
           </div>
-          <div>
-            <label className={styles.formLabel}>Category</label>
-            <Select value={category} onValueChange={(value: Note["category"]) => setCategory(value)}>
-              <SelectTrigger>
+          <div className="space-y-2">
+            <label className="form-label">Category</label>
+            <Select
+              value={category}
+              onValueChange={(value: Note["category"]) => setCategory(value)}
+            >
+              <SelectTrigger className="select-trigger">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -90,37 +105,37 @@ export function NoteEditor({ note, onSave, onCancel }: NoteEditorProps) {
           </div>
         </div>
 
-        <div>
-          <label className={styles.formLabel}>Content</label>
+        <div className="space-y-2">
+          <label className="form-label">Content</label>
           <Textarea
             value={content}
             onChange={(e) => setContent(e.target.value)}
             placeholder="Write your note here..."
-            className={styles.textArea}
+            className="text-area"
           />
         </div>
 
-        <div>
-          <label className={styles.formLabel}>Tags</label>
-          <div className={styles.tagsContainer}>
+        <div className="space-y-3">
+          <label className="form-label">Tags</label>
+          <div className="tags-container">
             {tags.map((tag) => (
               <Badge
                 key={tag}
                 variant="secondary"
-                className={styles.tagBadge}
+                className="tag-badge"
                 onClick={() => handleRemoveTag(tag)}
               >
                 {tag} ×
               </Badge>
             ))}
           </div>
-          <div className={styles.tagInputContainer}>
+          <div className="tag-input-container">
             <Input
               value={newTag}
               onChange={(e) => setNewTag(e.target.value)}
               placeholder="Add a tag..."
               onKeyPress={(e) => e.key === "Enter" && handleAddTag()}
-              className={styles.tagInput}
+              className="tag-input"
             />
             <Button onClick={handleAddTag} variant="outline" size="sm">
               <Tag className="h-4 w-4" />
@@ -128,7 +143,7 @@ export function NoteEditor({ note, onSave, onCancel }: NoteEditorProps) {
           </div>
         </div>
 
-        <div className={styles.buttonGroup}>
+        <div className="button-group">
           <Button variant="outline" onClick={onCancel}>
             Cancel
           </Button>
@@ -139,5 +154,5 @@ export function NoteEditor({ note, onSave, onCancel }: NoteEditorProps) {
         </div>
       </CardContent>
     </Card>
-  )
+  );
 }
