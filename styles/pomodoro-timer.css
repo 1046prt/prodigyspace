@@ -347,3 +347,53 @@
 .running {
   animation: pulse 2s infinite ease-in-out;
 }
+
+/* Responsive Styles */
+@media (max-width: 640px) {
+  .pomodoro-card {
+    margin: 0;
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+  }
+
+  .timer-display {
+    padding: 24px 16px;
+    margin: 16px 0;
+  }
+
+  .time-text {
+    font-size: 48px;
+  }
+
+  .settings-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stats-container {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin: 16px 0;
+  }
+
+  .stat-card {
+    padding: 16px;
+    margin: 0;
+  }
+
+  .controls {
+    gap: 16px;
+  }
+
+  .start-button {
+    width: 48px;
+    height: 48px;
+  }
+
+  .pause-button,
+  .resume-button,
+  .stop-button {
+    width: 40px;
+    height: 40px;
+  }
+}

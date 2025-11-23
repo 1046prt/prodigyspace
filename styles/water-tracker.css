@@ -352,3 +352,48 @@
     transform: translateY(20px) scale(1);
   }
 }
+
+/* Responsive Styles */
+@media (max-width: 640px) {
+  .water-tracker-card {
+    margin: 0;
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+  }
+
+  .water-stats {
+    padding: 24px 16px;
+    margin: 12px 0;
+  }
+
+  .water-amount {
+    font-size: 24px;
+  }
+
+  .quick-add-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    padding: 0;
+  }
+
+  .custom-amount {
+    flex-direction: column;
+    padding: 0;
+  }
+
+  .add-button {
+    width: 100%;
+  }
+
+  .intakes-history {
+    margin: 16px 0 0;
+    padding: 16px;
+  }
+}
+
+@media (max-width: 380px) {
+  .quick-add-container {
+    grid-template-columns: 1fr;
+  }
+}

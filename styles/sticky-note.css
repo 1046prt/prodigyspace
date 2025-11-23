@@ -262,3 +262,21 @@
   border-color: var(--sticky-orange-border);
   color: var(--sticky-orange-text);
 }
+
+/* Responsive Styles */
+@media (max-width: 640px) {
+  .stickyNote {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 150px;
+    transform: none !important;
+    margin-bottom: 0;
+  }
+
+  .resizeHandle {
+    display: none;
+  }
+}
