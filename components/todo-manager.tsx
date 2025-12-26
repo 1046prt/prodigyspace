@@ -144,16 +144,14 @@ export function TodoManager() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="todos-component-container">
       {/* Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h2 className="text-2xl font-bold text-foreground">Todo Manager</h2>
-          <p className="text-muted-foreground">
-            Organize your tasks and stay productive
-          </p>
+      <div className="todos-header-section">
+        <div className="todos-header-content">
+          <h2 className="todos-header-title">My Tasks</h2>
+          <p className="todos-header-subtitle">Stay organized and productive</p>
         </div>
-        <div className="flex gap-2">
+        <div className="todos-button-container">
           <Button onClick={handleExportCSV} variant="outline" size="sm">
             <Download className="h-4 w-4 mr-2" />
             Export CSV
@@ -165,14 +163,16 @@ export function TodoManager() {
                 Add Task
               </Button>
             </DialogTrigger>
-            <DialogContent>
+            <DialogContent className="sm:max-w-md">
               <DialogHeader>
-                <DialogTitle>Add New Task</DialogTitle>
-                <DialogDescription>
-                  Create a new task to stay organized
+                <DialogTitle className="todos-dialog-title">
+                  Add New Task
+                </DialogTitle>
+                <DialogDescription className="todos-dialog-description">
+                  Create a new task to stay organized and productive
                 </DialogDescription>
               </DialogHeader>
-              <div className="space-y-4">
+              <div className="todos-dialog-content">
                 <div>
                   <Label htmlFor="title">Title</Label>
                   <Input
@@ -198,7 +198,7 @@ export function TodoManager() {
                     }
                   />
                 </div>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="todos-form-grid">
                   <div>
                     <Label htmlFor="category">Category</Label>
                     <Select
@@ -264,7 +264,7 @@ export function TodoManager() {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="todos-stats-grid">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Total Tasks</CardTitle>
@@ -311,59 +311,89 @@ export function TodoManager() {
         </Card>
       </div>
 
-      <Tabs defaultValue="all" className="space-y-4">
-        <TabsList>
-          <TabsTrigger value="all">All Tasks</TabsTrigger>
-          <TabsTrigger value="today">Today</TabsTrigger>
-          <TabsTrigger value="overdue">Overdue</TabsTrigger>
-          <TabsTrigger value="completed">Completed</TabsTrigger>
+      <Tabs defaultValue="all" className="todos-tabs-container">
+        <TabsList className="todos-tabs-list">
+          <TabsTrigger value="all" className="todos-tab-trigger-all">
+            All Tasks
+          </TabsTrigger>
+          <TabsTrigger value="today" className="todos-tab-trigger-today">
+            Today
+          </TabsTrigger>
+          <TabsTrigger value="overdue" className="todos-tab-trigger-overdue">
+            Overdue
+          </TabsTrigger>
+          <TabsTrigger
+            value="completed"
+            className="todos-tab-trigger-completed"
+          >
+            Completed
+          </TabsTrigger>
         </TabsList>
 
-        <TabsContent value="all" className="space-y-4">
+        <TabsContent value="all" className="todos-tab-content">
           <Card>
-            <CardHeader>
+            <CardHeader className="todos-card-header">
               <CardTitle>All Tasks</CardTitle>
               <CardDescription>Manage all your tasks</CardDescription>
             </CardHeader>
-            <CardContent>
+            <CardContent className="todos-card-content">
               {todos.length === 0 ? (
-                <div className="text-center py-8 text-muted-foreground">
-                  No tasks yet. Add your first task to get started!
+                <div className="todos-empty-state">
+                  <CheckSquare className="todos-empty-icon text-muted-foreground" />
+                  <div className="todos-empty-title">No tasks yet</div>
+                  <div className="todos-empty-description">
+                    Add your first task to get started and stay organized!
+                  </div>
                 </div>
               ) : (
-                <div className="space-y-2">
+                <div className="todos-task-list">
                   {todos.map((todo) => (
                     <div
                       key={todo.id}
-                      className={`flex items-center gap-3 p-3 border rounded-lg ${
-                        todo.completed ? "bg-muted/50" : ""
+                      className={`todos-task-item group ${
+                        todo.completed
+                          ? "todos-task-item-completed"
+                          : "todos-task-item-active"
                       }`}
                     >
-                      <Checkbox
-                        checked={todo.completed}
-                        onCheckedChange={() => toggleTodo(todo.id)}
-                      />
-                      <div className="flex-1 min-w-0">
+                      <div className="todos-task-checkbox-container">
+                        <Checkbox
+                          checked={todo.completed}
+                          onCheckedChange={() => toggleTodo(todo.id)}
+                          className="todos-task-checkbox"
+                        />
+                      </div>
+                      <div className="todos-task-content">
                         <div
-                          className={`font-medium ${
+                          className={`todos-task-title ${
                             todo.completed
-                              ? "line-through text-muted-foreground"
-                              : ""
+                              ? "todos-task-title-completed"
+                              : "todos-task-title-active"
                           }`}
                         >
                           {todo.title}
                         </div>
                         {todo.description && (
-                          <div className="text-sm text-muted-foreground mt-1">
+                          <div
+                            className={`text-sm leading-relaxed ${
+                              todo.completed
+                                ? "text-muted-foreground/70"
+                                : "text-muted-foreground"
+                            }`}
+                          >
                             {todo.description}
                           </div>
                         )}
-                        <div className="flex items-center gap-2 mt-2">
-                          <Badge variant="outline" className="text-xs">
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <Badge
+                            variant="outline"
+                            className="text-xs font-medium"
+                          >
                             {categoryLabels[todo.category]}
                           </Badge>
                           <Badge
-                            className={`text-xs ${
+                            variant="secondary"
+                            className={`text-xs font-medium ${
                               priorityColors[todo.priority]
                             }`}
                           >
@@ -376,19 +406,20 @@ export function TodoManager() {
                                   ? "destructive"
                                   : "secondary"
                               }
-                              className="text-xs"
+                              className="todos-task-badge todos-task-badge-date"
                             >
+                              <Calendar className="h-3 w-3 mr-1" />
                               {formatDate(todo.dueDate)}
                             </Badge>
                           )}
                         </div>
                       </div>
-                      <div className="flex items-center gap-1">
+                      <div className="flex items-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                         <Button
                           variant="ghost"
                           size="sm"
                           onClick={() => deleteTodo(todo.id)}
-                          className="text-destructive hover:text-destructive"
+                          className="text-muted-foreground hover:text-destructive h-8 w-8 p-0"
                         >
                           <Trash2 className="h-4 w-4" />
                         </Button>
@@ -401,51 +432,71 @@ export function TodoManager() {
           </Card>
         </TabsContent>
 
-        <TabsContent value="today" className="space-y-4">
+        <TabsContent value="today" className="todos-tab-content">
           <Card>
-            <CardHeader>
+            <CardHeader className="todos-card-header">
               <CardTitle>Today&apos;s Tasks</CardTitle>
               <CardDescription>Focus on what&apos;s due today</CardDescription>
             </CardHeader>
-            <CardContent>
+            <CardContent className="todos-card-content">
               {todayTodos.length === 0 ? (
-                <div className="text-center py-8 text-muted-foreground">
-                  No tasks due today. Great job staying on top of things!
+                <div className="todos-empty-state">
+                  <Calendar className="todos-empty-icon text-muted-foreground" />
+                  <div className="todos-empty-title">No tasks due today</div>
+                  <div className="todos-empty-description">
+                    Great job staying on top of things! You&apos;re all caught
+                    up.
+                  </div>
                 </div>
               ) : (
-                <div className="space-y-2">
+                <div className="todos-task-list">
                   {todayTodos.map((todo) => (
                     <div
                       key={todo.id}
-                      className={`flex items-center gap-3 p-3 border rounded-lg ${
-                        todo.completed ? "bg-muted/50" : ""
+                      className={`todos-task-item group ${
+                        todo.completed
+                          ? "todos-task-item-completed"
+                          : "todos-task-item-active"
                       }`}
                     >
-                      <Checkbox
-                        checked={todo.completed}
-                        onCheckedChange={() => toggleTodo(todo.id)}
-                      />
-                      <div className="flex-1 min-w-0">
+                      <div className="todos-task-checkbox-container">
+                        <Checkbox
+                          checked={todo.completed}
+                          onCheckedChange={() => toggleTodo(todo.id)}
+                          className="todos-task-checkbox"
+                        />
+                      </div>
+                      <div className="todos-task-content">
                         <div
-                          className={`font-medium ${
+                          className={`todos-task-title ${
                             todo.completed
-                              ? "line-through text-muted-foreground"
-                              : ""
+                              ? "todos-task-title-completed"
+                              : "todos-task-title-active"
                           }`}
                         >
                           {todo.title}
                         </div>
                         {todo.description && (
-                          <div className="text-sm text-muted-foreground mt-1">
+                          <div
+                            className={`todos-task-description ${
+                              todo.completed
+                                ? "todos-task-description-completed"
+                                : "todos-task-description-active"
+                            }`}
+                          >
                             {todo.description}
                           </div>
                         )}
-                        <div className="flex items-center gap-2 mt-2">
-                          <Badge variant="outline" className="text-xs">
+                        <div className="todos-task-meta">
+                          <Badge
+                            variant="outline"
+                            className="todos-task-badge todos-task-badge-category"
+                          >
                             {categoryLabels[todo.category]}
                           </Badge>
                           <Badge
-                            className={`text-xs ${
+                            variant="secondary"
+                            className={`todos-task-badge todos-task-badge-priority ${
                               priorityColors[todo.priority]
                             }`}
                           >
@@ -453,14 +504,16 @@ export function TodoManager() {
                           </Badge>
                         </div>
                       </div>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => deleteTodo(todo.id)}
-                        className="text-destructive hover:text-destructive"
-                      >
-                        <Trash2 className="h-4 w-4" />
-                      </Button>
+                      <div className="todos-task-actions">
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => deleteTodo(todo.id)}
+                          className="todos-task-delete-button"
+                        >
+                          <Trash2 className="h-4 w-4" />
+                        </Button>
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -469,61 +522,80 @@ export function TodoManager() {
           </Card>
         </TabsContent>
 
-        <TabsContent value="overdue" className="space-y-4">
+        <TabsContent value="overdue" className="todos-tab-content">
           <Card>
-            <CardHeader>
+            <CardHeader className="todos-card-header">
               <CardTitle>Overdue Tasks</CardTitle>
               <CardDescription>
                 Tasks that need immediate attention
               </CardDescription>
             </CardHeader>
-            <CardContent>
+            <CardContent className="todos-card-content">
               {overdueTodos.length === 0 ? (
-                <div className="text-center py-8 text-muted-foreground">
-                  No overdue tasks. You&apos;re doing great!
+                <div className="todos-empty-state">
+                  <CheckSquare className="todos-empty-icon text-success" />
+                  <div className="todos-empty-title">No overdue tasks</div>
+                  <div className="todos-empty-description">
+                    Excellent! You&apos;re keeping up with all your deadlines.
+                  </div>
                 </div>
               ) : (
-                <div className="space-y-2">
+                <div className="todos-task-list">
                   {overdueTodos.map((todo) => (
                     <div
                       key={todo.id}
-                      className="flex items-center gap-3 p-3 border border-destructive/20 rounded-lg bg-destructive/5"
+                      className="todos-task-item todos-task-item-overdue group"
                     >
-                      <Checkbox
-                        checked={todo.completed}
-                        onCheckedChange={() => toggleTodo(todo.id)}
-                      />
-                      <div className="flex-1 min-w-0">
-                        <div className="font-medium">{todo.title}</div>
+                      <div className="todos-task-checkbox-container">
+                        <Checkbox
+                          checked={todo.completed}
+                          onCheckedChange={() => toggleTodo(todo.id)}
+                          className="todos-task-checkbox"
+                        />
+                      </div>
+                      <div className="todos-task-content">
+                        <div className="todos-task-title todos-task-title-active">
+                          {todo.title}
+                        </div>
                         {todo.description && (
-                          <div className="text-sm text-muted-foreground mt-1">
+                          <div className="todos-task-description todos-task-description-active">
                             {todo.description}
                           </div>
                         )}
-                        <div className="flex items-center gap-2 mt-2">
-                          <Badge variant="outline" className="text-xs">
+                        <div className="todos-task-meta">
+                          <Badge
+                            variant="outline"
+                            className="todos-task-badge todos-task-badge-category"
+                          >
                             {categoryLabels[todo.category]}
                           </Badge>
                           <Badge
-                            className={`text-xs ${
+                            variant="secondary"
+                            className={`todos-task-badge todos-task-badge-priority ${
                               priorityColors[todo.priority]
                             }`}
                           >
                             {priorityLabels[todo.priority]}
                           </Badge>
-                          <Badge variant="destructive" className="text-xs">
+                          <Badge
+                            variant="destructive"
+                            className="todos-task-badge todos-task-badge-date"
+                          >
+                            <AlertTriangle className="h-3 w-3 mr-1" />
                             Due {formatDate(todo.dueDate!)}
                           </Badge>
                         </div>
                       </div>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => deleteTodo(todo.id)}
-                        className="text-destructive hover:text-destructive"
-                      >
-                        <Trash2 className="h-4 w-4" />
-                      </Button>
+                      <div className="todos-task-actions">
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => deleteTodo(todo.id)}
+                          className="todos-task-delete-button"
+                        >
+                          <Trash2 className="h-4 w-4" />
+                        </Button>
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -532,65 +604,84 @@ export function TodoManager() {
           </Card>
         </TabsContent>
 
-        <TabsContent value="completed" className="space-y-4">
+        <TabsContent value="completed" className="todos-tab-content">
           <Card>
-            <CardHeader>
+            <CardHeader className="todos-card-header">
               <CardTitle>Completed Tasks</CardTitle>
               <CardDescription>Tasks you&apos;ve finished</CardDescription>
             </CardHeader>
-            <CardContent>
+            <CardContent className="todos-card-content">
               {todos.filter((todo) => todo.completed).length === 0 ? (
-                <div className="text-center py-8 text-muted-foreground">
-                  No completed tasks yet. Start checking off some tasks!
+                <div className="todos-empty-state">
+                  <Clock className="todos-empty-icon text-muted-foreground" />
+                  <div className="todos-empty-title">
+                    No completed tasks yet
+                  </div>
+                  <div className="todos-empty-description">
+                    Start checking off some tasks to see your progress here!
+                  </div>
                 </div>
               ) : (
-                <div className="space-y-2">
+                <div className="todos-task-list">
                   {todos
                     .filter((todo) => todo.completed)
                     .map((todo) => (
                       <div
                         key={todo.id}
-                        className="flex items-center gap-3 p-3 border rounded-lg bg-muted/50"
+                        className="todos-task-item todos-task-item-success group"
                       >
-                        <Checkbox
-                          checked={true}
-                          onCheckedChange={() => toggleTodo(todo.id)}
-                        />
-                        <div className="flex-1 min-w-0">
-                          <div className="font-medium line-through text-muted-foreground">
+                        <div className="todos-task-checkbox-container">
+                          <Checkbox
+                            checked={true}
+                            onCheckedChange={() => toggleTodo(todo.id)}
+                            className="todos-task-checkbox-success"
+                          />
+                        </div>
+                        <div className="todos-task-content">
+                          <div className="todos-task-title todos-task-title-completed">
                             {todo.title}
                           </div>
                           {todo.description && (
-                            <div className="text-sm text-muted-foreground mt-1">
+                            <div className="todos-task-description todos-task-description-completed">
                               {todo.description}
                             </div>
                           )}
-                          <div className="flex items-center gap-2 mt-2">
-                            <Badge variant="outline" className="text-xs">
+                          <div className="todos-task-meta">
+                            <Badge
+                              variant="outline"
+                              className="todos-task-badge todos-task-badge-category todos-task-badge-opacity"
+                            >
                               {categoryLabels[todo.category]}
                             </Badge>
                             <Badge
-                              className={`text-xs ${
+                              variant="secondary"
+                              className={`todos-task-badge todos-task-badge-priority todos-task-badge-opacity ${
                                 priorityColors[todo.priority]
                               }`}
                             >
                               {priorityLabels[todo.priority]}
                             </Badge>
                             {todo.dueDate && (
-                              <Badge variant="secondary" className="text-xs">
+                              <Badge
+                                variant="secondary"
+                                className="todos-task-badge todos-task-badge-date todos-task-badge-opacity"
+                              >
+                                <Calendar className="h-3 w-3 mr-1" />
                                 {formatDate(todo.dueDate)}
                               </Badge>
                             )}
                           </div>
                         </div>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={() => deleteTodo(todo.id)}
-                          className="text-destructive hover:text-destructive"
-                        >
-                          <Trash2 className="h-4 w-4" />
-                        </Button>
+                        <div className="todos-task-actions">
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => deleteTodo(todo.id)}
+                            className="todos-task-delete-button"
+                          >
+                            <Trash2 className="h-4 w-4" />
+                          </Button>
+                        </div>
                       </div>
                     ))}
                 </div>
