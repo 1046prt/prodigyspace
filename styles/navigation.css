@@ -6,12 +6,16 @@
   position: sticky;
   top: 0;
   z-index: var(--z-index-sticky);
-  background-color: var(--color-background);
+  background-color: rgba(255, 255, 255, 0.95);
   border-bottom: 1px solid var(--color-border);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   transition: all var(--transition-default);
   box-shadow: var(--shadow-sm);
+}
+
+.dark .navigation {
+  background-color: rgba(15, 23, 42, 0.95);
 }
 
 .navigation-container {
@@ -40,7 +44,7 @@
 }
 
 .navigation-logo:hover {
-  transform: scale(1.05);
+  transform: scale(1.02);
   color: var(--color-primary);
 }
 
@@ -87,8 +91,8 @@
   opacity: 1;
 }
 
-.navigation-logo-image {
-  filter: brightness(0) invert(1);
+.navigation-logo-svg {
+  color: white;
   width: 1.25rem;
   height: 1.25rem;
   position: relative;
@@ -107,10 +111,10 @@
 .navigation-desktop {
   display: none;
   align-items: center;
-  gap: var(--space-2);
+  gap: var(--space-1);
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .navigation-desktop {
     display: flex;
   }
@@ -123,12 +127,27 @@
   padding: var(--space-2) var(--space-4);
   border-radius: var(--radius-lg);
   font-weight: var(--font-medium);
+  font-size: var(--text-sm);
   text-decoration: none;
   transition: all var(--transition-default);
   background-color: transparent;
   color: var(--color-foreground-secondary);
   border: 1px solid transparent;
   box-shadow: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.navigation-item::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--color-primary);
+  transition: all var(--transition-default);
+  transform: translateX(-50%);
 }
 
 .navigation-item:hover {
@@ -138,11 +157,20 @@
   box-shadow: var(--shadow-sm);
 }
 
+.navigation-item:hover::before {
+  width: 80%;
+}
+
 .navigation-item.active {
   background-color: var(--color-primary);
   color: var(--color-primary-foreground);
   border: none;
   box-shadow: var(--shadow-md);
+}
+
+.navigation-item.active::before {
+  width: 100%;
+  background: var(--color-primary-foreground);
 }
 
 .navigation-item.active:hover {
@@ -152,8 +180,8 @@
 }
 
 .navigation-item-icon {
-  width: 1.25rem;
-  height: 1.25rem;
+  width: 1.125rem;
+  height: 1.125rem;
   transition: all var(--transition-default);
 }
 
@@ -164,12 +192,6 @@
 /* ===========================================
    CONTROLS STYLES
    =========================================== */
-
-.navigation-controls {
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
-}
 
 .navigation-right-controls {
   display: flex;
@@ -206,7 +228,7 @@
   min-width: 1.25rem;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .navigation-mobile-trigger {
     display: none;
   }
@@ -215,12 +237,6 @@
 /* ===========================================
    MOBILE SHEET STYLES
    =========================================== */
-
-.navigation-sheet-container {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-}
 
 .navigation-sheet {
   background-color: var(--color-background);
@@ -232,12 +248,20 @@
   right: 0;
   top: 0;
   height: 100vh;
+  overflow-y: auto;
+}
+
+.navigation-sheet-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  height: 100%;
 }
 
 .navigation-sheet-header {
   display: flex;
   align-items: center;
-  margin-bottom: var(--space-4);
+  justify-content: space-between;
   padding-bottom: var(--space-4);
   border-bottom: 1px solid var(--color-border);
 }
@@ -246,8 +270,6 @@
   font-size: var(--text-lg);
   font-weight: var(--font-semibold);
   color: var(--color-foreground);
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .navigation-sheet-close {
@@ -260,9 +282,6 @@
   border: none;
   cursor: pointer;
   transition: all var(--transition-default);
-  margin-right: 0;
-  position: relative;
-  left: -0.5rem;
 }
 
 .navigation-sheet-close:hover {
@@ -276,14 +295,15 @@
   height: 1rem;
 }
 
-.navigation-sheet-link {
-  text-decoration: none;
-}
-
-.navigation-sheet-content {
+.navigation-sheet-nav {
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
+  flex: 1;
+}
+
+.navigation-sheet-link {
+  text-decoration: none;
 }
 
 .navigation-sheet-item {
@@ -299,6 +319,19 @@
   border: 1px solid transparent;
   box-shadow: none;
   cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.navigation-sheet-item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 0;
+  background: var(--color-primary);
+  transition: width var(--transition-default);
 }
 
 .navigation-sheet-item:hover {
@@ -308,11 +341,20 @@
   box-shadow: var(--shadow-sm);
 }
 
+.navigation-sheet-item:hover::before {
+  width: 4px;
+}
+
 .navigation-sheet-item.active {
   background-color: var(--color-primary);
   color: var(--color-primary-foreground);
   border: none;
   box-shadow: var(--shadow-sm);
+}
+
+.navigation-sheet-item.active::before {
+  width: 4px;
+  background: var(--color-primary-foreground);
 }
 
 .navigation-sheet-item.active:hover {
@@ -336,7 +378,7 @@
    RESPONSIVE DESIGN
    =========================================== */
 
-@media (max-width: 767px) {
+@media (max-width: 1023px) {
   .navigation-container {
     padding: 0 var(--space-4);
   }
@@ -350,13 +392,13 @@
     height: 2rem;
   }
 
-  .navigation-logo-image {
+  .navigation-logo-svg {
     width: 1rem;
     height: 1rem;
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 640px) {
   .navigation-container {
     padding: 0 var(--space-3);
   }
@@ -373,6 +415,12 @@
   .navigation-sheet {
     width: 100% !important;
     max-width: 100% !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .navigation-sheet {
+    padding: var(--space-4);
   }
 }
 
@@ -395,23 +443,14 @@
   animation: slideInFromRight 0.3s ease-out;
 }
 
-/* Override any Shadcn UI default styles that might conflict */
-div[data-radix-popper-content-wrapper] {
-  z-index: 1000 !important;
-  position: fixed !important;
-}
-
-[role="dialog"] {
-  z-index: 1000 !important;
-}
-
 /* ===========================================
    FOCUS STYLES
    =========================================== */
 
 .navigation-item:focus-visible,
 .navigation-sheet-item:focus-visible,
-.navigation-mobile-trigger:focus-visible {
+.navigation-mobile-trigger:focus-visible,
+.navigation-logo:focus-visible {
   outline: 2px solid var(--color-ring);
   outline-offset: 2px;
 }
@@ -430,4 +469,36 @@ div[data-radix-popper-content-wrapper] {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border-width: 0;
+}
+
+/* ===========================================
+   HIGH CONTRAST MODE
+   =========================================== */
+
+@media (prefers-contrast: high) {
+  .navigation {
+    border-bottom-width: 2px;
+  }
+
+  .navigation-item,
+  .navigation-sheet-item {
+    border-width: 2px;
+  }
+}
+
+/* ===========================================
+   REDUCED MOTION
+   =========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .navigation-logo,
+  .navigation-item,
+  .navigation-sheet-item,
+  .navigation-mobile-trigger {
+    transition: none;
+  }
+
+  .navigation-sheet {
+    animation: none;
+  }
 }

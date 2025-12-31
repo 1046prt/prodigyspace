@@ -17,12 +17,19 @@
 
 .footer .grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-8) var(--space-4);
+  grid-template-columns: 1fr;
+  gap: var(--space-8);
   margin-bottom: var(--space-8);
 }
 
-@media (min-width: 768px) {
+@media (min-width: 640px) {
+  .footer .grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-6);
+  }
+}
+
+@media (min-width: 1024px) {
   .footer .grid {
     grid-template-columns: 2fr 1fr 1fr;
     gap: var(--space-12);
@@ -37,10 +44,15 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
-  grid-column: 1 / -1;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 640px) {
+  .brand-section {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (min-width: 1024px) {
   .brand-section {
     grid-column: auto;
   }
@@ -59,7 +71,11 @@
   width: 2.5rem;
   height: 2.5rem;
   border-radius: var(--radius-lg);
-  background: transparent;
+  background: linear-gradient(
+    135deg,
+    var(--color-primary-500) 0%,
+    var(--color-primary-700) 100%
+  );
   box-shadow: var(--shadow-md);
   transition: all var(--transition-default);
 }
@@ -67,6 +83,12 @@
 .logo:hover {
   transform: scale(1.05);
   box-shadow: var(--shadow-lg);
+}
+
+.logo-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: white;
 }
 
 .brand-name {
@@ -80,7 +102,7 @@
   color: var(--color-foreground-secondary);
   line-height: var(--leading-relaxed);
   font-size: var(--text-sm);
-  max-width: 24rem;
+  max-width: 28rem;
 }
 
 /* ===========================================
@@ -115,6 +137,7 @@
   font-size: var(--text-sm);
   transition: all var(--transition-default);
   display: inline-block;
+  padding: var(--space-1) 0;
 }
 
 .link:hover {
@@ -155,6 +178,7 @@
   color: var(--color-foreground-secondary);
   font-size: var(--text-sm);
   transition: all var(--transition-default);
+  padding: var(--space-1) 0;
 }
 
 .contact-icon {
@@ -176,8 +200,21 @@
 }
 
 /* ===========================================
-   SOCIAL LINKS STYLES
+   SOCIAL SECTION STYLES
    =========================================== */
+
+.social-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.social-section h3 {
+  font-size: var(--text-base);
+  font-weight: var(--font-semibold);
+  color: var(--color-foreground);
+  margin-bottom: var(--space-2);
+}
 
 .social-links {
   display: flex;
@@ -219,34 +256,83 @@
   border-top: 1px solid var(--color-border);
   padding-top: var(--space-6);
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
-  gap: var(--space-4);
+  text-align: center;
+}
+
+@media (min-width: 640px) {
+  .copyright {
+    justify-content: space-between;
+    text-align: left;
+  }
 }
 
 .copyright p {
   color: var(--color-foreground-muted);
   font-size: var(--text-xs);
   margin: 0;
+  line-height: var(--leading-relaxed);
+}
+
+@media (min-width: 640px) {
+  .copyright p {
+    font-size: var(--text-sm);
+  }
 }
 
 /* ===========================================
    RESPONSIVE DESIGN
    =========================================== */
 
-@media (max-width: 767px) {
+@media (max-width: 639px) {
   .footer .container {
     padding: var(--space-6) var(--space-4);
   }
 
   .footer .grid {
-    gap: var(--space-6) var(--space-4);
+    gap: var(--space-6);
   }
-  
+
   .copyright {
     justify-content: center;
     text-align: center;
+  }
+
+  .links-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-2);
+  }
+
+  .contact-list {
+    gap: var(--space-2);
+  }
+
+  .contact-item {
+    font-size: var(--text-xs);
+  }
+}
+
+@media (max-width: 480px) {
+  .footer .container {
+    padding: var(--space-4) var(--space-3);
+  }
+
+  .brand-name {
+    font-size: var(--text-lg);
+  }
+
+  .description {
+    font-size: var(--text-xs);
+  }
+
+  .links-list {
+    grid-template-columns: 1fr;
+  }
+
+  .social-links {
+    justify-content: center;
   }
 }
 
@@ -293,4 +379,35 @@
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border-width: 0;
+}
+
+/* ===========================================
+   HIGH CONTRAST MODE
+   =========================================== */
+
+@media (prefers-contrast: high) {
+  .footer {
+    border-top-width: 2px;
+  }
+
+  .social-link {
+    border-width: 2px;
+  }
+}
+
+/* ===========================================
+   REDUCED MOTION
+   =========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .footer {
+    animation: none;
+  }
+
+  .logo:hover,
+  .link:hover,
+  .contact-item:hover .contact-icon,
+  .social-link:hover {
+    transform: none;
+  }
 }

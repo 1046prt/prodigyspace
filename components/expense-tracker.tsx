@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import {
   Card,
   CardContent,
@@ -30,28 +30,17 @@ import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useExpenses } from "@/hooks/use-expenses";
-import type { ExpenseCategory } from "@/types/expense";
+import type { ExpenseCategory, Expense, Budget } from "@/types/expense";
 import {
   Plus,
   TrendingUp,
   DollarSign,
-  LucidePieChart as RechartsPieChart,
+  PieChart,
   Download,
   Trash2,
 } from "lucide-react";
 import { exportToCSV } from "@/lib/csv-export";
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-  Pie,
-  Cell,
-} from "recharts";
-import "@/styles/expense.css";
+import "@/styles/expenses.css";
 
 const categoryLabels: Record<ExpenseCategory, string> = {
   food: "Food & Dining",
@@ -117,7 +106,7 @@ export function ExpenseTracker() {
   };
 
   const handleExportCSV = () => {
-    const exportData = expenses.map((expense) => ({
+    const exportData = expenses.map((expense: Expense) => ({
       Date: expense.date,
       Category: categoryLabels[expense.category],
       Description: expense.description,
@@ -130,17 +119,19 @@ export function ExpenseTracker() {
   };
 
   const pieChartData = Object.entries(stats.categoryBreakdown)
-    .filter(([, amount]) => amount > 0)
+    .filter(([, amount]) => (amount as number) > 0)
     .map(([category, amount]) => ({
       name: categoryLabels[category as ExpenseCategory],
-      value: amount,
+      value: amount as number,
       color: categoryColors[category as ExpenseCategory],
     }));
 
-  const weeklyChartData = stats.weeklySpending.map((amount, index) => ({
-    week: `Week ${index + 1}`,
-    amount,
-  }));
+  const weeklyChartData = stats.weeklySpending.map(
+    (amount: number, index: number) => ({
+      week: `Week ${index + 1}`,
+      amount,
+    })
+  );
 
   if (loading) {
     return <div className="mainpage-loading-container">Loading...</div>;
@@ -184,7 +175,7 @@ export function ExpenseTracker() {
                     step="0.01"
                     placeholder="0.00"
                     value={newExpense.amount}
-                    onChange={(e) =>
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                       setNewExpense((prev) => ({
                         ...prev,
                         amount: e.target.value,
@@ -218,7 +209,7 @@ export function ExpenseTracker() {
                     id="description"
                     placeholder="What did you spend on?"
                     value={newExpense.description}
-                    onChange={(e) =>
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                       setNewExpense((prev) => ({
                         ...prev,
                         description: e.target.value,
@@ -232,7 +223,7 @@ export function ExpenseTracker() {
                     id="date"
                     type="date"
                     value={newExpense.date}
-                    onChange={(e) =>
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                       setNewExpense((prev) => ({
                         ...prev,
                         date: e.target.value,
@@ -287,7 +278,7 @@ export function ExpenseTracker() {
             <CardTitle className="mainpage-card-title-small">
               Expenses
             </CardTitle>
-            <RechartsPieChart className="icon icon-pie-chart" />
+            <PieChart className="icon icon-pie-chart" />
           </CardHeader>
           <CardContent>
             <div className="amount-display">{expenses.length}</div>
@@ -314,20 +305,25 @@ export function ExpenseTracker() {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <ResponsiveContainer width="100%" height={300}>
-                  <BarChart data={weeklyChartData}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="week" />
-                    <YAxis />
-                    <Tooltip
-                      formatter={(value) => [
-                        `${formatINR(value as number)}`,
-                        "Amount",
-                      ]}
-                    />
-                    <Bar dataKey="amount" fill="var(--color-primary)" />
-                  </BarChart>
-                </ResponsiveContainer>
+                <div className="mainpage-chart-placeholder">
+                  <div className="chart-placeholder-content">
+                    <PieChart className="h-12 w-12 text-muted-foreground" />
+                    <p className="text-sm text-muted-foreground mt-2">
+                      Weekly spending chart would appear here
+                    </p>
+                    <div className="mt-4 space-y-2">
+                      {weeklyChartData.slice(0, 4).map((data, index) => (
+                        <div
+                          key={index}
+                          className="flex justify-between text-sm"
+                        >
+                          <span>{data.week}</span>
+                          <span>{formatINR(data.amount)}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
               </CardContent>
             </Card>
 
@@ -339,30 +335,31 @@ export function ExpenseTracker() {
               </CardHeader>
               <CardContent>
                 {pieChartData.length > 0 ? (
-                  <ResponsiveContainer width="100%" height={300}>
-                    <RechartsPieChart>
-                      <Pie
-                        data={pieChartData}
-                        cx="50%"
-                        cy="50%"
-                        outerRadius={80}
-                        dataKey="value"
-                        label={({ name, value }) =>
-                          `${name}: ${formatINR(value as number)}`
-                        }
-                      >
+                  <div className="mainpage-chart-placeholder">
+                    <div className="chart-placeholder-content">
+                      <PieChart className="h-12 w-12 text-muted-foreground" />
+                      <p className="text-sm text-muted-foreground mt-2">
+                        Category breakdown chart would appear here
+                      </p>
+                      <div className="mt-4 space-y-2">
                         {pieChartData.map((entry, index) => (
-                          <Cell key={`cell-${index}`} fill={entry.color} />
+                          <div
+                            key={index}
+                            className="flex justify-between text-sm"
+                          >
+                            <div className="flex items-center gap-2">
+                              <div
+                                className="w-3 h-3 rounded-full"
+                                style={{ backgroundColor: entry.color }}
+                              />
+                              <span>{entry.name}</span>
+                            </div>
+                            <span>{formatINR(entry.value)}</span>
+                          </div>
                         ))}
-                      </Pie>
-                      <Tooltip
-                        formatter={(value) => [
-                          `${formatINR(value as number)}`,
-                          "Amount",
-                        ]}
-                      />
-                    </RechartsPieChart>
-                  </ResponsiveContainer>
+                      </div>
+                    </div>
+                  </div>
                 ) : (
                   <div className="mainpage-no-data-message">
                     No expenses recorded yet
@@ -387,7 +384,7 @@ export function ExpenseTracker() {
                 </div>
               ) : (
                 <div className="expenses-list">
-                  {expenses.slice(0, 10).map((expense) => (
+                  {expenses.slice(0, 10).map((expense: Expense) => (
                     <div key={expense.id} className="mainpage-expense-item">
                       <div className="mainpage-expense-details">
                         <div
@@ -433,7 +430,7 @@ export function ExpenseTracker() {
             </CardHeader>
             <CardContent>
               <div className="budgets-list">
-                {budgets.map((budget) => {
+                {budgets.map((budget: Budget) => {
                   const spent = stats.categoryBreakdown[budget.category];
                   const percentage =
                     budget.limit > 0 ? (spent / budget.limit) * 100 : 0;

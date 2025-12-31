@@ -1,15 +1,15 @@
 "use client";
 
-import type React from "react";
+"use client";
 
-import { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import type { StickyNote as StickyNoteType, NoteColor } from "@/types/note";
 import { Trash2, Edit, GripVertical, Move } from "lucide-react";
-import styles from "@/styles/sticky-note.css";
+import "@/styles/sticky-note.css";
 
 interface StickyNoteProps {
   note: StickyNoteType;
@@ -20,12 +20,12 @@ interface StickyNoteProps {
 }
 
 const noteColorClasses: Record<NoteColor, string> = {
-  yellow: styles.yellow,
-  blue: styles.blue,
-  green: styles.green,
-  pink: styles.pink,
-  purple: styles.purple,
-  orange: styles.orange,
+  yellow: "yellow",
+  blue: "blue",
+  green: "green",
+  pink: "pink",
+  purple: "purple",
+  orange: "orange",
 };
 
 export function StickyNote({
@@ -132,8 +132,8 @@ export function StickyNote({
   return (
     <Card
       ref={noteRef}
-      className={`${styles.stickyNote} ${noteColorClasses[note.color]} ${
-        isDragging ? styles.dragging : ""
+      className={`stickyNote ${noteColorClasses[note.color]} ${
+        isDragging ? "dragging" : ""
       }`}
       style={{
         left: note.position.x,
@@ -145,14 +145,14 @@ export function StickyNote({
       }}
       onMouseDown={handleMouseDown}
     >
-      <div className={styles.noteContent}>
+      <div className="noteContent">
         {/* Header */}
-        <div className={`${styles.header} drag-handle`}>
-          <div className={styles.dragHandle}>
-            <GripVertical className={styles.iconMedium} />
-            <Move className={`${styles.iconSmall} ${styles.opacity50}`} />
+        <div className="header drag-handle">
+          <div className="dragHandle">
+            <GripVertical className="iconMedium" />
+            <Move className="iconSmall opacity50" />
           </div>
-          <div className={styles.actionButtons}>
+          <div className="actionButtons">
             <Button
               variant="ghost"
               size="sm"
@@ -160,9 +160,9 @@ export function StickyNote({
                 e.stopPropagation();
                 setIsEditing(!isEditing);
               }}
-              className={styles.editButton}
+              className="editButton"
             >
-              <Edit className={styles.iconSmall} />
+              <Edit className="iconSmall" />
             </Button>
             <Button
               variant="ghost"
@@ -171,39 +171,39 @@ export function StickyNote({
                 e.stopPropagation();
                 onDelete(note.id);
               }}
-              className={styles.deleteButton}
+              className="deleteButton"
             >
-              <Trash2 className={styles.iconSmall} />
+              <Trash2 className="iconSmall" />
             </Button>
           </div>
         </div>
 
         {/* Content */}
-        <div className={styles.contentArea}>
+        <div className="contentArea">
           {isEditing ? (
             <>
               <Input
                 value={editTitle}
                 onChange={(e) => setEditTitle(e.target.value)}
                 placeholder="Note title..."
-                className={styles.editTitleInput}
+                className="editTitleInput"
                 onClick={(e) => e.stopPropagation()}
               />
               <Textarea
                 value={editContent}
                 onChange={(e) => setEditContent(e.target.value)}
                 placeholder="Write your note here..."
-                className={styles.editContentTextarea}
+                className="editContentTextarea"
                 onClick={(e) => e.stopPropagation()}
               />
-              <div className={styles.buttonGroup}>
+              <div className="buttonGroup">
                 <Button
                   size="sm"
                   onClick={(e) => {
                     e.stopPropagation();
                     handleSave();
                   }}
-                  className={styles.saveButton}
+                  className="saveButton"
                 >
                   Save
                 </Button>
@@ -214,7 +214,7 @@ export function StickyNote({
                     e.stopPropagation();
                     handleCancel();
                   }}
-                  className={styles.cancelButton}
+                  className="cancelButton"
                 >
                   Cancel
                 </Button>
@@ -222,10 +222,8 @@ export function StickyNote({
             </>
           ) : (
             <>
-              <div className={styles.noteTitle}>
-                {note.title || "Untitled Note"}
-              </div>
-              <div className={styles.noteText}>
+              <div className="noteTitle">{note.title || "Untitled Note"}</div>
+              <div className="noteText">
                 {note.content || "Click edit to add content..."}
               </div>
             </>
@@ -233,11 +231,8 @@ export function StickyNote({
         </div>
 
         {/* Resize Handle */}
-        <div
-          className={styles.resizeHandle}
-          onMouseDown={handleResizeMouseDown}
-        >
-          <div className={styles.resizeIndicator} />
+        <div className="resizeHandle" onMouseDown={handleResizeMouseDown}>
+          <div className="resizeIndicator" />
         </div>
       </div>
     </Card>

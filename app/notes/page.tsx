@@ -1,14 +1,19 @@
 "use client";
 
-import { useState } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import "@/styles/notes.css";
-import "@/styles/note-editor.css";
-import "@/styles/sticky-note.css";
-import "@/styles/sticky-note-board.css";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import {
   Select,
   SelectContent,
@@ -16,244 +21,350 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { NoteEditor } from "@/components/note-editor";
-import { DocumentScanner } from "@/components/document-scanner";
-import { useNotes } from "@/hooks/use-notes";
 import {
+  FileText,
   Plus,
   Search,
-  Edit,
-  Trash2,
+  Filter,
+  BookOpen,
   Pin,
-  FileText,
+  Trash2,
+  Edit,
+  Download,
+  Upload,
   Camera,
 } from "lucide-react";
-import type { Note } from "@/types/notes";
+import { useState } from "react";
 
 export default function NotesPage() {
-  const {
-    notes,
-    scannedDocs,
-    addNote,
-    updateNote,
-    deleteNote,
-    addScannedDoc,
-    deleteScannedDoc,
-  } = useNotes();
-  const [showEditor, setShowEditor] = useState(false);
-  const [editingNote, setEditingNote] = useState<Note | undefined>();
-  const [searchTerm, setSearchTerm] = useState("");
-  const [categoryFilter, setCategoryFilter] = useState<string>("all");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
 
-  const filteredNotes = notes
-    .filter((note) => {
-      const matchesSearch =
-        note.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        note.content.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        note.tags.some((tag) =>
-          tag.toLowerCase().includes(searchTerm.toLowerCase())
-        );
-      const matchesCategory =
-        categoryFilter === "all" || note.category === categoryFilter;
-      return matchesSearch && matchesCategory;
-    })
-    .sort((a, b) => {
-      if (a.isPinned && !b.isPinned) return -1;
-      if (!a.isPinned && b.isPinned) return 1;
-      return new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime();
-    });
+  // Mock data - replace with actual data management
+  const notes = [
+    {
+      id: 1,
+      title: "Machine Learning Fundamentals",
+      content:
+        "Introduction to supervised and unsupervised learning algorithms...",
+      category: "Computer Science",
+      isPinned: true,
+      createdAt: "2024-01-15",
+      tags: ["ML", "AI", "Algorithms"],
+    },
+    {
+      id: 2,
+      title: "Calculus Notes - Chapter 3",
+      content: "Derivatives and their applications in real-world problems...",
+      category: "Mathematics",
+      isPinned: false,
+      createdAt: "2024-01-14",
+      tags: ["Calculus", "Derivatives", "Math"],
+    },
+    {
+      id: 3,
+      title: "History Essay Draft",
+      content: "The impact of the Industrial Revolution on society...",
+      category: "History",
+      isPinned: false,
+      createdAt: "2024-01-13",
+      tags: ["Essay", "Industrial Revolution"],
+    },
+  ];
 
-  const handleSaveNote = (
-    noteData: Omit<Note, "id" | "createdAt" | "updatedAt">
-  ) => {
-    if (editingNote) {
-      updateNote(editingNote.id, noteData);
-    } else {
-      addNote(noteData);
-    }
-    setShowEditor(false);
-    setEditingNote(undefined);
-  };
+  const scannedDocs = [
+    {
+      id: 1,
+      title: "Physics Lab Report",
+      type: "PDF",
+      size: "2.4 MB",
+      uploadedAt: "2024-01-15",
+    },
+    {
+      id: 2,
+      title: "Chemistry Formulas",
+      type: "Image",
+      size: "1.2 MB",
+      uploadedAt: "2024-01-14",
+    },
+  ];
 
-  const handleEditNote = (note: Note) => {
-    setEditingNote(note);
-    setShowEditor(true);
-  };
+  const categories = [
+    "all",
+    "Computer Science",
+    "Mathematics",
+    "History",
+    "Physics",
+    "Chemistry",
+  ];
 
-  const handleCancelEdit = () => {
-    setShowEditor(false);
-    setEditingNote(undefined);
-  };
-
-  if (showEditor) {
-    return (
-      <div className="notes">
-        <div className="notes-container">
-          <NoteEditor
-            note={editingNote}
-            onSave={handleSaveNote}
-            onCancel={handleCancelEdit}
-          />
-        </div>
-      </div>
-    );
-  }
+  const filteredNotes = notes.filter((note) => {
+    const matchesSearch =
+      note.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      note.content.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesCategory =
+      selectedCategory === "all" || note.category === selectedCategory;
+    return matchesSearch && matchesCategory;
+  });
 
   return (
-    <div className="notes">
-      <div className="notes-container">
-        <div className="notes-header">
-          <h1 className="notes-title">Notes & Documents</h1>
-          <Button className="notes-new-btn" onClick={() => setShowEditor(true)}>
-            <Plus className="h-4 w-4 mr-2" />
-            New Note
-          </Button>
+    <div className="min-h-screen bg-gradient-to-br from-background to-muted/20 p-4 md:p-6">
+      <div className="max-w-7xl mx-auto">
+        {/* Header */}
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+          <div>
+            <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+              Notes & Documents
+            </h1>
+            <p className="text-muted-foreground mt-2">
+              Organize your study materials and documents in one place
+            </p>
+          </div>
+          <div className="flex gap-2">
+            <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
+              <DialogTrigger asChild>
+                <Button>
+                  <Plus className="h-4 w-4 mr-2" />
+                  New Note
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="max-w-2xl">
+                <DialogHeader>
+                  <DialogTitle>Create New Note</DialogTitle>
+                  <DialogDescription>
+                    Add a new note to your collection
+                  </DialogDescription>
+                </DialogHeader>
+                <div className="space-y-4">
+                  <Input placeholder="Note title..." />
+                  <Select>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select category" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {categories.slice(1).map((category) => (
+                        <SelectItem key={category} value={category}>
+                          {category}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  <Textarea
+                    placeholder="Start writing your note..."
+                    className="min-h-[200px]"
+                  />
+                  <div className="flex justify-end gap-2">
+                    <Button
+                      variant="outline"
+                      onClick={() => setIsAddDialogOpen(false)}
+                    >
+                      Cancel
+                    </Button>
+                    <Button onClick={() => setIsAddDialogOpen(false)}>
+                      Create Note
+                    </Button>
+                  </div>
+                </div>
+              </DialogContent>
+            </Dialog>
+            <Button variant="outline">
+              <Upload className="h-4 w-4 mr-2" />
+              Upload
+            </Button>
+          </div>
         </div>
 
-        <Tabs defaultValue="notes" className="notes-tabs">
-          <TabsList className="notes-tabs-list notes-tabs-list-grid-2">
-            <TabsTrigger value="notes" className="notes-tab-trigger">
+        {/* Search and Filters */}
+        <div className="flex flex-col md:flex-row gap-4 mb-6">
+          <div className="relative flex-1">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+            <Input
+              placeholder="Search notes and documents..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="pl-10"
+            />
+          </div>
+          <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+            <SelectTrigger className="w-full md:w-48">
+              <Filter className="h-4 w-4 mr-2" />
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              {categories.map((category) => (
+                <SelectItem key={category} value={category}>
+                  {category === "all" ? "All Categories" : category}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
+
+        <Tabs defaultValue="notes" className="space-y-6">
+          <TabsList className="grid w-full grid-cols-2 md:w-auto">
+            <TabsTrigger value="notes" className="flex items-center gap-2">
               <FileText className="h-4 w-4" />
               Notes ({notes.length})
             </TabsTrigger>
-            <TabsTrigger value="scanner" className="notes-tab-trigger">
-              <Camera className="h-4 w-4" />
-              Scanner ({scannedDocs.length})
+            <TabsTrigger value="documents" className="flex items-center gap-2">
+              <BookOpen className="h-4 w-4" />
+              Documents ({scannedDocs.length})
             </TabsTrigger>
           </TabsList>
 
-          <TabsContent value="notes" className="notes-tab-content">
-            {/* Search and Filter */}
-            <div className="notes-search-container">
-              <div className="notes-search-row">
-                <div className="notes-search-input-container">
-                  <Search className="notes-search-icon h-4 w-4" />
-                  <Input
-                    placeholder="Search notes..."
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    className="notes-search-input"
-                  />
-                </div>
-                <Select
-                  value={categoryFilter}
-                  onValueChange={setCategoryFilter}
-                >
-                  <SelectTrigger className="notes-filter-select">
-                    <SelectValue placeholder="Filter by category" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="all">All Categories</SelectItem>
-                    <SelectItem value="lecture">Lecture</SelectItem>
-                    <SelectItem value="research">Research</SelectItem>
-                    <SelectItem value="personal">Personal</SelectItem>
-                    <SelectItem value="assignment">Assignment</SelectItem>
-                    <SelectItem value="meeting">Meeting</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-            </div>
-
-            {/* Notes Grid */}
+          <TabsContent value="notes" className="space-y-4">
             {filteredNotes.length === 0 ? (
-              <div className="notes-empty">
-                <div className="notes-empty-icon" />
-                <h3 className="notes-empty-title">No notes found</h3>
-                <p className="notes-empty-text">
-                  {searchTerm || categoryFilter !== "all"
-                    ? "Try adjusting your search or filter criteria."
-                    : "Create your first note to get started!"}
-                </p>
-                <Button
-                  className="notes-new-btn"
-                  onClick={() => setShowEditor(true)}
-                >
-                  <Plus className="h-4 w-4 mr-2" />
-                  Create Note
-                </Button>
-              </div>
+              <Card>
+                <CardContent className="text-center py-12">
+                  <FileText className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
+                  <h3 className="text-lg font-medium mb-2">No notes found</h3>
+                  <p className="text-muted-foreground mb-4">
+                    {searchQuery || selectedCategory !== "all"
+                      ? "Try adjusting your search or filters"
+                      : "Create your first note to get started"}
+                  </p>
+                  <Button onClick={() => setIsAddDialogOpen(true)}>
+                    <Plus className="h-4 w-4 mr-2" />
+                    Create Note
+                  </Button>
+                </CardContent>
+              </Card>
             ) : (
-              <div className="notes-grid">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {filteredNotes.map((note) => (
-                  <div key={note.id} className="notes-card">
-                    <div className="notes-card-header">
-                      <div className="notes-card-title-row">
-                        <div className="notes-card-title">
-                          {note.isPinned && (
-                            <Pin className="h-4 w-4 text-yellow-600 fill-yellow-600" />
-                          )}
-                          <span className="truncate">{note.title}</span>
+                  <Card
+                    key={note.id}
+                    className="hover:shadow-md transition-all duration-200 group"
+                  >
+                    <CardHeader className="pb-3">
+                      <div className="flex items-start justify-between">
+                        <div className="flex-1">
+                          <div className="flex items-center gap-2 mb-2">
+                            {note.isPinned && (
+                              <Pin className="h-4 w-4 text-primary" />
+                            )}
+                            <CardTitle className="text-lg line-clamp-1">
+                              {note.title}
+                            </CardTitle>
+                          </div>
+                          <Badge variant="outline" className="text-xs">
+                            {note.category}
+                          </Badge>
                         </div>
-                        <div className="notes-card-actions">
+                        <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
                           <Button
                             size="sm"
                             variant="ghost"
-                            onClick={() => handleEditNote(note)}
-                            className="h-8 w-8 p-0 hover:bg-primary/10 hover:text-primary"
+                            className="h-8 w-8 p-0"
                           >
-                            <Edit className="h-4 w-4" />
+                            <Edit className="h-3 w-3" />
                           </Button>
                           <Button
                             size="sm"
                             variant="ghost"
-                            onClick={() => deleteNote(note.id)}
-                            className="h-8 w-8 p-0 hover:bg-destructive/10 hover:text-destructive"
+                            className="h-8 w-8 p-0"
                           >
-                            <Trash2 className="h-4 w-4" />
+                            <Trash2 className="h-3 w-3 text-destructive" />
                           </Button>
                         </div>
                       </div>
-                      <Badge variant="outline" className="w-fit">
-                        {note.category}
-                      </Badge>
-                    </div>
-                    <div className="notes-card-content">
-                      <p className="notes-card-text">
-                        {note.content || "No content"}
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-sm text-muted-foreground line-clamp-3 mb-3">
+                        {note.content}
                       </p>
-                      {note.tags.length > 0 && (
-                        <div className="flex flex-wrap gap-1 mb-4">
-                          {note.tags.slice(0, 3).map((tag) => (
-                            <Badge
-                              key={tag}
-                              variant="secondary"
-                              className="text-xs font-normal"
-                            >
-                              {tag}
-                            </Badge>
-                          ))}
-                          {note.tags.length > 3 && (
-                            <Badge variant="secondary" className="text-xs">
-                              +{note.tags.length - 3}
-                            </Badge>
-                          )}
-                        </div>
-                      )}
-                      <div className="notes-card-footer">
-                        <span className="notes-card-date">
-                          {new Date(note.updatedAt).toLocaleDateString(
-                            undefined,
-                            {
-                              month: "short",
-                              day: "numeric",
-                              year: "numeric",
-                            }
-                          )}
-                        </span>
+                      <div className="flex flex-wrap gap-1 mb-3">
+                        {note.tags.map((tag) => (
+                          <Badge
+                            key={tag}
+                            variant="secondary"
+                            className="text-xs"
+                          >
+                            {tag}
+                          </Badge>
+                        ))}
                       </div>
-                    </div>
-                  </div>
+                      <p className="text-xs text-muted-foreground">
+                        Created {note.createdAt}
+                      </p>
+                    </CardContent>
+                  </Card>
                 ))}
               </div>
             )}
           </TabsContent>
 
-          <TabsContent value="scanner" className="notes-tab-content">
-            <DocumentScanner
-              onSave={addScannedDoc}
-              scannedDocs={scannedDocs}
-              onDelete={deleteScannedDoc}
-            />
+          <TabsContent value="documents" className="space-y-4">
+            {scannedDocs.length === 0 ? (
+              <Card>
+                <CardContent className="text-center py-12">
+                  <BookOpen className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
+                  <h3 className="text-lg font-medium mb-2">No documents yet</h3>
+                  <p className="text-muted-foreground mb-4">
+                    Upload or scan documents to get started
+                  </p>
+                  <div className="flex gap-2 justify-center">
+                    <Button>
+                      <Upload className="h-4 w-4 mr-2" />
+                      Upload File
+                    </Button>
+                    <Button variant="outline">
+                      <Camera className="h-4 w-4 mr-2" />
+                      Scan Document
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {scannedDocs.map((doc) => (
+                  <Card
+                    key={doc.id}
+                    className="hover:shadow-md transition-all duration-200 group"
+                  >
+                    <CardHeader className="pb-3">
+                      <div className="flex items-start justify-between">
+                        <div className="flex-1">
+                          <CardTitle className="text-lg line-clamp-1">
+                            {doc.title}
+                          </CardTitle>
+                          <div className="flex items-center gap-2 mt-2">
+                            <Badge variant="outline" className="text-xs">
+                              {doc.type}
+                            </Badge>
+                            <span className="text-xs text-muted-foreground">
+                              {doc.size}
+                            </span>
+                          </div>
+                        </div>
+                        <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                          <Button
+                            size="sm"
+                            variant="ghost"
+                            className="h-8 w-8 p-0"
+                          >
+                            <Download className="h-3 w-3" />
+                          </Button>
+                          <Button
+                            size="sm"
+                            variant="ghost"
+                            className="h-8 w-8 p-0"
+                          >
+                            <Trash2 className="h-3 w-3 text-destructive" />
+                          </Button>
+                        </div>
+                      </div>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-xs text-muted-foreground">
+                        Uploaded {doc.uploadedAt}
+                      </p>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            )}
           </TabsContent>
         </Tabs>
       </div>

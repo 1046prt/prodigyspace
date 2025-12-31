@@ -1,6 +1,5 @@
 import Link from "next/link";
-import Image from "next/image";
-import { Github, Twitter, Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin, BookOpen, Github, Twitter } from "lucide-react";
 import "@/styles/footer.css";
 
 export function Footer() {
@@ -12,19 +11,14 @@ export function Footer() {
           <div className="brand-section">
             <div className="logo-container">
               <div className="logo">
-                <Image
-                  src="/logo.png"
-                  alt="ProdigySpace Logo"
-                  width={24}
-                  height={24}
-                  className="logo"
-                />
+                <BookOpen className="logo-icon" />
               </div>
-              <span className="brand-name">prodigyspace</span>
+              <span className="brand-name">ProdigySpace</span>
             </div>
             <p className="description">
-              Your all-in-one productivity companion for student life. Stay
-              organized, focused, and motivated.
+              Your comprehensive digital workspace for academic success,
+              collaboration, and well-being. Stay organized, focused, and
+              motivated throughout your student journey.
             </p>
           </div>
 
@@ -34,22 +28,22 @@ export function Footer() {
             <ul className="links-list">
               <li>
                 <Link href="/" className="link">
-                  Home
+                  Dashboard
                 </Link>
               </li>
               <li>
-                <Link href="/expenses" className="link">
-                  Expense Tracker
-                </Link>
-              </li>
-              <li>
-                <Link href="/todos" className="link">
-                  Task Manager
+                <Link href="/notes" className="link">
+                  Notes & Documents
                 </Link>
               </li>
               <li>
                 <Link href="/tasks" className="link">
-                  Study Planner
+                  Task Management
+                </Link>
+              </li>
+              <li>
+                <Link href="/todos" className="link">
+                  Todo Manager
                 </Link>
               </li>
               <li>
@@ -58,8 +52,18 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/collaboration" className="link">
+                  Collaboration Hub
+                </Link>
+              </li>
+              <li>
                 <Link href="/wellbeing" className="link">
-                  Wellbeing Tracker
+                  Well-being Center
+                </Link>
+              </li>
+              <li>
+                <Link href="/expenses" className="link">
+                  Expense Tracker
                 </Link>
               </li>
             </ul>
@@ -67,7 +71,7 @@ export function Footer() {
 
           {/* Contact & Social - Right Side */}
           <div className="contact-section">
-            <h3>Contact Us</h3>
+            <h3>Connect With Us</h3>
             <ul className="contact-list">
               <li className="contact-item">
                 <Mail className="contact-icon" />
@@ -82,23 +86,33 @@ export function Footer() {
                 <span>Student Life Building, University Ave</span>
               </li>
             </ul>
-            <div>
+            <div className="social-section">
               <h3>Follow Us</h3>
               <div className="social-links">
                 <Link
                   href="https://github.com/1046prt/"
                   className="social-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Visit our GitHub"
                 >
                   <Github />
-                  <span className="sr-only">GitHub</span>
                 </Link>
-                <Link href="https://x.com/1046prt/" className="social-link">
+                <Link
+                  href="https://x.com/1046prt/"
+                  className="social-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Follow us on Twitter"
+                >
                   <Twitter />
-                  <span className="sr-only">Twitter</span>
                 </Link>
-                <Link href="mailto:1046prt@gmail.com" className="social-link">
+                <Link
+                  href="mailto:1046prt@gmail.com"
+                  className="social-link"
+                  aria-label="Send us an email"
+                >
                   <Mail />
-                  <span className="sr-only">Email</span>
                 </Link>
               </div>
             </div>
@@ -106,7 +120,7 @@ export function Footer() {
         </div>
 
         <div className="copyright">
-          <p>&copy; 2025 prodigyspace. All rights reserved.</p>
+          <p>&copy; 2025 ProdigySpace. All rights reserved.</p>
         </div>
       </div>
     </footer>
