@@ -37,6 +37,8 @@ import {
   Award,
 } from "lucide-react";
 import { useState } from "react";
+import "@/styles/wellbeing.css";
+import "@/styles/wellbeing.css";
 
 export default function WellbeingPage() {
   const [selectedMood, setSelectedMood] = useState<number | null>(null);
@@ -212,20 +214,20 @@ export default function WellbeingPage() {
   const completedGoals = goals.filter((goal) => goal.progress >= 100).length;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background to-muted/20 p-4 md:p-6">
-      <div className="max-w-7xl mx-auto">
+    <div className="wellbeing">
+      <div className="wellbeing-container">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
-          <div>
-            <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-              Well-being Center
-            </h1>
-            <p className="text-muted-foreground mt-2">
-              Track your mental health, set wellness goals, and practice
-              mindfulness
-            </p>
-          </div>
-          <div className="flex gap-2">
+        <div className="wellbeing-header">
+          <h1 className="wellbeing-title">
+            Well-being Center
+          </h1>
+          <p className="wellbeing-subtitle">
+            Track your mental health, set wellness goals, and practice
+            mindfulness
+          </p>
+        </div>
+        {/* Action Buttons */}
+        <div className=\"mb-8 flex gap-2 justify-center\">          <div className="flex gap-2">
             <Dialog open={isAddMoodOpen} onOpenChange={setIsAddMoodOpen}>
               <DialogTrigger asChild>
                 <Button>
@@ -342,8 +344,8 @@ export default function WellbeingPage() {
         </div>
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-          <Card>
+        <div className="wellbeing-stats-grid">
+          <Card className="wellbeing-stat-card">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">
                 Average Mood
@@ -359,7 +361,7 @@ export default function WellbeingPage() {
               <p className="text-xs text-muted-foreground">Last 7 days</p>
             </CardContent>
           </Card>
-          <Card>
+          <Card className="wellbeing-stat-card">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">
                 Meditation Time
@@ -371,7 +373,7 @@ export default function WellbeingPage() {
               <p className="text-xs text-muted-foreground">This week</p>
             </CardContent>
           </Card>
-          <Card>
+          <Card className="wellbeing-stat-card">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">
                 Goals Completed
@@ -385,7 +387,7 @@ export default function WellbeingPage() {
               <p className="text-xs text-muted-foreground">This week</p>
             </CardContent>
           </Card>
-          <Card>
+          <Card className="wellbeing-stat-card">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Streak</CardTitle>
               <Zap className="h-4 w-4 text-muted-foreground" />
@@ -397,27 +399,27 @@ export default function WellbeingPage() {
           </Card>
         </div>
 
-        <Tabs defaultValue="mood" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-4 md:w-auto">
-            <TabsTrigger value="mood" className="flex items-center gap-2">
+        <Tabs defaultValue="mood" className="wellbeing-tabs">
+          <TabsList className="wellbeing-tabs-list wellbeing-tabs-list-grid-4">
+            <TabsTrigger value="mood" className="wellbeing-tab-trigger">
               <Heart className="h-4 w-4" />
               Mood
             </TabsTrigger>
-            <TabsTrigger value="goals" className="flex items-center gap-2">
+            <TabsTrigger value="goals" className="wellbeing-tab-trigger">
               <Target className="h-4 w-4" />
               Goals
             </TabsTrigger>
-            <TabsTrigger value="activities" className="flex items-center gap-2">
+            <TabsTrigger value="activities" className="wellbeing-tab-trigger">
               <Activity className="h-4 w-4" />
               Activities
             </TabsTrigger>
-            <TabsTrigger value="insights" className="flex items-center gap-2">
+            <TabsTrigger value="insights" className="wellbeing-tab-trigger">
               <TrendingUp className="h-4 w-4" />
               Insights
             </TabsTrigger>
           </TabsList>
 
-          <TabsContent value="mood" className="space-y-4">
+          <TabsContent value="mood" className="wellbeing-tab-content">
             <Card>
               <CardHeader>
                 <CardTitle>Recent Mood Entries</CardTitle>
@@ -455,7 +457,7 @@ export default function WellbeingPage() {
             </Card>
           </TabsContent>
 
-          <TabsContent value="goals" className="space-y-4">
+          <TabsContent value="goals" className="wellbeing-tab-content">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {goals.map((goal) => (
                 <Card key={goal.id}>
@@ -492,7 +494,7 @@ export default function WellbeingPage() {
             </div>
           </TabsContent>
 
-          <TabsContent value="activities" className="space-y-4">
+          <TabsContent value="activities" className="wellbeing-tab-content">
             <Card>
               <CardHeader>
                 <CardTitle>Recent Activities</CardTitle>
@@ -532,7 +534,7 @@ export default function WellbeingPage() {
             </Card>
           </TabsContent>
 
-          <TabsContent value="insights" className="space-y-4">
+          <TabsContent value="insights" className="wellbeing-tab-content">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <Card>
                 <CardHeader>

@@ -35,6 +35,7 @@ import {
   Camera,
 } from "lucide-react";
 import { useState } from "react";
+import "@/styles/notes.css";
 
 export default function NotesPage() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -109,18 +110,11 @@ export default function NotesPage() {
   });
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background to-muted/20 p-4 md:p-6">
-      <div className="max-w-7xl mx-auto">
+    <div className="notes">
+      <div className="notes-container">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
-          <div>
-            <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-              Notes & Documents
-            </h1>
-            <p className="text-muted-foreground mt-2">
-              Organize your study materials and documents in one place
-            </p>
-          </div>
+        <div className="notes-header">
+          <h1 className="notes-title">Notes & Documents</h1>
           <div className="flex gap-2">
             <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
               <DialogTrigger asChild>
@@ -176,44 +170,49 @@ export default function NotesPage() {
         </div>
 
         {/* Search and Filters */}
-        <div className="flex flex-col md:flex-row gap-4 mb-6">
-          <div className="relative flex-1">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-            <Input
-              placeholder="Search notes and documents..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-10"
-            />
+        <div className="notes-search-container">
+          <div className="notes-search-row">
+            <div className="notes-search-input-container">
+              <Search className="notes-search-icon" />
+              <Input
+                placeholder="Search notes and documents..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="notes-search-input"
+              />
+            </div>
+            <Select
+              value={selectedCategory}
+              onValueChange={setSelectedCategory}
+            >
+              <SelectTrigger className="notes-filter-select">
+                <Filter className="h-4 w-4 mr-2" />
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                {categories.map((category) => (
+                  <SelectItem key={category} value={category}>
+                    {category === "all" ? "All Categories" : category}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           </div>
-          <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-            <SelectTrigger className="w-full md:w-48">
-              <Filter className="h-4 w-4 mr-2" />
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              {categories.map((category) => (
-                <SelectItem key={category} value={category}>
-                  {category === "all" ? "All Categories" : category}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
         </div>
 
-        <Tabs defaultValue="notes" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-2 md:w-auto">
-            <TabsTrigger value="notes" className="flex items-center gap-2">
+        <Tabs defaultValue="notes" className="notes-tabs">
+          <TabsList className="notes-tabs-list">
+            <TabsTrigger value="notes" className="notes-tab-trigger">
               <FileText className="h-4 w-4" />
               Notes ({notes.length})
             </TabsTrigger>
-            <TabsTrigger value="documents" className="flex items-center gap-2">
+            <TabsTrigger value="documents" className="notes-tab-trigger">
               <BookOpen className="h-4 w-4" />
               Documents ({scannedDocs.length})
             </TabsTrigger>
           </TabsList>
 
-          <TabsContent value="notes" className="space-y-4">
+          <TabsContent value="notes" className="notes-tab-content">
             {filteredNotes.length === 0 ? (
               <Card>
                 <CardContent className="text-center py-12">
@@ -233,18 +232,15 @@ export default function NotesPage() {
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {filteredNotes.map((note) => (
-                  <Card
-                    key={note.id}
-                    className="hover:shadow-md transition-all duration-200 group"
-                  >
-                    <CardHeader className="pb-3">
-                      <div className="flex items-start justify-between">
+                  <Card key={note.id} className="notes-card">
+                    <CardHeader className="notes-card-header">
+                      <div className="notes-card-title-row">
                         <div className="flex-1">
                           <div className="flex items-center gap-2 mb-2">
                             {note.isPinned && (
                               <Pin className="h-4 w-4 text-primary" />
                             )}
-                            <CardTitle className="text-lg line-clamp-1">
+                            <CardTitle className="notes-card-title">
                               {note.title}
                             </CardTitle>
                           </div>
@@ -252,7 +248,7 @@ export default function NotesPage() {
                             {note.category}
                           </Badge>
                         </div>
-                        <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <div className="notes-card-actions">
                           <Button
                             size="sm"
                             variant="ghost"
@@ -270,10 +266,8 @@ export default function NotesPage() {
                         </div>
                       </div>
                     </CardHeader>
-                    <CardContent>
-                      <p className="text-sm text-muted-foreground line-clamp-3 mb-3">
-                        {note.content}
-                      </p>
+                    <CardContent className="notes-card-content">
+                      <p className="notes-card-text">{note.content}</p>
                       <div className="flex flex-wrap gap-1 mb-3">
                         {note.tags.map((tag) => (
                           <Badge
@@ -285,9 +279,11 @@ export default function NotesPage() {
                           </Badge>
                         ))}
                       </div>
-                      <p className="text-xs text-muted-foreground">
-                        Created {note.createdAt}
-                      </p>
+                      <div className="notes-card-footer">
+                        <p className="notes-card-date">
+                          Created {note.createdAt}
+                        </p>
+                      </div>
                     </CardContent>
                   </Card>
                 ))}
@@ -295,7 +291,7 @@ export default function NotesPage() {
             )}
           </TabsContent>
 
-          <TabsContent value="documents" className="space-y-4">
+          <TabsContent value="documents" className="notes-tab-content">
             {scannedDocs.length === 0 ? (
               <Card>
                 <CardContent className="text-center py-12">
@@ -317,16 +313,13 @@ export default function NotesPage() {
                 </CardContent>
               </Card>
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="notes-grid">
                 {scannedDocs.map((doc) => (
-                  <Card
-                    key={doc.id}
-                    className="hover:shadow-md transition-all duration-200 group"
-                  >
-                    <CardHeader className="pb-3">
-                      <div className="flex items-start justify-between">
+                  <Card key={doc.id} className="notes-card">
+                    <CardHeader className="notes-card-header">
+                      <div className="notes-card-title-row">
                         <div className="flex-1">
-                          <CardTitle className="text-lg line-clamp-1">
+                          <CardTitle className="notes-card-title">
                             {doc.title}
                           </CardTitle>
                           <div className="flex items-center gap-2 mt-2">
@@ -338,7 +331,7 @@ export default function NotesPage() {
                             </span>
                           </div>
                         </div>
-                        <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <div className="notes-card-actions">
                           <Button
                             size="sm"
                             variant="ghost"
@@ -356,10 +349,12 @@ export default function NotesPage() {
                         </div>
                       </div>
                     </CardHeader>
-                    <CardContent>
-                      <p className="text-xs text-muted-foreground">
-                        Uploaded {doc.uploadedAt}
-                      </p>
+                    <CardContent className="notes-card-content">
+                      <div className="notes-card-footer">
+                        <p className="notes-card-date">
+                          Uploaded {doc.uploadedAt}
+                        </p>
+                      </div>
                     </CardContent>
                   </Card>
                 ))}

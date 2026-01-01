@@ -1129,6 +1129,10 @@
     gap: var(--space-4);
   }
 
+  .wellbeing-stat-card {
+    padding: var(--space-4);
+  }
+
   .wellbeing-mood-grid {
     grid-template-columns: repeat(5, 1fr);
   }
