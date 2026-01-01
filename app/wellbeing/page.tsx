@@ -218,16 +218,15 @@ export default function WellbeingPage() {
       <div className="wellbeing-container">
         {/* Header */}
         <div className="wellbeing-header">
-          <h1 className="wellbeing-title">
-            Well-being Center
-          </h1>
+          <h1 className="wellbeing-title">Well-being Center</h1>
           <p className="wellbeing-subtitle">
             Track your mental health, set wellness goals, and practice
             mindfulness
           </p>
         </div>
         {/* Action Buttons */}
-        <div className=\"mb-8 flex gap-2 justify-center\">          <div className="flex gap-2">
+        <div className="mb-8 flex gap-2 justify-center">
+          <div className="flex gap-2">
             <Dialog open={isAddMoodOpen} onOpenChange={setIsAddMoodOpen}>
               <DialogTrigger asChild>
                 <Button>
