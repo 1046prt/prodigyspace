@@ -25,6 +25,14 @@
   --color-secondary-900: #581c87;
   --color-secondary-950: #3b0764;
 
+  /* RGB Values for Primary Colors */
+  --color-primary-rgb: 59, 130, 246; /* #3b82f6 */
+  --color-secondary-rgb: 168, 85, 247; /* #a855f7 */
+
+  /* RGB Values for UI Colors */
+  --color-muted-rgb: 241, 245, 249; /* light mode muted */
+  --color-accent-rgb: 34, 197, 94; /* #22c55e */
+
   /* Accent Colors  */
   --color-accent-50: #f0fdf4;
   --color-accent-100: #dcfce7;
@@ -96,6 +104,17 @@
     var(--color-gray-500),
     var(--color-gray-400)
   );
+
+  /* Dynamic RGB values that change with theme */
+  --color-muted-rgb: light-dark(
+    241,
+    245,
+    249,
+    30,
+    41,
+    59
+  ); /* light/dark muted */
+  --color-accent-rgb: 34, 197, 94; /* Accent stays consistent */
 
   --color-card: light-dark(#ffffff, var(--color-gray-900));
   --color-card-foreground: light-dark(

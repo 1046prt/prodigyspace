@@ -230,7 +230,7 @@ export default function NotesPage() {
                 </CardContent>
               </Card>
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="notes-grid">
                 {filteredNotes.map((note) => (
                   <Card key={note.id} className="notes-card">
                     <CardHeader className="notes-card-header">

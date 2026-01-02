@@ -457,7 +457,7 @@ export default function WellbeingPage() {
           </TabsContent>
 
           <TabsContent value="goals" className="wellbeing-tab-content">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="wellbeing-goals-grid">
               {goals.map((goal) => (
                 <Card key={goal.id}>
                   <CardHeader className="pb-3">
@@ -534,7 +534,7 @@ export default function WellbeingPage() {
           </TabsContent>
 
           <TabsContent value="insights" className="wellbeing-tab-content">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="wellbeing-insights-grid">
               <Card>
                 <CardHeader>
                   <CardTitle>Mood Trends</CardTitle>

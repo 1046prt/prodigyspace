@@ -127,7 +127,7 @@
 
 .wellbeing-subtitle {
   font-size: var(--text-lg);
-  color: rgba(var(--foreground-secondary-rgb), 0.85);
+  color: var(--color-foreground-secondary);
   max-width: 42rem;
   margin: 0 auto;
   line-height: 1.6;
@@ -146,13 +146,12 @@
 }
 
 .wellbeing-stat-card {
-  background: rgba(var(--card-rgb), 0.8);
+  background: var(--color-card);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(var(--border-rgb), 0.6);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-xl);
   padding: var(--space-6);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1),
-    0 0 1px rgba(255, 255, 255, 0.2) inset;
+  box-shadow: var(--shadow-lg);
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   position: relative;
   overflow: hidden;
@@ -313,7 +312,7 @@
 }
 
 .wellbeing-mood-option:hover {
-  background: rgba(var(--accent-rgb), 0.15);
+  background: var(--color-accent);
   transform: translateY(-5px) scale(1.05);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08), 0 2px 5px rgba(0, 0, 0, 0.04);
 }
@@ -1487,4 +1486,59 @@
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border-width: 0;
+}
+
+/* ===========================================
+   WELLBEING GRIDS
+   =========================================== */
+
+.wellbeing-goals-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: var(--space-6);
+  margin-bottom: var(--space-8);
+  align-items: start;
+}
+
+.wellbeing-insights-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-6);
+  align-items: start;
+}
+
+/* ===========================================
+   RESPONSIVE FIXES
+   =========================================== */
+
+@media (max-width: 768px) {
+  .wellbeing-goals-grid,
+  .wellbeing-insights-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+
+  .wellbeing-stats-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-4);
+  }
+
+  .wellbeing-header {
+    padding: var(--space-4) 0;
+  }
+
+  .wellbeing-container {
+    padding: 0 var(--space-4);
+  }
+
+  .wellbeing-tabs-list {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, auto);
+    gap: var(--space-2);
+  }
+
+  .wellbeing-tab-trigger {
+    padding: var(--space-2-5) var(--space-2);
+    font-size: var(--text-xs);
+  }
 }

@@ -178,8 +178,16 @@
 
 .notes-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: var(--space-6);
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .notes-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
 }
 
 .notes-card {
@@ -192,6 +200,7 @@
   flex-direction: column;
   overflow: hidden;
   position: relative;
+  min-height: 280px;
 }
 
 .notes-card:hover {
@@ -353,6 +362,12 @@
 
   .notes-search-row {
     flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .notes-search-container {
+    padding: var(--space-3);
+    margin-bottom: var(--space-6);
   }
 }
 
