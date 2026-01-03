@@ -66,6 +66,11 @@ export function Footer() {
                   Expense Tracker
                 </Link>
               </li>
+              <li>
+                <Link href="/about" className="link">
+                  About Us
+                </Link>
+              </li>
             </ul>
           </div>
 

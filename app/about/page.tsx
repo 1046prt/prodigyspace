@@ -1,146 +1,253 @@
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { GraduationCap, Target, Users, Zap } from "lucide-react";
+  Coffee,
+  Heart,
+  Lightbulb,
+  Users,
+  Clock,
+  BookOpen,
+  Target,
+  Sparkles,
+} from "lucide-react";
 import "@/styles/about.css";
 
 export default function AboutPage() {
-  const values = [
+  const teamStory = [
     {
-      icon: Target,
-      title: "Student-Focused",
-      description:
-        "Every feature is designed with student needs in mind, from budget tracking to assignment management.",
+      icon: Coffee,
+      title: "Late Night Coding Sessions",
+      story:
+        "Born from countless 3 AM coding sessions in dorm rooms, fueled by instant noodles and the dream of making student life easier.",
     },
     {
-      icon: Zap,
-      title: "Offline-First",
-      description:
-        "Work anywhere, anytime. All your data is stored locally and syncs when you're back online.",
+      icon: Heart,
+      title: "Real Student Problems",
+      story:
+        "We&apos;ve been there - missing deadlines, overspending on textbooks, losing track of assignments. This isn&apos;t just an app, it&apos;s our solution.",
     },
     {
       icon: Users,
-      title: "Privacy-Focused",
-      description:
-        "Your personal data stays on your device. We don't track, store, or sell your information.",
-    },
-    {
-      icon: GraduationCap,
-      title: "Academic Success",
-      description:
-        "Tools and features specifically crafted to help you succeed in your academic journey.",
+      title: "Built by Peers",
+      story:
+        "Created by a small group of computer science students who understood that the best tools come from those who actually use them daily.",
     },
   ];
 
   return (
-    <div className="w-full py-6">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="w-full py-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Hero Section */}
-        <div className="text-center py-12">
-          <h1 className="text-4xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-            About ProdigySpace
-          </h1>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            ProdigySpace was created by students, for students. We understand
-            the unique challenges of managing academic life, personal finances,
-            and staying organized while pursuing your education.
+        <div className="text-center py-16 relative">
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-950/20 dark:to-indigo-950/20 rounded-3xl -z-10"></div>
+          <div className="flex items-center justify-center mb-6">
+            <BookOpen className="w-12 h-12 text-blue-600 mr-4" />
+            <h1 className="text-5xl font-extrabold bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
+              Hey There! 👋
+            </h1>
+          </div>
+          <p className="text-xl text-gray-700 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
+            Welcome to ProdigySpace - where productivity meets personality.
+            We&apos;re not another faceless productivity app. We&apos;re
+            students who got tired of juggling seventeen different apps just to
+            stay organized.
           </p>
         </div>
 
-        {/* Mission Section */}
-        <div className="mb-12">
-          <Card className="border-2 border-primary/20">
-            <CardHeader className="text-center">
-              <CardTitle className="text-2xl font-bold text-primary">
-                Our Mission
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="text-center">
-              <p className="text-lg text-muted-foreground">
-                To empower students with simple, powerful tools that help them
-                stay organized, manage their finances, and focus on what matters
-                most - their education and personal growth. We believe that
-                productivity tools should be accessible, intuitive, and work
-                offline so you can stay productive anywhere.
-              </p>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Values Section */}
-        <div className="mb-12">
-          <h2 className="text-3xl font-bold text-center mb-8">
-            What We Stand For
+        {/* Our Story */}
+        <div className="mb-16">
+          <h2 className="text-3xl font-bold text-center mb-12">
+            <Sparkles className="inline w-8 h-8 text-yellow-500 mr-3" />
+            How We Started
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {values.map((value, index) => (
-              <Card
-                key={index}
-                className="h-full hover:shadow-lg transition-shadow"
-              >
-                <CardHeader>
-                  <div className="flex items-center space-x-3">
-                    <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-blue-100 dark:bg-blue-900">
-                      <value.icon className="h-5 w-5 text-blue-600 dark:text-blue-400" />
-                    </div>
-                    <CardTitle className="text-xl">{value.title}</CardTitle>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {teamStory.map((item, index) => (
+              <div key={index} className="relative group">
+                <div className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 group-hover:-translate-y-2 border border-gray-100 dark:border-gray-700">
+                  <div className="flex items-center justify-center w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900/50 dark:to-purple-900/50">
+                    <item.icon className="w-8 h-8 text-blue-600 dark:text-blue-400" />
                   </div>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription className="text-base">
-                    {value.description}
-                  </CardDescription>
-                </CardContent>
-              </Card>
+                  <h3 className="text-lg font-semibold text-center mb-3 text-gray-900 dark:text-gray-100">
+                    {item.title}
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-400 text-center leading-relaxed">
+                    {item.story}
+                  </p>
+                </div>
+              </div>
             ))}
           </div>
         </div>
 
-        {/* Features Overview */}
-        <div className="mb-12">
-          <h2 className="text-3xl font-bold text-center mb-8">
-            Why Choose ProdigySpace?
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="flex items-center justify-center w-16 h-16 mx-auto mb-4 rounded-full bg-emerald-100 dark:bg-emerald-900">
-                <span className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">
-                  💰
-                </span>
+        {/* What Makes Us Different */}
+        <div className="mb-16">
+          <div className="bg-gradient-to-br from-indigo-50 to-cyan-50 dark:from-indigo-900/20 dark:to-cyan-900/20 rounded-3xl p-8 md:p-12">
+            <h2 className="text-3xl font-bold text-center mb-8">
+              <Target className="inline w-8 h-8 text-indigo-600 mr-3" />
+              What Makes Us Different
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="space-y-6">
+                <div className="flex items-start space-x-4">
+                  <div className="flex-shrink-0 w-8 h-8 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center">
+                    <span className="text-green-600 dark:text-green-400 font-bold">
+                      ✓
+                    </span>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-gray-900 dark:text-gray-100 mb-1">
+                      No BS Privacy Policy
+                    </h3>
+                    <p className="text-gray-600 dark:text-gray-400">
+                      Your data stays on your device. Period. No tracking, no
+                      selling, no &ldquo;legitimate interests&rdquo; nonsense.
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-4">
+                  <div className="flex-shrink-0 w-8 h-8 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center">
+                    <span className="text-blue-600 dark:text-blue-400 font-bold">
+                      ✓
+                    </span>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-gray-900 dark:text-gray-100 mb-1">
+                      Works When WiFi Doesn&apos;t
+                    </h3>
+                    <p className="text-gray-600 dark:text-gray-400">
+                      Designed for real student life - spotty campus internet,
+                      library dead zones, and all.
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-4">
+                  <div className="flex-shrink-0 w-8 h-8 bg-purple-100 dark:bg-purple-900/30 rounded-full flex items-center justify-center">
+                    <span className="text-purple-600 dark:text-purple-400 font-bold">
+                      ✓
+                    </span>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-gray-900 dark:text-gray-100 mb-1">
+                      Actually Free (No Catch)
+                    </h3>
+                    <p className="text-gray-600 dark:text-gray-400">
+                      Built by students, for students. No premium tiers, no
+                      feature walls, no credit card required.
+                    </p>
+                  </div>
+                </div>
               </div>
-              <h3 className="text-xl font-bold mb-3">Smart Budgeting</h3>
-              <p className="text-muted-foreground">
-                Track expenses with categories, set budgets, and visualize your
-                spending patterns with intuitive charts.
+              <div className="space-y-6">
+                <div className="flex items-start space-x-4">
+                  <div className="flex-shrink-0 w-8 h-8 bg-yellow-100 dark:bg-yellow-900/30 rounded-full flex items-center justify-center">
+                    <Clock className="w-4 h-4 text-yellow-600 dark:text-yellow-400" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-gray-900 dark:text-gray-100 mb-1">
+                      Quick Setup, No Learning Curve
+                    </h3>
+                    <p className="text-gray-600 dark:text-gray-400">
+                      Jump right in - no 20-minute tutorials or complicated
+                      setup wizards.
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-4">
+                  <div className="flex-shrink-0 w-8 h-8 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center">
+                    <Heart className="w-4 h-4 text-red-600 dark:text-red-400" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-gray-900 dark:text-gray-100 mb-1">
+                      Made with Love (Not Algorithms)
+                    </h3>
+                    <p className="text-gray-600 dark:text-gray-400">
+                      Every feature came from real feedback from real students,
+                      not A/B tests and analytics.
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-4">
+                  <div className="flex-shrink-0 w-8 h-8 bg-indigo-100 dark:bg-indigo-900/30 rounded-full flex items-center justify-center">
+                    <Lightbulb className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-gray-900 dark:text-gray-100 mb-1">
+                      Smart but Not Overwhelming
+                    </h3>
+                    <p className="text-gray-600 dark:text-gray-400">
+                      Powerful enough for complex schedules, simple enough to
+                      use between classes.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* The Real Talk Section */}
+        <div className="mb-16">
+          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 border border-gray-100 dark:border-gray-700">
+            <h2 className="text-2xl font-bold mb-6 text-center">
+              The Real Talk 💬
+            </h2>
+            <div className="prose prose-lg max-w-none dark:prose-invert">
+              <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+                Look, we know there are tons of productivity apps out there.
+                Most of them were built by people in suits who haven&apos;t set
+                foot in a lecture hall since the 90s. They&apos;re obsessed with
+                &ldquo;maximizing synergies&rdquo; and &ldquo;optimizing
+                workflows&rdquo; - whatever that means.
+              </p>
+              <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+                We built ProdigySpace because we needed it ourselves. We needed
+                something that understood that sometimes you&apos;re cramming
+                for an exam at 2 AM, sometimes you&apos;re trying to split a
+                pizza bill with friends, and sometimes you just need to jot down
+                a quick note without opening seventeen different apps.
+              </p>
+              <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                This is our love letter to fellow students everywhere who are
+                just trying to get through the day without losing their minds
+                (or their assignments).
               </p>
             </div>
-            <div className="text-center">
-              <div className="flex items-center justify-center w-16 h-16 mx-auto mb-4 rounded-full bg-blue-100 dark:bg-blue-900">
-                <span className="text-2xl font-bold text-blue-600 dark:text-blue-400">
-                  ✅
-                </span>
+          </div>
+        </div>
+
+        {/* Fun Stats */}
+        <div className="text-center">
+          <h2 className="text-2xl font-bold mb-8">Some Fun Numbers</h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 p-6 rounded-xl">
+              <div className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">
+                47
               </div>
-              <h3 className="text-xl font-bold mb-3">Task Management</h3>
-              <p className="text-muted-foreground">
-                Organize assignments, set priorities, and never miss a deadline
-                with our comprehensive task system.
-              </p>
+              <div className="text-sm text-gray-600 dark:text-gray-400">
+                Cups of coffee consumed during development
+              </div>
             </div>
-            <div className="text-center">
-              <div className="flex items-center justify-center w-16 h-16 mx-auto mb-4 rounded-full bg-amber-100 dark:bg-amber-900">
-                <span className="text-2xl font-bold text-amber-600 dark:text-amber-400">
-                  📝
-                </span>
+            <div className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 p-6 rounded-xl">
+              <div className="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">
+                ∞
               </div>
-              <h3 className="text-xl font-bold mb-3">Quick Notes</h3>
-              <p className="text-muted-foreground">
-                Capture ideas instantly with sticky notes that you can organize,
-                color-code, and access offline.
-              </p>
+              <div className="text-sm text-gray-600 dark:text-gray-400">
+                Deadline panic attacks prevented
+              </div>
+            </div>
+            <div className="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 p-6 rounded-xl">
+              <div className="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2">
+                0
+              </div>
+              <div className="text-sm text-gray-600 dark:text-gray-400">
+                Times we&apos;ve sold your data
+              </div>
+            </div>
+            <div className="bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/20 dark:to-orange-800/20 p-6 rounded-xl">
+              <div className="text-3xl font-bold text-orange-600 dark:text-orange-400 mb-2">
+                100%
+              </div>
+              <div className="text-sm text-gray-600 dark:text-gray-400">
+                Made by actual students
+              </div>
             </div>
           </div>
         </div>
