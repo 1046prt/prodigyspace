@@ -147,11 +147,11 @@ export function TaskManager({
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <h2 className="text-2xl md:text-3xl font-bold">Task Manager</h2>
+      <div className="task-manager-header">
+        <h2 className="task-manager-title">Task Manager</h2>
         <Dialog open={showCreateDialog} onOpenChange={setShowCreateDialog}>
           <DialogTrigger asChild>
-            <Button className="w-full md:w-auto">
+            <Button className="task-manager-button-responsive">
               <Plus className="h-4 w-4 mr-2" />
               Add Task
             </Button>
@@ -306,12 +306,12 @@ export function TaskManager({
       </div>
 
       {/* Filters and Sort */}
-      <div className="flex flex-col md:flex-row gap-4">
+      <div className="task-manager-filters">
         <div className="flex items-center gap-2">
           <Filter className="h-4 w-4 text-muted-foreground" />
           <span className="text-sm font-medium">Filters:</span>
         </div>
-        <div className="flex flex-col md:flex-row gap-2 flex-1">
+        <div className="task-manager-filter-controls">
           <Select value={filterStatus} onValueChange={setFilterStatus}>
             <SelectTrigger className="w-full md:w-40">
               <SelectValue placeholder="Filter by status" />

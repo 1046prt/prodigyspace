@@ -49,6 +49,69 @@
    TASK FILTERS
    =========================================== */
 
+/* Task Manager Responsive Styles */
+.task-manager-header {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+@media (min-width: 768px) {
+  .task-manager-header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.task-manager-title {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 700;
+}
+
+@media (min-width: 768px) {
+  .task-manager-title {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
+}
+
+.task-manager-button-responsive {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .task-manager-button-responsive {
+    width: auto;
+  }
+}
+
+.task-manager-filters {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+@media (min-width: 768px) {
+  .task-manager-filters {
+    flex-direction: row;
+  }
+}
+
+.task-manager-filter-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+@media (min-width: 768px) {
+  .task-manager-filter-controls {
+    flex-direction: row;
+  }
+}
+
 .tasks-filters {
   display: flex;
   flex-wrap: wrap;
