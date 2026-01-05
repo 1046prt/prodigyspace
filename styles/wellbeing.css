@@ -70,7 +70,6 @@
   display: flex;
   gap: 8px;
 }
-}
 
 @keyframes patternMove {
   0% {

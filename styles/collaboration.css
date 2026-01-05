@@ -83,8 +83,6 @@
 @media (min-width: 768px) {
   .collaboration-action-button-responsive {
     width: auto;
-  }
-}
     text-align: left;
   }
 }
