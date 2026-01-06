@@ -19,6 +19,8 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--space-8);
+  align-items: flex-start;
+  justify-items: start;
   margin-bottom: var(--space-8);
 }
 

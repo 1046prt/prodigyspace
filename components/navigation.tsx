@@ -64,6 +64,18 @@ export function Navigation() {
     };
   }, [isOpen]);
 
+  // Close the sheet if the viewport is resized to desktop to keep hamburger logic scoped to mobile only
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        setIsOpen(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <header className="navigation">
       <div className="navigation-container">
@@ -115,8 +127,8 @@ export function Navigation() {
                 variant="ghost"
                 size="icon"
                 className="navigation-mobile-trigger"
-                onClick={() => setIsOpen(true)}
-                aria-label="Open navigation menu"
+                onClick={() => setIsOpen(!isOpen)}
+                aria-label="Toggle navigation menu"
               >
                 <Menu
                   className="navigation-mobile-trigger-icon"
