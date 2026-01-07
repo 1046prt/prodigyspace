@@ -14,6 +14,7 @@ import {
   Settings,
   ListTodo,
   GraduationCap,
+  CircleHelp,
   X,
   FileText,
   Users,
@@ -31,6 +32,7 @@ const navigation = [
   { name: "Collaboration", href: "/collaboration", icon: Users },
   { name: "Well-being", href: "/wellbeing", icon: Heart },
   { name: "Expenses", href: "/expenses", icon: Wallet },
+  { name: "FAQ", href: "/faq", icon: CircleHelp },
   { name: "Utilities", href: "/utilities", icon: Settings },
 ];
 
