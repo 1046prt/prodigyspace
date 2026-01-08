@@ -213,7 +213,7 @@ export default function FAQPage() {
 
         <section className="faq-layout">
           <div className="faq-accordion">
-            {faqSections.map((section) => (
+            {faqSections.map((section, sectionIdx) => (
               <article key={section.title} className="faq-section-card">
                 <header className="faq-section-header">
                   <div className="faq-section-icon" aria-hidden="true">
@@ -232,7 +232,7 @@ export default function FAQPage() {
                     <details
                       key={item.question}
                       className="faq-item"
-                      open={index === 0}
+                      open={sectionIdx === 0 && index === 0}
                     >
                       <summary>
                         <div className="faq-question">
@@ -240,7 +240,9 @@ export default function FAQPage() {
                             <CircleHelp />
                           </div>
                           <div>
-                            <p className="faq-question-label">Question</p>
+                            <p className="faq-question-label">
+                              Question {index + 1}
+                            </p>
                             <p className="faq-question-text">{item.question}</p>
                           </div>
                         </div>
@@ -254,7 +256,7 @@ export default function FAQPage() {
                         <div className="faq-answer-highlight">
                           <Sparkles aria-hidden="true" />
                           <span>
-                            Try it now: open the linked section below.
+                            Pro tip: Save this answer for quick reference later.
                           </span>
                         </div>
                       </div>
