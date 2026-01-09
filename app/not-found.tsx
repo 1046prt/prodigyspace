@@ -9,25 +9,50 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Home, ArrowLeft, Search } from "lucide-react";
+import { Home, ArrowLeft, Search, Sparkles } from "lucide-react";
 import "@/styles/not-found.css";
 
 export default function NotFound() {
   return (
-    <div className="container">
+    <div className="container fancyBG">
+      <div className="bgBlob bgBlob--one" aria-hidden="true" />
+      <div className="bgBlob bgBlob--two" aria-hidden="true" />
       <div className="content">
-        <Card className="card">
+        <Card className="card glassCard">
           <CardHeader className="cardHeader">
-            <div className="iconContainer">
-              <span className="text-4xl">🤔</span>
+            <div className="mark">
+              <Sparkles className="markIcon" />
             </div>
-            <CardTitle className="title">Page Not Found</CardTitle>
+            <div className="hero">
+              <span className="errorCode" aria-hidden>
+                404
+              </span>
+              <span className="heroSheen" aria-hidden></span>
+            </div>
+            <CardTitle className="title gradientText">Page Not Found</CardTitle>
             <CardDescription className="description">
-              Sorry, we couldn&apos;t find the page you&apos;re looking for. It
-              might have been moved or doesn&apos;t exist.
+              We couldn&apos;t find what you were looking for. It might have
+              been moved, renamed, or never existed.
             </CardDescription>
           </CardHeader>
           <CardContent className="cardContent">
+            <div className="quickLinks" aria-label="Popular destinations">
+              <Link href="/notes" className="pill">
+                Notes
+              </Link>
+              <Link href="/tasks" className="pill">
+                Tasks
+              </Link>
+              <Link href="/expenses" className="pill">
+                Expenses
+              </Link>
+              <Link href="/todos" className="pill">
+                Todos
+              </Link>
+              <Link href="/wellbeing" className="pill">
+                Wellbeing
+              </Link>
+            </div>
             <div className="buttonGrid">
               <Link href="/" className="homeButton">
                 <Button className="button" variant="default">
