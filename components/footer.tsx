@@ -32,43 +32,13 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/notes" className="link">
-                  Notes & Documents
-                </Link>
-              </li>
-              <li>
-                <Link href="/tasks" className="link">
-                  Task Management
-                </Link>
-              </li>
-              <li>
-                <Link href="/todos" className="link">
-                  Todo Manager
-                </Link>
-              </li>
-              <li>
-                <Link href="/attendance" className="link">
-                  Attendance Tracker
-                </Link>
-              </li>
-              <li>
-                <Link href="/collaboration" className="link">
-                  Collaboration Hub
-                </Link>
-              </li>
-              <li>
-                <Link href="/wellbeing" className="link">
-                  Well-being Center
-                </Link>
-              </li>
-              <li>
-                <Link href="/expenses" className="link">
-                  Expense Tracker
-                </Link>
-              </li>
-              <li>
                 <Link href="/about" className="link">
                   About Us
+                </Link>
+              </li>
+              <li>
+                <Link href="/faq" className="link">
+                  FAQs
                 </Link>
               </li>
             </ul>
@@ -87,40 +57,28 @@ export function Footer() {
                 <span>+91-9508015377</span>
               </li>
               <li className="contact-item">
-                <MapPin className="contact-icon" />
-                <span>Student Life Building, University Ave</span>
-              </li>
-            </ul>
-            <div className="social-section">
-              <h3>Follow Us</h3>
-              <div className="social-links">
+                <Github className="contact-icon" />
                 <Link
                   href="https://github.com/1046prt/"
-                  className="social-link"
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Visit our GitHub"
+                  style={{ color: "inherit", textDecoration: "none" }}
                 >
-                  <Github />
+                  GitHub Profile
                 </Link>
+              </li>
+              <li className="contact-item">
+                <Twitter className="contact-icon" />
                 <Link
                   href="https://x.com/1046prt/"
-                  className="social-link"
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Follow us on Twitter"
+                  style={{ color: "inherit", textDecoration: "none" }}
                 >
-                  <Twitter />
+                  Twitter Profile
                 </Link>
-                <Link
-                  href="mailto:1046prt@gmail.com"
-                  className="social-link"
-                  aria-label="Send us an email"
-                >
-                  <Mail />
-                </Link>
-              </div>
-            </div>
+              </li>
+            </ul>
           </div>
         </div>
 
