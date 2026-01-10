@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -14,7 +15,6 @@ import {
   ListTodo,
   X,
   FileText,
-  BookOpen,
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import "@/styles/navigation.css";
@@ -80,7 +80,13 @@ export function Navigation() {
           aria-label="ProdigySpace Home"
         >
           <div className="navigation-logo-icon">
-            <BookOpen className="navigation-logo-svg" />
+            <Image
+              src="/logo.png"
+              alt="ProdigySpace Logo"
+              className="navigation-logo-image"
+              width={32}
+              height={32}
+            />
           </div>
           <span className="navigation-logo-text">ProdigySpace</span>
         </Link>

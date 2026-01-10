@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Mail, Phone, MapPin, BookOpen, Github, Twitter } from "lucide-react";
+import { Mail, Phone, Github, Twitter } from "lucide-react";
+import Image from "next/image";
 import "@/styles/footer.css";
 
 export function Footer() {
@@ -11,7 +12,13 @@ export function Footer() {
           <div className="brand-section">
             <div className="logo-container">
               <div className="logo">
-                <BookOpen className="logo-icon" />
+                <Image
+                  src="/logo.png"
+                  alt="ProdigySpace Logo"
+                  className="logo-icon"
+                  width={24}
+                  height={24}
+                />
               </div>
               <span className="brand-name">ProdigySpace</span>
             </div>

@@ -4,26 +4,18 @@ import { useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import Link from "next/link";
+import Image from "next/image";
 import {
   FileText,
   Users,
   Heart,
   CheckSquare,
-  BookOpen,
   TrendingUp,
   Clock,
   GraduationCap,
   AlarmClock,
   Calculator,
   DollarSign,
-  Droplets,
-  StickyNote,
-  Target,
-  Timer,
-  Bookmark,
-  Camera,
-  HelpCircle,
-  Lightbulb,
 } from "lucide-react";
 import { useTasks } from "@/hooks/use-tasks";
 import { useNotes } from "@/hooks/use-notes";
@@ -181,7 +173,13 @@ export default function HomePage() {
         <header className="homepage-header">
           <div className="homepage-logo-container">
             <div className="homepage-logo-icon">
-              <BookOpen />
+              <Image
+                src="/logo.png"
+                alt="ProdigySpace Logo"
+                className="homepage-logo-image"
+                width={48}
+                height={48}
+              />
             </div>
             <h1 className="homepage-logo-title">ProdigySpace</h1>
           </div>

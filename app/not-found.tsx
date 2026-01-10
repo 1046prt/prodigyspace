@@ -9,7 +9,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Home, ArrowLeft, Search, Sparkles } from "lucide-react";
+import { Home, ArrowLeft, Search } from "lucide-react";
+import Image from "next/image";
 import "@/styles/not-found.css";
 
 export default function NotFound() {
@@ -21,7 +22,13 @@ export default function NotFound() {
         <Card className="card glassCard">
           <CardHeader className="cardHeader">
             <div className="mark">
-              <Sparkles className="markIcon" />
+              <Image
+                src="/logo.png"
+                alt="ProdigySpace Logo"
+                className="markIcon"
+                width={32}
+                height={32}
+              />
             </div>
             <div className="hero">
               <span className="errorCode" aria-hidden>

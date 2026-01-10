@@ -97,9 +97,16 @@
 }
 
 .markIcon {
-  width: 18px;
-  height: 18px;
-  color: oklch(0.3 0 0);
+  width: 2rem;
+  height: 2rem;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+  transition: all 0.3s ease;
+}
+
+.markIcon:hover {
+  transform: scale(1.1);
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
 }
 
 .hero {

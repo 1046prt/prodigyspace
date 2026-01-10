@@ -44,11 +44,9 @@
   width: 4rem;
   height: 4rem;
   border-radius: var(--radius-2xl);
-  background: linear-gradient(
-    135deg,
-    var(--color-primary-500) 0%,
-    var(--color-primary-700) 100%
-  );
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
   box-shadow: var(--shadow-xl);
   transition: all var(--transition-default);
 }
@@ -56,12 +54,19 @@
 .homepage-logo-icon:hover {
   transform: scale(1.05);
   box-shadow: var(--shadow-2xl);
+  background: rgba(255, 255, 255, 0.15);
 }
 
-.homepage-logo-icon svg {
-  width: 2rem;
-  height: 2rem;
-  color: white;
+.homepage-logo-image {
+  width: 2.5rem;
+  height: 2.5rem;
+  object-fit: contain;
+  transition: all var(--transition-default);
+  filter: brightness(1.1);
+}
+
+.homepage-logo-icon:hover .homepage-logo-image {
+  transform: scale(1.1);
 }
 
 .homepage-logo-title {
@@ -76,7 +81,7 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
   letter-spacing: var(--tracking-tight);
-  padding: 10px 10px 10px ;
+  padding: 10px 10px 10px;
   margin: 0;
 }
 
