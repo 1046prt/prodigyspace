@@ -225,12 +225,12 @@ export default function WellbeingPage() {
           </p>
         </div>
         {/* Action Buttons */}
-        <div className="mb-8 flex gap-2 justify-center">
+        <div className="wellbeing-actions">
           <div className="flex gap-2">
             <Dialog open={isAddMoodOpen} onOpenChange={setIsAddMoodOpen}>
               <DialogTrigger asChild>
                 <Button>
-                  <Heart className="h-4 w-4 mr-2" />
+                  <Heart className="h-4 w-4" />
                   Log Mood
                 </Button>
               </DialogTrigger>
