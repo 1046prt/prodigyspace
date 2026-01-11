@@ -129,20 +129,6 @@
   }
 }
 
-.homepage-stat-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(
-    90deg,
-    var(--color-primary-500),
-    var(--color-secondary-500)
-  );
-}
-
 .homepage-stat-card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-lg);

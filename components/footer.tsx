@@ -71,7 +71,7 @@ export function Footer() {
                   rel="noopener noreferrer"
                   style={{ color: "inherit", textDecoration: "none" }}
                 >
-                  GitHub Profile
+                  GitHub
                 </Link>
               </li>
               <li className="contact-item">
@@ -82,7 +82,7 @@ export function Footer() {
                   rel="noopener noreferrer"
                   style={{ color: "inherit", textDecoration: "none" }}
                 >
-                  Twitter Profile
+                  Twitter
                 </Link>
               </li>
             </ul>
