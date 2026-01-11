@@ -19,6 +19,9 @@ import {
   Ruler,
   Thermometer,
   ArrowRight,
+  Weight,
+  Fuel,
+  Zap,
 } from "lucide-react";
 import React, { useState } from "react";
 import "@/styles/unit-converter.css";
@@ -47,6 +50,24 @@ const unitCategories = [
     name: "Temperature",
     units: ["celsius", "fahrenheit", "kelvin"],
     icon: Thermometer,
+  },
+  {
+    id: "weight",
+    name: "Weight",
+    units: ["mg", "g", "kg", "lb", "oz", "ton"],
+    icon: Weight,
+  },
+  {
+    id: "volume",
+    name: "Volume",
+    units: ["ml", "l", "gallon", "quart", "pint", "cup", "floz"],
+    icon: Fuel,
+  },
+  {
+    id: "energy",
+    name: "Energy",
+    units: ["joule", "calorie", "kcal", "kwh", "btu"],
+    icon: Zap,
   },
 ];
 
@@ -165,8 +186,8 @@ export function UnitConverter() {
 
         <div className="help-text">
           <p>
-            Quick conversions for students: file sizes, time durations,
-            measurements, and temperature.
+            Comprehensive unit converter for students: data storage, time,
+            measurements, temperature, weight, volume, and energy conversions.
           </p>
         </div>
       </CardContent>

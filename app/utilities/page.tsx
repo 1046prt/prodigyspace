@@ -19,6 +19,7 @@ import {
   Wifi,
   Monitor,
 } from "lucide-react";
+import { UnitConverter } from "@/components/unit-converter";
 import { useState, useEffect } from "react";
 import "@/styles/utilities.css";
 
@@ -158,9 +159,7 @@ export default function UtilitiesPage() {
     <div className="utilities-page">
       <div className="utilities-container">
         <div className="utilities-header">
-          <h1 className="utilities-title">
-            Utilities & Tools
-          </h1>
+          <h1 className="utilities-title">Utilities & Tools</h1>
           <p className="utilities-subtitle">
             Helpful tools and utilities for your daily tasks
           </p>
@@ -177,7 +176,7 @@ export default function UtilitiesPage() {
               Timer
             </TabsTrigger>
             <TabsTrigger value="tools" className="utilities-tab-trigger">
-              <Settings className="h-4 w-4" />
+              <Ruler className="h-4 w-4" />
               Tools
             </TabsTrigger>
             <TabsTrigger value="system" className="utilities-tab-trigger">
@@ -430,10 +429,7 @@ export default function UtilitiesPage() {
                     <div className="calendar-grid">
                       {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map(
                         (day) => (
-                          <div
-                            key={day}
-                            className="calendar-day-header"
-                          >
+                          <div key={day} className="calendar-day-header">
                             {day}
                           </div>
                         )
@@ -460,32 +456,35 @@ export default function UtilitiesPage() {
           </TabsContent>
 
           <TabsContent value="tools" className="space-y-4">
-            <div className="utilities-grid utilities-grid-md-2 utilities-grid-lg-3">
-              {quickTools.map((tool, index) => (
-                <Card
-                  key={index}
-                  className="utilities-tool-card"
-                >
-                  <CardHeader className="pb-3">
-                    <div className="utilities-tool-header">
-                      <div className="utilities-tool-icon">
-                        <tool.icon className="h-5 w-5" />
+            <div className="utilities-grid utilities-grid-lg-2">
+              <UnitConverter />
+
+              <div className="utilities-grid utilities-grid-md-1">
+                {quickTools.map((tool, index) => (
+                  <Card key={index} className="utilities-tool-card">
+                    <CardHeader className="pb-3">
+                      <div className="utilities-tool-header">
+                        <div className="utilities-tool-icon">
+                          <tool.icon className="h-5 w-5" />
+                        </div>
+                        <div>
+                          <CardTitle className="text-lg">
+                            {tool.title}
+                          </CardTitle>
+                          <Badge className={tool.color} variant="secondary">
+                            Coming Soon
+                          </Badge>
+                        </div>
                       </div>
-                      <div>
-                        <CardTitle className="text-lg">{tool.title}</CardTitle>
-                        <Badge className={tool.color} variant="secondary">
-                          Coming Soon
-                        </Badge>
-                      </div>
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="utilities-tool-description">
-                      {tool.description}
-                    </p>
-                  </CardContent>
-                </Card>
-              ))}
+                    </CardHeader>
+                    <CardContent>
+                      <p className="utilities-tool-description">
+                        {tool.description}
+                      </p>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
             </div>
           </TabsContent>
 
@@ -502,15 +501,21 @@ export default function UtilitiesPage() {
                   <div className="system-info-grid">
                     <div className="system-info-item">
                       <span className="system-info-label">Browser:</span>
-                      <span className="system-info-value">{systemInfo.browser}</span>
+                      <span className="system-info-value">
+                        {systemInfo.browser}
+                      </span>
                     </div>
                     <div className="system-info-item">
                       <span className="system-info-label">Platform:</span>
-                      <span className="system-info-value">{systemInfo.platform}</span>
+                      <span className="system-info-value">
+                        {systemInfo.platform}
+                      </span>
                     </div>
                     <div className="system-info-item">
                       <span className="system-info-label">Language:</span>
-                      <span className="system-info-label">{systemInfo.language}</span>
+                      <span className="system-info-label">
+                        {systemInfo.language}
+                      </span>
                     </div>
                     <div className="system-info-item">
                       <span className="system-info-label">Cookies:</span>
@@ -531,16 +536,16 @@ export default function UtilitiesPage() {
                       </span>
                     </div>
                     <div className="system-info-item">
-                      <span className="system-info-label">
-                        Color Depth:
-                      </span>
+                      <span className="system-info-label">Color Depth:</span>
                       <span className="system-info-value">
                         {systemInfo.colorDepth} bit
                       </span>
                     </div>
                     <div className="system-info-item">
                       <span className="system-info-label">Timezone:</span>
-                      <span className="system-info-value">{systemInfo.timezone}</span>
+                      <span className="system-info-value">
+                        {systemInfo.timezone}
+                      </span>
                     </div>
                   </div>
                 </CardContent>
