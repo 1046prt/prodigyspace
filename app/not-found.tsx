@@ -15,72 +15,71 @@ import "@/styles/not-found.css";
 
 export default function NotFound() {
   return (
-    <div className="container fancyBG">
-      <div className="bgBlob bgBlob--one" aria-hidden="true" />
-      <div className="bgBlob bgBlob--two" aria-hidden="true" />
-      <div className="content">
-        <Card className="card glassCard">
-          <CardHeader className="cardHeader">
-            <div className="mark">
+    <div className="not-found-container">
+      <div className="not-found-content">
+        <Card className="not-found-card">
+          <CardHeader className="not-found-header">
+            <div className="logo-section">
               <Image
                 src="/logo.png"
                 alt="ProdigySpace Logo"
-                className="markIcon"
-                width={32}
-                height={32}
+                width={40}
+                height={40}
+                className="logo-image"
               />
             </div>
-            <div className="hero">
-              <span className="errorCode" aria-hidden>
-                404
-              </span>
-              <span className="heroSheen" aria-hidden></span>
+            <div className="error-section">
+              <h1 className="error-code">404</h1>
+              <CardTitle className="error-title">Page Not Found</CardTitle>
+              <CardDescription className="error-description">
+                Sorry, the page you are looking for doesn't exist. It may have
+                been moved or deleted.
+              </CardDescription>
             </div>
-            <CardTitle className="title gradientText">Page Not Found</CardTitle>
-            <CardDescription className="description">
-              We couldn&apos;t find what you were looking for. It might have
-              been moved, renamed, or never existed.
-            </CardDescription>
           </CardHeader>
-          <CardContent className="cardContent">
-            <div className="quickLinks" aria-label="Popular destinations">
-              <Link href="/notes" className="pill">
-                Notes
-              </Link>
-              <Link href="/tasks" className="pill">
-                Tasks
-              </Link>
-              <Link href="/expenses" className="pill">
-                Expenses
-              </Link>
-              <Link href="/todos" className="pill">
-                Todos
-              </Link>
-              <Link href="/wellbeing" className="pill">
-                Wellbeing
-              </Link>
-            </div>
-            <div className="buttonGrid">
-              <Link href="/" className="homeButton">
-                <Button className="button" variant="default">
+          <CardContent className="not-found-actions">
+            <div className="action-buttons">
+              <Link href="/">
+                <Button className="primary-button">
                   <Home className="mr-2 h-4 w-4" />
                   Go Home
                 </Button>
               </Link>
-              <Link href="/expenses" className="browseButton">
-                <Button className="button" variant="outline">
-                  <Search className="mr-2 h-4 w-4" />
-                  Browse Features
-                </Button>
-              </Link>
               <Button
-                className="backButton"
-                variant="ghost"
+                variant="outline"
+                className="secondary-button"
                 onClick={() => window.history.back()}
               >
                 <ArrowLeft className="mr-2 h-4 w-4" />
                 Go Back
               </Button>
+            </div>
+
+            <div className="quick-links">
+              <h3 className="quick-links-title">Or explore these sections:</h3>
+              <div className="links-grid">
+                <Link href="/notes" className="quick-link">
+                  Notes
+                </Link>
+                <Link href="/tasks" className="quick-link">
+                  Tasks
+                </Link>
+                <Link href="/expenses" className="quick-link">
+                  Expenses
+                </Link>
+                <Link href="/todos" className="quick-link">
+                  Todos
+                </Link>
+                <Link href="/wellbeing" className="quick-link">
+                  Wellbeing
+                </Link>
+                <Link href="/attendance" className="quick-link">
+                  Attendance
+                </Link>
+                <Link href="/alarms" className="quick-link">
+                  Alarms
+                </Link>
+              </div>
             </div>
           </CardContent>
         </Card>
