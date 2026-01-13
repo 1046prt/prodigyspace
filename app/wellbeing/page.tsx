@@ -37,67 +37,66 @@ import {
   Award,
 } from "lucide-react";
 import { useState } from "react";
-import "@/styles/wellbeing.css";
+import { useWellbeing } from "@/hooks/use-wellbeing";
+import { GoalsManager } from "@/components/goals-manager";
 import "@/styles/wellbeing.css";
 
 export default function WellbeingPage() {
+  const {
+    moodEntries,
+    meditationSessions,
+    wellbeingGoals,
+    addMoodEntry,
+    addWellbeingGoal,
+    updateGoalProgress,
+  } = useWellbeing();
+  
   const [selectedMood, setSelectedMood] = useState<number | null>(null);
+  const [selectedEnergy, setSelectedEnergy] = useState<number>(3);
+  const [selectedStress, setSelectedStress] = useState<number>(3);
+  const [moodNotes, setMoodNotes] = useState("");
   const [isAddMoodOpen, setIsAddMoodOpen] = useState(false);
   const [isAddGoalOpen, setIsAddGoalOpen] = useState(false);
 
-  // Mock data - replace with actual data management
-  const moodEntries = [
-    {
-      id: 1,
-      mood: 4,
-      note: "Great day! Finished all assignments",
-      date: "2024-01-15",
-      energy: 5,
-      stress: 2,
-    },
-    {
-      id: 2,
-      mood: 3,
-      note: "Okay day, felt a bit tired",
-      date: "2024-01-14",
-      energy: 3,
-      stress: 3,
-    },
-    {
-      id: 3,
-      mood: 5,
-      note: "Excellent! Got good grades",
-      date: "2024-01-13",
-      energy: 5,
-      stress: 1,
-    },
-    {
-      id: 4,
-      mood: 2,
-      note: "Stressful day with exams",
-      date: "2024-01-12",
-      energy: 2,
-      stress: 5,
-    },
-    {
-      id: 5,
-      mood: 4,
-      note: "Productive study session",
-      date: "2024-01-11",
-      energy: 4,
-      stress: 2,
-    },
-  ];
+  // Add function to handle mood entry submission
+  const handleMoodSubmit = () => {
+    if (selectedMood !== null) {
+      addMoodEntry({
+        date: new Date(),
+        mood: selectedMood as 1 | 2 | 3 | 4 | 5,
+        energy: selectedEnergy as 1 | 2 | 3 | 4 | 5,
+        stress: selectedStress as 1 | 2 | 3 | 4 | 5,
+        notes: moodNotes,
+        activities: [],
+      });
+      
+      // Reset form
+      setSelectedMood(null);
+      setSelectedEnergy(3);
+      setSelectedStress(3);
+      setMoodNotes("");
+      setIsAddMoodOpen(false);
+    }
+  };
 
-  const goals = [
-    {
-      id: 1,
-      title: "Exercise 3 times per week",
-      category: "Physical Health",
-      progress: 66,
-      target: 3,
-      current: 2,
-      unit: "sessions",
+  // Convert meditation sessions to activities for display
+  const activities = meditationSessions.map(session => ({
+    id: session.id,
+    name: `${session.type} meditation`,
+    type: "Mindfulness" as const,
+    duration: session.duration,
+    date: session.completedAt.toLocaleDateString(),
+  }));
+
+  // Transform wellbeing goals for display
+  const goals = wellbeingGoals.map(goal => ({
+    id: goal.id,
+    title: goal.title,
+    category: goal.category.charAt(0).toUpperCase() + goal.category.slice(1),
+    progress: Math.round((goal.current / goal.target) * 100),
+    target: goal.target,
+    current: goal.current,
+    unit: goal.unit,
       dueDate: "2024-01-21",
     },
     {
@@ -270,15 +269,43 @@ export default function WellbeingPage() {
                     <label className="text-sm font-medium mb-2 block">
                       Energy Level (1-5)
                     </label>
-                    <Input type="number" min="1" max="5" placeholder="3" />
+                    <div className="flex gap-2">
+                      {[1, 2, 3, 4, 5].map((energy) => (
+                        <Button
+                          key={energy}
+                          variant={selectedEnergy === energy ? "default" : "outline"}
+                          size="sm"
+                          onClick={() => setSelectedEnergy(energy)}
+                          className="flex-1"
+                        >
+                          {energy}
+                        </Button>
+                      ))}
+                    </div>
                   </div>
                   <div>
                     <label className="text-sm font-medium mb-2 block">
                       Stress Level (1-5)
                     </label>
-                    <Input type="number" min="1" max="5" placeholder="3" />
+                    <div className="flex gap-2">
+                      {[1, 2, 3, 4, 5].map((stress) => (
+                        <Button
+                          key={stress}
+                          variant={selectedStress === stress ? "default" : "outline"}
+                          size="sm"
+                          onClick={() => setSelectedStress(stress)}
+                          className="flex-1"
+                        >
+                          {stress}
+                        </Button>
+                      ))}
+                    </div>
                   </div>
-                  <Textarea placeholder="How was your day? Any notes..." />
+                  <Textarea 
+                    placeholder="How was your day? Any notes..." 
+                    value={moodNotes}
+                    onChange={(e) => setMoodNotes(e.target.value)}
+                  />
                   <div className="flex justify-end gap-2">
                     <Button
                       variant="outline"
@@ -286,7 +313,10 @@ export default function WellbeingPage() {
                     >
                       Cancel
                     </Button>
-                    <Button onClick={() => setIsAddMoodOpen(false)}>
+                    <Button 
+                      onClick={handleMoodSubmit}
+                      disabled={selectedMood === null}
+                    >
                       Save Entry
                     </Button>
                   </div>
@@ -300,42 +330,22 @@ export default function WellbeingPage() {
                   New Goal
                 </Button>
               </DialogTrigger>
-              <DialogContent>
+              <DialogContent className="max-w-2xl">
                 <DialogHeader>
                   <DialogTitle>Create Wellness Goal</DialogTitle>
                   <DialogDescription>
-                    Set a new goal to improve your well-being
+                    Use the goals manager below to create and track your wellness goals
                   </DialogDescription>
                 </DialogHeader>
-                <div className="space-y-4">
-                  <Input placeholder="Goal title..." />
-                  <Select>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select category" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="physical">Physical Health</SelectItem>
-                      <SelectItem value="mental">Mental Health</SelectItem>
-                      <SelectItem value="sleep">Sleep</SelectItem>
-                      <SelectItem value="nutrition">Nutrition</SelectItem>
-                    </SelectContent>
-                  </Select>
-                  <Input
-                    type="number"
-                    placeholder="Target (e.g., 3 times per week)"
+                <div className="mt-4">
+                  <GoalsManager
+                    goals={wellbeingGoals}
+                    onAddGoal={(goalData) => {
+                      addWellbeingGoal(goalData);
+                      setIsAddGoalOpen(false);
+                    }}
+                    onUpdateProgress={updateGoalProgress}
                   />
-                  <Input type="date" placeholder="Due date" />
-                  <div className="flex justify-end gap-2">
-                    <Button
-                      variant="outline"
-                      onClick={() => setIsAddGoalOpen(false)}
-                    >
-                      Cancel
-                    </Button>
-                    <Button onClick={() => setIsAddGoalOpen(false)}>
-                      Create Goal
-                    </Button>
-                  </div>
                 </div>
               </DialogContent>
             </Dialog>
@@ -433,10 +443,17 @@ export default function WellbeingPage() {
                       <div className="flex items-center gap-3">
                         {getMoodIcon(entry.mood)}
                         <div>
-                          <p className="font-medium">{entry.note}</p>
-                          <p className="text-sm text-muted-foreground">
-                            {entry.date}
+                          <p className="font-medium">
+                            Mood: {entry.mood}/5
                           </p>
+                          <p className="text-sm text-muted-foreground">
+                            {entry.date.toLocaleDateString()}
+                          </p>
+                          {entry.notes && (
+                            <p className="text-sm text-muted-foreground mt-1">
+                              {entry.notes}
+                            </p>
+                          )}
                         </div>
                       </div>
                       <div className="flex gap-4 text-sm">
@@ -451,46 +468,23 @@ export default function WellbeingPage() {
                       </div>
                     </div>
                   ))}
+                  {moodEntries.length === 0 && (
+                    <div className="text-center py-8 text-muted-foreground">
+                      <Heart className="h-12 w-12 mx-auto mb-4 opacity-50" />
+                      <p>No mood entries yet. Start by logging your mood!</p>
+                    </div>
+                  )}
                 </div>
               </CardContent>
             </Card>
           </TabsContent>
 
           <TabsContent value="goals" className="wellbeing-tab-content">
-            <div className="wellbeing-goals-grid">
-              {goals.map((goal) => (
-                <Card key={goal.id}>
-                  <CardHeader className="pb-3">
-                    <div className="flex items-start justify-between">
-                      <div className="flex items-center gap-2">
-                        {getCategoryIcon(goal.category)}
-                        <CardTitle className="text-lg">{goal.title}</CardTitle>
-                      </div>
-                      <Badge className={getCategoryColor(goal.category)}>
-                        {goal.category}
-                      </Badge>
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-3">
-                      <div className="flex justify-between text-sm">
-                        <span>Progress</span>
-                        <span className="font-medium">{goal.progress}%</span>
-                      </div>
-                      <Progress value={goal.progress} className="h-2" />
-                      <div className="flex justify-between text-sm text-muted-foreground">
-                        <span>
-                          {goal.current} / {goal.target} {goal.unit}
-                        </span>
-                        <span>
-                          Due {new Date(goal.dueDate).toLocaleDateString()}
-                        </span>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
+            <GoalsManager
+              goals={wellbeingGoals}
+              onAddGoal={addWellbeingGoal}
+              onUpdateProgress={updateGoalProgress}
+            />
           </TabsContent>
 
           <TabsContent value="activities" className="wellbeing-tab-content">
@@ -528,6 +522,12 @@ export default function WellbeingPage() {
                       </div>
                     </div>
                   ))}
+                  {activities.length === 0 && (
+                    <div className="text-center py-8 text-muted-foreground">
+                      <Brain className="h-12 w-12 mx-auto mb-4 opacity-50" />
+                      <p>No mindfulness activities yet. Start with meditation!</p>
+                    </div>
+                  )}
                 </div>
               </CardContent>
             </Card>
@@ -553,24 +553,31 @@ export default function WellbeingPage() {
                   <CardTitle>Weekly Summary</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-4">
-                    <div className="flex justify-between">
-                      <span>Best day:</span>
-                      <span className="font-medium">Monday (5/5)</span>
+                  {moodEntries.length > 0 ? (
+                    <div className="space-y-4">
+                      <div className="flex justify-between">
+                        <span>Average mood:</span>
+                        <span className="font-medium">{averageMood.toFixed(1)}/5</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span>Total meditation:</span>
+                        <span className="font-medium">{totalMeditationTime} min</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span>Mood entries:</span>
+                        <span className="font-medium">{moodEntries.length}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span>Goals completed:</span>
+                        <span className="font-medium">{completedGoals}/{wellbeingGoals.length}</span>
+                      </div>
                     </div>
-                    <div className="flex justify-between">
-                      <span>Most stressful:</span>
-                      <span className="font-medium">Thursday (4/5)</span>
+                  ) : (
+                    <div className="text-center py-8 text-muted-foreground">
+                      <Award className="h-12 w-12 mx-auto mb-4 opacity-50" />
+                      <p>Start tracking your mood and creating goals to see insights!</p>
                     </div>
-                    <div className="flex justify-between">
-                      <span>Average energy:</span>
-                      <span className="font-medium">3.8/5</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span>Goals on track:</span>
-                      <span className="font-medium">3/4</span>
-                    </div>
-                  </div>
+                  )}
                 </CardContent>
               </Card>
             </div>
