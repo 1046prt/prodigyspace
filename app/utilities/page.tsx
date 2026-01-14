@@ -10,7 +10,6 @@ import {
   Calendar,
   FileText,
   Palette,
-  Settings,
   Zap,
   Timer,
   Ruler,

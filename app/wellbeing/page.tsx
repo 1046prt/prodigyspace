@@ -2,11 +2,9 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Progress } from "@/components/ui/progress";
 import {
   Dialog,
   DialogContent,
@@ -16,13 +14,6 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import {
   Heart,
   Target,
   TrendingUp,
@@ -31,8 +22,6 @@ import {
   Meh,
   Brain,
   Activity,
-  Moon,
-  Coffee,
   Zap,
   Award,
 } from "lucide-react";
@@ -44,13 +33,12 @@ import "@/styles/wellbeing.css";
 export default function WellbeingPage() {
   const {
     moodEntries,
-    meditationSessions,
     wellbeingGoals,
     addMoodEntry,
     addWellbeingGoal,
     updateGoalProgress,
   } = useWellbeing();
-  
+
   const [selectedMood, setSelectedMood] = useState<number | null>(null);
   const [selectedEnergy, setSelectedEnergy] = useState<number>(3);
   const [selectedStress, setSelectedStress] = useState<number>(3);
@@ -69,7 +57,7 @@ export default function WellbeingPage() {
         notes: moodNotes,
         activities: [],
       });
-      
+
       // Reset form
       setSelectedMood(null);
       setSelectedEnergy(3);
@@ -79,17 +67,8 @@ export default function WellbeingPage() {
     }
   };
 
-  // Convert meditation sessions to activities for display
-  const activities = meditationSessions.map(session => ({
-    id: session.id,
-    name: `${session.type} meditation`,
-    type: "Mindfulness" as const,
-    duration: session.duration,
-    date: session.completedAt.toLocaleDateString(),
-  }));
-
   // Transform wellbeing goals for display
-  const goals = wellbeingGoals.map(goal => ({
+  const mappedGoals = wellbeingGoals.map((goal) => ({
     id: goal.id,
     title: goal.title,
     category: goal.category.charAt(0).toUpperCase() + goal.category.slice(1),
@@ -97,8 +76,11 @@ export default function WellbeingPage() {
     target: goal.target,
     current: goal.current,
     unit: goal.unit,
-      dueDate: "2024-01-21",
-    },
+    dueDate: "2024-01-21",
+  }));
+
+  // Additional sample goals for display
+  const sampleGoals = [
     {
       id: 2,
       title: "Meditate daily for 10 minutes",
@@ -130,6 +112,9 @@ export default function WellbeingPage() {
       dueDate: "2024-01-21",
     },
   ];
+
+  // Combine mapped goals with sample goals
+  const goals = [...mappedGoals, ...sampleGoals];
 
   const activities = [
     {
@@ -172,36 +157,6 @@ export default function WellbeingPage() {
     if (mood >= 4) return "text-green-600";
     if (mood >= 3) return "text-yellow-600";
     return "text-red-600";
-  };
-
-  const getCategoryIcon = (category: string) => {
-    switch (category) {
-      case "Physical Health":
-        return <Activity className="h-4 w-4" />;
-      case "Mental Health":
-        return <Brain className="h-4 w-4" />;
-      case "Sleep":
-        return <Moon className="h-4 w-4" />;
-      case "Nutrition":
-        return <Coffee className="h-4 w-4" />;
-      default:
-        return <Target className="h-4 w-4" />;
-    }
-  };
-
-  const getCategoryColor = (category: string) => {
-    switch (category) {
-      case "Physical Health":
-        return "bg-blue-100 text-blue-800";
-      case "Mental Health":
-        return "bg-purple-100 text-purple-800";
-      case "Sleep":
-        return "bg-indigo-100 text-indigo-800";
-      case "Nutrition":
-        return "bg-green-100 text-green-800";
-      default:
-        return "bg-gray-100 text-gray-800";
-    }
   };
 
   const averageMood =
@@ -273,7 +228,9 @@ export default function WellbeingPage() {
                       {[1, 2, 3, 4, 5].map((energy) => (
                         <Button
                           key={energy}
-                          variant={selectedEnergy === energy ? "default" : "outline"}
+                          variant={
+                            selectedEnergy === energy ? "default" : "outline"
+                          }
                           size="sm"
                           onClick={() => setSelectedEnergy(energy)}
                           className="flex-1"
@@ -291,7 +248,9 @@ export default function WellbeingPage() {
                       {[1, 2, 3, 4, 5].map((stress) => (
                         <Button
                           key={stress}
-                          variant={selectedStress === stress ? "default" : "outline"}
+                          variant={
+                            selectedStress === stress ? "default" : "outline"
+                          }
                           size="sm"
                           onClick={() => setSelectedStress(stress)}
                           className="flex-1"
@@ -301,8 +260,8 @@ export default function WellbeingPage() {
                       ))}
                     </div>
                   </div>
-                  <Textarea 
-                    placeholder="How was your day? Any notes..." 
+                  <Textarea
+                    placeholder="How was your day? Any notes..."
                     value={moodNotes}
                     onChange={(e) => setMoodNotes(e.target.value)}
                   />
@@ -313,7 +272,7 @@ export default function WellbeingPage() {
                     >
                       Cancel
                     </Button>
-                    <Button 
+                    <Button
                       onClick={handleMoodSubmit}
                       disabled={selectedMood === null}
                     >
@@ -334,7 +293,8 @@ export default function WellbeingPage() {
                 <DialogHeader>
                   <DialogTitle>Create Wellness Goal</DialogTitle>
                   <DialogDescription>
-                    Use the goals manager below to create and track your wellness goals
+                    Use the goals manager below to create and track your
+                    wellness goals
                   </DialogDescription>
                 </DialogHeader>
                 <div className="mt-4">
@@ -443,9 +403,7 @@ export default function WellbeingPage() {
                       <div className="flex items-center gap-3">
                         {getMoodIcon(entry.mood)}
                         <div>
-                          <p className="font-medium">
-                            Mood: {entry.mood}/5
-                          </p>
+                          <p className="font-medium">Mood: {entry.mood}/5</p>
                           <p className="text-sm text-muted-foreground">
                             {entry.date.toLocaleDateString()}
                           </p>
@@ -525,7 +483,9 @@ export default function WellbeingPage() {
                   {activities.length === 0 && (
                     <div className="text-center py-8 text-muted-foreground">
                       <Brain className="h-12 w-12 mx-auto mb-4 opacity-50" />
-                      <p>No mindfulness activities yet. Start with meditation!</p>
+                      <p>
+                        No mindfulness activities yet. Start with meditation!
+                      </p>
                     </div>
                   )}
                 </div>
@@ -557,25 +517,36 @@ export default function WellbeingPage() {
                     <div className="space-y-4">
                       <div className="flex justify-between">
                         <span>Average mood:</span>
-                        <span className="font-medium">{averageMood.toFixed(1)}/5</span>
+                        <span className="font-medium">
+                          {averageMood.toFixed(1)}/5
+                        </span>
                       </div>
                       <div className="flex justify-between">
                         <span>Total meditation:</span>
-                        <span className="font-medium">{totalMeditationTime} min</span>
+                        <span className="font-medium">
+                          {totalMeditationTime} min
+                        </span>
                       </div>
                       <div className="flex justify-between">
                         <span>Mood entries:</span>
-                        <span className="font-medium">{moodEntries.length}</span>
+                        <span className="font-medium">
+                          {moodEntries.length}
+                        </span>
                       </div>
                       <div className="flex justify-between">
                         <span>Goals completed:</span>
-                        <span className="font-medium">{completedGoals}/{wellbeingGoals.length}</span>
+                        <span className="font-medium">
+                          {completedGoals}/{wellbeingGoals.length}
+                        </span>
                       </div>
                     </div>
                   ) : (
                     <div className="text-center py-8 text-muted-foreground">
                       <Award className="h-12 w-12 mx-auto mb-4 opacity-50" />
-                      <p>Start tracking your mood and creating goals to see insights!</p>
+                      <p>
+                        Start tracking your mood and creating goals to see
+                        insights!
+                      </p>
                     </div>
                   )}
                 </CardContent>

@@ -9,7 +9,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Home, ArrowLeft, Search } from "lucide-react";
+import { Home, ArrowLeft } from "lucide-react";
 import Image from "next/image";
 import "@/styles/not-found.css";
 
@@ -32,8 +32,8 @@ export default function NotFound() {
               <h1 className="error-code">404</h1>
               <CardTitle className="error-title">Page Not Found</CardTitle>
               <CardDescription className="error-description">
-                Sorry, the page you are looking for doesn't exist. It may have
-                been moved or deleted.
+                Sorry, the page you are looking for doesn&apos;t exist. It may
+                have been moved or deleted.
               </CardDescription>
             </div>
           </CardHeader>
