@@ -60,10 +60,22 @@ const priorityColors = {
 };
 
 const statusColors = {
-  todo: "bg-gray-100 text-gray-800 border-gray-200",
-  "in-progress": "bg-blue-100 text-blue-800 border-blue-200",
-  completed: "bg-green-100 text-green-800 border-green-200",
-  cancelled: "bg-red-100 text-red-800 border-red-200",
+  todo: "bg-slate-100 text-slate-700 border-slate-200 hover:bg-slate-200",
+  "in-progress": "bg-blue-100 text-blue-700 border-blue-200 hover:bg-blue-200",
+  completed:
+    "bg-emerald-100 text-emerald-700 border-emerald-200 hover:bg-emerald-200",
+  cancelled: "bg-rose-100 text-rose-700 border-rose-200 hover:bg-rose-200",
+};
+
+const categoryColors = {
+  assignment:
+    "bg-purple-100 text-purple-700 border-purple-200 hover:bg-purple-200",
+  study: "bg-indigo-100 text-indigo-700 border-indigo-200 hover:bg-indigo-200",
+  exam: "bg-red-100 text-red-700 border-red-200 hover:bg-red-200",
+  project:
+    "bg-orange-100 text-orange-700 border-orange-200 hover:bg-orange-200",
+  reading: "bg-teal-100 text-teal-700 border-teal-200 hover:bg-teal-200",
+  personal: "bg-pink-100 text-pink-700 border-pink-200 hover:bg-pink-200",
 };
 
 export function TaskManager({
@@ -377,10 +389,13 @@ export function TaskManager({
               : null;
 
             return (
-              <Card key={task.id} className="hover:shadow-md transition-shadow">
-                <CardHeader className="pb-3">
-                  <div className="flex items-start justify-between gap-2">
-                    <div className="flex items-start gap-2 flex-1 min-w-0">
+              <Card
+                key={task.id}
+                className="group hover:shadow-lg hover:shadow-blue-500/10 transition-all duration-300 hover:-translate-y-1 border border-slate-200 hover:border-blue-300"
+              >
+                <CardHeader className="pb-4">
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="flex items-start gap-3 flex-1 min-w-0">
                       <Checkbox
                         checked={task.status === "completed"}
                         onCheckedChange={(checked: boolean) =>
@@ -388,61 +403,92 @@ export function TaskManager({
                             status: checked ? "completed" : "todo",
                           })
                         }
-                        className="mt-1 flex-shrink-0"
+                        className="mt-1.5 flex-shrink-0 scale-110"
                       />
                       <div className="flex-1 min-w-0">
                         <CardTitle
-                          className={`text-lg leading-tight ${
-                            task.status === "completed" ? "line-through" : ""
+                          className={`text-lg leading-tight font-semibold mb-1 ${
+                            task.status === "completed"
+                              ? "line-through text-slate-500"
+                              : "text-slate-800 group-hover:text-slate-900"
                           }`}
                         >
                           {task.title}
                         </CardTitle>
-                        <div className="flex flex-wrap gap-1 mt-2">
+                        <div className="flex flex-wrap items-center gap-2 mt-3">
                           <Badge
                             variant="outline"
                             className={`${
                               priorityColors[task.priority]
-                            } text-xs`}
+                            } text-xs font-medium px-2.5 py-1 rounded-full transition-colors duration-200`}
                           >
-                            <Flag className="h-3 w-3 mr-1" />
-                            {task.priority}
+                            <Flag className="h-3 w-3 mr-1.5" />
+                            {task.priority.charAt(0).toUpperCase() +
+                              task.priority.slice(1)}
                           </Badge>
                           <Badge
                             variant="outline"
-                            className={`${statusColors[task.status]} text-xs`}
+                            className={`${
+                              statusColors[task.status]
+                            } text-xs font-medium px-2.5 py-1 rounded-full transition-colors duration-200`}
                           >
-                            {task.status}
+                            <div
+                              className={`w-2 h-2 rounded-full mr-1.5 ${
+                                task.status === "completed"
+                                  ? "bg-emerald-500"
+                                  : task.status === "in-progress"
+                                  ? "bg-blue-500"
+                                  : task.status === "todo"
+                                  ? "bg-slate-400"
+                                  : "bg-rose-500"
+                              }`}
+                            />
+                            {task.status === "in-progress"
+                              ? "In Progress"
+                              : task.status === "todo"
+                              ? "To Do"
+                              : task.status.charAt(0).toUpperCase() +
+                                task.status.slice(1)}
                           </Badge>
-                          <Badge variant="outline" className="text-xs">
-                            {task.category}
+                          <Badge
+                            variant="outline"
+                            className={`${
+                              categoryColors[task.category]
+                            } text-xs font-medium px-2.5 py-1 rounded-full transition-colors duration-200`}
+                          >
+                            {task.category.charAt(0).toUpperCase() +
+                              task.category.slice(1)}
                           </Badge>
                         </div>
                       </div>
                     </div>
-                    <div className="flex gap-1 flex-shrink-0">
-                      <Button size="sm" variant="ghost" className="h-8 w-8 p-0">
-                        <Edit className="h-3 w-3" />
+                    <div className="flex gap-1 flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                      <Button
+                        size="sm"
+                        variant="ghost"
+                        className="h-8 w-8 p-0 hover:bg-blue-50 hover:text-blue-600 transition-colors"
+                      >
+                        <Edit className="h-3.5 w-3.5" />
                       </Button>
                       <Button
                         size="sm"
                         variant="ghost"
                         onClick={() => onDeleteTask(task.id)}
-                        className="h-8 w-8 p-0 text-destructive hover:text-destructive"
+                        className="h-8 w-8 p-0 text-slate-400 hover:bg-rose-50 hover:text-rose-600 transition-colors"
                       >
-                        <Trash2 className="h-3 w-3" />
+                        <Trash2 className="h-3.5 w-3.5" />
                       </Button>
                     </div>
                   </div>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="pt-2">
                   {task.description && (
-                    <p className="text-sm text-muted-foreground mb-3 line-clamp-2">
+                    <p className="text-sm text-slate-600 mb-4 line-clamp-2 leading-relaxed">
                       {task.description}
                     </p>
                   )}
 
-                  <div className="space-y-2 text-sm">
+                  <div className="space-y-3 text-sm">
                     {task.course && (
                       <div className="flex items-center gap-2">
                         <span className="font-medium">Course:</span>
@@ -451,16 +497,24 @@ export function TaskManager({
                     )}
 
                     {task.dueDate && (
-                      <div className="flex items-center gap-2">
-                        <CalendarIcon className="h-3 w-3 flex-shrink-0" />
-                        <span
-                          className={
+                      <div className="flex items-center gap-2.5">
+                        <CalendarIcon
+                          className={`h-4 w-4 flex-shrink-0 ${
                             daysUntilDue !== null && daysUntilDue < 0
-                              ? "text-red-600 font-medium"
+                              ? "text-rose-500"
                               : daysUntilDue !== null && daysUntilDue < 3
-                              ? "text-yellow-600 font-medium"
-                              : ""
-                          }
+                              ? "text-amber-500"
+                              : "text-slate-400"
+                          }`}
+                        />
+                        <span
+                          className={`font-medium ${
+                            daysUntilDue !== null && daysUntilDue < 0
+                              ? "text-rose-600 bg-rose-50 px-2 py-0.5 rounded-full text-xs"
+                              : daysUntilDue !== null && daysUntilDue < 3
+                              ? "text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full text-xs"
+                              : "text-slate-600"
+                          }`}
                         >
                           {daysUntilDue !== null && daysUntilDue < 0
                             ? `${Math.abs(daysUntilDue)} days overdue`
@@ -474,9 +528,15 @@ export function TaskManager({
                     )}
 
                     {task.estimatedTime && (
-                      <div className="flex items-center gap-2">
-                        <Clock className="h-3 w-3 flex-shrink-0" />
-                        <span>{task.estimatedTime} minutes</span>
+                      <div className="flex items-center gap-2.5">
+                        <Clock className="h-4 w-4 flex-shrink-0 text-slate-400" />
+                        <span className="text-slate-600 font-medium">
+                          {task.estimatedTime >= 60
+                            ? `${Math.floor(task.estimatedTime / 60)}h ${
+                                task.estimatedTime % 60
+                              }m`
+                            : `${task.estimatedTime} min`}
+                        </span>
                       </div>
                     )}
                   </div>

@@ -22,10 +22,12 @@ export default function TasksPage() {
     <div className="tasks">
       <div className="tasks-container">
         <div className="tasks-header">
-          <h1 className="tasks-title">Task Management & Study Planner</h1>
-          <p className="tasks-subtitle">
+          <h1 className="tasks-title bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
+            Task Management & Study Planner
+          </h1>
+          <p className="tasks-subtitle text-slate-600 leading-relaxed">
             Organize your assignments, plan study sessions, and track your
-            academic progress.
+            academic progress with our comprehensive task management system.
           </p>
         </div>
 
