@@ -366,23 +366,24 @@ export function TaskManager({
 
       {/* Tasks List */}
       {filteredTasks.length === 0 ? (
-        <Card>
-          <CardContent className="text-center py-12">
-            <CheckCircle2 className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-            <h3 className="text-lg font-medium mb-2">No tasks found</h3>
-            <p className="text-muted-foreground mb-4">
-              {tasks.length === 0
-                ? "Create your first task to get started!"
-                : "Try adjusting your filters."}
-            </p>
-            <Button onClick={() => setShowCreateDialog(true)}>
-              <Plus className="h-4 w-4 mr-2" />
-              Add Task
-            </Button>
-          </CardContent>
-        </Card>
+        <div className="tasks-placeholder">
+          <CheckCircle2 className="tasks-placeholder-icon" />
+          <h3 className="tasks-placeholder-title">No tasks found</h3>
+          <p className="tasks-placeholder-text">
+            {tasks.length === 0
+              ? "Create your first task to get started with better organization!"
+              : "Try adjusting your filters to find what you're looking for."}
+          </p>
+          <Button
+            onClick={() => setShowCreateDialog(true)}
+            className="task-button-primary mt-4"
+          >
+            <Plus className="h-4 w-4 mr-2" />
+            Add Task
+          </Button>
+        </div>
       ) : (
-        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
+        <div className="tasks-grid">
           {filteredTasks.map((task) => {
             const daysUntilDue = task.dueDate
               ? getDaysUntilDue(task.dueDate)
@@ -391,58 +392,43 @@ export function TaskManager({
             return (
               <Card
                 key={task.id}
-                className="group hover:shadow-lg hover:shadow-blue-500/10 transition-all duration-300 hover:-translate-y-1 border border-slate-200 hover:border-blue-300"
+                className={`task-card-enhanced task-priority-${task.priority}`}
               >
+                <div className="task-priority-indicator"></div>
                 <CardHeader className="pb-4">
-                  <div className="flex items-start justify-between gap-3">
-                    <div className="flex items-start gap-3 flex-1 min-w-0">
+                  <div className="task-flex-between">
+                    <div className="task-flex flex-1 min-w-0">
                       <Checkbox
                         checked={task.status === "completed"}
                         onCheckedChange={(checked: boolean) =>
                           onUpdateTask(task.id, {
                             status: checked ? "completed" : "todo",
+                            completedAt: checked ? new Date() : undefined,
                           })
                         }
-                        className="mt-1.5 flex-shrink-0 scale-110"
+                        className="mt-1.5 flex-shrink-0"
                       />
                       <div className="flex-1 min-w-0">
                         <CardTitle
-                          className={`text-lg leading-tight font-semibold mb-1 ${
+                          className={`text-lg leading-tight font-semibold mb-2 ${
                             task.status === "completed"
-                              ? "line-through text-slate-500"
-                              : "text-slate-800 group-hover:text-slate-900"
+                              ? "line-through opacity-60"
+                              : ""
                           }`}
                         >
                           {task.title}
                         </CardTitle>
-                        <div className="flex flex-wrap items-center gap-2 mt-3">
+                        <div className="flex flex-wrap gap-2">
                           <Badge
-                            variant="outline"
-                            className={`${
-                              priorityColors[task.priority]
-                            } text-xs font-medium px-2.5 py-1 rounded-full transition-colors duration-200`}
+                            className={`task-badge-enhanced task-badge-priority-${task.priority}`}
                           >
-                            <Flag className="h-3 w-3 mr-1.5" />
+                            <Flag className="h-3 w-3 mr-1" />
                             {task.priority.charAt(0).toUpperCase() +
                               task.priority.slice(1)}
                           </Badge>
                           <Badge
-                            variant="outline"
-                            className={`${
-                              statusColors[task.status]
-                            } text-xs font-medium px-2.5 py-1 rounded-full transition-colors duration-200`}
+                            className={`task-badge-enhanced task-badge-status-${task.status}`}
                           >
-                            <div
-                              className={`w-2 h-2 rounded-full mr-1.5 ${
-                                task.status === "completed"
-                                  ? "bg-emerald-500"
-                                  : task.status === "in-progress"
-                                  ? "bg-blue-500"
-                                  : task.status === "todo"
-                                  ? "bg-slate-400"
-                                  : "bg-rose-500"
-                              }`}
-                            />
                             {task.status === "in-progress"
                               ? "In Progress"
                               : task.status === "todo"
@@ -451,10 +437,7 @@ export function TaskManager({
                                 task.status.slice(1)}
                           </Badge>
                           <Badge
-                            variant="outline"
-                            className={`${
-                              categoryColors[task.category]
-                            } text-xs font-medium px-2.5 py-1 rounded-full transition-colors duration-200`}
+                            className={`task-badge-enhanced task-badge-category-${task.category}`}
                           >
                             {task.category.charAt(0).toUpperCase() +
                               task.category.slice(1)}
@@ -462,46 +445,44 @@ export function TaskManager({
                         </div>
                       </div>
                     </div>
-                    <div className="flex gap-1 flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                      <Button
-                        size="sm"
-                        variant="ghost"
-                        className="h-8 w-8 p-0 hover:bg-blue-50 hover:text-blue-600 transition-colors"
-                      >
+                    <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                      <Button size="sm" variant="ghost" className="h-8 w-8 p-0">
                         <Edit className="h-3.5 w-3.5" />
                       </Button>
                       <Button
                         size="sm"
                         variant="ghost"
                         onClick={() => onDeleteTask(task.id)}
-                        className="h-8 w-8 p-0 text-slate-400 hover:bg-rose-50 hover:text-rose-600 transition-colors"
+                        className="h-8 w-8 p-0 hover:text-red-500"
                       >
                         <Trash2 className="h-3.5 w-3.5" />
                       </Button>
                     </div>
                   </div>
                 </CardHeader>
-                <CardContent className="pt-2">
+                <CardContent className="pt-0">
                   {task.description && (
-                    <p className="text-sm text-slate-600 mb-4 line-clamp-2 leading-relaxed">
+                    <p className="task-text-muted task-mb-4 line-clamp-2">
                       {task.description}
                     </p>
                   )}
 
-                  <div className="space-y-3 text-sm">
+                  <div className="space-y-3 task-text-small">
                     {task.course && (
-                      <div className="flex items-center gap-2">
-                        <span className="font-medium">Course:</span>
+                      <div className="task-flex">
+                        <span className="font-medium text-slate-700 dark:text-slate-300">
+                          Course:
+                        </span>
                         <span className="truncate">{task.course}</span>
                       </div>
                     )}
 
                     {task.dueDate && (
-                      <div className="flex items-center gap-2.5">
+                      <div className="task-flex">
                         <CalendarIcon
                           className={`h-4 w-4 flex-shrink-0 ${
                             daysUntilDue !== null && daysUntilDue < 0
-                              ? "text-rose-500"
+                              ? "text-red-500"
                               : daysUntilDue !== null && daysUntilDue < 3
                               ? "text-amber-500"
                               : "text-slate-400"
@@ -510,10 +491,10 @@ export function TaskManager({
                         <span
                           className={`font-medium ${
                             daysUntilDue !== null && daysUntilDue < 0
-                              ? "text-rose-600 bg-rose-50 px-2 py-0.5 rounded-full text-xs"
+                              ? "text-red-600 bg-red-50 dark:bg-red-900/20 dark:text-red-400 px-2 py-0.5 rounded-full text-xs"
                               : daysUntilDue !== null && daysUntilDue < 3
-                              ? "text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full text-xs"
-                              : "text-slate-600"
+                              ? "text-amber-600 bg-amber-50 dark:bg-amber-900/20 dark:text-amber-400 px-2 py-0.5 rounded-full text-xs"
+                              : "text-slate-600 dark:text-slate-400"
                           }`}
                         >
                           {daysUntilDue !== null && daysUntilDue < 0
@@ -522,21 +503,32 @@ export function TaskManager({
                             ? "Due today"
                             : daysUntilDue === 1
                             ? "Due tomorrow"
-                            : `Due in ${daysUntilDue} days`}
+                            : daysUntilDue !== null
+                            ? `Due in ${daysUntilDue} days`
+                            : format(task.dueDate, "PPP")}
                         </span>
                       </div>
                     )}
 
                     {task.estimatedTime && (
-                      <div className="flex items-center gap-2.5">
+                      <div className="task-flex">
                         <Clock className="h-4 w-4 flex-shrink-0 text-slate-400" />
-                        <span className="text-slate-600 font-medium">
+                        <span className="text-slate-600 dark:text-slate-400 font-medium">
                           {task.estimatedTime >= 60
                             ? `${Math.floor(task.estimatedTime / 60)}h ${
                                 task.estimatedTime % 60
                               }m`
                             : `${task.estimatedTime} min`}
                         </span>
+                      </div>
+                    )}
+
+                    {task.professor && (
+                      <div className="task-flex">
+                        <span className="font-medium text-slate-700 dark:text-slate-300">
+                          Professor:
+                        </span>
+                        <span className="truncate">{task.professor}</span>
                       </div>
                     )}
                   </div>
