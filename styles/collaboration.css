@@ -52,6 +52,41 @@
   }
 }
 
+/* Collaboration Specific Button and Form Styles */
+.collaboration-button-responsive {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .collaboration-button-responsive {
+    width: auto;
+  }
+}
+
+.collaboration-form-actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+@media (min-width: 768px) {
+  .collaboration-form-actions {
+    flex-direction: row;
+  }
+}
+
+.collaboration-action-button-responsive {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .collaboration-action-button-responsive {
+    width: auto;
+    text-align: left;
+  }
+}
+
 .collaboration-title {
   font-size: clamp(var(--text-2xl), 5vw, var(--text-4xl));
   font-weight: var(--font-bold);

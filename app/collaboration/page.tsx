@@ -165,8 +165,8 @@ export default function CollaborationPage() {
               onOpenChange={setIsCreateGroupOpen}
             >
               <DialogTrigger asChild>
-                <Button className="w-full md:w-auto">
-                  <Users className="h-4 w-4 mr-2" />
+                <Button className="collaboration-button-responsive">
+                  <Users className="h-4 w-4" />
                   New Group
                 </Button>
               </DialogTrigger>
@@ -204,7 +204,10 @@ export default function CollaborationPage() {
               onOpenChange={setIsCreateProjectOpen}
             >
               <DialogTrigger asChild>
-                <Button variant="outline" className="w-full md:w-auto">
+                <Button
+                  variant="outline"
+                  className="collaboration-button-responsive"
+                >
                   <FolderOpen className="h-4 w-4 mr-2" />
                   New Project
                 </Button>

@@ -58,9 +58,9 @@ const priorityLabels: Record<TodoPriority, string> = {
 };
 
 const priorityColors: Record<TodoPriority, string> = {
-  low: "bg-green-100 text-green-800",
-  medium: "bg-yellow-100 text-yellow-800",
-  high: "bg-red-100 text-red-800",
+  low: "priority-low",
+  medium: "priority-medium",
+  high: "priority-high",
 };
 
 export function TodoManager() {
@@ -138,9 +138,7 @@ export function TodoManager() {
   };
 
   if (loading) {
-    return (
-      <div className="flex items-center justify-center p-8">Loading...</div>
-    );
+    return <div className="todos-loading">Loading...</div>;
   }
 
   return (
@@ -153,13 +151,13 @@ export function TodoManager() {
         </div>
         <div className="todos-button-container">
           <Button onClick={handleExportCSV} variant="outline" size="sm">
-            <Download className="h-4 w-4 mr-2" />
+            <Download className="h-4 w-4" />
             Export CSV
           </Button>
           <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
             <DialogTrigger asChild>
               <Button>
-                <Plus className="h-4 w-4 mr-2" />
+                <Plus className="h-4 w-4" />
                 Add Task
               </Button>
             </DialogTrigger>

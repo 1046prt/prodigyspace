@@ -50,6 +50,27 @@
   animation: patternMove 60s linear infinite;
 }
 
+/* Wellbeing Specific Actions */
+.wellbeing-actions {
+  margin-bottom: 32px;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.wellbeing-form-label {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.wellbeing-mood-buttons {
+  display: flex;
+  gap: 8px;
+}
+
 @keyframes patternMove {
   0% {
     transform: translate(-50px, -50px) rotate(0deg);

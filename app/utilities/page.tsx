@@ -10,7 +10,6 @@ import {
   Calendar,
   FileText,
   Palette,
-  Settings,
   Zap,
   Timer,
   Ruler,
@@ -19,7 +18,9 @@ import {
   Wifi,
   Monitor,
 } from "lucide-react";
+import { UnitConverter } from "@/components/unit-converter";
 import { useState, useEffect } from "react";
+import "@/styles/utilities.css";
 
 export default function UtilitiesPage() {
   const [calculatorInput, setCalculatorInput] = useState("");
@@ -98,37 +99,37 @@ export default function UtilitiesPage() {
       title: "Unit Converter",
       description: "Convert between different units",
       icon: Ruler,
-      color: "bg-blue-100 text-blue-800",
+      color: "blue-badge",
     },
     {
       title: "Color Picker",
       description: "Pick and convert colors",
       icon: Palette,
-      color: "bg-purple-100 text-purple-800",
+      color: "purple-badge",
     },
     {
       title: "Text Counter",
       description: "Count words and characters",
       icon: Hash,
-      color: "bg-green-100 text-green-800",
+      color: "green-badge",
     },
     {
       title: "QR Generator",
       description: "Generate QR codes",
       icon: Globe,
-      color: "bg-orange-100 text-orange-800",
+      color: "orange-badge",
     },
     {
       title: "Password Generator",
       description: "Generate secure passwords",
       icon: Zap,
-      color: "bg-red-100 text-red-800",
+      color: "red-badge",
     },
     {
       title: "Base64 Encoder",
       description: "Encode/decode Base64",
       icon: FileText,
-      color: "bg-indigo-100 text-indigo-800",
+      color: "indigo-badge",
     },
   ];
 
@@ -154,64 +155,61 @@ export default function UtilitiesPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background to-muted/20 p-4 md:p-6">
-      <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-            Utilities & Tools
-          </h1>
-          <p className="text-muted-foreground mt-2">
+    <div className="utilities-page">
+      <div className="utilities-container">
+        <div className="utilities-header">
+          <h1 className="utilities-title">Utilities & Tools</h1>
+          <p className="utilities-subtitle">
             Helpful tools and utilities for your daily tasks
           </p>
         </div>
 
         <Tabs defaultValue="calculator" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-4 md:w-auto">
-            <TabsTrigger value="calculator" className="flex items-center gap-2">
+          <TabsList className="utilities-tabs-list">
+            <TabsTrigger value="calculator" className="utilities-tab-trigger">
               <Calculator className="h-4 w-4" />
               Calculator
             </TabsTrigger>
-            <TabsTrigger value="timer" className="flex items-center gap-2">
+            <TabsTrigger value="timer" className="utilities-tab-trigger">
               <Timer className="h-4 w-4" />
               Timer
             </TabsTrigger>
-            <TabsTrigger value="tools" className="flex items-center gap-2">
-              <Settings className="h-4 w-4" />
+            <TabsTrigger value="tools" className="utilities-tab-trigger">
+              <Ruler className="h-4 w-4" />
               Tools
             </TabsTrigger>
-            <TabsTrigger value="system" className="flex items-center gap-2">
+            <TabsTrigger value="system" className="utilities-tab-trigger">
               <Monitor className="h-4 w-4" />
               System
             </TabsTrigger>
           </TabsList>
 
           <TabsContent value="calculator" className="space-y-4">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="utilities-grid utilities-grid-lg-2">
               <Card>
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
+                  <CardTitle className="utilities-card-title">
                     <Calculator className="h-5 w-5" />
                     Calculator
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
-                    <div className="bg-muted p-4 rounded-lg">
-                      <div className="text-right text-sm text-muted-foreground mb-1">
+                    <div className="calculator-display">
+                      <div className="calculator-input">
                         {calculatorInput || "0"}
                       </div>
-                      <div className="text-right text-2xl font-bold">
+                      <div className="calculator-result">
                         {calculatorResult || "0"}
                       </div>
                     </div>
-                    <div className="grid grid-cols-4 gap-2">
+                    <div className="calculator-buttons">
                       {["C", "±", "%", "÷"].map((btn) => (
                         <Button
                           key={btn}
                           variant="outline"
                           onClick={() => handleCalculatorInput(btn)}
-                          className="h-12"
+                          className="calculator-button"
                         >
                           {btn}
                         </Button>
@@ -223,7 +221,7 @@ export default function UtilitiesPage() {
                           onClick={() =>
                             handleCalculatorInput(btn === "×" ? "*" : btn)
                           }
-                          className="h-12"
+                          className="calculator-button"
                         >
                           {btn}
                         </Button>
@@ -233,7 +231,7 @@ export default function UtilitiesPage() {
                           key={btn}
                           variant="outline"
                           onClick={() => handleCalculatorInput(btn)}
-                          className="h-12"
+                          className="calculator-button"
                         >
                           {btn}
                         </Button>
@@ -243,7 +241,7 @@ export default function UtilitiesPage() {
                           key={btn}
                           variant="outline"
                           onClick={() => handleCalculatorInput(btn)}
-                          className="h-12"
+                          className="calculator-button"
                         >
                           {btn}
                         </Button>
@@ -251,20 +249,20 @@ export default function UtilitiesPage() {
                       <Button
                         variant="outline"
                         onClick={() => handleCalculatorInput("0")}
-                        className="h-12 col-span-2"
+                        className="calculator-button calculator-button-wide"
                       >
                         0
                       </Button>
                       <Button
                         variant="outline"
                         onClick={() => handleCalculatorInput(".")}
-                        className="h-12"
+                        className="calculator-button"
                       >
                         .
                       </Button>
                       <Button
                         onClick={() => handleCalculatorInput("=")}
-                        className="h-12"
+                        className="calculator-button"
                       >
                         =
                       </Button>
@@ -275,18 +273,18 @@ export default function UtilitiesPage() {
 
               <Card>
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
+                  <CardTitle className="utilities-card-title">
                     <Clock className="h-5 w-5" />
                     World Clock
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
-                    <div className="text-center">
-                      <div className="text-3xl font-bold">
+                    <div className="world-clock-current">
+                      <div className="world-clock-time">
                         {currentTime.toLocaleTimeString()}
                       </div>
-                      <div className="text-muted-foreground">
+                      <div className="world-clock-date">
                         {currentTime.toLocaleDateString("en-US", {
                           weekday: "long",
                           year: "numeric",
@@ -295,34 +293,34 @@ export default function UtilitiesPage() {
                         })}
                       </div>
                     </div>
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="text-center p-3 bg-muted rounded-lg">
-                        <div className="font-semibold">New York</div>
-                        <div className="text-sm">
+                    <div className="world-clock-grid">
+                      <div className="world-clock-zone">
+                        <div className="world-clock-zone-name">New York</div>
+                        <div className="world-clock-zone-time">
                           {new Date().toLocaleTimeString("en-US", {
                             timeZone: "America/New_York",
                           })}
                         </div>
                       </div>
-                      <div className="text-center p-3 bg-muted rounded-lg">
-                        <div className="font-semibold">London</div>
-                        <div className="text-sm">
+                      <div className="world-clock-zone">
+                        <div className="world-clock-zone-name">London</div>
+                        <div className="world-clock-zone-time">
                           {new Date().toLocaleTimeString("en-US", {
                             timeZone: "Europe/London",
                           })}
                         </div>
                       </div>
-                      <div className="text-center p-3 bg-muted rounded-lg">
-                        <div className="font-semibold">Tokyo</div>
-                        <div className="text-sm">
+                      <div className="world-clock-zone">
+                        <div className="world-clock-zone-name">Tokyo</div>
+                        <div className="world-clock-zone-time">
                           {new Date().toLocaleTimeString("en-US", {
                             timeZone: "Asia/Tokyo",
                           })}
                         </div>
                       </div>
-                      <div className="text-center p-3 bg-muted rounded-lg">
-                        <div className="font-semibold">Sydney</div>
-                        <div className="text-sm">
+                      <div className="world-clock-zone">
+                        <div className="world-clock-zone-name">Sydney</div>
+                        <div className="world-clock-zone-time">
                           {new Date().toLocaleTimeString("en-US", {
                             timeZone: "Australia/Sydney",
                           })}
@@ -336,24 +334,24 @@ export default function UtilitiesPage() {
           </TabsContent>
 
           <TabsContent value="timer" className="space-y-4">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="utilities-grid utilities-grid-lg-2">
               <Card>
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
+                  <CardTitle className="utilities-card-title">
                     <Timer className="h-5 w-5" />
                     Pomodoro Timer
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="text-center space-y-6">
-                    <div className="text-6xl font-bold text-primary">
+                  <div className="timer-container">
+                    <div className="timer-display">
                       {formatTime(timerMinutes, timerSeconds)}
                     </div>
-                    <div className="flex justify-center gap-2">
+                    <div className="timer-controls">
                       <Button
                         onClick={startTimer}
                         disabled={isTimerRunning}
-                        className="w-20"
+                        className="timer-button"
                       >
                         Start
                       </Button>
@@ -361,19 +359,19 @@ export default function UtilitiesPage() {
                         onClick={pauseTimer}
                         disabled={!isTimerRunning}
                         variant="outline"
-                        className="w-20"
+                        className="timer-button"
                       >
                         Pause
                       </Button>
                       <Button
                         onClick={resetTimer}
                         variant="outline"
-                        className="w-20"
+                        className="timer-button"
                       >
                         Reset
                       </Button>
                     </div>
-                    <div className="flex justify-center gap-2">
+                    <div className="timer-presets">
                       <Button
                         variant="outline"
                         size="sm"
@@ -414,26 +412,23 @@ export default function UtilitiesPage() {
 
               <Card>
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
+                  <CardTitle className="utilities-card-title">
                     <Calendar className="h-5 w-5" />
                     Quick Calendar
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="text-center space-y-4">
-                    <div className="text-2xl font-bold">
+                  <div className="calendar-container">
+                    <div className="calendar-header">
                       {currentTime.toLocaleDateString("en-US", {
                         month: "long",
                         year: "numeric",
                       })}
                     </div>
-                    <div className="grid grid-cols-7 gap-1 text-sm">
+                    <div className="calendar-grid">
                       {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map(
                         (day) => (
-                          <div
-                            key={day}
-                            className="p-2 font-semibold text-center"
-                          >
+                          <div key={day} className="calendar-day-header">
                             {day}
                           </div>
                         )
@@ -442,10 +437,10 @@ export default function UtilitiesPage() {
                         (day) => (
                           <div
                             key={day}
-                            className={`p-2 text-center rounded ${
+                            className={`calendar-day ${
                               day === currentTime.getDate()
-                                ? "bg-primary text-primary-foreground"
-                                : "hover:bg-muted"
+                                ? "calendar-day-current"
+                                : ""
                             }`}
                           >
                             {day}
@@ -460,87 +455,96 @@ export default function UtilitiesPage() {
           </TabsContent>
 
           <TabsContent value="tools" className="space-y-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {quickTools.map((tool, index) => (
-                <Card
-                  key={index}
-                  className="hover:shadow-md transition-all duration-200 cursor-pointer"
-                >
-                  <CardHeader className="pb-3">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center">
-                        <tool.icon className="h-5 w-5" />
+            <div className="utilities-grid utilities-grid-lg-2">
+              <UnitConverter />
+
+              <div className="utilities-grid utilities-grid-md-1">
+                {quickTools.map((tool, index) => (
+                  <Card key={index} className="utilities-tool-card">
+                    <CardHeader className="pb-3">
+                      <div className="utilities-tool-header">
+                        <div className="utilities-tool-icon">
+                          <tool.icon className="h-5 w-5" />
+                        </div>
+                        <div>
+                          <CardTitle className="text-lg">
+                            {tool.title}
+                          </CardTitle>
+                          <Badge className={tool.color} variant="secondary">
+                            Coming Soon
+                          </Badge>
+                        </div>
                       </div>
-                      <div>
-                        <CardTitle className="text-lg">{tool.title}</CardTitle>
-                        <Badge className={tool.color} variant="secondary">
-                          Coming Soon
-                        </Badge>
-                      </div>
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-sm text-muted-foreground">
-                      {tool.description}
-                    </p>
-                  </CardContent>
-                </Card>
-              ))}
+                    </CardHeader>
+                    <CardContent>
+                      <p className="utilities-tool-description">
+                        {tool.description}
+                      </p>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
             </div>
           </TabsContent>
 
           <TabsContent value="system" className="space-y-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="utilities-grid utilities-grid-md-2">
               <Card>
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
+                  <CardTitle className="utilities-card-title">
                     <Monitor className="h-5 w-5" />
                     System Information
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-3">
-                    <div className="flex justify-between">
-                      <span className="text-muted-foreground">Browser:</span>
-                      <span className="font-medium">{systemInfo.browser}</span>
+                  <div className="system-info-grid">
+                    <div className="system-info-item">
+                      <span className="system-info-label">Browser:</span>
+                      <span className="system-info-value">
+                        {systemInfo.browser}
+                      </span>
                     </div>
-                    <div className="flex justify-between">
-                      <span className="text-muted-foreground">Platform:</span>
-                      <span className="font-medium">{systemInfo.platform}</span>
+                    <div className="system-info-item">
+                      <span className="system-info-label">Platform:</span>
+                      <span className="system-info-value">
+                        {systemInfo.platform}
+                      </span>
                     </div>
-                    <div className="flex justify-between">
-                      <span className="text-muted-foreground">Language:</span>
-                      <span className="font-medium">{systemInfo.language}</span>
+                    <div className="system-info-item">
+                      <span className="system-info-label">Language:</span>
+                      <span className="system-info-label">
+                        {systemInfo.language}
+                      </span>
                     </div>
-                    <div className="flex justify-between">
-                      <span className="text-muted-foreground">Cookies:</span>
-                      <span className="font-medium">
+                    <div className="system-info-item">
+                      <span className="system-info-label">Cookies:</span>
+                      <span className="system-info-value">
                         {systemInfo.cookiesEnabled ? "Enabled" : "Disabled"}
                       </span>
                     </div>
-                    <div className="flex justify-between">
-                      <span className="text-muted-foreground">Online:</span>
-                      <span className="font-medium">
+                    <div className="system-info-item">
+                      <span className="system-info-label">Online:</span>
+                      <span className="system-info-value">
                         {systemInfo.onlineStatus ? "Yes" : "No"}
                       </span>
                     </div>
-                    <div className="flex justify-between">
-                      <span className="text-muted-foreground">Screen:</span>
-                      <span className="font-medium">
+                    <div className="system-info-item">
+                      <span className="system-info-label">Screen:</span>
+                      <span className="system-info-value">
                         {systemInfo.screenResolution}
                       </span>
                     </div>
-                    <div className="flex justify-between">
-                      <span className="text-muted-foreground">
-                        Color Depth:
-                      </span>
-                      <span className="font-medium">
+                    <div className="system-info-item">
+                      <span className="system-info-label">Color Depth:</span>
+                      <span className="system-info-value">
                         {systemInfo.colorDepth} bit
                       </span>
                     </div>
-                    <div className="flex justify-between">
-                      <span className="text-muted-foreground">Timezone:</span>
-                      <span className="font-medium">{systemInfo.timezone}</span>
+                    <div className="system-info-item">
+                      <span className="system-info-label">Timezone:</span>
+                      <span className="system-info-value">
+                        {systemInfo.timezone}
+                      </span>
                     </div>
                   </div>
                 </CardContent>
@@ -548,14 +552,14 @@ export default function UtilitiesPage() {
 
               <Card>
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
+                  <CardTitle className="utilities-card-title">
                     <Wifi className="h-5 w-5" />
                     Network Status
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
-                    <div className="flex items-center justify-between">
+                    <div className="network-status">
                       <span>Connection Status</span>
                       <Badge
                         variant={
@@ -565,9 +569,9 @@ export default function UtilitiesPage() {
                         {systemInfo.onlineStatus ? "Online" : "Offline"}
                       </Badge>
                     </div>
-                    <div className="text-center py-8">
-                      <Wifi className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-                      <p className="text-muted-foreground">
+                    <div className="network-placeholder">
+                      <Wifi className="network-icon" />
+                      <p className="network-placeholder-text">
                         Network diagnostics and speed test tools would appear
                         here
                       </p>
