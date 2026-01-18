@@ -46,37 +46,11 @@ interface TaskManagerProps {
     task: Omit<
       Task,
       "id" | "createdAt" | "updatedAt" | "subtasks" | "reminders"
-    >
+    >,
   ) => void;
   onUpdateTask: (id: string, updates: Partial<Task>) => void;
   onDeleteTask: (id: string) => void;
 }
-
-const priorityColors = {
-  low: "bg-green-100 text-green-800 border-green-200",
-  medium: "bg-yellow-100 text-yellow-800 border-yellow-200",
-  high: "bg-orange-100 text-orange-800 border-orange-200",
-  urgent: "bg-red-100 text-red-800 border-red-200",
-};
-
-const statusColors = {
-  todo: "bg-slate-100 text-slate-700 border-slate-200 hover:bg-slate-200",
-  "in-progress": "bg-blue-100 text-blue-700 border-blue-200 hover:bg-blue-200",
-  completed:
-    "bg-emerald-100 text-emerald-700 border-emerald-200 hover:bg-emerald-200",
-  cancelled: "bg-rose-100 text-rose-700 border-rose-200 hover:bg-rose-200",
-};
-
-const categoryColors = {
-  assignment:
-    "bg-purple-100 text-purple-700 border-purple-200 hover:bg-purple-200",
-  study: "bg-indigo-100 text-indigo-700 border-indigo-200 hover:bg-indigo-200",
-  exam: "bg-red-100 text-red-700 border-red-200 hover:bg-red-200",
-  project:
-    "bg-orange-100 text-orange-700 border-orange-200 hover:bg-orange-200",
-  reading: "bg-teal-100 text-teal-700 border-teal-200 hover:bg-teal-200",
-  personal: "bg-pink-100 text-pink-700 border-pink-200 hover:bg-pink-200",
-};
 
 export function TaskManager({
   tasks,
@@ -432,9 +406,9 @@ export function TaskManager({
                             {task.status === "in-progress"
                               ? "In Progress"
                               : task.status === "todo"
-                              ? "To Do"
-                              : task.status.charAt(0).toUpperCase() +
-                                task.status.slice(1)}
+                                ? "To Do"
+                                : task.status.charAt(0).toUpperCase() +
+                                  task.status.slice(1)}
                           </Badge>
                           <Badge
                             className={`task-badge-enhanced task-badge-category-${task.category}`}
@@ -484,8 +458,8 @@ export function TaskManager({
                             daysUntilDue !== null && daysUntilDue < 0
                               ? "text-red-500"
                               : daysUntilDue !== null && daysUntilDue < 3
-                              ? "text-amber-500"
-                              : "text-slate-400"
+                                ? "text-amber-500"
+                                : "text-slate-400"
                           }`}
                         />
                         <span
@@ -493,19 +467,19 @@ export function TaskManager({
                             daysUntilDue !== null && daysUntilDue < 0
                               ? "text-red-600 bg-red-50 dark:bg-red-900/20 dark:text-red-400 px-2 py-0.5 rounded-full text-xs"
                               : daysUntilDue !== null && daysUntilDue < 3
-                              ? "text-amber-600 bg-amber-50 dark:bg-amber-900/20 dark:text-amber-400 px-2 py-0.5 rounded-full text-xs"
-                              : "text-slate-600 dark:text-slate-400"
+                                ? "text-amber-600 bg-amber-50 dark:bg-amber-900/20 dark:text-amber-400 px-2 py-0.5 rounded-full text-xs"
+                                : "text-slate-600 dark:text-slate-400"
                           }`}
                         >
                           {daysUntilDue !== null && daysUntilDue < 0
                             ? `${Math.abs(daysUntilDue)} days overdue`
                             : daysUntilDue === 0
-                            ? "Due today"
-                            : daysUntilDue === 1
-                            ? "Due tomorrow"
-                            : daysUntilDue !== null
-                            ? `Due in ${daysUntilDue} days`
-                            : format(task.dueDate, "PPP")}
+                              ? "Due today"
+                              : daysUntilDue === 1
+                                ? "Due tomorrow"
+                                : daysUntilDue !== null
+                                  ? `Due in ${daysUntilDue} days`
+                                  : format(task.dueDate, "PPP")}
                         </span>
                       </div>
                     )}
