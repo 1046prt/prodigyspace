@@ -8,7 +8,7 @@ export default function TodosPage() {
         <div className="todos-page-header">
           <h1 className="todos-page-title">Todo Manager</h1>
           <p className="todos-page-subtitle">
-            Organize and manage your tasks and activities with ease
+            Organize, prioritize, and accomplish your goals with style ✨
           </p>
         </div>
         <TodoManager />
