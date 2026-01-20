@@ -7,8 +7,8 @@
   --task-radius: 12px;
   --task-padding: 20px;
   --task-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
-  --task-shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --task-shadow-hover:
+    0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   --task-border: 1px solid rgba(226, 232, 240, 0.8);
   --task-bg: rgba(255, 255, 255, 0.9);
   --task-bg-hover: rgba(255, 255, 255, 1);
@@ -19,8 +19,8 @@
   --task-bg: rgba(30, 41, 59, 0.9);
   --task-bg-hover: rgba(30, 41, 59, 1);
   --task-shadow: 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.2);
-  --task-shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.3),
-    0 4px 6px -2px rgba(0, 0, 0, 0.2);
+  --task-shadow-hover:
+    0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
 }
 
 /* ===========================================
@@ -770,4 +770,196 @@
 
 .task-mt-4 {
   margin-top: 16px;
+}
+
+/* ===========================================
+   ENHANCED TASK DIALOG STYLES
+   =========================================== */
+
+.task-dialog {
+  border: none !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(248, 250, 252, 0.95) 100%
+  );
+  border-radius: 16px !important;
+}
+
+[data-theme="dark"] .task-dialog {
+  background: linear-gradient(
+    135deg,
+    rgba(30, 41, 59, 0.98) 0%,
+    rgba(15, 23, 42, 0.98) 100%
+  );
+  border: 1px solid rgba(51, 65, 85, 0.3) !important;
+}
+
+.task-dialog-header {
+  background: linear-gradient(
+    135deg,
+    rgba(59, 130, 246, 0.05) 0%,
+    rgba(147, 51, 234, 0.05) 100%
+  );
+  border-radius: 16px 16px 0 0;
+}
+
+[data-theme="dark"] .task-dialog-header {
+  background: linear-gradient(
+    135deg,
+    rgba(59, 130, 246, 0.1) 0%,
+    rgba(147, 51, 234, 0.1) 100%
+  );
+}
+
+.task-dialog-content {
+  max-height: calc(90vh - 200px);
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+[data-theme="dark"] .task-dialog-content {
+  background: rgba(30, 41, 59, 0.8);
+}
+
+.task-dialog-footer {
+  border-radius: 0 0 16px 16px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* Form Input Enhancements */
+.task-dialog input[type="text"],
+.task-dialog input[type="number"],
+.task-dialog textarea {
+  transition: all 0.2s ease-in-out;
+  font-weight: 500;
+}
+
+.task-dialog input[type="text"]:focus,
+.task-dialog input[type="number"]:focus,
+.task-dialog textarea:focus {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+}
+
+.task-dialog .select-trigger {
+  transition: all 0.2s ease-in-out;
+}
+
+.task-dialog .select-trigger:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Section Dividers */
+.task-dialog .space-y-6 > div {
+  position: relative;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 12px;
+  border: 1px solid rgba(226, 232, 240, 0.5);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  transition: all 0.2s ease-in-out;
+}
+
+[data-theme="dark"] .task-dialog .space-y-6 > div {
+  background: rgba(51, 65, 85, 0.3);
+  border: 1px solid rgba(71, 85, 105, 0.3);
+}
+
+.task-dialog .space-y-6 > div:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  border-color: rgba(59, 130, 246, 0.3);
+}
+
+[data-theme="dark"] .task-dialog .space-y-6 > div:hover {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Button Animations */
+.task-dialog button {
+  transition: all 0.2s ease-in-out;
+  font-weight: 600;
+}
+
+.task-dialog button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.task-dialog button:active {
+  transform: translateY(0);
+}
+
+/* Calendar Popover */
+.task-dialog .calendar {
+  border-radius: 12px;
+  border: none;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Improvements */
+@media (max-width: 768px) {
+  .task-dialog {
+    margin: 10px !important;
+    max-width: calc(100vw - 20px) !important;
+    max-height: calc(100vh - 20px) !important;
+  }
+
+  .task-dialog-content {
+    max-height: calc(100vh - 180px);
+  }
+
+  .task-dialog .space-y-6 > div {
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+}
+
+/* Loading State */
+.task-dialog button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.task-dialog button:disabled:hover {
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* Smooth Scrollbar */
+.task-dialog-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.task-dialog-content::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 3px;
+}
+
+.task-dialog-content::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+
+.task-dialog-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .task-dialog-content::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="dark"] .task-dialog-content::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="dark"] .task-dialog-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
 }
