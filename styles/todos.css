@@ -1,17 +1,22 @@
-/* ===========================================
-   TODOS PAGE STYLES - EYE-CATCHING MODERN UI
-   =========================================== */
-
-/* Main page container with dynamic gradient */
 .todos-page-container {
   min-height: 100vh;
-  background: linear-gradient(
-    135deg,
-    hsl(220 14% 96%) 0%,
-    hsl(240 5% 94%) 25%,
-    hsl(260 3% 92%) 50%,
-    hsl(240 5% 94%) 75%,
-    hsl(220 14% 96%) 100%
+  background: light-dark(
+    linear-gradient(
+      135deg,
+      hsl(220 14% 96%) 0%,
+      hsl(240 5% 94%) 25%,
+      hsl(260 3% 92%) 50%,
+      hsl(240 5% 94%) 75%,
+      hsl(220 14% 96%) 100%
+    ),
+    linear-gradient(
+      135deg,
+      hsl(222 84% 5%) 0%,
+      hsl(240 5% 7%) 25%,
+      hsl(260 3% 9%) 50%,
+      hsl(240 5% 7%) 75%,
+      hsl(222 84% 5%) 100%
+    )
   );
   background-size: 400% 400%;
   animation: gradientShift 15s ease infinite;
@@ -37,29 +42,20 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background:
+  background: light-dark(
     radial-gradient(
       circle at 20% 80%,
       rgba(120, 119, 198, 0.05) 0%,
       transparent 50%
     ),
     radial-gradient(
-      circle at 80% 20%,
-      rgba(255, 119, 198, 0.05) 0%,
+      circle at 20% 80%,
+      rgba(120, 119, 198, 0.1) 0%,
       transparent 50%
-    ),
-    radial-gradient(
-      circle at 40% 40%,
-      rgba(120, 219, 255, 0.05) 0%,
-      transparent 50%
-    );
+    )
+  );
   pointer-events: none;
-  z-index: 1;
-}
-
-.todos-page-container > * {
-  position: relative;
-  z-index: 2;
+  z-index: -1;
 }
 
 @media (min-width: 768px) {
@@ -120,7 +116,7 @@
 }
 
 .todos-loading-text {
-  color: hsl(var(--muted-foreground));
+  color: light-dark(hsl(var(--muted-foreground)), hsl(var(--muted-foreground)));
   font-size: 0.875rem;
   animation: fadeInOut 2s infinite;
 }
@@ -203,7 +199,7 @@
 
 .todos-page-subtitle {
   font-size: 1.125rem;
-  color: hsl(var(--muted-foreground));
+  color: light-dark(hsl(var(--muted-foreground)), hsl(var(--muted-foreground)));
   max-width: 32rem;
   margin: 0 auto;
   animation: fadeInUp 0.8s ease-out 0.2s both;
@@ -242,20 +238,23 @@
   padding: 32px;
 }
 
-/* Priority Badge Colors */
+/* Priority Badge Colors - Theme Aware */
 .priority-low {
-  background-color: #dcfce7;
-  color: #166534;
+  background-color: light-dark(#dcfce7, #022c22);
+  color: light-dark(#166534, #22c55e);
+  border: 1px solid light-dark(rgba(22, 101, 52, 0.2), rgba(34, 197, 94, 0.3));
 }
 
 .priority-medium {
-  background-color: #fef3c7;
-  color: #92400e;
+  background-color: light-dark(#fef3c7, #451a03);
+  color: light-dark(#92400e, #f59e0b);
+  border: 1px solid light-dark(rgba(146, 64, 14, 0.2), rgba(245, 158, 11, 0.3));
 }
 
 .priority-high {
-  background-color: #fee2e2;
-  color: #dc2626;
+  background-color: light-dark(#fee2e2, #450a0a);
+  color: light-dark(#dc2626, #f87171);
+  border: 1px solid light-dark(rgba(220, 38, 38, 0.2), rgba(248, 113, 113, 0.3));
 }
 
 .todos-page-subtitle {
@@ -273,18 +272,22 @@
   animation: fadeInUp 0.6s ease-out;
 }
 
-/* Header section with modern design */
+/* Header section with modern design - Theme Aware */
 .todos-header-section {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
   margin-bottom: 2rem;
   padding: 2rem;
-  background: rgba(255, 255, 255, 0.7);
+  background: light-dark(rgba(255, 255, 255, 0.7), rgba(30, 41, 59, 0.7));
   backdrop-filter: blur(10px);
   border-radius: 1.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid
+    light-dark(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1));
+  box-shadow: light-dark(
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    0 8px 32px rgba(0, 0, 0, 0.3)
+  );
   position: relative;
   overflow: hidden;
 }
@@ -374,16 +377,16 @@
 }
 
 .todos-header-subtitle {
-  color: hsl(var(--muted-foreground));
+  color: light-dark(hsl(var(--muted-foreground)), hsl(var(--muted-foreground)));
   margin-bottom: 1rem;
   font-size: 0.95rem;
 }
 
-/* Progress section */
+/* Progress section - Theme Aware */
 .todos-progress-section {
   margin-top: 1rem;
   padding: 1rem;
-  background: rgba(255, 255, 255, 0.5);
+  background: light-dark(rgba(255, 255, 255, 0.5), rgba(30, 41, 59, 0.5));
   border-radius: 1rem;
   backdrop-filter: blur(5px);
 }
@@ -398,7 +401,7 @@
 .todos-progress-label {
   font-size: 0.875rem;
   font-weight: 500;
-  color: hsl(var(--foreground));
+  color: light-dark(hsl(var(--foreground)), hsl(var(--foreground)));
 }
 
 .todos-progress-percentage {
@@ -413,7 +416,7 @@
 .todos-progress-bar {
   height: 8px;
   margin-bottom: 0.5rem;
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: light-dark(rgba(255, 255, 255, 0.8), rgba(30, 41, 59, 0.8));
   overflow: hidden;
   position: relative;
 }
@@ -438,12 +441,12 @@
 
 .todos-progress-text {
   font-size: 0.75rem;
-  color: hsl(var(--muted-foreground));
+  color: light-dark(hsl(var(--muted-foreground)), hsl(var(--muted-foreground)));
   text-align: center;
   margin: 0;
 }
 
-/* Button container with enhanced styling */
+/* Button container with enhanced styling - Theme Aware */
 .todos-button-container {
   display: flex;
   gap: 0.75rem;
@@ -458,15 +461,16 @@
 }
 
 .todos-export-btn {
-  background: rgba(255, 255, 255, 0.8);
+  background: light-dark(rgba(255, 255, 255, 0.8), rgba(30, 41, 59, 0.8));
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid
+    light-dark(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1));
   color: #667eea;
   transition: all 0.3s ease;
 }
 
 .todos-export-btn:hover {
-  background: rgba(255, 255, 255, 0.95);
+  background: light-dark(rgba(255, 255, 255, 0.95), rgba(30, 41, 59, 0.95));
   transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(102, 126, 234, 0.25);
 }
@@ -504,7 +508,7 @@
 }
 
 .todos-dialog-description {
-  color: hsl(var(--muted-foreground));
+  color: light-dark(hsl(var(--muted-foreground)), hsl(var(--muted-foreground)));
   font-size: 0.95rem;
 }
 
@@ -528,7 +532,7 @@
   }
 }
 
-/* Tabs container with modern styling */
+/* Tabs container with modern styling - Theme Aware */
 .todos-tabs-container {
   display: flex;
   flex-direction: column;
@@ -539,12 +543,16 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   width: 100%;
-  background: rgba(255, 255, 255, 0.7);
+  background: light-dark(rgba(255, 255, 255, 0.7), rgba(30, 41, 59, 0.7));
   backdrop-filter: blur(10px);
   border-radius: 1rem;
   padding: 0.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid
+    light-dark(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1));
+  box-shadow: light-dark(
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    0 8px 32px rgba(0, 0, 0, 0.3)
+  );
 }
 
 @media (min-width: 1024px) {
@@ -613,7 +621,7 @@
   box-shadow: 0 4px 15px rgba(168, 237, 234, 0.4);
 }
 
-/* Tab content with enhanced styling */
+/* Tab content with enhanced styling - Theme Aware */
 .todos-tab-content {
   display: flex;
   flex-direction: column;
@@ -621,18 +629,25 @@
 }
 
 .todos-content-card {
-  background: rgba(255, 255, 255, 0.8);
+  background: light-dark(rgba(255, 255, 255, 0.8), rgba(30, 41, 59, 0.8));
   backdrop-filter: blur(15px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid
+    light-dark(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1));
   border-radius: 1.5rem;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  box-shadow: light-dark(
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    0 8px 32px rgba(0, 0, 0, 0.3)
+  );
   overflow: hidden;
   transition: all 0.3s ease;
 }
 
 .todos-content-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  box-shadow: light-dark(
+    0 20px 40px rgba(0, 0, 0, 0.15),
+    0 20px 40px rgba(0, 0, 0, 0.4)
+  );
 }
 
 .todos-overdue-card {
@@ -645,10 +660,13 @@
 
 .todos-card-header {
   padding: 2rem 2rem 1rem;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.1),
-    rgba(255, 255, 255, 0.05)
+  background: light-dark(
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.1),
+      rgba(255, 255, 255, 0.05)
+    ),
+    linear-gradient(135deg, rgba(30, 41, 59, 0.1), rgba(30, 41, 59, 0.05))
   );
 }
 
@@ -680,17 +698,21 @@
   }
 }
 
-/* Enhanced empty states */
+/* Enhanced empty states - Theme Aware */
 .todos-empty-state {
   text-align: center;
   padding: 4rem 2rem;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.1),
-    rgba(255, 255, 255, 0.05)
+  background: light-dark(
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.1),
+      rgba(255, 255, 255, 0.05)
+    ),
+    linear-gradient(135deg, rgba(30, 41, 59, 0.1), rgba(30, 41, 59, 0.05))
   );
   border-radius: 1.5rem;
-  border: 2px dashed rgba(102, 126, 234, 0.3);
+  border: 2px dashed
+    light-dark(rgba(102, 126, 234, 0.3), rgba(102, 126, 234, 0.5));
   margin: 1rem;
 }
 
@@ -793,7 +815,7 @@
 }
 
 .todos-empty-description {
-  color: hsl(var(--muted-foreground));
+  color: light-dark(hsl(var(--muted-foreground)), hsl(var(--muted-foreground)));
   font-size: 1rem;
   line-height: 1.6;
   margin-bottom: 2rem;
@@ -827,15 +849,16 @@
   padding: 0.5rem;
 }
 
-/* Task item base with modern design */
+/* Task item base with modern design - Theme Aware */
 .todos-task-item {
   display: flex;
   align-items: flex-start;
   gap: 1rem;
   padding: 1.5rem;
-  background: rgba(255, 255, 255, 0.9);
+  background: light-dark(rgba(255, 255, 255, 0.9), rgba(30, 41, 59, 0.9));
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid
+    light-dark(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1));
   border-radius: 1.25rem;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
@@ -852,7 +875,7 @@
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(102, 126, 234, 0.1),
+    light-dark(rgba(102, 126, 234, 0.1), rgba(102, 126, 234, 0.2)),
     transparent
   );
   transition: left 0.5s ease;
@@ -864,40 +887,53 @@
 
 .todos-task-item:hover {
   transform: translateY(-4px) scale(1.02);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-  border-color: rgba(102, 126, 234, 0.3);
+  box-shadow: light-dark(
+    0 20px 40px rgba(0, 0, 0, 0.1),
+    0 20px 40px rgba(0, 0, 0, 0.3)
+  );
+  border-color: light-dark(rgba(102, 126, 234, 0.3), rgba(102, 126, 234, 0.5));
 }
 
-/* Task item variants with enhanced styling */
+/* Task item variants with enhanced styling - Theme Aware */
 .todos-task-item-completed {
-  background: rgba(168, 237, 234, 0.1);
-  border-color: rgba(168, 237, 234, 0.3);
+  background: light-dark(rgba(168, 237, 234, 0.1), rgba(22, 101, 52, 0.2));
+  border-color: light-dark(rgba(168, 237, 234, 0.3), rgba(34, 197, 94, 0.3));
 }
 
 .todos-task-item-completed:hover {
-  background: rgba(168, 237, 234, 0.15);
+  background: light-dark(rgba(168, 237, 234, 0.15), rgba(22, 101, 52, 0.3));
 }
 
 .todos-task-item-active {
-  background: rgba(255, 255, 255, 0.9);
-  border-color: rgba(255, 255, 255, 0.3);
+  background: light-dark(rgba(255, 255, 255, 0.9), rgba(30, 41, 59, 0.9));
+  border-color: light-dark(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1));
 }
 
 .todos-task-item-today {
   border-left: 4px solid #f093fb;
-  background: linear-gradient(
-    135deg,
-    rgba(240, 147, 251, 0.05),
-    rgba(245, 87, 108, 0.05)
+  background: light-dark(
+    linear-gradient(
+      135deg,
+      rgba(240, 147, 251, 0.05),
+      rgba(245, 87, 108, 0.05)
+    ),
+    linear-gradient(135deg, rgba(240, 147, 251, 0.1), rgba(245, 87, 108, 0.1))
   );
 }
 
 .todos-task-item-overdue {
   border-left: 4px solid #ff9a9e;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 154, 158, 0.08),
-    rgba(254, 207, 239, 0.08)
+  background: light-dark(
+    linear-gradient(
+      135deg,
+      rgba(255, 154, 158, 0.08),
+      rgba(254, 207, 239, 0.08)
+    ),
+    linear-gradient(
+      135deg,
+      rgba(255, 154, 158, 0.15),
+      rgba(254, 207, 239, 0.15)
+    )
   );
   animation: urgentPulse 3s ease-in-out infinite;
 }
@@ -913,12 +949,11 @@
 }
 
 .todos-task-item-success {
-  background: linear-gradient(
-    135deg,
-    rgba(168, 237, 234, 0.1),
-    rgba(254, 214, 227, 0.1)
+  background: light-dark(
+    linear-gradient(135deg, rgba(168, 237, 234, 0.1), rgba(254, 214, 227, 0.1)),
+    linear-gradient(135deg, rgba(22, 101, 52, 0.2), rgba(134, 25, 143, 0.2))
   );
-  border-color: rgba(168, 237, 234, 0.4);
+  border-color: light-dark(rgba(168, 237, 234, 0.4), rgba(34, 197, 94, 0.4));
 }
 
 /* Task completion animation */
@@ -1022,7 +1057,7 @@
   }
 }
 
-/* Enhanced task content */
+/* Enhanced task content - Theme Aware */
 .todos-task-content {
   flex: 1;
   min-width: 0;
@@ -1043,12 +1078,12 @@
 
 .todos-task-title-completed {
   text-decoration: line-through;
-  color: hsl(var(--muted-foreground));
+  color: light-dark(hsl(var(--muted-foreground)), hsl(var(--muted-foreground)));
   opacity: 0.7;
 }
 
 .todos-task-title-active {
-  color: hsl(var(--foreground));
+  color: light-dark(hsl(var(--foreground)), hsl(var(--foreground)));
 }
 
 .todos-task-description {
@@ -1058,12 +1093,15 @@
 }
 
 .todos-task-description-completed {
-  color: hsl(var(--muted-foreground) / 0.6);
+  color: light-dark(
+    hsl(var(--muted-foreground) / 0.6),
+    hsl(var(--muted-foreground) / 0.6)
+  );
   opacity: 0.7;
 }
 
 .todos-task-description-active {
-  color: hsl(var(--muted-foreground));
+  color: light-dark(hsl(var(--muted-foreground)), hsl(var(--muted-foreground)));
 }
 
 /* Priority and status indicators */
@@ -1119,7 +1157,7 @@
   }
 }
 
-/* Enhanced task badges */
+/* Enhanced task badges - Theme Aware */
 .todos-task-badges {
   display: flex;
   align-items: center;
@@ -1132,49 +1170,50 @@
   font-weight: 600;
   padding: 0.375rem 0.75rem;
   border-radius: 0.5rem;
-  border: 1px solid rgba(102, 126, 234, 0.3);
-  background: rgba(102, 126, 234, 0.1);
-  color: #667eea;
+  border: 1px solid
+    light-dark(rgba(102, 126, 234, 0.3), rgba(102, 126, 234, 0.4));
+  background: light-dark(rgba(102, 126, 234, 0.1), rgba(102, 126, 234, 0.2));
+  color: light-dark(#667eea, #93c5fd);
   transition: all 0.3s ease;
 }
 
 .todos-badge-category:hover {
-  background: rgba(102, 126, 234, 0.2);
+  background: light-dark(rgba(102, 126, 234, 0.2), rgba(102, 126, 234, 0.3));
   transform: translateY(-1px);
 }
 
-/* Category-specific colors */
+/* Category-specific colors - Theme Aware */
 .todos-badge-study {
-  background: rgba(102, 126, 234, 0.1);
-  color: #667eea;
-  border-color: rgba(102, 126, 234, 0.3);
+  background: light-dark(rgba(102, 126, 234, 0.1), rgba(102, 126, 234, 0.2));
+  color: light-dark(#667eea, #93c5fd);
+  border-color: light-dark(rgba(102, 126, 234, 0.3), rgba(102, 126, 234, 0.4));
 }
 
 .todos-badge-personal {
-  background: rgba(240, 147, 251, 0.1);
-  color: #f093fb;
-  border-color: rgba(240, 147, 251, 0.3);
+  background: light-dark(rgba(240, 147, 251, 0.1), rgba(240, 147, 251, 0.2));
+  color: light-dark(#f093fb, #f0abfc);
+  border-color: light-dark(rgba(240, 147, 251, 0.3), rgba(240, 147, 251, 0.4));
 }
 
 .todos-badge-assignments {
-  background: rgba(245, 87, 108, 0.1);
-  color: #f5576c;
-  border-color: rgba(245, 87, 108, 0.3);
+  background: light-dark(rgba(245, 87, 108, 0.1), rgba(245, 87, 108, 0.2));
+  color: light-dark(#f5576c, #f87171);
+  border-color: light-dark(rgba(245, 87, 108, 0.3), rgba(245, 87, 108, 0.4));
 }
 
 .todos-badge-projects {
-  background: rgba(168, 237, 234, 0.1);
-  color: #a8edea;
-  border-color: rgba(168, 237, 234, 0.3);
+  background: light-dark(rgba(168, 237, 234, 0.1), rgba(22, 101, 52, 0.2));
+  color: light-dark(#a8edea, #22c55e);
+  border-color: light-dark(rgba(168, 237, 234, 0.3), rgba(34, 197, 94, 0.4));
 }
 
 .todos-badge-other {
-  background: rgba(254, 214, 227, 0.1);
-  color: #fed6e3;
-  border-color: rgba(254, 214, 227, 0.3);
+  background: light-dark(rgba(254, 214, 227, 0.1), rgba(134, 25, 143, 0.2));
+  color: light-dark(#fed6e3, #d946ef);
+  border-color: light-dark(rgba(254, 214, 227, 0.3), rgba(168, 85, 247, 0.4));
 }
 
-/* Priority badges */
+/* Priority badges - Theme Aware */
 .todos-badge-priority {
   font-size: 0.75rem;
   font-weight: 600;
@@ -1184,21 +1223,21 @@
 }
 
 .todos-badge-priority-low {
-  background: rgba(168, 237, 234, 0.2);
-  color: #16a085;
-  border: 1px solid rgba(22, 160, 133, 0.3);
+  background: light-dark(rgba(168, 237, 234, 0.2), rgba(22, 101, 52, 0.3));
+  color: light-dark(#16a085, #22c55e);
+  border: 1px solid light-dark(rgba(22, 160, 133, 0.3), rgba(34, 197, 94, 0.4));
 }
 
 .todos-badge-priority-medium {
-  background: rgba(255, 193, 7, 0.2);
-  color: #d68910;
-  border: 1px solid rgba(214, 137, 16, 0.3);
+  background: light-dark(rgba(255, 193, 7, 0.2), rgba(146, 64, 14, 0.3));
+  color: light-dark(#d68910, #f59e0b);
+  border: 1px solid light-dark(rgba(214, 137, 16, 0.3), rgba(245, 158, 11, 0.4));
 }
 
 .todos-badge-priority-high {
-  background: rgba(245, 87, 108, 0.2);
-  color: #e74c3c;
-  border: 1px solid rgba(231, 76, 60, 0.3);
+  background: light-dark(rgba(245, 87, 108, 0.2), rgba(185, 28, 28, 0.3));
+  color: light-dark(#e74c3c, #f87171);
+  border: 1px solid light-dark(rgba(231, 76, 60, 0.3), rgba(248, 113, 113, 0.4));
   animation: highPriorityPulse 2s ease-in-out infinite;
 }
 
@@ -1212,7 +1251,7 @@
   }
 }
 
-/* Date and overdue badges */
+/* Date and overdue badges - Theme Aware */
 .todos-badge-date {
   font-size: 0.75rem;
   font-weight: 500;
@@ -1225,17 +1264,17 @@
 }
 
 .todos-badge-overdue {
-  background: rgba(255, 154, 158, 0.2);
-  color: #e74c3c;
-  border: 1px solid rgba(231, 76, 60, 0.3);
+  background: light-dark(rgba(255, 154, 158, 0.2), rgba(185, 28, 28, 0.3));
+  color: light-dark(#e74c3c, #f87171);
+  border: 1px solid light-dark(rgba(231, 76, 60, 0.3), rgba(248, 113, 113, 0.4));
 }
 
 .todos-badge-faded {
-  opacity: 0.6;
+  opacity: light-dark(0.6, 0.7);
   filter: saturate(0.6);
 }
 
-/* Enhanced task actions */
+/* Enhanced task actions - Theme Aware */
 .todos-task-actions {
   display: flex;
   align-items: center;
@@ -1250,21 +1289,22 @@
 }
 
 .todos-delete-btn {
-  color: hsl(var(--muted-foreground));
+  color: light-dark(hsl(var(--muted-foreground)), hsl(var(--muted-foreground)));
   height: 2.5rem;
   width: 2.5rem;
   padding: 0;
   border-radius: 0.75rem;
   transition: all 0.3s ease;
-  background: rgba(255, 255, 255, 0.8);
+  background: light-dark(rgba(255, 255, 255, 0.8), rgba(30, 41, 59, 0.8));
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid
+    light-dark(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1));
 }
 
 .todos-delete-btn:hover {
   color: #e74c3c;
-  background: rgba(231, 76, 60, 0.1);
-  border-color: rgba(231, 76, 60, 0.3);
+  background: light-dark(rgba(231, 76, 60, 0.1), rgba(231, 76, 60, 0.2));
+  border-color: light-dark(rgba(231, 76, 60, 0.3), rgba(231, 76, 60, 0.4));
   transform: translateY(-2px) scale(1.05);
   box-shadow: 0 8px 16px rgba(231, 76, 60, 0.2);
 }
@@ -1380,31 +1420,5 @@
   }
 }
 
-/* Dark mode support improvements */
-@media (prefers-color-scheme: dark) {
-  .todos-page-container {
-    background: linear-gradient(
-      135deg,
-      hsl(222 84% 5%) 0%,
-      hsl(240 5% 7%) 25%,
-      hsl(260 3% 9%) 50%,
-      hsl(240 5% 7%) 75%,
-      hsl(222 84% 5%) 100%
-    );
-  }
-
-  .todos-header-section {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.1);
-  }
-
-  .todos-task-item {
-    background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(255, 255, 255, 0.1);
-  }
-
-  .todos-delete-btn {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.1);
-  }
-}
+/* Dark mode support improvements - Now handled via light-dark() functions above */
+/* Legacy media query removed - theme switching now handled by CSS light-dark() function */
