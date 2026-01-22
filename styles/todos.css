@@ -490,12 +490,31 @@
   box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
 }
 
-/* Dialog content with modern styling */
+/* Dialog content with modern styling - Theme Aware */
 .todos-dialog-content {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
   padding-top: 1rem;
+}
+
+/* Dialog overlay fixes for better visibility */
+[data-slot="dialog-overlay"] {
+  background: light-dark(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)) !important;
+  backdrop-filter: blur(4px);
+}
+
+/* Dialog content container fixes */
+[data-slot="dialog-content"] {
+  background: light-dark(
+    var(--color-background),
+    var(--color-background)
+  ) !important;
+  border: 1px solid light-dark(var(--color-border), var(--color-border)) !important;
+  box-shadow: light-dark(
+    0 25px 50px -12px rgba(0, 0, 0, 0.25),
+    0 25px 50px -12px rgba(0, 0, 0, 0.6)
+  ) !important;
 }
 
 .todos-dialog-title {
@@ -516,6 +535,34 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
+}
+
+/* Dialog form elements styling */
+.todos-dialog-content input,
+.todos-dialog-content textarea,
+.todos-dialog-content [role="combobox"] {
+  background: light-dark(var(--color-input), var(--color-input)) !important;
+  border-color: light-dark(
+    var(--color-input-border),
+    var(--color-input-border)
+  ) !important;
+  color: light-dark(
+    var(--color-foreground),
+    var(--color-foreground)
+  ) !important;
+}
+
+/* Dialog button styling */
+.todos-dialog-content button[type="button"],
+.todos-dialog-content button:not([type]) {
+  background: linear-gradient(135deg, #667eea, #764ba2) !important;
+  color: white !important;
+  border: none !important;
+}
+
+.todos-dialog-content button[type="button"]:hover,
+.todos-dialog-content button:not([type]):hover {
+  background: linear-gradient(135deg, #5a6fd8, #6a4190) !important;
 }
 
 /* Stats grid */
