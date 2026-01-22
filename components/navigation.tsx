@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -10,14 +11,10 @@ import {
   Heart,
   Menu,
   Home,
-  Wallet,
   Settings,
   ListTodo,
-  GraduationCap,
   X,
   FileText,
-  Users,
-  BookOpen,
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import "@/styles/navigation.css";
@@ -27,10 +24,7 @@ const navigation = [
   { name: "Notes", href: "/notes", icon: FileText },
   { name: "Tasks", href: "/tasks", icon: CheckSquare },
   { name: "Todos", href: "/todos", icon: ListTodo },
-  { name: "Attendance", href: "/attendance", icon: GraduationCap },
-  { name: "Collaboration", href: "/collaboration", icon: Users },
   { name: "Well-being", href: "/wellbeing", icon: Heart },
-  { name: "Expenses", href: "/expenses", icon: Wallet },
   { name: "Utilities", href: "/utilities", icon: Settings },
 ];
 
@@ -64,6 +58,18 @@ export function Navigation() {
     };
   }, [isOpen]);
 
+  // Close the sheet if the viewport is resized to desktop to keep hamburger logic scoped to mobile only
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        setIsOpen(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <header className="navigation">
       <div className="navigation-container">
@@ -74,7 +80,13 @@ export function Navigation() {
           aria-label="ProdigySpace Home"
         >
           <div className="navigation-logo-icon">
-            <BookOpen className="navigation-logo-svg" />
+            <Image
+              src="/logo.png"
+              alt="ProdigySpace Logo"
+              className="navigation-logo-image"
+              width={32}
+              height={32}
+            />
           </div>
           <span className="navigation-logo-text">ProdigySpace</span>
         </Link>
@@ -114,12 +126,13 @@ export function Navigation() {
               <Button
                 variant="ghost"
                 size="icon"
-                className="navigation-mobile-trigger"
-                onClick={() => setIsOpen(true)}
-                aria-label="Open navigation menu"
+                className="navigation-mobile-trigger lg:hidden"
+                aria-label="Toggle navigation menu"
               >
                 <Menu
-                  className="navigation-mobile-trigger-icon"
+                  className={`navigation-mobile-trigger-icon ${
+                    isOpen ? "rotate-90" : ""
+                  }`}
                   aria-hidden="true"
                 />
               </Button>
@@ -127,14 +140,14 @@ export function Navigation() {
             <SheetContent
               side="right"
               className="navigation-sheet"
-              forceMount
               aria-label="Navigation menu"
             >
               <div className="navigation-sheet-container">
                 <div className="navigation-sheet-header">
+                  <h2 className="navigation-sheet-title">Menu</h2>
                   <Button
                     variant="ghost"
-                    size="sm"
+                    size="icon"
                     onClick={() => setIsOpen(false)}
                     className="navigation-sheet-close"
                     aria-label="Close navigation menu"
@@ -144,7 +157,6 @@ export function Navigation() {
                       aria-hidden="true"
                     />
                   </Button>
-                  <h2 className="navigation-sheet-title">Navigation</h2>
                 </div>
 
                 <nav

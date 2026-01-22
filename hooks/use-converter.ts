@@ -101,6 +101,66 @@ export function useConverter() {
     }
   };
 
+  const convertWeightUnits = (
+    value: number,
+    from: string,
+    to: string
+  ): number => {
+    const units: Record<string, number> = {
+      mg: 1,
+      g: 1000,
+      kg: 1000000,
+      lb: 453592,
+      oz: 28350,
+      ton: 1000000000,
+    };
+
+    if (!units[from] || !units[to]) return 0;
+
+    const mg = value * units[from];
+    return mg / units[to];
+  };
+
+  const convertVolumeUnits = (
+    value: number,
+    from: string,
+    to: string
+  ): number => {
+    const units: Record<string, number> = {
+      ml: 1,
+      l: 1000,
+      gallon: 3785.41,
+      quart: 946.353,
+      pint: 473.176,
+      cup: 236.588,
+      floz: 29.5735,
+    };
+
+    if (!units[from] || !units[to]) return 0;
+
+    const ml = value * units[from];
+    return ml / units[to];
+  };
+
+  const convertEnergyUnits = (
+    value: number,
+    from: string,
+    to: string
+  ): number => {
+    const units: Record<string, number> = {
+      joule: 1,
+      calorie: 4.184,
+      kcal: 4184,
+      kwh: 3600000,
+      btu: 1055.06,
+    };
+
+    if (!units[from] || !units[to]) return 0;
+
+    const joules = value * units[from];
+    return joules / units[to];
+  };
+
   const getResult = (): string => {
     const value = parseFloat(fromValue);
     if (isNaN(value)) return "0";
@@ -130,6 +190,23 @@ export function useConverter() {
       ["celsius", "fahrenheit", "kelvin"].includes(toUnit)
     ) {
       result = convertTemperature(value, fromUnit, toUnit);
+    } else if (
+      ["mg", "g", "kg", "lb", "oz", "ton"].includes(fromUnit) &&
+      ["mg", "g", "kg", "lb", "oz", "ton"].includes(toUnit)
+    ) {
+      result = convertWeightUnits(value, fromUnit, toUnit);
+    } else if (
+      ["ml", "l", "gallon", "quart", "pint", "cup", "floz"].includes(
+        fromUnit
+      ) &&
+      ["ml", "l", "gallon", "quart", "pint", "cup", "floz"].includes(toUnit)
+    ) {
+      result = convertVolumeUnits(value, fromUnit, toUnit);
+    } else if (
+      ["joule", "calorie", "kcal", "kwh", "btu"].includes(fromUnit) &&
+      ["joule", "calorie", "kcal", "kwh", "btu"].includes(toUnit)
+    ) {
+      result = convertEnergyUnits(value, fromUnit, toUnit);
     } else {
       return "Invalid conversion";
     }

@@ -7,7 +7,9 @@
     0 8px 24px rgba(0, 0, 0, 0.2)
   );
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  overflow: hidden;
+  overflow: visible;
+  position: relative;
+  isolation: isolate;
   border: 1px solid
     light-dark(rgba(70, 130, 180, 0.15), rgba(70, 130, 180, 0.3));
   height: 100%;
@@ -56,6 +58,8 @@
   padding: 24px;
   background-color: light-dark(rgba(255, 255, 255, 0.6), rgba(30, 41, 59, 0.3));
   border-radius: 0 0 10px 10px;
+  position: relative;
+  overflow: visible;
 }
 
 .unit-selector-grid {
@@ -119,6 +123,7 @@
   justify-content: space-between;
   padding: 0 12px;
   position: relative;
+  z-index: 1;
 }
 
 .category-select:hover,
@@ -187,7 +192,8 @@
   box-shadow: 0 10px 25px rgba(0, 0, 0, light-dark(0.1, 0.3)) !important;
   overflow: hidden;
   padding: 5px !important;
-  z-index: 100;
+  z-index: 9999 !important;
+  position: fixed !important;
 }
 
 [data-slot="select-item"] {
@@ -252,6 +258,18 @@
   color: #e53e3e;
 }
 
+.category-weight .category-icon {
+  color: #38a169;
+}
+
+.category-volume .category-icon {
+  color: #3182ce;
+}
+
+.category-energy .category-icon {
+  color: #d69e2e;
+}
+
 /* Subtle animation */
 @keyframes pulse {
   0% {
@@ -278,8 +296,9 @@
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, light-dark(0.1, 0.3)) !important;
   border: 1px solid rgba(70, 130, 180, light-dark(0.15, 0.3)) !important;
   width: var(--radix-select-trigger-width) !important;
-  z-index: 50;
+  z-index: 9999 !important;
   overflow: hidden;
+  position: fixed !important;
 }
 
 .select-item {

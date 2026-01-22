@@ -25,27 +25,30 @@ export default function TasksPage() {
           <h1 className="tasks-title">Task Management & Study Planner</h1>
           <p className="tasks-subtitle">
             Organize your assignments, plan study sessions, and track your
-            academic progress.
+            academic progress with our comprehensive task management system.
           </p>
         </div>
 
         <Tabs defaultValue="tasks" className="tasks-tabs">
-          <TabsList className="tasks-tabs-list tasks-tabs-list-grid-4">
+          <TabsList className="tasks-tabs-list">
             <TabsTrigger value="tasks" className="tasks-tab-trigger">
               <CheckSquare className="h-4 w-4" />
-              Tasks ({tasks.length})
+              <span className="hidden sm:inline">Tasks</span>
+              <span className="tasks-tab-count">({tasks.length})</span>
             </TabsTrigger>
             <TabsTrigger value="planner" className="tasks-tab-trigger">
               <Calendar className="h-4 w-4" />
-              Study Planner
+              <span className="hidden sm:inline">Planner</span>
             </TabsTrigger>
             <TabsTrigger value="assignments" className="tasks-tab-trigger">
               <GraduationCap className="h-4 w-4" />
-              Assignments ({assignments.length})
+              <span className="hidden sm:inline">Assignments</span>
+              <span className="tasks-tab-count">({assignments.length})</span>
             </TabsTrigger>
             <TabsTrigger value="sessions" className="tasks-tab-trigger">
               <BookOpen className="h-4 w-4" />
-              Sessions ({studySessions.length})
+              <span className="hidden sm:inline">Sessions</span>
+              <span className="tasks-tab-count">({studySessions.length})</span>
             </TabsTrigger>
           </TabsList>
 

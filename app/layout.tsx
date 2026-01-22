@@ -7,6 +7,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import "@/styles/globals.css";
+import "@/styles/utilities.css";
 import "@/styles/app.css";
 import { Suspense } from "react";
 

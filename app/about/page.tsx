@@ -4,10 +4,10 @@ import {
   Lightbulb,
   Users,
   Clock,
-  BookOpen,
   Target,
   Sparkles,
 } from "lucide-react";
+import Image from "next/image";
 import "@/styles/about.css";
 
 export default function AboutPage() {
@@ -39,7 +39,13 @@ export default function AboutPage() {
         <div className="hero-section">
           <div className="hero-background"></div>
           <div className="hero-header">
-            <BookOpen className="hero-icon" />
+            <Image
+              src="/logo.png"
+              alt="ProdigySpace Logo"
+              className="hero-icon"
+              width={64}
+              height={64}
+            />
             <h1 className="hero-title">Hey There! 👋</h1>
           </div>
           <p className="hero-subtitle">

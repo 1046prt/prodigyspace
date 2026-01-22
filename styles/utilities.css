@@ -1,7 +1,935 @@
+/* Utility Classes to Replace Tailwind CSS */
+
+/* Popup and Dropdown Z-index Management */
+[data-radix-portal] {
+  z-index: 9999 !important;
+}
+
+[data-state="open"][role="dialog"],
+[data-state="open"][data-slot="select-content"],
+[data-state="open"][data-slot="popover-content"],
+[data-state="open"][data-slot="dropdown-menu-content"] {
+  z-index: 9999 !important;
+}
+
+/* Ensure select dropdowns appear above everything */
+[data-slot="select-content"] {
+  z-index: 9999 !important;
+  position: fixed !important;
+}
+
+/* Fix for radix select viewport */
+[data-radix-select-viewport] {
+  z-index: 9999 !important;
+}
+
+/* Layout Classes */
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.flex-1 {
+  flex: 1 1 0%;
+}
+
+.grid {
+  display: grid;
+}
+
+.grid-cols-1 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+.grid-cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.grid-cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.grid-cols-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.grid-cols-7 {
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+}
+
+.hidden {
+  display: none;
+}
+
+.block {
+  display: block;
+}
+
+.inline-flex {
+  display: inline-flex;
+}
+
+/* Positioning & Alignment */
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-end {
+  justify-content: flex-end;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.items-start {
+  align-items: flex-start;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+/* Spacing Classes */
+.gap-1 {
+  gap: 0.25rem;
+}
+
+.gap-2 {
+  gap: 0.5rem;
+}
+
+.gap-3 {
+  gap: 0.75rem;
+}
+
+.gap-4 {
+  gap: 1rem;
+}
+
+.gap-6 {
+  gap: 1.5rem;
+}
+
+.gap-8 {
+  gap: 2rem;
+}
+
+.space-y-2 > * + * {
+  margin-top: 0.5rem;
+}
+
+.space-y-4 > * + * {
+  margin-top: 1rem;
+}
+
+.space-y-6 > * + * {
+  margin-top: 1.5rem;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.mt-1 {
+  margin-top: 0.25rem;
+}
+
+.mt-2 {
+  margin-top: 0.5rem;
+}
+
+.mt-4 {
+  margin-top: 1rem;
+}
+
+.mr-2 {
+  margin-right: 0.5rem;
+}
+
+.mb-1 {
+  margin-bottom: 0.25rem;
+}
+
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+.mb-8 {
+  margin-bottom: 2rem;
+}
+
+.p-2 {
+  padding: 0.5rem;
+}
+
+.p-4 {
+  padding: 1rem;
+}
+
+.p-6 {
+  padding: 1.5rem;
+}
+
+.px-3 {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.py-1 {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+.py-8 {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.py-12 {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.pb-2 {
+  padding-bottom: 0.5rem;
+}
+
+.pb-3 {
+  padding-bottom: 0.75rem;
+}
+
+/* Size Classes */
+.w-3 {
+  width: 0.75rem;
+}
+
+.w-4 {
+  width: 1rem;
+}
+
+.w-5 {
+  width: 1.25rem;
+}
+
+.w-8 {
+  width: 2rem;
+}
+
+.w-10 {
+  width: 2.5rem;
+}
+
+.w-12 {
+  width: 3rem;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.h-4 {
+  height: 1rem;
+}
+
+.h-5 {
+  height: 1.25rem;
+}
+
+.h-8 {
+  height: 2rem;
+}
+
+.h-10 {
+  height: 2.5rem;
+}
+
+.h-12 {
+  height: 3rem;
+}
+
+.min-h-screen {
+  min-height: 100vh;
+}
+
+.max-w-7xl {
+  max-width: 80rem;
+}
+
+.max-w-4xl {
+  max-width: 56rem;
+}
+
+.max-w-2xl {
+  max-width: 42rem;
+}
+
+.max-w-lg {
+  max-width: 32rem;
+}
+
+/* Typography */
+.text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.text-base {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+.text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+
+.text-4xl {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+
+.text-6xl {
+  font-size: 3.75rem;
+  line-height: 1;
+}
+
+.font-medium {
+  font-weight: 500;
+}
+
+.font-semibold {
+  font-weight: 600;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.whitespace-nowrap {
+  white-space: nowrap;
+}
+
+.line-clamp-2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+/* Colors */
+.text-primary {
+  color: var(--color-primary-500);
+}
+
+.text-muted-foreground {
+  color: var(--color-muted-foreground);
+}
+
+.text-green-500 {
+  color: #10b981;
+}
+
+.text-yellow-500 {
+  color: #f59e0b;
+}
+
+.text-red-500 {
+  color: #ef4444;
+}
+
+.text-transparent {
+  color: transparent;
+}
+
+.bg-primary {
+  background-color: var(--color-primary-500);
+}
+
+.bg-muted {
+  background-color: var(--color-muted-200);
+}
+
+.bg-transparent {
+  background-color: transparent;
+}
+
+/* Background Gradients */
+.bg-gradient-to-br {
+  background-image: linear-gradient(to bottom right, var(--tw-gradient-stops));
+}
+
+.bg-gradient-to-r {
+  background-image: linear-gradient(to right, var(--tw-gradient-stops));
+}
+
+.bg-clip-text {
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+.from-primary {
+  --tw-gradient-from: var(--color-primary-500);
+  --tw-gradient-stops: var(--tw-gradient-from),
+    var(--tw-gradient-to, transparent);
+}
+
+.from-background {
+  --tw-gradient-from: var(--color-background);
+  --tw-gradient-stops: var(--tw-gradient-from),
+    var(--tw-gradient-to, transparent);
+}
+
+.to-primary\/60 {
+  --tw-gradient-to: color-mix(
+    in srgb,
+    var(--color-primary-500) 60%,
+    transparent
+  );
+}
+
+.to-muted\/20 {
+  --tw-gradient-to: color-mix(in srgb, var(--color-muted-200) 20%, transparent);
+}
+
+/* Borders */
+.border {
+  border-width: 1px;
+}
+
+.rounded-md {
+  border-radius: 0.375rem;
+}
+
+.rounded-lg {
+  border-radius: 0.5rem;
+}
+
+/* Interactive States */
+.hover-shadow-md:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.transition-shadow {
+  transition: box-shadow 0.15s ease-in-out;
+}
+
+.transition-all {
+  transition: all 0.15s ease-in-out;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.disabled-pointer-events-none:disabled {
+  pointer-events: none;
+}
+
+.disabled-opacity-50:disabled {
+  opacity: 0.5;
+}
+
+/* Focus States */
+.focus-visible-outline-2:focus-visible {
+  outline-width: 2px;
+  outline-style: solid;
+  outline-color: var(--color-primary-500);
+}
+
+/* Responsive Classes */
+@media (min-width: 768px) {
+  .md\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .md\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .md\:text-3xl {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
+
+  .md\:text-4xl {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+
+  .md\:p-6 {
+    padding: 1.5rem;
+  }
+
+  .md\:w-auto {
+    width: auto;
+  }
+
+  .md\:w-40 {
+    width: 10rem;
+  }
+
+  .md\:flex-row {
+    flex-direction: row;
+  }
+
+  .md\:max-w-2xl {
+    max-width: 42rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .lg\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .lg\:max-w-4xl {
+    max-width: 56rem;
+  }
+
+  .lg\:text-5xl {
+    font-size: 3rem;
+    line-height: 1;
+  }
+}
+
+@media (min-width: 1280px) {
+  .xl\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* Original Utilities */
 .utilities-container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 32px;
+}
+
+/* Utilities Page Styles */
+.utilities-page {
+  min-height: 100vh;
+  background: linear-gradient(
+    to bottom right,
+    var(--color-background),
+    var(--color-muted-200)
+  );
+  padding: 16px;
+}
+
+@media (min-width: 768px) {
+  .utilities-page {
+    padding: 24px;
+  }
+}
+
+.utilities-header {
+  margin-bottom: 32px;
+  text-align: center;
+  padding: 0 16px;
+}
+
+.utilities-title {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+  font-weight: 700;
+  background: linear-gradient(
+    to right,
+    var(--color-primary-500),
+    var(--color-primary-400)
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  margin-bottom: 8px;
+}
+
+@media (min-width: 768px) {
+  .utilities-title {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+}
+
+.utilities-subtitle {
+  color: var(--color-muted-foreground);
+  margin-top: 8px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.utilities-tabs-list {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+@media (min-width: 768px) {
+  .utilities-tabs-list {
+    width: auto;
+  }
+}
+
+.utilities-tab-trigger {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.utilities-grid {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: 1fr;
+  margin-top: 8px;
+}
+
+.utilities-grid-lg-2 {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 1024px) {
+  .utilities-grid-lg-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.utilities-grid-md-2 {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .utilities-grid-md-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.utilities-grid-lg-3 {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .utilities-grid-lg-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .utilities-grid-lg-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.utilities-card-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Calculator Styles */
+.calculator-display {
+  background-color: var(--color-muted);
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.calculator-input {
+  text-align: right;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: var(--color-muted-foreground);
+  margin-bottom: 4px;
+}
+
+.calculator-result {
+  text-align: right;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 700;
+}
+
+.calculator-buttons {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.calculator-button {
+  height: 48px;
+}
+
+.calculator-button-wide {
+  grid-column: span 2 / span 2;
+}
+
+/* World Clock Styles */
+.world-clock-current {
+  text-align: center;
+}
+
+.world-clock-time {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+  font-weight: 700;
+}
+
+.world-clock-date {
+  color: var(--color-muted-foreground);
+}
+
+.world-clock-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.world-clock-zone {
+  text-align: center;
+  padding: 12px;
+  background-color: var(--color-muted);
+  border-radius: 8px;
+}
+
+.world-clock-zone-name {
+  font-weight: 600;
+}
+
+.world-clock-zone-time {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+/* Timer Styles */
+.timer-container {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.timer-display {
+  font-size: 3.75rem;
+  line-height: 1;
+  font-weight: 700;
+  color: var(--color-primary-500);
+}
+
+.timer-controls {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.timer-button {
+  width: 80px;
+}
+
+.timer-presets {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* Calendar Styles */
+.calendar-container {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.calendar-header {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 700;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 4px;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.calendar-day-header {
+  padding: 8px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.calendar-day {
+  padding: 8px;
+  text-align: center;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.15s ease-in-out;
+}
+
+.calendar-day:hover {
+  background-color: var(--color-muted);
+}
+
+.calendar-day-current {
+  background-color: var(--color-primary-500);
+  color: white;
+}
+
+/* Tool Card Styles */
+.utilities-tool-card {
+  transition: box-shadow 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.utilities-tool-card:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.utilities-tool-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.utilities-tool-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background-color: var(--color-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.utilities-tool-description {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: var(--color-muted-foreground);
+}
+
+/* Badge Colors */
+.blue-badge {
+  background-color: #dbeafe;
+  color: #1e40af;
+}
+
+.purple-badge {
+  background-color: #e9d5ff;
+  color: #7c3aed;
+}
+
+.green-badge {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+.orange-badge {
+  background-color: #fed7aa;
+  color: #c2410c;
+}
+
+.red-badge {
+  background-color: #fee2e2;
+  color: #dc2626;
+}
+
+.indigo-badge {
+  background-color: #e0e7ff;
+  color: #4338ca;
+}
+
+/* System Info Styles */
+.system-info-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.system-info-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.system-info-label {
+  color: var(--color-muted-foreground);
+}
+
+.system-info-value {
+  font-weight: 500;
+}
+
+/* Network Styles */
+.network-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.network-placeholder {
+  text-align: center;
+  padding: 32px 0;
+}
+
+.network-icon {
+  height: 48px;
+  width: 48px;
+  color: var(--color-muted-foreground);
+  margin: 0 auto 16px auto;
+}
+
+.network-placeholder-text {
+  color: var(--color-muted-foreground);
 }
 
 .utilities-header {
@@ -108,6 +1036,51 @@
     flex-grow: 1;
     margin: 0 8px;
   }
+}
+
+/* Global Popup and Modal Fixes */
+
+/* Ensure all Radix UI popups appear above everything */
+[data-radix-portal] * {
+  z-index: 9999 !important;
+}
+
+/* Fix for any modal backdrops */
+[data-state="open"] + [data-radix-portal] {
+  z-index: 9998 !important;
+}
+
+/* Prevent body scroll when modals are open */
+.overflow-hidden {
+  overflow: hidden;
+}
+
+/* Ensure dropdowns don't get clipped */
+.utilities-page {
+  position: relative;
+  z-index: 1;
+}
+
+/* Fix for any overlapping issues with cards */
+.utilities-grid {
+  position: relative;
+  z-index: 1;
+}
+
+/* Ensure tabs don't interfere with dropdowns */
+.utilities-tabs-list {
+  position: relative;
+  z-index: 2;
+}
+
+/* Make sure select content is always visible */
+[data-slot="select-content"],
+[data-slot="popover-content"],
+[data-slot="dropdown-menu-content"] {
+  z-index: 9999 !important;
+  position: fixed !important;
+  max-height: 300px;
+  overflow-y: auto;
 }
 
 /* Featured row styling */

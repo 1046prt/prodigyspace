@@ -4,15 +4,18 @@ import { useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import Link from "next/link";
+import Image from "next/image";
 import {
   FileText,
   Users,
   Heart,
   CheckSquare,
-  BookOpen,
   TrendingUp,
   Clock,
   GraduationCap,
+  AlarmClock,
+  Calculator,
+  DollarSign,
 } from "lucide-react";
 import { useTasks } from "@/hooks/use-tasks";
 import { useNotes } from "@/hooks/use-notes";
@@ -107,6 +110,14 @@ export default function HomePage() {
       stats: `${completedTasks}/${tasks.length} completed`,
     },
     {
+      icon: CheckSquare,
+      title: "Todo Manager",
+      description: "Simple and efficient todo list management",
+      color: "text-emerald-600",
+      href: "/todos",
+      stats: "Quick task tracking",
+    },
+    {
       icon: GraduationCap,
       title: "Attendance Tracker",
       description: "Monitor class attendance and maintain target percentages",
@@ -130,6 +141,30 @@ export default function HomePage() {
       href: "/wellbeing",
       stats: `${moodEntries.length} mood entries, ${totalStudyTime}min meditation`,
     },
+    {
+      icon: DollarSign,
+      title: "Expense Tracker",
+      description: "Track and manage your educational expenses and budgets",
+      color: "text-yellow-600",
+      href: "/expenses",
+      stats: "Financial management",
+    },
+    {
+      icon: AlarmClock,
+      title: "Alarm Manager",
+      description: "Set up study alarms and deadline reminders",
+      color: "text-red-600",
+      href: "/alarms",
+      stats: "Never miss deadlines",
+    },
+    {
+      icon: Calculator,
+      title: "Utilities",
+      description: "Unit converter, calculator and other useful tools",
+      color: "text-indigo-600",
+      href: "/utilities",
+      stats: "Helpful tools",
+    },
   ];
 
   return (
@@ -138,7 +173,13 @@ export default function HomePage() {
         <header className="homepage-header">
           <div className="homepage-logo-container">
             <div className="homepage-logo-icon">
-              <BookOpen />
+              <Image
+                src="/logo.png"
+                alt="ProdigySpace Logo"
+                className="homepage-logo-image"
+                width={48}
+                height={48}
+              />
             </div>
             <h1 className="homepage-logo-title">ProdigySpace</h1>
           </div>
