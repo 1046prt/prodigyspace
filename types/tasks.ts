@@ -107,6 +107,7 @@ export interface Assignment {
   priority: "low" | "medium" | "high" | "urgent";
   estimatedHours: number;
   actualHours: number;
+  progress?: number; // Progress percentage (0-100)
   grade?: string;
   feedback?: string;
   requirements: string[];

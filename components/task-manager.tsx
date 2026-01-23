@@ -37,6 +37,7 @@ import {
   Trash2,
   CheckCircle2,
   Filter,
+  BookOpen,
 } from "lucide-react";
 import type { Task } from "@/types/tasks";
 
@@ -120,6 +121,8 @@ export function TaskManager({
           return priorityOrder[b.priority] - priorityOrder[a.priority];
         case "created":
           return b.createdAt.getTime() - a.createdAt.getTime();
+        case "alphabetical":
+          return a.title.localeCompare(b.title);
         default:
           return 0;
       }
@@ -134,12 +137,21 @@ export function TaskManager({
   return (
     <div className="space-y-6">
       <div className="task-manager-header">
-        <h2 className="task-manager-title">Task Manager</h2>
+        <div className="task-manager-title-section">
+          <h2 className="task-manager-title">
+            <CheckSquare className="h-6 w-6 mr-3 text-blue-500" />
+            Task Manager
+          </h2>
+          <p className="task-manager-description">
+            Organize and track your tasks efficiently
+          </p>
+        </div>
         <Dialog open={showCreateDialog} onOpenChange={setShowCreateDialog}>
           <DialogTrigger asChild>
-            <Button className="task-manager-button-responsive bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-200 transform hover:-translate-y-0.5">
+            <Button className="task-manager-create-button">
               <Plus className="h-4 w-4 mr-2" />
-              Add New Task
+              <span className="hidden sm:inline">Create New Task</span>
+              <span className="sm:hidden">New Task</span>
             </Button>
           </DialogTrigger>
           <DialogContent className="max-w-3xl max-h-[90vh] overflow-hidden task-dialog">
@@ -383,52 +395,68 @@ export function TaskManager({
         </Dialog>
       </div>
 
-      {/* Filters and Sort */}
-      <div className="task-manager-filters">
-        <div className="flex items-center gap-2">
-          <Filter className="h-4 w-4 text-muted-foreground" />
-          <span className="text-sm font-medium">Filters:</span>
-        </div>
-        <div className="task-manager-filter-controls">
-          <Select value={filterStatus} onValueChange={setFilterStatus}>
-            <SelectTrigger className="w-full md:w-40">
-              <SelectValue placeholder="Filter by status" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">All Status</SelectItem>
-              <SelectItem value="todo">To Do</SelectItem>
-              <SelectItem value="in-progress">In Progress</SelectItem>
-              <SelectItem value="completed">Completed</SelectItem>
-            </SelectContent>
-          </Select>
+      {/* Enhanced Filters Section */}
+      <Card className="filters-card">
+        <CardContent className="filters-content">
+          <div className="filters-header">
+            <Filter className="h-5 w-5 text-gray-500" />
+            <h3 className="filters-title">Filter & Sort Tasks</h3>
+            <Badge className="task-count-badge">
+              {filteredTasks.length} of {tasks.length}
+            </Badge>
+          </div>
 
-          <Select value={filterCategory} onValueChange={setFilterCategory}>
-            <SelectTrigger className="w-full md:w-40">
-              <SelectValue placeholder="Filter by category" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">All Categories</SelectItem>
-              <SelectItem value="assignment">Assignment</SelectItem>
-              <SelectItem value="study">Study</SelectItem>
-              <SelectItem value="exam">Exam</SelectItem>
-              <SelectItem value="project">Project</SelectItem>
-              <SelectItem value="reading">Reading</SelectItem>
-              <SelectItem value="personal">Personal</SelectItem>
-            </SelectContent>
-          </Select>
+          <div className="filters-grid">
+            <div className="filter-group">
+              <label className="filter-label">Status</label>
+              <Select value={filterStatus} onValueChange={setFilterStatus}>
+                <SelectTrigger className="filter-select">
+                  <SelectValue placeholder="All Statuses" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">🔄 All Statuses</SelectItem>
+                  <SelectItem value="todo">⏳ To Do</SelectItem>
+                  <SelectItem value="in-progress">⚡ In Progress</SelectItem>
+                  <SelectItem value="completed">✅ Completed</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
 
-          <Select value={sortBy} onValueChange={setSortBy}>
-            <SelectTrigger className="w-full md:w-40">
-              <SelectValue placeholder="Sort by" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="dueDate">Due Date</SelectItem>
-              <SelectItem value="priority">Priority</SelectItem>
-              <SelectItem value="created">Created Date</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-      </div>
+            <div className="filter-group">
+              <label className="filter-label">Category</label>
+              <Select value={filterCategory} onValueChange={setFilterCategory}>
+                <SelectTrigger className="filter-select">
+                  <SelectValue placeholder="All Categories" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">📋 All Categories</SelectItem>
+                  <SelectItem value="assignment">📚 Assignment</SelectItem>
+                  <SelectItem value="study">📖 Study</SelectItem>
+                  <SelectItem value="exam">📝 Exam</SelectItem>
+                  <SelectItem value="project">🚀 Project</SelectItem>
+                  <SelectItem value="reading">📑 Reading</SelectItem>
+                  <SelectItem value="personal">👤 Personal</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div className="filter-group">
+              <label className="filter-label">Sort By</label>
+              <Select value={sortBy} onValueChange={setSortBy}>
+                <SelectTrigger className="filter-select">
+                  <SelectValue placeholder="Sort by" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="dueDate">📅 Due Date</SelectItem>
+                  <SelectItem value="priority">🏆 Priority</SelectItem>
+                  <SelectItem value="created">🕐 Created Date</SelectItem>
+                  <SelectItem value="alphabetical">🔤 Alphabetical</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
 
       {/* Tasks List */}
       {filteredTasks.length === 0 ? (
@@ -449,21 +477,32 @@ export function TaskManager({
           </Button>
         </div>
       ) : (
-        <div className="tasks-grid">
+        <div className="tasks-grid-enhanced">
           {filteredTasks.map((task) => {
             const daysUntilDue = task.dueDate
               ? getDaysUntilDue(task.dueDate)
               : null;
+            const isOverdue = daysUntilDue !== null && daysUntilDue < 0;
+            const isDueSoon =
+              daysUntilDue !== null && daysUntilDue <= 3 && daysUntilDue >= 0;
 
             return (
               <Card
                 key={task.id}
-                className={`task-card-enhanced task-priority-${task.priority}`}
+                className={`task-card-modern task-priority-${task.priority} ${
+                  task.status === "completed" ? "task-completed" : ""
+                } ${
+                  isOverdue ? "task-overdue" : isDueSoon ? "task-due-soon" : ""
+                }`}
               >
-                <div className="task-priority-indicator"></div>
-                <CardHeader className="pb-4">
-                  <div className="task-flex-between">
-                    <div className="task-flex flex-1 min-w-0">
+                {/* Priority Stripe */}
+                <div
+                  className={`priority-stripe priority-${task.priority}`}
+                ></div>
+
+                <CardHeader className="task-card-header-modern">
+                  <div className="task-header-row">
+                    <div className="task-checkbox-wrapper">
                       <Checkbox
                         checked={task.status === "completed"}
                         onCheckedChange={(checked: boolean) =>
@@ -472,132 +511,136 @@ export function TaskManager({
                             completedAt: checked ? new Date() : undefined,
                           })
                         }
-                        className="mt-1.5 flex-shrink-0"
+                        className="task-checkbox-enhanced"
                       />
-                      <div className="flex-1 min-w-0">
-                        <CardTitle
-                          className={`text-lg leading-tight font-semibold mb-2 ${
-                            task.status === "completed"
-                              ? "line-through opacity-60"
-                              : ""
-                          }`}
-                        >
-                          {task.title}
-                        </CardTitle>
-                        <div className="flex flex-wrap gap-2">
-                          <Badge
-                            className={`task-badge-enhanced task-badge-priority-${task.priority}`}
-                          >
-                            <Flag className="h-3 w-3 mr-1" />
-                            {task.priority.charAt(0).toUpperCase() +
-                              task.priority.slice(1)}
-                          </Badge>
-                          <Badge
-                            className={`task-badge-enhanced task-badge-status-${task.status}`}
-                          >
-                            {task.status === "in-progress"
-                              ? "In Progress"
-                              : task.status === "todo"
-                                ? "To Do"
-                                : task.status.charAt(0).toUpperCase() +
-                                  task.status.slice(1)}
-                          </Badge>
-                          <Badge
-                            className={`task-badge-enhanced task-badge-category-${task.category}`}
-                          >
-                            {task.category.charAt(0).toUpperCase() +
-                              task.category.slice(1)}
-                          </Badge>
-                        </div>
-                      </div>
                     </div>
-                    <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                      <Button size="sm" variant="ghost" className="h-8 w-8 p-0">
-                        <Edit className="h-3.5 w-3.5" />
+                    <div className="task-actions">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="task-action-button"
+                        onClick={() => {
+                          // Add edit functionality here
+                        }}
+                      >
+                        <Edit className="h-4 w-4" />
                       </Button>
                       <Button
-                        size="sm"
                         variant="ghost"
+                        size="sm"
+                        className="task-action-button task-delete-button"
                         onClick={() => onDeleteTask(task.id)}
-                        className="h-8 w-8 p-0 hover:text-red-500"
                       >
-                        <Trash2 className="h-3.5 w-3.5" />
+                        <Trash2 className="h-4 w-4" />
                       </Button>
                     </div>
                   </div>
-                </CardHeader>
-                <CardContent className="pt-0">
+
+                  <CardTitle
+                    className={`task-title-modern ${
+                      task.status === "completed" ? "task-title-completed" : ""
+                    }`}
+                  >
+                    {task.title}
+                  </CardTitle>
+
                   {task.description && (
-                    <p className="task-text-muted task-mb-4 line-clamp-2">
+                    <p className="task-description-modern">
                       {task.description}
                     </p>
                   )}
+                </CardHeader>
 
-                  <div className="space-y-3 task-text-small">
-                    {task.course && (
-                      <div className="task-flex">
-                        <span className="font-medium text-slate-700 dark:text-slate-300">
-                          Course:
-                        </span>
-                        <span className="truncate">{task.course}</span>
-                      </div>
-                    )}
+                <CardContent className="task-card-content-modern">
+                  {/* Badges Row */}
+                  <div className="task-badges-row">
+                    <Badge
+                      className={`priority-badge priority-badge-${task.priority}`}
+                    >
+                      <Flag className="h-3 w-3 mr-1" />
+                      {task.priority.toUpperCase()}
+                    </Badge>
 
+                    <Badge
+                      className={`category-badge category-badge-${task.category}`}
+                    >
+                      {task.category === "assignment" && "📚"}
+                      {task.category === "study" && "📖"}
+                      {task.category === "exam" && "📝"}
+                      {task.category === "project" && "🚀"}
+                      {task.category === "reading" && "📑"}
+                      {task.category === "personal" && "👤"}
+                      {task.category}
+                    </Badge>
+
+                    <Badge
+                      className={`status-badge status-badge-${task.status}`}
+                    >
+                      {task.status === "todo" && "⏳"}
+                      {task.status === "in-progress" && "⚡"}
+                      {task.status === "completed" && "✅"}
+                      {task.status === "in-progress"
+                        ? "In Progress"
+                        : task.status}
+                    </Badge>
+                  </div>
+
+                  {/* Task Meta Info */}
+                  <div className="task-meta-info">
                     {task.dueDate && (
-                      <div className="task-flex">
-                        <CalendarIcon
-                          className={`h-4 w-4 flex-shrink-0 ${
-                            daysUntilDue !== null && daysUntilDue < 0
-                              ? "text-red-500"
-                              : daysUntilDue !== null && daysUntilDue < 3
-                                ? "text-amber-500"
-                                : "text-slate-400"
-                          }`}
-                        />
-                        <span
-                          className={`font-medium ${
-                            daysUntilDue !== null && daysUntilDue < 0
-                              ? "text-red-600 bg-red-50 dark:bg-red-900/20 dark:text-red-400 px-2 py-0.5 rounded-full text-xs"
-                              : daysUntilDue !== null && daysUntilDue < 3
-                                ? "text-amber-600 bg-amber-50 dark:bg-amber-900/20 dark:text-amber-400 px-2 py-0.5 rounded-full text-xs"
-                                : "text-slate-600 dark:text-slate-400"
-                          }`}
-                        >
-                          {daysUntilDue !== null && daysUntilDue < 0
-                            ? `${Math.abs(daysUntilDue)} days overdue`
+                      <div
+                        className={`meta-item due-date-item ${
+                          isOverdue ? "overdue" : isDueSoon ? "due-soon" : ""
+                        }`}
+                      >
+                        <CalendarIcon className="h-4 w-4" />
+                        <span>
+                          {isOverdue
+                            ? `${Math.abs(daysUntilDue!)} days overdue`
                             : daysUntilDue === 0
                               ? "Due today"
                               : daysUntilDue === 1
                                 ? "Due tomorrow"
-                                : daysUntilDue !== null
-                                  ? `Due in ${daysUntilDue} days`
-                                  : format(task.dueDate, "PPP")}
+                                : `${daysUntilDue} days left`}
                         </span>
                       </div>
                     )}
 
                     {task.estimatedTime && (
-                      <div className="task-flex">
-                        <Clock className="h-4 w-4 flex-shrink-0 text-slate-400" />
-                        <span className="text-slate-600 dark:text-slate-400 font-medium">
-                          {task.estimatedTime >= 60
-                            ? `${Math.floor(task.estimatedTime / 60)}h ${
-                                task.estimatedTime % 60
-                              }m`
-                            : `${task.estimatedTime} min`}
-                        </span>
+                      <div className="meta-item">
+                        <Clock className="h-4 w-4" />
+                        <span>{task.estimatedTime} min</span>
                       </div>
                     )}
 
-                    {task.professor && (
-                      <div className="task-flex">
-                        <span className="font-medium text-slate-700 dark:text-slate-300">
-                          Professor:
-                        </span>
-                        <span className="truncate">{task.professor}</span>
+                    {task.course && (
+                      <div className="meta-item">
+                        <BookOpen className="h-4 w-4" />
+                        <span>{task.course}</span>
                       </div>
                     )}
                   </div>
+
+                  {/* Subtasks Progress */}
+                  {task.subtasks && task.subtasks.length > 0 && (
+                    <div className="subtasks-progress">
+                      <div className="subtasks-header">
+                        <span>Subtasks</span>
+                        <span>
+                          {task.subtasks.filter((s) => s.completed).length}/
+                          {task.subtasks.length}
+                        </span>
+                      </div>
+                      <div className="subtasks-bar">
+                        <div
+                          className="subtasks-bar-fill"
+                          style={{
+                            width: `${(task.subtasks.filter((s) => s.completed).length / task.subtasks.length) * 100}%`,
+                          }}
+                        ></div>
+                      </div>
+                    </div>
+                  )}
                 </CardContent>
               </Card>
             );
