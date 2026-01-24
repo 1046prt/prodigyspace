@@ -7,11 +7,12 @@
   --task-radius: 16px;
   --task-padding: 24px;
   --task-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.04);
-  --task-shadow-hover: 0 12px 24px -6px rgba(0, 0, 0, 0.15), 0 6px 16px -2px rgba(0, 0, 0, 0.08);
+  --task-shadow-hover:
+    0 12px 24px -6px rgba(0, 0, 0, 0.15), 0 6px 16px -2px rgba(0, 0, 0, 0.08);
   --task-border: 1px solid rgba(226, 232, 240, 0.8);
   --task-bg: rgba(255, 255, 255, 0.95);
   --task-bg-hover: rgba(255, 255, 255, 1);
-  
+
   /* Gradient backgrounds */
   --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   --gradient-success: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
@@ -25,7 +26,8 @@
   --task-bg: rgba(30, 41, 59, 0.95);
   --task-bg-hover: rgba(30, 41, 59, 1);
   --task-shadow: 0 2px 8px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.2);
-  --task-shadow-hover: 0 12px 24px -6px rgba(0, 0, 0, 0.4), 0 6px 16px -2px rgba(0, 0, 0, 0.2);
+  --task-shadow-hover:
+    0 12px 24px -6px rgba(0, 0, 0, 0.4), 0 6px 16px -2px rgba(0, 0, 0, 0.2);
 }
 
 /* ===========================================
@@ -44,7 +46,8 @@
 }
 
 @keyframes pulse {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1);
   }
   50% {
@@ -82,18 +85,42 @@
 .tasks {
   min-height: 100vh;
   padding: 24px 20px;
-  background: 
-    radial-gradient(circle at 25% 25%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 75% 75%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
-    linear-gradient(135deg, rgba(247, 250, 252, 0.9) 0%, rgba(241, 245, 249, 0.9) 100%);
+  background:
+    radial-gradient(
+      circle at 25% 25%,
+      rgba(99, 102, 241, 0.1) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 75% 75%,
+      rgba(139, 92, 246, 0.1) 0%,
+      transparent 50%
+    ),
+    linear-gradient(
+      135deg,
+      rgba(247, 250, 252, 0.9) 0%,
+      rgba(241, 245, 249, 0.9) 100%
+    );
   position: relative;
 }
 
 [data-theme="dark"] .tasks {
-  background: 
-    radial-gradient(circle at 25% 25%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 75% 75%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
-    linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.95) 100%);
+  background:
+    radial-gradient(
+      circle at 25% 25%,
+      rgba(99, 102, 241, 0.15) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 75% 75%,
+      rgba(139, 92, 246, 0.15) 0%,
+      transparent 50%
+    ),
+    linear-gradient(
+      135deg,
+      rgba(15, 23, 42, 0.95) 0%,
+      rgba(30, 41, 59, 0.95) 100%
+    );
 }
 
 .tasks-container {
@@ -173,22 +200,38 @@
 }
 
 .stat-card-primary {
-  background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.05) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(99, 102, 241, 0.1) 0%,
+    rgba(139, 92, 246, 0.05) 100%
+  );
   border: 1px solid rgba(99, 102, 241, 0.2);
 }
 
 .stat-card-success {
-  background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(22, 163, 74, 0.05) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(34, 197, 94, 0.1) 0%,
+    rgba(22, 163, 74, 0.05) 100%
+  );
   border: 1px solid rgba(34, 197, 94, 0.2);
 }
 
 .stat-card-warning {
-  background: linear-gradient(135deg, rgba(251, 191, 36, 0.1) 0%, rgba(245, 158, 11, 0.05) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(251, 191, 36, 0.1) 0%,
+    rgba(245, 158, 11, 0.05) 100%
+  );
   border: 1px solid rgba(251, 191, 36, 0.2);
 }
 
 .stat-card-info {
-  background: linear-gradient(135deg, rgba(14, 165, 233, 0.1) 0%, rgba(59, 130, 246, 0.05) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(14, 165, 233, 0.1) 0%,
+    rgba(59, 130, 246, 0.05) 100%
+  );
   border: 1px solid rgba(14, 165, 233, 0.2);
 }
 
@@ -520,6 +563,9 @@
   border-color: #818cf8;
   box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.1);
 }
+
+.tasks-tabs-list {
+  background: rgba(255, 255, 255, 0.8);
   border: 1px solid rgba(226, 232, 240, 0.8);
   border-radius: 12px;
   padding: 4px;
@@ -1080,7 +1126,8 @@
    ASSIGNMENTS SECTION
    =========================================== */
 
-.assignments-section, .sessions-section {
+.assignments-section,
+.sessions-section {
   animation: fadeInUp 0.6s ease-out;
 }
 
@@ -1134,12 +1181,20 @@
 
 .assignment-card.overdue {
   border-color: rgba(220, 38, 38, 0.4);
-  background: linear-gradient(135deg, rgba(220, 38, 38, 0.03) 0%, rgba(255, 255, 255, 0.9) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(220, 38, 38, 0.03) 0%,
+    rgba(255, 255, 255, 0.9) 100%
+  );
 }
 
 .assignment-card.due-soon {
   border-color: rgba(245, 158, 11, 0.4);
-  background: linear-gradient(135deg, rgba(245, 158, 11, 0.03) 0%, rgba(255, 255, 255, 0.9) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(245, 158, 11, 0.03) 0%,
+    rgba(255, 255, 255, 0.9) 100%
+  );
 }
 
 [data-theme="dark"] .assignment-card {
@@ -1149,11 +1204,19 @@
 }
 
 [data-theme="dark"] .assignment-card.overdue {
-  background: linear-gradient(135deg, rgba(220, 38, 38, 0.1) 0%, rgba(30, 41, 59, 0.9) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(220, 38, 38, 0.1) 0%,
+    rgba(30, 41, 59, 0.9) 100%
+  );
 }
 
 [data-theme="dark"] .assignment-card.due-soon {
-  background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(30, 41, 59, 0.9) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(245, 158, 11, 0.1) 0%,
+    rgba(30, 41, 59, 0.9) 100%
+  );
 }
 
 .assignment-card-header {
@@ -1525,44 +1588,44 @@
   .tasks {
     padding: 16px 12px;
   }
-  
+
   .tasks-title {
     font-size: 2rem;
   }
-  
+
   .tasks-subtitle {
     font-size: 1rem;
   }
-  
+
   .tasks-stats-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 12px;
   }
-  
+
   .stat-card-content {
     padding: 16px !important;
   }
-  
+
   .stat-value {
     font-size: 1.5rem;
   }
-  
+
   .filters-grid {
     grid-template-columns: 1fr;
     gap: 16px;
   }
-  
+
   .analytics-stats {
     grid-template-columns: 1fr;
     gap: 12px;
   }
-  
+
   .session-item {
     flex-direction: column;
     align-items: flex-start;
     gap: 8px;
   }
-  
+
   .session-meta {
     align-self: stretch;
     justify-content: space-between;
