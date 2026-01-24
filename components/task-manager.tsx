@@ -38,6 +38,7 @@ import {
   CheckCircle2,
   Filter,
   BookOpen,
+  CheckSquare,
 } from "lucide-react";
 import type { Task } from "@/types/tasks";
 
