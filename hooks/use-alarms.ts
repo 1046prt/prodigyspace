@@ -1,46 +1,22 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
-import { storage } from "@/lib/storage";
+import { useEffect, useCallback } from "react";
+import { useProdigyStorage, dateTransformers } from "@/lib/storage";
 import type { Alarm, AlarmDay, Reminder } from "@/types/alarm";
 import { useNotifications } from "./use-notifications";
 
-const ALARMS_KEY = "prodigyspace_alarms";
-const REMINDERS_KEY = "prodigyspace_reminders";
-
 export function useAlarms() {
-  const [alarms, setAlarms] = useState<Alarm[]>([]);
-  const [reminders, setReminders] = useState<Reminder[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [alarms, setAlarms, alarmsLoading] = useProdigyStorage<Alarm[]>(
+    "alarms",
+    [],
+    dateTransformers,
+  );
+
+  const [reminders, setReminders, remindersLoading] = useProdigyStorage<
+    Reminder[]
+  >("reminders", [], dateTransformers);
+
   const { showNotification } = useNotifications();
-
-  // Load data from storage on mount
-  useEffect(() => {
-    const loadData = () => {
-      const savedAlarms = storage.getItem<Alarm[]>(ALARMS_KEY) || [];
-      const savedReminders = storage.getItem<Reminder[]>(REMINDERS_KEY) || [];
-
-      setAlarms(savedAlarms);
-      setReminders(savedReminders);
-      setLoading(false);
-    };
-
-    loadData();
-  }, []);
-
-  // Save alarms to storage whenever they change
-  useEffect(() => {
-    if (!loading) {
-      storage.setItem(ALARMS_KEY, alarms);
-    }
-  }, [alarms, loading]);
-
-  // Save reminders to storage whenever they change
-  useEffect(() => {
-    if (!loading) {
-      storage.setItem(REMINDERS_KEY, reminders);
-    }
-  }, [reminders, loading]);
 
   // Check for alarms and reminders every minute
   useEffect(() => {
@@ -101,7 +77,7 @@ export function useAlarms() {
       };
       setAlarms((prev) => [newAlarm, ...prev]);
     },
-    []
+    [],
   );
 
   const updateAlarm = useCallback((id: string, updates: Partial<Alarm>) => {
@@ -109,8 +85,8 @@ export function useAlarms() {
       prev.map((alarm) =>
         alarm.id === id
           ? { ...alarm, ...updates, updatedAt: Date.now() }
-          : alarm
-      )
+          : alarm,
+      ),
     );
   }, []);
 
@@ -123,8 +99,8 @@ export function useAlarms() {
       prev.map((alarm) =>
         alarm.id === id
           ? { ...alarm, isActive: !alarm.isActive, updatedAt: Date.now() }
-          : alarm
-      )
+          : alarm,
+      ),
     );
   }, []);
 
@@ -138,7 +114,7 @@ export function useAlarms() {
       };
       setReminders((prev) => [newReminder, ...prev]);
     },
-    []
+    [],
   );
 
   const updateReminder = useCallback(
@@ -147,11 +123,11 @@ export function useAlarms() {
         prev.map((reminder) =>
           reminder.id === id
             ? { ...reminder, ...updates, updatedAt: Date.now() }
-            : reminder
-        )
+            : reminder,
+        ),
       );
     },
-    []
+    [],
   );
 
   const deleteReminder = useCallback((id: string) => {
@@ -163,15 +139,15 @@ export function useAlarms() {
       prev.map((reminder) =>
         reminder.id === id
           ? { ...reminder, isActive: !reminder.isActive, updatedAt: Date.now() }
-          : reminder
-      )
+          : reminder,
+      ),
     );
   }, []);
 
   return {
     alarms,
     reminders,
-    loading,
+    loading: alarmsLoading || remindersLoading,
     addAlarm,
     updateAlarm,
     deleteAlarm,

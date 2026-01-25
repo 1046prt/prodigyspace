@@ -1,3 +1,8 @@
+import { useState, useEffect, useCallback } from "react";
+import {
+  transformDatesForStorage,
+  transformDatesFromStorage,
+} from "./date-utils";
 export interface StorageItem<T> {
   data: T;
   timestamp: number;
@@ -98,3 +103,59 @@ export function loadFromStorage<T>(key: string, defaultValue: T): T {
 export function saveToStorage<T>(key: string, data: T): void {
   storage.setItem(key, data);
 }
+
+// Common storage utilities to reduce duplication across hooks
+export function useProdigyStorage<T>(
+  key: string,
+  defaultValue: T,
+  transformer?: {
+    deserialize?: (data: unknown) => T;
+    serialize?: (data: T) => unknown;
+  },
+): [T, (newValue: T) => void, boolean] {
+  const [data, setData] = useState<T>(defaultValue);
+  const [loading, setLoading] = useState(true);
+
+  // Load data on mount
+  useEffect(() => {
+    const savedData = storage.getItem<unknown>(`prodigyspace-${key}`);
+    if (savedData !== null) {
+      try {
+        const processedData = transformer?.deserialize
+          ? transformer.deserialize(savedData)
+          : (savedData as T);
+        setData(processedData);
+      } catch (error) {
+        console.warn(`Failed to deserialize data for key ${key}:`, error);
+        setData(defaultValue);
+      }
+    } else {
+      setData(defaultValue);
+    }
+    setLoading(false);
+  }, [key, defaultValue, transformer]);
+
+  // Save function
+  const saveData = useCallback(
+    (newValue: T) => {
+      setData(newValue);
+      try {
+        const processedValue = transformer?.serialize
+          ? transformer.serialize(newValue)
+          : newValue;
+        storage.setItem(`prodigyspace-${key}`, processedValue);
+      } catch (error) {
+        console.error(`Failed to save data for key ${key}:`, error);
+      }
+    },
+    [key, transformer],
+  );
+
+  return [data, saveData, loading];
+}
+
+// Common transformers for date objects - improved version
+export const dateTransformers = {
+  deserialize: transformDatesFromStorage,
+  serialize: transformDatesForStorage,
+};

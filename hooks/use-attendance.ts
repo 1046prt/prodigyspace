@@ -1,57 +1,20 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useProdigyStorage, dateTransformers } from "@/lib/storage";
 import type { AttendanceSubject, AttendanceStats } from "@/types/attendance";
 
 export function useAttendance() {
-  const [subjects, setSubjects] = useState<AttendanceSubject[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  // Load data from localStorage on mount
-  useEffect(() => {
-    try {
-      if (typeof window !== "undefined") {
-        const savedSubjects = localStorage.getItem("attendance-subjects");
-        if (savedSubjects) {
-          const parsed = JSON.parse(savedSubjects);
-          setSubjects(
-            parsed.map(
-              (
-                subject: AttendanceSubject & {
-                  createdAt: string;
-                  updatedAt: string;
-                }
-              ) => ({
-                ...subject,
-                createdAt: new Date(subject.createdAt),
-                updatedAt: new Date(subject.updatedAt),
-              })
-            )
-          );
-        }
-      }
-    } catch {
-      // Error handling for loading attendance data
-    } finally {
-      setLoading(false);
-    }
-  }, []);
-
-  // Save to localStorage whenever subjects change
-  useEffect(() => {
-    if (!loading && typeof window !== "undefined") {
-      try {
-        const serialized = JSON.stringify(subjects);
-        localStorage.setItem("attendance-subjects", serialized);
-      } catch {}
-    }
-  }, [subjects, loading]);
+  const [subjects, setSubjects] = useProdigyStorage<AttendanceSubject[]>(
+    "attendance-subjects",
+    [],
+    dateTransformers,
+  );
 
   const addSubject = (
     name: string,
     totalClasses: number,
     attendedClasses: number,
-    targetPercentage: number = 75
+    targetPercentage: number = 75,
   ) => {
     try {
       // Ensure we have valid data
@@ -63,11 +26,11 @@ export function useAttendance() {
       const validTotalClasses = Math.max(0, totalClasses || 0);
       const validAttendedClasses = Math.max(
         0,
-        Math.min(validTotalClasses, attendedClasses || 0)
+        Math.min(validTotalClasses, attendedClasses || 0),
       );
       const validTargetPercentage = Math.max(
         0,
-        Math.min(100, targetPercentage || 75)
+        Math.min(100, targetPercentage || 75),
       );
 
       // Generate a unique ID
@@ -96,7 +59,7 @@ export function useAttendance() {
         if (
           prev.some(
             (subject) =>
-              subject.name.toLowerCase() === name.trim().toLowerCase()
+              subject.name.toLowerCase() === name.trim().toLowerCase(),
           )
         ) {
           // Subject with this name already exists
@@ -104,19 +67,7 @@ export function useAttendance() {
           return prev;
         }
 
-        const updatedSubjects = [...prev, newSubject];
-
-        // Save to localStorage immediately to avoid race conditions
-        try {
-          localStorage.setItem(
-            "attendance-subjects",
-            JSON.stringify(updatedSubjects)
-          );
-        } catch {
-          // Failed to save to localStorage
-        }
-
-        return updatedSubjects;
+        return [...prev, newSubject];
       });
     } catch (error) {
       throw error; // Re-throw the error so the component can handle it
@@ -128,8 +79,8 @@ export function useAttendance() {
       prev.map((subject) =>
         subject.id === id
           ? { ...subject, ...updates, updatedAt: new Date() }
-          : subject
-      )
+          : subject,
+      ),
     );
   };
 
@@ -174,7 +125,7 @@ export function useAttendance() {
                 attendedClasses: subject.attendedClasses + 1,
                 updatedAt: new Date(),
               }
-            : subject
+            : subject,
         );
       });
     } catch {
@@ -202,7 +153,7 @@ export function useAttendance() {
                 totalClasses: subject.totalClasses + 1,
                 updatedAt: new Date(),
               }
-            : subject
+            : subject,
         );
       });
     } catch {
@@ -224,7 +175,7 @@ export function useAttendance() {
       const maxSkippable = Math.floor(
         (subject.attendedClasses * 100 -
           subject.targetPercentage * subject.totalClasses) /
-          subject.targetPercentage
+          subject.targetPercentage,
       );
       classesToSkip = Math.max(0, maxSkippable);
     }
@@ -237,7 +188,7 @@ export function useAttendance() {
       const needed = Math.ceil(
         (subject.targetPercentage * subject.totalClasses -
           subject.attendedClasses * 100) /
-          (100 - subject.targetPercentage)
+          (100 - subject.targetPercentage),
       );
       classesNeeded = Math.max(0, needed);
     }
@@ -252,7 +203,6 @@ export function useAttendance() {
 
   return {
     subjects,
-    loading,
     addSubject,
     updateSubject,
     deleteSubject,

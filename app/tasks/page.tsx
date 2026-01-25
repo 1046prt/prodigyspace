@@ -34,9 +34,9 @@ export default function TasksPage() {
 
   // Calculate statistics
   const completedTasks = tasks.filter((t) => t.status === "completed").length;
-  const inProgressTasks = tasks.filter(
-    (t) => t.status === "in-progress",
-  ).length;
+  // const inProgressTasks = tasks.filter(
+  //   (t) => t.status === "in-progress",
+  // ).length;
   const overdueAssignments = assignments.filter(
     (a) => a.dueDate < new Date() && a.status !== "completed",
   ).length;
@@ -170,8 +170,8 @@ export default function TasksPage() {
                     <GraduationCap className="empty-state-icon" />
                     <h3>No Assignments Yet</h3>
                     <p>
-                      Start by creating tasks with category 'Assignment' to see
-                      them here.
+                      Start by creating tasks with category
+                      &apos;Assignment&apos; to see them here.
                     </p>
                   </CardContent>
                 </Card>
@@ -279,7 +279,7 @@ export default function TasksPage() {
                     <CardHeader>
                       <CardTitle className="analytics-title">
                         <Award className="h-5 w-5" />
-                        This Week's Performance
+                        This Week&apos;s Performance
                       </CardTitle>
                     </CardHeader>
                     <CardContent>

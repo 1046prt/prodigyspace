@@ -1,45 +1,20 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import type { Note, ScanDocument } from "@/types/notes"
+import { useProdigyStorage, dateTransformers } from "@/lib/storage";
+import type { Note, ScanDocument } from "@/types/notes";
 
 export function useNotes() {
-  const [notes, setNotes] = useState<Note[]>([])
-  const [scannedDocs, setScannedDocs] = useState<ScanDocument[]>([])
+  const [notes, setNotes] = useProdigyStorage<Note[]>(
+    "notes",
+    [],
+    dateTransformers,
+  );
 
-  useEffect(() => {
-    const savedNotes = localStorage.getItem("prodigyspace-notes")
-    const savedDocs = localStorage.getItem("prodigyspace-scanned-docs")
-
-    if (savedNotes) {
-      setNotes(
-        JSON.parse(savedNotes).map((note: any) => ({
-          ...note,
-          createdAt: new Date(note.createdAt),
-          updatedAt: new Date(note.updatedAt),
-        })),
-      )
-    }
-
-    if (savedDocs) {
-      setScannedDocs(
-        JSON.parse(savedDocs).map((doc: any) => ({
-          ...doc,
-          createdAt: new Date(doc.createdAt),
-        })),
-      )
-    }
-  }, [])
-
-  const saveNotes = (newNotes: Note[]) => {
-    setNotes(newNotes)
-    localStorage.setItem("prodigyspace-notes", JSON.stringify(newNotes))
-  }
-
-  const saveDocs = (newDocs: ScanDocument[]) => {
-    setScannedDocs(newDocs)
-    localStorage.setItem("prodigyspace-scanned-docs", JSON.stringify(newDocs))
-  }
+  const [scannedDocs, setScannedDocs] = useProdigyStorage<ScanDocument[]>(
+    "scanned-docs",
+    [],
+    dateTransformers,
+  );
 
   const addNote = (noteData: Omit<Note, "id" | "createdAt" | "updatedAt">) => {
     const newNote: Note = {
@@ -47,31 +22,33 @@ export function useNotes() {
       id: Date.now().toString(),
       createdAt: new Date(),
       updatedAt: new Date(),
-    }
-    saveNotes([...notes, newNote])
-  }
+    };
+    setNotes([...notes, newNote]);
+  };
 
   const updateNote = (id: string, updates: Partial<Note>) => {
-    const updatedNotes = notes.map((note) => (note.id === id ? { ...note, ...updates, updatedAt: new Date() } : note))
-    saveNotes(updatedNotes)
-  }
+    const updatedNotes = notes.map((note) =>
+      note.id === id ? { ...note, ...updates, updatedAt: new Date() } : note,
+    );
+    setNotes(updatedNotes);
+  };
 
   const deleteNote = (id: string) => {
-    saveNotes(notes.filter((note) => note.id !== id))
-  }
+    setNotes(notes.filter((note) => note.id !== id));
+  };
 
   const addScannedDoc = (docData: Omit<ScanDocument, "id" | "createdAt">) => {
     const newDoc: ScanDocument = {
       ...docData,
       id: Date.now().toString(),
       createdAt: new Date(),
-    }
-    saveDocs([...scannedDocs, newDoc])
-  }
+    };
+    setScannedDocs([...scannedDocs, newDoc]);
+  };
 
   const deleteScannedDoc = (id: string) => {
-    saveDocs(scannedDocs.filter((doc) => doc.id !== id))
-  }
+    setScannedDocs(scannedDocs.filter((doc) => doc.id !== id));
+  };
 
   return {
     notes,
@@ -81,5 +58,5 @@ export function useNotes() {
     deleteNote,
     addScannedDoc,
     deleteScannedDoc,
-  }
+  };
 }

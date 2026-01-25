@@ -1,16 +1,14 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useProdigyStorage, dateTransformers } from "@/lib/storage";
 import type { Bookmark } from "@/types/utilities";
-import { storage } from "@/lib/storage";
 
 export function useBookmarks() {
-  const [bookmarks, setBookmarks] = useState<Bookmark[]>([]);
-
-  useEffect(() => {
-    const saved = storage.getItem<Bookmark[]>("bookmarks") || [];
-    setBookmarks(saved);
-  }, []);
+  const [bookmarks, setBookmarks] = useProdigyStorage<Bookmark[]>(
+    "bookmarks",
+    [],
+    dateTransformers,
+  );
 
   const addBookmark = (title: string, url: string, category: string) => {
     const bookmark: Bookmark = {
@@ -20,23 +18,19 @@ export function useBookmarks() {
       category,
       createdAt: new Date(),
     };
-    const updated = [...bookmarks, bookmark];
-    setBookmarks(updated);
-    storage.setItem("bookmarks", updated);
+    setBookmarks([...bookmarks, bookmark]);
   };
 
   const removeBookmark = (id: string) => {
-    const updated = bookmarks.filter((bookmark) => bookmark.id !== id);
-    setBookmarks(updated);
-    storage.setItem("bookmarks", updated);
+    setBookmarks(bookmarks.filter((bookmark) => bookmark.id !== id));
   };
 
   const updateBookmark = (id: string, updates: Partial<Bookmark>) => {
-    const updated = bookmarks.map((bookmark) =>
-      bookmark.id === id ? { ...bookmark, ...updates } : bookmark
+    setBookmarks(
+      bookmarks.map((bookmark) =>
+        bookmark.id === id ? { ...bookmark, ...updates } : bookmark,
+      ),
     );
-    setBookmarks(updated);
-    storage.setItem("bookmarks", updated);
   };
 
   const getBookmarksByCategory = (category: string) => {

@@ -1,98 +1,32 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useProdigyStorage, dateTransformers } from "@/lib/storage";
 import type { Task, StudySession, StudyPlan, Assignment } from "@/types/tasks";
 
 export function useTasks() {
-  const [tasks, setTasks] = useState<Task[]>([]);
-  const [studySessions, setStudySessions] = useState<StudySession[]>([]);
-  const [studyPlans, setStudyPlans] = useState<StudyPlan[]>([]);
-  const [assignments, setAssignments] = useState<Assignment[]>([]);
+  const [tasks, setTasks] = useProdigyStorage<Task[]>(
+    "tasks",
+    [],
+    dateTransformers,
+  );
 
-  useEffect(() => {
-    const savedTasks = localStorage.getItem("prodigyspace-tasks");
-    const savedSessions = localStorage.getItem("prodigyspace-study-sessions");
-    const savedPlans = localStorage.getItem("prodigyspace-study-plans");
-    const savedAssignments = localStorage.getItem("prodigyspace-assignments");
+  const [studySessions, setStudySessions] = useProdigyStorage<StudySession[]>(
+    "study-sessions",
+    [],
+    dateTransformers,
+  );
 
-    if (savedTasks) {
-      setTasks(
-        JSON.parse(savedTasks).map((task: any) => ({
-          ...task,
-          createdAt: new Date(task.createdAt),
-          updatedAt: new Date(task.updatedAt),
-          dueDate: task.dueDate ? new Date(task.dueDate) : undefined,
-          completedAt: task.completedAt
-            ? new Date(task.completedAt)
-            : undefined,
-          subtasks: task.subtasks.map((subtask: any) => ({
-            ...subtask,
-            createdAt: new Date(subtask.createdAt),
-          })),
-          reminders: task.reminders.map((reminder: any) => ({
-            ...reminder,
-            time: new Date(reminder.time),
-          })),
-        })),
-      );
-    }
+  const [studyPlans, setStudyPlans] = useProdigyStorage<StudyPlan[]>(
+    "study-plans",
+    [],
+    dateTransformers,
+  );
 
-    if (savedSessions) {
-      setStudySessions(
-        JSON.parse(savedSessions).map((session: any) => ({
-          ...session,
-          startTime: new Date(session.startTime),
-          endTime: new Date(session.endTime),
-        })),
-      );
-    }
-
-    if (savedPlans) {
-      setStudyPlans(
-        JSON.parse(savedPlans).map((plan: any) => ({
-          ...plan,
-          startDate: new Date(plan.startDate),
-          endDate: new Date(plan.endDate),
-        })),
-      );
-    }
-
-    if (savedAssignments) {
-      setAssignments(
-        JSON.parse(savedAssignments).map((assignment: any) => ({
-          ...assignment,
-          dueDate: new Date(assignment.dueDate),
-          createdAt: new Date(assignment.createdAt),
-        })),
-      );
-    }
-  }, []);
-
-  const saveTasks = (newTasks: Task[]) => {
-    setTasks(newTasks);
-    localStorage.setItem("prodigyspace-tasks", JSON.stringify(newTasks));
-  };
-
-  const saveStudySessions = (newSessions: StudySession[]) => {
-    setStudySessions(newSessions);
-    localStorage.setItem(
-      "prodigyspace-study-sessions",
-      JSON.stringify(newSessions),
-    );
-  };
-
-  const saveStudyPlans = (newPlans: StudyPlan[]) => {
-    setStudyPlans(newPlans);
-    localStorage.setItem("prodigyspace-study-plans", JSON.stringify(newPlans));
-  };
-
-  const saveAssignments = (newAssignments: Assignment[]) => {
-    setAssignments(newAssignments);
-    localStorage.setItem(
-      "prodigyspace-assignments",
-      JSON.stringify(newAssignments),
-    );
-  };
+  const [assignments, setAssignments] = useProdigyStorage<Assignment[]>(
+    "assignments",
+    [],
+    dateTransformers,
+  );
 
   const addTask = (
     taskData: Omit<
@@ -108,7 +42,7 @@ export function useTasks() {
       subtasks: [],
       reminders: [],
     };
-    saveTasks([...tasks, newTask]);
+    setTasks([...tasks, newTask]);
 
     // If the task is an assignment, also create an assignment record
     if (taskData.category === "assignment") {
@@ -131,7 +65,7 @@ export function useTasks() {
         resources: [],
         createdAt: new Date(),
       };
-      saveAssignments([...assignments, newAssignment]);
+      setAssignments([...assignments, newAssignment]);
     }
   };
 
@@ -149,11 +83,11 @@ export function useTasks() {
           }
         : task,
     );
-    saveTasks(updatedTasks);
+    setTasks(updatedTasks);
   };
 
   const deleteTask = (id: string) => {
-    saveTasks(tasks.filter((task) => task.id !== id));
+    setTasks(tasks.filter((task) => task.id !== id));
   };
 
   const addStudySession = (sessionData: Omit<StudySession, "id">) => {
@@ -161,7 +95,7 @@ export function useTasks() {
       ...sessionData,
       id: Date.now().toString(),
     };
-    saveStudySessions([...studySessions, newSession]);
+    setStudySessions([...studySessions, newSession]);
   };
 
   const addAssignment = (
@@ -172,14 +106,14 @@ export function useTasks() {
       id: Date.now().toString(),
       createdAt: new Date(),
     };
-    saveAssignments([...assignments, newAssignment]);
+    setAssignments([...assignments, newAssignment]);
   };
 
   const updateAssignment = (id: string, updates: Partial<Assignment>) => {
     const updatedAssignments = assignments.map((assignment) =>
       assignment.id === id ? { ...assignment, ...updates } : assignment,
     );
-    saveAssignments(updatedAssignments);
+    setAssignments(updatedAssignments);
   };
 
   return {

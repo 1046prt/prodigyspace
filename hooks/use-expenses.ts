@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
-import { storage } from "@/lib/storage";
+import { useCallback } from "react";
+import { useProdigyStorage, dateTransformers } from "@/lib/storage";
 import type {
   Expense,
   ExpenseCategory,
@@ -9,42 +9,18 @@ import type {
   ExpenseStats,
 } from "@/types/expense";
 
-const EXPENSES_KEY = "prodigyspace_expenses";
-const BUDGETS_KEY = "prodigyspace_budgets";
-
 export function useExpenses() {
-  const [expenses, setExpenses] = useState<Expense[]>([]);
-  const [budgets, setBudgets] = useState<Budget[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [expenses, setExpenses, expensesLoading] = useProdigyStorage<Expense[]>(
+    "expenses",
+    [],
+    dateTransformers,
+  );
 
-  // Load data from storage on mount
-  useEffect(() => {
-    const loadData = () => {
-      const savedExpenses = storage.getItem<Expense[]>(EXPENSES_KEY) || [];
-      const savedBudgets =
-        storage.getItem<Budget[]>(BUDGETS_KEY) || getDefaultBudgets();
-
-      setExpenses(savedExpenses);
-      setBudgets(savedBudgets);
-      setLoading(false);
-    };
-
-    loadData();
-  }, []);
-
-  // Save expenses to storage whenever they change
-  useEffect(() => {
-    if (!loading) {
-      storage.setItem(EXPENSES_KEY, expenses);
-    }
-  }, [expenses, loading]);
-
-  // Save budgets to storage whenever they change
-  useEffect(() => {
-    if (!loading) {
-      storage.setItem(BUDGETS_KEY, budgets);
-    }
-  }, [budgets, loading]);
+  const [budgets, setBudgets, budgetsLoading] = useProdigyStorage<Budget[]>(
+    "budgets",
+    getDefaultBudgets(),
+    dateTransformers,
+  );
 
   const addExpense = useCallback(
     (expense: Omit<Expense, "id" | "createdAt">) => {
@@ -55,14 +31,14 @@ export function useExpenses() {
       };
       setExpenses((prev) => [newExpense, ...prev]);
     },
-    []
+    [],
   );
 
   const updateExpense = useCallback((id: string, updates: Partial<Expense>) => {
     setExpenses((prev) =>
       prev.map((expense) =>
-        expense.id === id ? { ...expense, ...updates } : expense
-      )
+        expense.id === id ? { ...expense, ...updates } : expense,
+      ),
     );
   }, []);
 
@@ -74,11 +50,11 @@ export function useExpenses() {
     (category: ExpenseCategory, limit: number) => {
       setBudgets((prev) =>
         prev.map((budget) =>
-          budget.category === category ? { ...budget, limit } : budget
-        )
+          budget.category === category ? { ...budget, limit } : budget,
+        ),
       );
     },
-    []
+    [],
   );
 
   const getExpenseStats = useCallback((): ExpenseStats => {
@@ -97,7 +73,7 @@ export function useExpenses() {
 
     const totalSpent = monthlyExpenses.reduce(
       (sum: number, expense) => sum + expense.amount,
-      0
+      0,
     );
 
     const categoryBreakdown: Record<ExpenseCategory, number> = {
@@ -115,7 +91,7 @@ export function useExpenses() {
 
     const totalBudget = budgets.reduce(
       (sum: number, budget) => sum + budget.limit,
-      0
+      0,
     );
     const budgetRemaining = totalBudget - totalSpent;
 
@@ -134,7 +110,7 @@ export function useExpenses() {
 
       const weekTotal = weekExpenses.reduce(
         (sum: number, expense) => sum + expense.amount,
-        0
+        0,
       );
       weeklySpending.push(weekTotal);
     }
@@ -150,7 +126,7 @@ export function useExpenses() {
   return {
     expenses,
     budgets,
-    loading,
+    loading: expensesLoading || budgetsLoading,
     addExpense,
     updateExpense,
     deleteExpense,

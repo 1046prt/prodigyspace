@@ -1,98 +1,41 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import type { StudyGroup, Project, ChatMessage, MeetingSchedule } from "@/types/collaboration"
+import { useProdigyStorage, dateTransformers } from "@/lib/storage";
+import type {
+  StudyGroup,
+  Project,
+  ChatMessage,
+  MeetingSchedule,
+} from "@/types/collaboration";
 
 export function useCollaboration() {
-  const [studyGroups, setStudyGroups] = useState<StudyGroup[]>([])
-  const [projects, setProjects] = useState<Project[]>([])
-  const [messages, setMessages] = useState<ChatMessage[]>([])
-  const [meetings, setMeetings] = useState<MeetingSchedule[]>([])
+  const [studyGroups, setStudyGroups] = useProdigyStorage<StudyGroup[]>(
+    "study-groups",
+    [],
+    dateTransformers,
+  );
 
-  useEffect(() => {
-    const savedGroups = localStorage.getItem("prodigyspace-study-groups")
-    const savedProjects = localStorage.getItem("prodigyspace-projects")
-    const savedMessages = localStorage.getItem("prodigyspace-messages")
-    const savedMeetings = localStorage.getItem("prodigyspace-meetings")
+  const [projects, setProjects] = useProdigyStorage<Project[]>(
+    "projects",
+    [],
+    dateTransformers,
+  );
 
-    if (savedGroups) {
-      setStudyGroups(
-        JSON.parse(savedGroups).map((group: any) => ({
-          ...group,
-          createdAt: new Date(group.createdAt),
-          members: group.members.map((member: any) => ({
-            ...member,
-            joinedAt: new Date(member.joinedAt),
-          })),
-        })),
-      )
-    }
+  const [messages, setMessages] = useProdigyStorage<ChatMessage[]>(
+    "messages",
+    [],
+    dateTransformers,
+  );
 
-    if (savedProjects) {
-      setProjects(
-        JSON.parse(savedProjects).map((project: any) => ({
-          ...project,
-          createdAt: new Date(project.createdAt),
-          dueDate: new Date(project.dueDate),
-          tasks: project.tasks.map((task: any) => ({
-            ...task,
-            createdAt: new Date(task.createdAt),
-            dueDate: task.dueDate ? new Date(task.dueDate) : undefined,
-          })),
-          files: project.files.map((file: any) => ({
-            ...file,
-            uploadedAt: new Date(file.uploadedAt),
-          })),
-        })),
-      )
-    }
+  const [meetings, setMeetings] = useProdigyStorage<MeetingSchedule[]>(
+    "meetings",
+    [],
+    dateTransformers,
+  );
 
-    if (savedMessages) {
-      setMessages(
-        JSON.parse(savedMessages).map((message: any) => ({
-          ...message,
-          timestamp: new Date(message.timestamp),
-        })),
-      )
-    }
-
-    if (savedMeetings) {
-      setMeetings(
-        JSON.parse(savedMeetings).map((meeting: any) => ({
-          ...meeting,
-          date: new Date(meeting.date),
-          recurring: meeting.recurring
-            ? {
-                ...meeting.recurring,
-                endDate: meeting.recurring.endDate ? new Date(meeting.recurring.endDate) : undefined,
-              }
-            : undefined,
-        })),
-      )
-    }
-  }, [])
-
-  const saveGroups = (newGroups: StudyGroup[]) => {
-    setStudyGroups(newGroups)
-    localStorage.setItem("prodigyspace-study-groups", JSON.stringify(newGroups))
-  }
-
-  const saveProjects = (newProjects: Project[]) => {
-    setProjects(newProjects)
-    localStorage.setItem("prodigyspace-projects", JSON.stringify(newProjects))
-  }
-
-  const saveMessages = (newMessages: ChatMessage[]) => {
-    setMessages(newMessages)
-    localStorage.setItem("prodigyspace-messages", JSON.stringify(newMessages))
-  }
-
-  const saveMeetings = (newMeetings: MeetingSchedule[]) => {
-    setMeetings(newMeetings)
-    localStorage.setItem("prodigyspace-meetings", JSON.stringify(newMeetings))
-  }
-
-  const createStudyGroup = (groupData: Omit<StudyGroup, "id" | "createdAt" | "members">) => {
+  const createStudyGroup = (
+    groupData: Omit<StudyGroup, "id" | "createdAt" | "members">,
+  ) => {
     const newGroup: StudyGroup = {
       ...groupData,
       id: Date.now().toString(),
@@ -107,40 +50,42 @@ export function useCollaboration() {
           isOnline: true,
         },
       ],
-    }
-    saveGroups([...studyGroups, newGroup])
-    return newGroup
-  }
+    };
+    setStudyGroups([...studyGroups, newGroup]);
+    return newGroup;
+  };
 
-  const createProject = (projectData: Omit<Project, "id" | "createdAt" | "tasks" | "files">) => {
+  const createProject = (
+    projectData: Omit<Project, "id" | "createdAt" | "tasks" | "files">,
+  ) => {
     const newProject: Project = {
       ...projectData,
       id: Date.now().toString(),
       createdAt: new Date(),
       tasks: [],
       files: [],
-    }
-    saveProjects([...projects, newProject])
-    return newProject
-  }
+    };
+    setProjects([...projects, newProject]);
+    return newProject;
+  };
 
   const addMessage = (messageData: Omit<ChatMessage, "id" | "timestamp">) => {
     const newMessage: ChatMessage = {
       ...messageData,
       id: Date.now().toString(),
       timestamp: new Date(),
-    }
-    saveMessages([...messages, newMessage])
-  }
+    };
+    setMessages([...messages, newMessage]);
+  };
 
   const scheduleMeeting = (meetingData: Omit<MeetingSchedule, "id">) => {
     const newMeeting: MeetingSchedule = {
       ...meetingData,
       id: Date.now().toString(),
-    }
-    saveMeetings([...meetings, newMeeting])
-    return newMeeting
-  }
+    };
+    setMeetings([...meetings, newMeeting]);
+    return newMeeting;
+  };
 
   return {
     studyGroups,
@@ -151,5 +96,5 @@ export function useCollaboration() {
     createProject,
     addMessage,
     scheduleMeeting,
-  }
+  };
 }

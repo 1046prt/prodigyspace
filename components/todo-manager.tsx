@@ -36,7 +36,6 @@ import type { TodoCategory, TodoPriority } from "@/types/todo";
 import {
   Plus,
   CheckSquare,
-  Clock,
   AlertTriangle,
   Calendar,
   Trash2,
@@ -46,7 +45,6 @@ import {
   Star,
   Zap,
   CheckCircle2,
-  Circle,
   Timer,
   Award,
   Sparkles,
@@ -65,12 +63,6 @@ const priorityLabels: Record<TodoPriority, string> = {
   low: "Low",
   medium: "Medium",
   high: "High",
-};
-
-const priorityColors: Record<TodoPriority, string> = {
-  low: "priority-low",
-  medium: "priority-medium",
-  high: "priority-high",
 };
 
 export function TodoManager() {

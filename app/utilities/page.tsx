@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
-  Calculator,
+  Calculator as CalculatorIcon,
   Clock,
   Calendar,
   FileText,
@@ -19,21 +19,33 @@ import {
   Monitor,
 } from "lucide-react";
 import { UnitConverter } from "@/components/unit-converter";
+import { Calculator } from "@/components/calculator";
 import { useState, useEffect } from "react";
+import {
+  getCurrentDate,
+  formatTimerTime,
+  getAllTimeZones,
+  getCurrentDateString,
+  getCurrentMonthDays,
+  getCurrentMonthYear,
+  getTimeSystemInfo,
+  WORLD_CLOCK_TIMEZONES,
+} from "@/lib/date-utils";
+import { FeatureCard, PageHeader } from "@/components/ui-elements";
 import "@/styles/utilities.css";
 
 export default function UtilitiesPage() {
-  const [calculatorInput, setCalculatorInput] = useState("");
-  const [calculatorResult, setCalculatorResult] = useState("");
   const [timerMinutes, setTimerMinutes] = useState(25);
   const [timerSeconds, setTimerSeconds] = useState(0);
   const [isTimerRunning, setIsTimerRunning] = useState(false);
-  const [currentTime, setCurrentTime] = useState(new Date());
+  const [currentTime, setCurrentTime] = useState(getCurrentDate());
+  const [worldTimes, setWorldTimes] = useState<Record<string, string>>({});
 
   // Update current time every second
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentTime(new Date());
+      setCurrentTime(getCurrentDate());
+      setWorldTimes(getAllTimeZones());
     }, 1000);
     return () => clearInterval(timer);
   }, []);
@@ -57,23 +69,6 @@ export default function UtilitiesPage() {
     return () => clearInterval(interval);
   }, [isTimerRunning, timerMinutes, timerSeconds]);
 
-  const handleCalculatorInput = (value: string) => {
-    if (value === "=") {
-      try {
-        // eslint-disable-next-line no-eval
-        const result = eval(calculatorInput);
-        setCalculatorResult(result.toString());
-      } catch {
-        setCalculatorResult("Error");
-      }
-    } else if (value === "C") {
-      setCalculatorInput("");
-      setCalculatorResult("");
-    } else {
-      setCalculatorInput(calculatorInput + value);
-    }
-  };
-
   const startTimer = () => {
     setIsTimerRunning(true);
   };
@@ -86,12 +81,6 @@ export default function UtilitiesPage() {
     setIsTimerRunning(false);
     setTimerMinutes(25);
     setTimerSeconds(0);
-  };
-
-  const formatTime = (minutes: number, seconds: number) => {
-    return `${minutes.toString().padStart(2, "0")}:${seconds
-      .toString()
-      .padStart(2, "0")}`;
   };
 
   const quickTools = [
@@ -139,7 +128,6 @@ export default function UtilitiesPage() {
         ? navigator.userAgent.split(" ")[0]
         : "Unknown",
     platform: typeof navigator !== "undefined" ? navigator.platform : "Unknown",
-    language: typeof navigator !== "undefined" ? navigator.language : "Unknown",
     cookiesEnabled:
       typeof navigator !== "undefined" ? navigator.cookieEnabled : false,
     onlineStatus: typeof navigator !== "undefined" ? navigator.onLine : false,
@@ -148,26 +136,21 @@ export default function UtilitiesPage() {
         ? `${screen.width}x${screen.height}`
         : "Unknown",
     colorDepth: typeof screen !== "undefined" ? screen.colorDepth : 0,
-    timezone:
-      typeof Intl !== "undefined"
-        ? Intl.DateTimeFormat().resolvedOptions().timeZone
-        : "Unknown",
+    ...getTimeSystemInfo(),
   };
 
   return (
     <div className="utilities-page">
       <div className="utilities-container">
-        <div className="utilities-header">
-          <h1 className="utilities-title">Utilities & Tools</h1>
-          <p className="utilities-subtitle">
-            Helpful tools and utilities for your daily tasks
-          </p>
-        </div>
+        <PageHeader
+          title="Utilities & Tools"
+          subtitle="Helpful tools and utilities for your daily tasks"
+        />
 
         <Tabs defaultValue="calculator" className="space-y-6">
           <TabsList className="utilities-tabs-list">
             <TabsTrigger value="calculator" className="utilities-tab-trigger">
-              <Calculator className="h-4 w-4" />
+              <CalculatorIcon className="h-4 w-4" />
               Calculator
             </TabsTrigger>
             <TabsTrigger value="timer" className="utilities-tab-trigger">
@@ -186,90 +169,7 @@ export default function UtilitiesPage() {
 
           <TabsContent value="calculator" className="space-y-4">
             <div className="utilities-grid utilities-grid-lg-2">
-              <Card>
-                <CardHeader>
-                  <CardTitle className="utilities-card-title">
-                    <Calculator className="h-5 w-5" />
-                    Calculator
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
-                    <div className="calculator-display">
-                      <div className="calculator-input">
-                        {calculatorInput || "0"}
-                      </div>
-                      <div className="calculator-result">
-                        {calculatorResult || "0"}
-                      </div>
-                    </div>
-                    <div className="calculator-buttons">
-                      {["C", "±", "%", "÷"].map((btn) => (
-                        <Button
-                          key={btn}
-                          variant="outline"
-                          onClick={() => handleCalculatorInput(btn)}
-                          className="calculator-button"
-                        >
-                          {btn}
-                        </Button>
-                      ))}
-                      {["7", "8", "9", "×"].map((btn) => (
-                        <Button
-                          key={btn}
-                          variant="outline"
-                          onClick={() =>
-                            handleCalculatorInput(btn === "×" ? "*" : btn)
-                          }
-                          className="calculator-button"
-                        >
-                          {btn}
-                        </Button>
-                      ))}
-                      {["4", "5", "6", "-"].map((btn) => (
-                        <Button
-                          key={btn}
-                          variant="outline"
-                          onClick={() => handleCalculatorInput(btn)}
-                          className="calculator-button"
-                        >
-                          {btn}
-                        </Button>
-                      ))}
-                      {["1", "2", "3", "+"].map((btn) => (
-                        <Button
-                          key={btn}
-                          variant="outline"
-                          onClick={() => handleCalculatorInput(btn)}
-                          className="calculator-button"
-                        >
-                          {btn}
-                        </Button>
-                      ))}
-                      <Button
-                        variant="outline"
-                        onClick={() => handleCalculatorInput("0")}
-                        className="calculator-button calculator-button-wide"
-                      >
-                        0
-                      </Button>
-                      <Button
-                        variant="outline"
-                        onClick={() => handleCalculatorInput(".")}
-                        className="calculator-button"
-                      >
-                        .
-                      </Button>
-                      <Button
-                        onClick={() => handleCalculatorInput("=")}
-                        className="calculator-button"
-                      >
-                        =
-                      </Button>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+              <Calculator />
 
               <Card>
                 <CardHeader>
@@ -285,47 +185,18 @@ export default function UtilitiesPage() {
                         {currentTime.toLocaleTimeString()}
                       </div>
                       <div className="world-clock-date">
-                        {currentTime.toLocaleDateString("en-US", {
-                          weekday: "long",
-                          year: "numeric",
-                          month: "long",
-                          day: "numeric",
-                        })}
+                        {getCurrentDateString()}
                       </div>
                     </div>
                     <div className="world-clock-grid">
-                      <div className="world-clock-zone">
-                        <div className="world-clock-zone-name">New York</div>
-                        <div className="world-clock-zone-time">
-                          {new Date().toLocaleTimeString("en-US", {
-                            timeZone: "America/New_York",
-                          })}
+                      {Object.entries(WORLD_CLOCK_TIMEZONES).map(([city]) => (
+                        <div key={city} className="world-clock-zone">
+                          <div className="world-clock-zone-name">{city}</div>
+                          <div className="world-clock-zone-time">
+                            {worldTimes[city] || "Loading..."}
+                          </div>
                         </div>
-                      </div>
-                      <div className="world-clock-zone">
-                        <div className="world-clock-zone-name">London</div>
-                        <div className="world-clock-zone-time">
-                          {new Date().toLocaleTimeString("en-US", {
-                            timeZone: "Europe/London",
-                          })}
-                        </div>
-                      </div>
-                      <div className="world-clock-zone">
-                        <div className="world-clock-zone-name">Tokyo</div>
-                        <div className="world-clock-zone-time">
-                          {new Date().toLocaleTimeString("en-US", {
-                            timeZone: "Asia/Tokyo",
-                          })}
-                        </div>
-                      </div>
-                      <div className="world-clock-zone">
-                        <div className="world-clock-zone-name">Sydney</div>
-                        <div className="world-clock-zone-time">
-                          {new Date().toLocaleTimeString("en-US", {
-                            timeZone: "Australia/Sydney",
-                          })}
-                        </div>
-                      </div>
+                      ))}
                     </div>
                   </div>
                 </CardContent>
@@ -345,7 +216,7 @@ export default function UtilitiesPage() {
                 <CardContent>
                   <div className="timer-container">
                     <div className="timer-display">
-                      {formatTime(timerMinutes, timerSeconds)}
+                      {formatTimerTime(timerMinutes, timerSeconds)}
                     </div>
                     <div className="timer-controls">
                       <Button
@@ -420,10 +291,7 @@ export default function UtilitiesPage() {
                 <CardContent>
                   <div className="calendar-container">
                     <div className="calendar-header">
-                      {currentTime.toLocaleDateString("en-US", {
-                        month: "long",
-                        year: "numeric",
-                      })}
+                      {getCurrentMonthYear()}
                     </div>
                     <div className="calendar-grid">
                       {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map(
@@ -431,22 +299,20 @@ export default function UtilitiesPage() {
                           <div key={day} className="calendar-day-header">
                             {day}
                           </div>
-                        )
+                        ),
                       )}
-                      {Array.from({ length: 31 }, (_, i) => i + 1).map(
-                        (day) => (
-                          <div
-                            key={day}
-                            className={`calendar-day ${
-                              day === currentTime.getDate()
-                                ? "calendar-day-current"
-                                : ""
-                            }`}
-                          >
-                            {day}
-                          </div>
-                        )
-                      )}
+                      {getCurrentMonthDays().map((day) => (
+                        <div
+                          key={day}
+                          className={`calendar-day ${
+                            day === currentTime.getDate()
+                              ? "calendar-day-current"
+                              : ""
+                          }`}
+                        >
+                          {day}
+                        </div>
+                      ))}
                     </div>
                   </div>
                 </CardContent>
@@ -460,28 +326,13 @@ export default function UtilitiesPage() {
 
               <div className="utilities-grid utilities-grid-md-1">
                 {quickTools.map((tool, index) => (
-                  <Card key={index} className="utilities-tool-card">
-                    <CardHeader className="pb-3">
-                      <div className="utilities-tool-header">
-                        <div className="utilities-tool-icon">
-                          <tool.icon className="h-5 w-5" />
-                        </div>
-                        <div>
-                          <CardTitle className="text-lg">
-                            {tool.title}
-                          </CardTitle>
-                          <Badge className={tool.color} variant="secondary">
-                            Coming Soon
-                          </Badge>
-                        </div>
-                      </div>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="utilities-tool-description">
-                        {tool.description}
-                      </p>
-                    </CardContent>
-                  </Card>
+                  <FeatureCard
+                    key={index}
+                    icon={tool.icon}
+                    title={tool.title}
+                    description={tool.description}
+                    badgeColor={tool.color}
+                  />
                 ))}
               </div>
             </div>
