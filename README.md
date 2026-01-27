@@ -2,9 +2,9 @@
 
 A productivity application designed specifically for students. ProdigySpace helps you manage expenses, organize tasks, and stay productive throughout your academic journey.
 
-## ✨ Features
+## Features
 
-### 💰 Expense Tracker
+### Expense Tracker
 
 - Track daily expenses with custom categories
 - Set and monitor budgets
@@ -12,7 +12,7 @@ A productivity application designed specifically for students. ProdigySpace help
 - CSV export functionality
 - Offline data storage
 
-### ✅ Task Management
+### Task Management
 
 - Create and organize tasks with categories
 - Set priorities and due dates
@@ -20,7 +20,7 @@ A productivity application designed specifically for students. ProdigySpace help
 - Progress tracking and completion statistics
 - Offline synchronization
 
-### 📝 Sticky Notes
+### Sticky Notes
 
 - Create colorful sticky notes
 - Drag and drop interface
@@ -28,7 +28,7 @@ A productivity application designed specifically for students. ProdigySpace help
 - Offline storage and persistence
 - Quick note-taking for ideas and reminders
 
-### 🎯 Student-Focused Design
+### Student-Focused Design
 
 - Clean, distraction-free interface
 - Dark and light theme support
@@ -36,7 +36,7 @@ A productivity application designed specifically for students. ProdigySpace help
 - PWA support for native app experience
 - Completely offline functionality
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -80,7 +80,7 @@ npm run build
 npm start
 \`\`\`
 
-## 📱 PWA Installation
+## PWA Installation
 
 ProdigySpace can be installed as a Progressive Web App (PWA) on your device:
 
@@ -89,7 +89,7 @@ ProdigySpace can be installed as a Progressive Web App (PWA) on your device:
 3. Follow the installation prompts
 4. Access prodigyspace from your home screen like a native app
 
-## 🛠️ Technology Stack
+## Technology Stack
 
 - **Framework**: Next.js 14 with App Router
 - **Styling**: Tailwind CSS
@@ -100,7 +100,7 @@ ProdigySpace can be installed as a Progressive Web App (PWA) on your device:
 - **Storage**: Local Storage (offline-first)
 - **PWA**: Service Worker with offline caching
 
-## 📊 Data Storage
+## Data Storage
 
 All data is stored locally in your browser using localStorage, ensuring:
 
@@ -109,7 +109,7 @@ All data is stored locally in your browser using localStorage, ensuring:
 - Fast performance
 - No account required
 
-## 🎨 Customization
+## Customization
 
 ### Themes
 
@@ -119,7 +119,7 @@ prodigyspace supports both light and dark themes that automatically adapt to you
 
 Customize expense and task categories to match your specific needs and workflow.
 
-## 🤝 Contributing
+## Contributing
 
 We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details.
 
@@ -133,11 +133,11 @@ We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.
 6. Push to the branch: `git push origin feature/amazing-feature`
 7. Open a Pull Request
 
-## 📝 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🐛 Bug Reports
+## Bug Reports
 
 If you encounter any bugs or issues, please [open an issue](https://github.com/1046prt/prodigyspace/issues) with:
 
@@ -146,7 +146,7 @@ If you encounter any bugs or issues, please [open an issue](https://github.com/1
 - Expected vs actual behavior
 - Screenshots if applicable
 
-## 💡 Feature Requests
+## Feature Requests
 
 Have an idea for a new feature? We'd love to hear it! [Open a feature request](https://github.com/1046prt/prodigyspace/issues) and describe:
 
