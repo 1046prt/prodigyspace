@@ -401,7 +401,7 @@
 }
 
 .task-manager-header-enhanced::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -50%;
   left: -50%;
@@ -418,8 +418,12 @@
 }
 
 @keyframes rotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* Enhanced Dialog Styles */
@@ -491,7 +495,7 @@
 }
 
 .task-dialog .space-y-6::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -24px;
@@ -546,7 +550,7 @@
 }
 
 .task-manager-title::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -4px;
   left: 0;
@@ -594,7 +598,7 @@
 }
 
 .task-manager-create-button::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
@@ -648,7 +652,7 @@
 }
 
 .task-card-modern::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
@@ -670,7 +674,7 @@
 
 .task-card-modern:hover {
   transform: translateY(-8px) scale(1.02);
-  box-shadow: 
+  box-shadow:
     0 20px 40px rgba(0, 0, 0, 0.1),
     0 8px 16px rgba(0, 0, 0, 0.06);
 }
@@ -681,7 +685,7 @@
 }
 
 .task-card-modern.task-completed::after {
-  content: '✓';
+  content: "✓";
   position: absolute;
   top: 16px;
   right: 16px;
@@ -702,13 +706,22 @@
 /* Priority Indicators */
 .task-card-modern .priority-stripe {
   height: 4px;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, var(--priority-color) 100%);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    var(--priority-color) 100%
+  );
   animation: shimmer 2s ease-in-out infinite;
 }
 
 @keyframes shimmer {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.7; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
 }
 
 /* Enhanced Task Actions */
@@ -802,19 +815,28 @@
 }
 
 .task-title-completed::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 50%;
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(90deg, transparent 0%, #64748b 50%, transparent 100%);
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    #64748b 50%,
+    transparent 100%
+  );
   animation: strikethrough 0.5s ease-out;
 }
 
 @keyframes strikethrough {
-  from { transform: scaleX(0); }
-  to { transform: scaleX(1); }
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
 }
 
 /* Enhanced Badges */
@@ -880,7 +902,7 @@
 }
 
 .subtasks-bar::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
@@ -896,8 +918,12 @@
 }
 
 @keyframes progressShimmer {
-  0% { left: -100%; }
-  100% { left: 100%; }
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
 }
 
 .subtasks-bar-fill {
@@ -906,7 +932,7 @@
 }
 
 .subtasks-bar-fill::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -926,8 +952,12 @@
 }
 
 @keyframes progressStripe {
-  from { background-position: 0 0; }
-  to { background-position: 12px 0; }
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 12px 0;
+  }
 }
 
 /* ===========================================
@@ -940,7 +970,7 @@
 }
 
 .tasks-placeholder::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -50%;
   left: -50%;
@@ -956,8 +986,13 @@
 }
 
 @keyframes floatingGradient {
-  0%, 100% { transform: translate(-50%, -50%) scale(1); }
-  50% { transform: translate(-50%, -50%) scale(1.1); }
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
 }
 
 /* ===========================================
@@ -968,31 +1003,30 @@
   .task-card-modern {
     border-radius: 16px;
   }
-  
+
   .task-card-header-modern {
     padding: 20px 16px 16px;
   }
-  
+
   .task-card-content-modern {
     padding: 0 16px 20px;
   }
-  
+
   .task-badges-row {
     gap: 6px;
   }
-  
+
   .meta-item {
     padding: 12px;
   }
-  
+
   .task-meta-info {
     gap: 12px;
   }
 }
-  color: #1e293b;
-  margin: 0;
-  flex: 1;
-}
+color: #1e293b;
+margin: 0;
+flex: 1;
 
 [data-theme="dark"] .filters-title {
   color: #e2e8f0;
@@ -2523,7 +2557,7 @@
 }
 
 .task-count-badge::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
@@ -2539,8 +2573,12 @@
 }
 
 @keyframes badgeShimmer {
-  0% { left: -100%; }
-  100% { left: 100%; }
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
 }
 
 /* ===========================================
@@ -2585,7 +2623,7 @@
 }
 
 .btn-ripple::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 50%;
   left: 50%;
@@ -2594,7 +2632,9 @@
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.3);
   transform: translate(-50%, -50%);
-  transition: width 0.6s, height 0.6s;
+  transition:
+    width 0.6s,
+    height 0.6s;
 }
 
 .btn-ripple:active::before {
@@ -2611,15 +2651,28 @@
 }
 
 .bg-primary-gradient {
-  background: linear-gradient(135deg, var(--color-primary-500) 0%, var(--color-secondary-500) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--color-primary-500) 0%,
+    var(--color-secondary-500) 100%
+  );
 }
 
 .border-primary-gradient {
-  border-image: linear-gradient(135deg, var(--color-primary-500) 0%, var(--color-secondary-500) 100%) 1;
+  border-image: linear-gradient(
+      135deg,
+      var(--color-primary-500) 0%,
+      var(--color-secondary-500) 100%
+    )
+    1;
 }
 
 .text-gradient-primary {
-  background: linear-gradient(135deg, var(--color-primary-600) 0%, var(--color-secondary-600) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--color-primary-600) 0%,
+    var(--color-secondary-600) 100%
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -2642,27 +2695,27 @@
     grid-template-columns: 1fr;
     gap: 16px;
   }
-  
+
   .task-card-modern {
     margin-bottom: 16px;
   }
-  
+
   .task-badges-row {
     flex-direction: column;
     align-items: flex-start;
     gap: 8px;
   }
-  
+
   .task-meta-info .meta-item {
     padding: 10px;
     font-size: 0.875rem;
   }
-  
+
   .task-manager-header-enhanced {
     padding: 20px;
     border-radius: 16px;
   }
-  
+
   .task-dialog-content {
     max-height: 80vh;
   }

@@ -1,4 +1,5 @@
-"use client";
+import { EmptyState } from "@/components/ui-elements";
+("use client");
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -21,7 +22,7 @@ import "@/styles/sticky-group-manager.css";
 interface StudyGroupManagerProps {
   studyGroups: StudyGroup[];
   onCreateGroup: (
-    groupData: Omit<StudyGroup, "id" | "createdAt" | "members">
+    groupData: Omit<StudyGroup, "id" | "createdAt" | "members">,
   ) => void;
   onSelectGroup: (group: StudyGroup) => void;
 }
@@ -113,22 +114,15 @@ export function StudyGroupManager({
       </div>
 
       {studyGroups.length === 0 ? (
-        <Card>
-          <CardContent className="emptyStateCard">
-            <Users className="emptyStateIcon" />
-            <h3 className="emptyStateTitle">No study groups yet</h3>
-            <p className="emptyStateDescription">
-              Create your first study group to start collaborating!
-            </p>
-            <Button
-              onClick={() => setShowCreateDialog(true)}
-              className="createButton"
-            >
-              <Plus className="h-4 w-4 mr-2" />
-              Create Group
-            </Button>
-          </CardContent>
-        </Card>
+        <EmptyState
+          icon={Users}
+          title="No study groups yet"
+          description="Create your first study group to start collaborating!"
+          action={{
+            label: "Create Group",
+            onClick: () => setShowCreateDialog(true),
+          }}
+        />
       ) : (
         <div className="groupsGrid">
           {studyGroups.map((group) => (
@@ -136,9 +130,7 @@ export function StudyGroupManager({
               <CardHeader className="cardHeader">
                 <div className="cardHeaderContent">
                   <div>
-                    <CardTitle className="cardTitle">
-                      {group.name}
-                    </CardTitle>
+                    <CardTitle className="cardTitle">{group.name}</CardTitle>
                     <Badge variant="outline" className="subjectBadge">
                       {group.subject}
                     </Badge>

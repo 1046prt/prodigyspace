@@ -23,46 +23,6 @@
   color: hsl(var(--color-foreground));
 }
 
-.description {
-  font-size: 0.875rem;
-  color: hsl(var(--color-muted-foreground));
-}
-
-.headerActions {
-  display: flex;
-  gap: 0.5rem;
-}
-
-.addButton {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.resetButton {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-/* Stats Cards */
-.statsGrid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-}
-
-@media (max-width: 768px) {
-  .statsGrid {
-    grid-template-columns: 1fr;
-  }
-}
-
-.statCardHeader {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
   padding-bottom: 0.5rem;
 }
 

@@ -1,4 +1,5 @@
-"use client";
+import { StatCard } from "@/components/ui-elements";
+("use client");
 
 import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
@@ -129,7 +130,7 @@ export function MeditationCenter({
           setIsRunning(false);
           if (sessionStartTime) {
             const duration = Math.round(
-              (new Date().getTime() - sessionStartTime.getTime()) / 1000 / 60
+              (new Date().getTime() - sessionStartTime.getTime()) / 1000 / 60,
             );
             onAddSession({
               type: "breathing",
@@ -202,7 +203,7 @@ export function MeditationCenter({
 
   const startGuidedMeditation = (
     type: MeditationSession["type"],
-    duration: number
+    duration: number,
   ) => {
     setActiveMeditation({ type, duration });
     setMeditationTimeLeft(duration * 60);
@@ -249,7 +250,7 @@ export function MeditationCenter({
   const totalSessions = sessions.length;
   const totalMinutes = sessions.reduce(
     (sum, session) => sum + session.duration,
-    0
+    0,
   );
   const averageRating =
     sessions.length > 0
@@ -260,26 +261,24 @@ export function MeditationCenter({
     <div className="meditationContainer">
       {/* Stats */}
       <div className="statsGrid">
-        <Card className="statCard">
-          <CardContent className="statCardContent">
-            <div className="statValue statValueBlue">{totalSessions}</div>
-            <div className="statLabel">Sessions</div>
-          </CardContent>
-        </Card>
-        <Card className="statCard">
-          <CardContent className="statCardContent">
-            <div className="statValue statValueGreen">{totalMinutes}</div>
-            <div className="statLabel">Minutes</div>
-          </CardContent>
-        </Card>
-        <Card className="statCard">
-          <CardContent className="statCardContent">
-            <div className="statValue statValuePurple">
-              {averageRating.toFixed(1)}
-            </div>
-            <div className="statLabel">Avg Rating</div>
-          </CardContent>
-        </Card>
+        <StatCard
+          title="Sessions"
+          value={totalSessions}
+          description="Total meditation sessions"
+          icon={Check}
+        />
+        <StatCard
+          title="Minutes"
+          value={totalMinutes}
+          description="Total minutes meditated"
+          icon={Waves}
+        />
+        <StatCard
+          title="Avg Rating"
+          value={averageRating.toFixed(1)}
+          description="Average session rating"
+          icon={Heart}
+        />
       </div>
 
       <div className="mainGrid">
@@ -379,7 +378,7 @@ export function MeditationCenter({
                 <h3 className="meditationName">
                   {
                     guidedMeditations.find(
-                      (m) => m.type === activeMeditation.type
+                      (m) => m.type === activeMeditation.type,
                     )?.name
                   }
                 </h3>
@@ -458,7 +457,7 @@ export function MeditationCenter({
                                 onClick={() =>
                                   startGuidedMeditation(
                                     meditation.type,
-                                    duration
+                                    duration,
                                   )
                                 }
                                 className="durationButton"

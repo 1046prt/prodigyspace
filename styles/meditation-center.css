@@ -55,31 +55,6 @@
   -webkit-background-clip: text;
 }
 
-.statValueBlue {
-  color: var(--color-primary-500);
-  text-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
-}
-
-.statValueGreen {
-  color: var(--color-success-500);
-  text-shadow: 0 2px 4px rgba(22, 163, 74, 0.2);
-}
-
-.statValuePurple {
-  color: var(--color-violet-500, #9333ea);
-  text-shadow: 0 2px 4px rgba(147, 51, 234, 0.2);
-}
-
-.statLabel {
-  font-size: 1rem;
-  font-weight: 500;
-  color: hsl(var(--color-muted-foreground));
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.mainGrid {
-  display: grid;
   grid-template-columns: repeat(1, minmax(0, 1fr));
   gap: 2rem;
 }

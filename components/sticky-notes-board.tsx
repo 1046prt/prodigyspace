@@ -1,4 +1,5 @@
-"use client";
+import { StatCard, EmptyState } from "@/components/ui-elements";
+("use client");
 
 import { useState } from "react";
 import {
@@ -134,9 +135,7 @@ export function StickyNotesBoard() {
                       {colorOptions.map((color) => (
                         <SelectItem key={color.value} value={color.value}>
                           <div className="colorOption">
-                            <div
-                              className="colorSwatch ${color.class}"
-                            />
+                            <div className="colorSwatch ${color.class}" />
                             {color.label}
                           </div>
                         </SelectItem>
@@ -155,24 +154,16 @@ export function StickyNotesBoard() {
 
       {/* Stats Cards */}
       <div className="statsGrid">
-        <Card>
-          <CardHeader className="statCardHeader">
-            <CardTitle className="statCardTitle">Total Notes</CardTitle>
-            <StickyNoteIcon className="iconSmall" />
-          </CardHeader>
-          <CardContent className="statCardContent">
-            <div className="statCount">{stats.total}</div>
-            <p className="statDescription">Sticky notes created</p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="statCardHeader">
-            <CardTitle className="statCardTitle">
-              Color Distribution
-            </CardTitle>
-            <Palette className="iconSmall" />
-          </CardHeader>
-          <CardContent className="statCardContent">
+        <StatCard
+          title="Total Notes"
+          value={stats.total}
+          description="Sticky notes created"
+          icon={StickyNoteIcon}
+        />
+        <StatCard
+          title="Color Distribution"
+          value={""}
+          description={
             <div className="colorDistribution">
               {colorOptions.map((color) => {
                 const count = stats.colorBreakdown[color.value];
@@ -183,14 +174,15 @@ export function StickyNotesBoard() {
                     variant="outline"
                     className="colorBadge"
                   >
-                    <div className="colorDot ${color.class}" />
+                    <div className={`colorDot ${color.class}`} />
                     {count}
                   </Badge>
                 );
               })}
             </div>
-          </CardContent>
-        </Card>
+          }
+          icon={Palette}
+        />
       </div>
 
       {/* Notes Board */}
@@ -204,14 +196,11 @@ export function StickyNotesBoard() {
         </CardHeader>
         <CardContent className="boardContent">
           {notes.length === 0 ? (
-            <div className="emptyState">
-              <StickyNoteIcon className="emptyStateIcon" />
-              <h3 className="emptyStateTitle">No notes yet</h3>
-              <p className="emptyStateDescription">
-                Create your first sticky note to start organizing your thoughts
-                and reminders.
-              </p>
-            </div>
+            <EmptyState
+              icon={StickyNoteIcon}
+              title="No notes yet"
+              description="Create your first sticky note to start organizing your thoughts and reminders."
+            />
           ) : (
             <div className="notesContainer">
               {notes.map((note) => (
