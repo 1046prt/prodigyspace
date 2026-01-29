@@ -139,7 +139,7 @@ export function TaskManager({
     <div className="space-y-8">
       {/* Enhanced Header Section with Gradient Background */}
       <div className="task-manager-header-enhanced bg-gradient-to-br from-blue-50 via-purple-50 to-indigo-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 rounded-2xl p-8 border border-blue-100 dark:border-gray-700 shadow-lg">
-        <div className="task-manager-title-section text-center">
+        <div className="task-manager-title-section flex flex-col items-center text-center">
           <div className="flex items-center justify-center mb-4">
             <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center shadow-lg transform hover:scale-110 transition-all duration-300">
               <CheckSquare className="h-8 w-8 text-white" />
@@ -153,7 +153,7 @@ export function TaskManager({
             beautiful progress tracking
           </p>
         </div>
-        <div className="flex justify-center mt-6">
+        <div className="flex justify-center items-center mt-6">
           <Dialog open={showCreateDialog} onOpenChange={setShowCreateDialog}>
             <DialogTrigger asChild>
               <Button className="bg-gradient-to-r from-blue-500 via-purple-600 to-indigo-600 hover:from-blue-600 hover:via-purple-700 hover:to-indigo-700 text-white px-8 py-3 rounded-xl font-semibold shadow-lg transform hover:scale-105 transition-all duration-300 border-0">
@@ -523,7 +523,7 @@ export function TaskManager({
           </Button>
         </div>
       ) : (
-        <div className="tasks-grid-enhanced grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+        <div className="tasks-grid-enhanced grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 items-stretch">
           {filteredTasks.map((task) => {
             const daysUntilDue = task.dueDate
               ? getDaysUntilDue(task.dueDate)
@@ -562,8 +562,8 @@ export function TaskManager({
                 ></div>
 
                 <CardHeader className="task-card-header-modern p-6 pb-4">
-                  <div className="task-header-row flex items-start justify-between mb-4">
-                    <div className="task-checkbox-wrapper">
+                  <div className="task-header-row flex items-center justify-between mb-4 gap-2">
+                    <div className="task-checkbox-wrapper flex items-center">
                       <Checkbox
                         checked={task.status === "completed"}
                         onCheckedChange={(checked: boolean) =>
@@ -575,11 +575,11 @@ export function TaskManager({
                         className="task-checkbox-enhanced w-6 h-6 rounded-lg border-2 border-blue-300 data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-green-500 data-[state=checked]:to-emerald-600 data-[state=checked]:border-green-500 shadow-sm"
                       />
                     </div>
-                    <div className="task-actions flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="task-actions flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 items-center">
                       <Button
                         variant="ghost"
                         size="sm"
-                        className="task-action-button h-9 w-9 rounded-lg bg-blue-100 dark:bg-blue-900/30 hover:bg-blue-200 dark:hover:bg-blue-900/50 text-blue-600 dark:text-blue-400 shadow-sm"
+                        className="task-action-button h-9 w-9 rounded-lg bg-blue-100 dark:bg-blue-900/30 hover:bg-blue-200 dark:hover:bg-blue-900/50 text-blue-600 dark:text-blue-400 shadow-sm flex items-center justify-center"
                         onClick={() => {
                           // Add edit functionality here
                         }}
@@ -589,7 +589,7 @@ export function TaskManager({
                       <Button
                         variant="ghost"
                         size="sm"
-                        className="task-action-button task-delete-button h-9 w-9 rounded-lg bg-red-100 dark:bg-red-900/30 hover:bg-red-200 dark:hover:bg-red-900/50 text-red-600 dark:text-red-400 shadow-sm"
+                        className="task-action-button task-delete-button h-9 w-9 rounded-lg bg-red-100 dark:bg-red-900/30 hover:bg-red-200 dark:hover:bg-red-900/50 text-red-600 dark:text-red-400 shadow-sm flex items-center justify-center"
                         onClick={() => onDeleteTask(task.id)}
                       >
                         <Trash2 className="h-4 w-4" />
@@ -616,7 +616,7 @@ export function TaskManager({
 
                 <CardContent className="task-card-content-modern px-6 pb-6">
                   {/* Enhanced Badges Row */}
-                  <div className="task-badges-row flex flex-wrap gap-2 mb-4">
+                  <div className="task-badges-row flex flex-wrap gap-2 mb-4 items-center">
                     <Badge
                       className={`priority-badge font-semibold px-3 py-1 rounded-full text-xs shadow-sm ${
                         task.priority === "urgent"
@@ -677,7 +677,7 @@ export function TaskManager({
                   </div>
 
                   {/* Enhanced Task Meta Info */}
-                  <div className="task-meta-info space-y-3 mb-4">
+                  <div className="task-meta-info flex flex-col gap-3 mb-4">
                     {task.dueDate && (
                       <div
                         className={`meta-item due-date-item flex items-center gap-3 p-3 rounded-xl transition-all duration-300 ${
