@@ -136,19 +136,44 @@ export function TaskManager({
   };
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8" style={{ color: "var(--color-foreground)" }}>
       {/* Enhanced Header Section with Gradient Background */}
-      <div className="task-manager-header-enhanced bg-gradient-to-br from-blue-50 via-purple-50 to-indigo-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 rounded-2xl p-8 border border-blue-100 dark:border-gray-700 shadow-lg">
+      <div
+        className="task-manager-header-enhanced rounded-2xl p-8 shadow-lg"
+        style={{
+          background: "var(--color-card)",
+          border: "1.5px solid var(--color-border)",
+        }}
+      >
         <div className="task-manager-title-section flex flex-col items-center text-center">
           <div className="flex items-center justify-center mb-4">
-            <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center shadow-lg transform hover:scale-110 transition-all duration-300">
+            <div
+              className="w-16 h-16 rounded-full flex items-center justify-center shadow-lg transform hover:scale-110 transition-all duration-300"
+              style={{
+                background:
+                  "linear-gradient(135deg, var(--color-primary-500), var(--color-secondary-500))",
+              }}
+            >
               <CheckSquare className="h-8 w-8 text-white" />
             </div>
           </div>
-          <h2 className="text-4xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent mb-3">
+          <h2
+            className="text-4xl font-bold mb-3"
+            style={{
+              background:
+                "linear-gradient(90deg, var(--color-primary-700), var(--color-secondary-700))",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+              color: "transparent",
+            }}
+          >
             Task Manager
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
+          <p
+            className="text-lg max-w-2xl mx-auto leading-relaxed"
+            style={{ color: "var(--color-foreground-secondary)" }}
+          >
             Transform your productivity with intelligent task organization and
             beautiful progress tracking
           </p>
@@ -156,24 +181,60 @@ export function TaskManager({
         <div className="flex justify-center items-center mt-6">
           <Dialog open={showCreateDialog} onOpenChange={setShowCreateDialog}>
             <DialogTrigger asChild>
-              <Button className="bg-gradient-to-r from-blue-500 via-purple-600 to-indigo-600 hover:from-blue-600 hover:via-purple-700 hover:to-indigo-700 text-white px-8 py-3 rounded-xl font-semibold shadow-lg transform hover:scale-105 transition-all duration-300 border-0">
+              <Button
+                style={{
+                  background:
+                    "linear-gradient(90deg, var(--color-primary-500), var(--color-secondary-500))",
+                  color: "var(--color-primary-foreground)",
+                  border: 0,
+                }}
+                className="px-8 py-3 rounded-xl font-semibold shadow-lg transform hover:scale-105 transition-all duration-300"
+              >
                 <Plus className="h-5 w-5 mr-3" />
                 <span className="hidden sm:inline">Create New Task</span>
                 <span className="sm:hidden">New Task</span>
               </Button>
             </DialogTrigger>
-            <DialogContent className="max-w-4xl max-h-[95vh] overflow-hidden task-dialog bg-gradient-to-br from-white via-blue-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 border-2 border-blue-100 dark:border-gray-700 shadow-2xl rounded-2xl">
+            <DialogContent
+              className="max-w-4xl max-h-[95vh] overflow-hidden task-dialog shadow-2xl rounded-2xl"
+              style={{
+                background: "var(--color-card)",
+                border: "2px solid var(--color-border)",
+              }}
+            >
               <div className="task-dialog-header">
-                <DialogHeader className="border-b border-gradient-to-r from-blue-200 to-purple-200 dark:border-gray-700 pb-6">
+                <DialogHeader
+                  className="border-b pb-6"
+                  style={{ borderColor: "var(--color-border)" }}
+                >
                   <div className="flex items-center gap-4">
-                    <div className="w-14 h-14 bg-gradient-to-r from-blue-500 via-purple-600 to-indigo-600 rounded-full flex items-center justify-center shadow-lg transform hover:rotate-12 transition-all duration-300">
+                    <div
+                      className="w-14 h-14 rounded-full flex items-center justify-center shadow-lg transform hover:rotate-12 transition-all duration-300"
+                      style={{
+                        background:
+                          "linear-gradient(135deg, var(--color-primary-500), var(--color-secondary-500))",
+                      }}
+                    >
                       <Plus className="h-6 w-6 text-white" />
                     </div>
                     <div>
-                      <DialogTitle className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                      <DialogTitle
+                        className="text-2xl font-bold"
+                        style={{
+                          background:
+                            "linear-gradient(90deg, var(--color-primary-700), var(--color-secondary-700))",
+                          WebkitBackgroundClip: "text",
+                          WebkitTextFillColor: "transparent",
+                          backgroundClip: "text",
+                          color: "transparent",
+                        }}
+                      >
                         Create New Task
                       </DialogTitle>
-                      <p className="text-base text-gray-600 dark:text-gray-300 mt-2">
+                      <p
+                        className="text-base mt-2"
+                        style={{ color: "var(--color-foreground-secondary)" }}
+                      >
                         Transform your ideas into organized, actionable tasks
                       </p>
                     </div>
@@ -418,7 +479,13 @@ export function TaskManager({
       </div>
 
       {/* Enhanced Filters Section */}
-      <Card className="filters-card bg-gradient-to-r from-white via-gray-50 to-blue-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 border-2 border-blue-100 dark:border-gray-700 rounded-2xl shadow-lg overflow-hidden">
+      <Card
+        className="filters-card rounded-2xl shadow-lg overflow-hidden"
+        style={{
+          background: "var(--color-card)",
+          border: "2px solid var(--color-border)",
+        }}
+      >
         <CardContent className="filters-content p-8">
           <div className="filters-header flex items-center justify-between mb-8">
             <div className="flex items-center gap-4">
@@ -434,7 +501,14 @@ export function TaskManager({
                 </p>
               </div>
             </div>
-            <Badge className="task-count-badge bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-full text-base font-bold shadow-md">
+            <Badge
+              className="task-count-badge px-4 py-2 rounded-full text-base font-bold shadow-md"
+              style={{
+                background:
+                  "linear-gradient(90deg, var(--color-primary-500), var(--color-secondary-500))",
+                color: "var(--color-primary-foreground)",
+              }}
+            >
               {filteredTasks.length} of {tasks.length}
             </Badge>
           </div>
@@ -502,7 +576,13 @@ export function TaskManager({
 
       {/* Tasks List */}
       {filteredTasks.length === 0 ? (
-        <div className="tasks-placeholder text-center py-16 px-8 bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 rounded-2xl border-2 border-dashed border-blue-200 dark:border-gray-600">
+        <div
+          className="tasks-placeholder text-center py-16 px-8 rounded-2xl border-2 border-dashed"
+          style={{
+            background: "var(--color-card)",
+            borderColor: "var(--color-border)",
+          }}
+        >
           <div className="w-24 h-24 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg animate-pulse">
             <CheckCircle2 className="tasks-placeholder-icon h-12 w-12 text-white" />
           </div>
@@ -516,7 +596,12 @@ export function TaskManager({
           </p>
           <Button
             onClick={() => setShowCreateDialog(true)}
-            className="task-button-primary bg-gradient-to-r from-blue-500 via-purple-600 to-indigo-600 hover:from-blue-600 hover:via-purple-700 hover:to-indigo-700 text-white px-8 py-4 rounded-xl font-bold shadow-lg transform hover:scale-105 transition-all duration-300 border-0"
+            className="task-button-primary px-8 py-4 rounded-xl font-bold shadow-lg transform hover:scale-105 transition-all duration-300 border-0"
+            style={{
+              background:
+                "linear-gradient(90deg, var(--color-primary-500), var(--color-secondary-500))",
+              color: "var(--color-primary-foreground)",
+            }}
           >
             <Plus className="h-5 w-5 mr-3" />
             Add Task
@@ -535,30 +620,41 @@ export function TaskManager({
             return (
               <Card
                 key={task.id}
-                className={`task-card-modern group relative overflow-hidden bg-gradient-to-br from-white via-gray-50 to-blue-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 border-2 hover:border-blue-300 dark:hover:border-blue-600 rounded-2xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 ${
-                  task.status === "completed"
-                    ? "task-completed opacity-75 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 border-green-200 dark:border-green-700"
-                    : ""
-                } ${
-                  isOverdue
-                    ? "task-overdue bg-gradient-to-br from-red-50 to-pink-50 dark:from-red-900/20 dark:to-pink-900/20 border-red-200 dark:border-red-700"
-                    : isDueSoon
-                      ? "task-due-soon bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 border-amber-200 dark:border-amber-700"
-                      : "border-gray-200 dark:border-gray-700"
-                }`}
+                className={`task-card-modern group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300`}
+                style={{
+                  background: "var(--color-card)",
+                  border: `2px solid ${
+                    task.status === "completed"
+                      ? "var(--color-success-100)"
+                      : isOverdue
+                        ? "var(--color-error-100)"
+                        : isDueSoon
+                          ? "var(--color-warning-100)"
+                          : "var(--color-border)"
+                  }`,
+                  opacity: task.status === "completed" ? 0.75 : 1,
+                }}
               >
                 {/* Enhanced Priority Stripe */}
-                <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-blue-500 to-purple-600 opacity-80"></div>
                 <div
-                  className={`absolute top-0 left-0 w-full h-2 ${
-                    task.priority === "urgent"
-                      ? "bg-gradient-to-r from-red-500 to-pink-600"
-                      : task.priority === "high"
-                        ? "bg-gradient-to-r from-orange-500 to-red-500"
-                        : task.priority === "medium"
-                          ? "bg-gradient-to-r from-yellow-500 to-orange-500"
-                          : "bg-gradient-to-r from-green-500 to-blue-500"
-                  } opacity-90 shadow-sm`}
+                  className="absolute top-0 left-0 right-0 h-2 opacity-80"
+                  style={{
+                    background:
+                      "linear-gradient(90deg, var(--color-primary-500), var(--color-secondary-500))",
+                  }}
+                ></div>
+                <div
+                  className="absolute top-0 left-0 w-full h-2 opacity-90 shadow-sm"
+                  style={{
+                    background:
+                      task.priority === "urgent"
+                        ? "linear-gradient(90deg, var(--color-error-500), var(--color-error-700))"
+                        : task.priority === "high"
+                          ? "linear-gradient(90deg, var(--color-warning-500), var(--color-warning-700))"
+                          : task.priority === "medium"
+                            ? "linear-gradient(90deg, var(--color-secondary-400), var(--color-secondary-600))"
+                            : "linear-gradient(90deg, var(--color-success-500), var(--color-success-700))",
+                  }}
                 ></div>
 
                 <CardHeader className="task-card-header-modern p-6 pb-4">
@@ -618,34 +714,40 @@ export function TaskManager({
                   {/* Enhanced Badges Row */}
                   <div className="task-badges-row flex flex-wrap gap-2 mb-4 items-center">
                     <Badge
-                      className={`priority-badge font-semibold px-3 py-1 rounded-full text-xs shadow-sm ${
-                        task.priority === "urgent"
-                          ? "bg-gradient-to-r from-red-500 to-pink-600 text-white"
-                          : task.priority === "high"
-                            ? "bg-gradient-to-r from-orange-500 to-red-500 text-white"
-                            : task.priority === "medium"
-                              ? "bg-gradient-to-r from-yellow-400 to-orange-500 text-white"
-                              : "bg-gradient-to-r from-green-500 to-blue-500 text-white"
-                      }`}
+                      className="priority-badge font-semibold px-3 py-1 rounded-full text-xs shadow-sm"
+                      style={{
+                        background:
+                          task.priority === "urgent"
+                            ? "linear-gradient(90deg, var(--color-error-500), var(--color-error-700))"
+                            : task.priority === "high"
+                              ? "linear-gradient(90deg, var(--color-warning-500), var(--color-warning-700))"
+                              : task.priority === "medium"
+                                ? "linear-gradient(90deg, var(--color-secondary-400), var(--color-secondary-600))"
+                                : "linear-gradient(90deg, var(--color-success-500), var(--color-success-700))",
+                        color: "var(--color-primary-foreground)",
+                      }}
                     >
                       <Flag className="h-3 w-3 mr-1" />
                       {task.priority.toUpperCase()}
                     </Badge>
 
                     <Badge
-                      className={`category-badge font-semibold px-3 py-1 rounded-full text-xs shadow-sm ${
-                        task.category === "assignment"
-                          ? "bg-gradient-to-r from-blue-500 to-indigo-600 text-white"
-                          : task.category === "study"
-                            ? "bg-gradient-to-r from-green-500 to-emerald-600 text-white"
-                            : task.category === "exam"
-                              ? "bg-gradient-to-r from-purple-500 to-violet-600 text-white"
-                              : task.category === "project"
-                                ? "bg-gradient-to-r from-pink-500 to-rose-600 text-white"
-                                : task.category === "reading"
-                                  ? "bg-gradient-to-r from-amber-500 to-orange-600 text-white"
-                                  : "bg-gradient-to-r from-gray-500 to-slate-600 text-white"
-                      }`}
+                      className="category-badge font-semibold px-3 py-1 rounded-full text-xs shadow-sm"
+                      style={{
+                        background:
+                          task.category === "assignment"
+                            ? "linear-gradient(90deg, var(--color-primary-500), var(--color-primary-700))"
+                            : task.category === "study"
+                              ? "linear-gradient(90deg, var(--color-success-500), var(--color-success-700))"
+                              : task.category === "exam"
+                                ? "linear-gradient(90deg, var(--color-secondary-500), var(--color-secondary-700))"
+                                : task.category === "project"
+                                  ? "linear-gradient(90deg, var(--color-error-500), var(--color-error-700))"
+                                  : task.category === "reading"
+                                    ? "linear-gradient(90deg, var(--color-warning-500), var(--color-warning-700))"
+                                    : "linear-gradient(90deg, var(--color-gray-500), var(--color-gray-700))",
+                        color: "var(--color-primary-foreground)",
+                      }}
                     >
                       {task.category === "assignment" && "📚"}
                       {task.category === "study" && "📖"}
@@ -657,13 +759,16 @@ export function TaskManager({
                     </Badge>
 
                     <Badge
-                      className={`status-badge font-semibold px-3 py-1 rounded-full text-xs shadow-sm ${
-                        task.status === "completed"
-                          ? "bg-gradient-to-r from-green-500 to-emerald-600 text-white"
-                          : task.status === "in-progress"
-                            ? "bg-gradient-to-r from-blue-500 to-cyan-600 text-white"
-                            : "bg-gradient-to-r from-gray-400 to-gray-600 text-white"
-                      }`}
+                      className="status-badge font-semibold px-3 py-1 rounded-full text-xs shadow-sm"
+                      style={{
+                        background:
+                          task.status === "completed"
+                            ? "linear-gradient(90deg, var(--color-success-500), var(--color-success-700))"
+                            : task.status === "in-progress"
+                              ? "linear-gradient(90deg, var(--color-primary-500), var(--color-primary-700))"
+                              : "linear-gradient(90deg, var(--color-gray-400), var(--color-gray-700))",
+                        color: "var(--color-primary-foreground)",
+                      }}
                     >
                       {task.status === "todo" && "⏳"}
                       {task.status === "in-progress" && "⚡"}
@@ -680,22 +785,35 @@ export function TaskManager({
                   <div className="task-meta-info flex flex-col gap-3 mb-4">
                     {task.dueDate && (
                       <div
-                        className={`meta-item due-date-item flex items-center gap-3 p-3 rounded-xl transition-all duration-300 ${
-                          isOverdue
-                            ? "bg-gradient-to-r from-red-100 to-pink-100 dark:from-red-900/30 dark:to-pink-900/30 text-red-700 dark:text-red-300 border border-red-200 dark:border-red-700"
+                        className="meta-item due-date-item flex items-center gap-3 p-3 rounded-xl transition-all duration-300 border"
+                        style={{
+                          background: isOverdue
+                            ? "var(--color-error-50)"
                             : isDueSoon
-                              ? "bg-gradient-to-r from-amber-100 to-orange-100 dark:from-amber-900/30 dark:to-orange-900/30 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-700"
-                              : "bg-gradient-to-r from-blue-100 to-indigo-100 dark:from-blue-900/30 dark:to-indigo-900/30 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-700"
-                        }`}
+                              ? "var(--color-warning-50)"
+                              : "var(--color-primary-50)",
+                          color: isOverdue
+                            ? "var(--color-error-700)"
+                            : isDueSoon
+                              ? "var(--color-warning-700)"
+                              : "var(--color-primary-700)",
+                          borderColor: isOverdue
+                            ? "var(--color-error-100)"
+                            : isDueSoon
+                              ? "var(--color-warning-100)"
+                              : "var(--color-primary-100)",
+                        }}
                       >
                         <div
-                          className={`w-8 h-8 rounded-lg flex items-center justify-center ${
-                            isOverdue
-                              ? "bg-red-500 text-white"
+                          className="w-8 h-8 rounded-lg flex items-center justify-center"
+                          style={{
+                            background: isOverdue
+                              ? "var(--color-error-500)"
                               : isDueSoon
-                                ? "bg-amber-500 text-white"
-                                : "bg-blue-500 text-white"
-                          }`}
+                                ? "var(--color-warning-500)"
+                                : "var(--color-primary-500)",
+                            color: "var(--color-primary-foreground)",
+                          }}
                         >
                           <CalendarIcon className="h-4 w-4" />
                         </div>
@@ -712,22 +830,52 @@ export function TaskManager({
                     )}
 
                     {task.estimatedTime && (
-                      <div className="meta-item flex items-center gap-3 p-3 bg-gradient-to-r from-purple-100 to-violet-100 dark:from-purple-900/30 dark:to-violet-900/30 rounded-xl border border-purple-200 dark:border-purple-700">
-                        <div className="w-8 h-8 bg-purple-500 text-white rounded-lg flex items-center justify-center">
+                      <div
+                        className="meta-item flex items-center gap-3 p-3 rounded-xl border"
+                        style={{
+                          background: "var(--color-secondary-50)",
+                          borderColor: "var(--color-secondary-100)",
+                        }}
+                      >
+                        <div
+                          className="w-8 h-8 rounded-lg flex items-center justify-center"
+                          style={{
+                            background: "var(--color-secondary-500)",
+                            color: "var(--color-primary-foreground)",
+                          }}
+                        >
                           <Clock className="h-4 w-4" />
                         </div>
-                        <span className="font-semibold text-purple-700 dark:text-purple-300">
+                        <span
+                          className="font-semibold"
+                          style={{ color: "var(--color-secondary-700)" }}
+                        >
                           {task.estimatedTime} minutes
                         </span>
                       </div>
                     )}
 
                     {task.course && (
-                      <div className="meta-item flex items-center gap-3 p-3 bg-gradient-to-r from-green-100 to-emerald-100 dark:from-green-900/30 dark:to-emerald-900/30 rounded-xl border border-green-200 dark:border-green-700">
-                        <div className="w-8 h-8 bg-green-500 text-white rounded-lg flex items-center justify-center">
+                      <div
+                        className="meta-item flex items-center gap-3 p-3 rounded-xl border"
+                        style={{
+                          background: "var(--color-success-50)",
+                          borderColor: "var(--color-success-100)",
+                        }}
+                      >
+                        <div
+                          className="w-8 h-8 rounded-lg flex items-center justify-center"
+                          style={{
+                            background: "var(--color-success-500)",
+                            color: "var(--color-primary-foreground)",
+                          }}
+                        >
                           <BookOpen className="h-4 w-4" />
                         </div>
-                        <span className="font-semibold text-green-700 dark:text-green-300">
+                        <span
+                          className="font-semibold"
+                          style={{ color: "var(--color-success-700)" }}
+                        >
                           {task.course}
                         </span>
                       </div>
@@ -736,20 +884,40 @@ export function TaskManager({
 
                   {/* Enhanced Subtasks Progress */}
                   {task.subtasks && task.subtasks.length > 0 && (
-                    <div className="subtasks-progress bg-gradient-to-r from-gray-100 to-blue-100 dark:from-gray-800 dark:to-gray-700 rounded-xl p-4 border border-gray-200 dark:border-gray-600">
+                    <div
+                      className="subtasks-progress rounded-xl p-4 border"
+                      style={{
+                        background: "var(--color-muted)",
+                        borderColor: "var(--color-border)",
+                      }}
+                    >
                       <div className="subtasks-header flex items-center justify-between mb-3">
-                        <span className="font-bold text-gray-700 dark:text-gray-300 text-sm uppercase tracking-wide">
+                        <span
+                          className="font-bold text-sm uppercase tracking-wide"
+                          style={{ color: "var(--color-foreground-secondary)" }}
+                        >
                           Subtasks Progress
                         </span>
-                        <span className="font-bold text-blue-600 dark:text-blue-400 bg-blue-100 dark:bg-blue-900/30 px-3 py-1 rounded-full text-xs">
+                        <span
+                          className="font-bold px-3 py-1 rounded-full text-xs"
+                          style={{
+                            color: "var(--color-primary-700)",
+                            background: "var(--color-primary-100)",
+                          }}
+                        >
                           {task.subtasks.filter((s) => s.completed).length}/
                           {task.subtasks.length} Complete
                         </span>
                       </div>
-                      <div className="subtasks-bar bg-gray-300 dark:bg-gray-600 rounded-full h-3 overflow-hidden shadow-inner">
+                      <div
+                        className="subtasks-bar rounded-full h-3 overflow-hidden shadow-inner"
+                        style={{ background: "var(--color-border)" }}
+                      >
                         <div
-                          className="subtasks-bar-fill bg-gradient-to-r from-green-500 to-emerald-600 h-full rounded-full transition-all duration-500 ease-out shadow-sm"
+                          className="subtasks-bar-fill h-full rounded-full transition-all duration-500 ease-out shadow-sm"
                           style={{
+                            background:
+                              "linear-gradient(90deg, var(--color-success-500), var(--color-success-700))",
                             width: `${(task.subtasks.filter((s) => s.completed).length / task.subtasks.length) * 100}%`,
                           }}
                         ></div>
