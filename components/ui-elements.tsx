@@ -95,9 +95,7 @@ export function FeatureCard({
   );
 }
 
-/**
- * Standardized button with icon
- */
+
 interface IconButtonProps extends React.ComponentProps<typeof Button> {
   icon: LucideIcon;
   children: React.ReactNode;
