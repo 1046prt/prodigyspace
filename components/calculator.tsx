@@ -1,9 +1,8 @@
 "use client";
 
 import { useState, useCallback } from "react";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Calculator as CalculatorIcon } from "lucide-react";
+import { Calculator as CalculatorIcon, Delete } from "lucide-react";
+import "../styles/calculator.css";
 
 interface CalculatorProps {
   className?: string;
@@ -38,6 +37,8 @@ export function Calculator({
       } else if (value === "C") {
         setInput("");
         setResult("");
+      } else if (value === "Backspace") {
+        setInput(input.slice(0, -1));
       } else if (value === "±") {
         if (input.startsWith("-")) {
           setInput(input.slice(1));
@@ -59,44 +60,68 @@ export function Calculator({
     ["0", ".", "="],
   ];
 
-  return (
-    <Card className={className}>
-      <CardHeader>
-        <CardTitle className="utilities-card-title">
-          <CalculatorIcon className="h-5 w-5" />
-          {title}
-        </CardTitle>
-      </CardHeader>
-      <CardContent>
-        <div className="space-y-4">
-          <div className="calculator-display">
-            <div className="calculator-input">{input || "0"}</div>
-            <div className="calculator-result">{result || "0"}</div>
-          </div>
-          <div className="calculator-buttons">
-            {buttonLayout.flat().map((btn, index) => {
-              const isLastRow = index >= buttonLayout.flat().length - 3;
-              const isZero = btn === "0";
+  const getButtonClassName = (btn: string) => {
+    let baseClass = "calc-btn";
+    if (btn === "C" || btn === "±" || btn === "%") {
+      baseClass += " calc-btn-function";
+    } else if (btn === "÷" || btn === "×" || btn === "-" || btn === "+") {
+      baseClass += " calc-btn-operator";
+    } else if (btn === "=") {
+      baseClass += " calc-btn-equals";
+    } else if (btn === "0") {
+      baseClass += " calc-btn-zero";
+    }
+    return baseClass;
+  };
 
-              return (
-                <Button
-                  key={btn}
-                  variant="outline"
-                  onClick={() =>
-                    handleInput(btn === "×" ? "*" : btn === "÷" ? "/" : btn)
-                  }
-                  className={`calculator-button ${
-                    isLastRow && isZero ? "calculator-button-wide" : ""
-                  }`}
-                >
-                  {btn}
-                </Button>
-              );
-            })}
+  return (
+    <div className={`calculator-container ${className || ""}`}>
+      <div className="calculator-wrapper">
+        <div className="calculator-header">
+          <div className="calculator-title-section">
+            <CalculatorIcon className="calculator-icon" size={24} />
+            <h2 className="calculator-title">{title}</h2>
           </div>
         </div>
-      </CardContent>
-    </Card>
+
+        <div className="calculator-display-section">
+          <div className="display-screen">
+            <div className="display-previous">{input || "0"}</div>
+            <div className="display-current">{result || "0"}</div>
+          </div>
+        </div>
+
+        <div className="calculator-buttons-grid">
+          {buttonLayout.map((row) =>
+            row.map((btn) => (
+              <button
+                key={btn}
+                onClick={() =>
+                  handleInput(btn === "×" ? "*" : btn === "÷" ? "/" : btn)
+                }
+                className={getButtonClassName(btn)}
+                title={btn === "C" ? "Clear" : undefined}
+              >
+                {btn === "Backspace" ? (
+                  <Delete size={20} />
+                ) : (
+                  <span>{btn}</span>
+                )}
+              </button>
+            )),
+          )}
+        </div>
+
+        <button
+          onClick={() => handleInput("Backspace")}
+          className="calc-backspace-btn"
+          title="Delete last digit"
+        >
+          <Delete size={18} />
+          <span>Backspace</span>
+        </button>
+      </div>
+    </div>
   );
 }
 
