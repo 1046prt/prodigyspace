@@ -1,0 +1,214 @@
+{
+  "timezones": [
+    {
+      "id": "utc",
+      "name": "UTC/GMT",
+      "offset": 0,
+      "countries": ["Portugal", "UK", "Ireland", "Iceland", "Senegal"],
+      "dstOffset": 0
+    },
+    {
+      "id": "gmt1",
+      "name": "GMT+1 (Central European Time)",
+      "offset": 1,
+      "countries": [
+        "Germany",
+        "France",
+        "Italy",
+        "Spain",
+        "Poland",
+        "Belgium",
+        "Netherlands"
+      ],
+      "dstOffset": 2
+    },
+    {
+      "id": "gmt2",
+      "name": "GMT+2 (Eastern European Time)",
+      "offset": 2,
+      "countries": [
+        "Romania",
+        "Bulgaria",
+        "Greece",
+        "Turkey",
+        "Egypt",
+        "Israel",
+        "South Africa"
+      ],
+      "dstOffset": 3
+    },
+    {
+      "id": "gmt3",
+      "name": "GMT+3 (Moscow Standard Time)",
+      "offset": 3,
+      "countries": ["Russia", "Kenya", "Ethiopia", "Qatar", "Saudi Arabia"],
+      "dstOffset": 4
+    },
+    {
+      "id": "gmt4",
+      "name": "GMT+4 (Gulf Standard Time)",
+      "offset": 4,
+      "countries": ["UAE", "Oman", "Mauritius", "Georgia", "Armenia"],
+      "dstOffset": 4
+    },
+    {
+      "id": "gmt5",
+      "name": "GMT+5 (Pakistan Standard Time)",
+      "offset": 5,
+      "countries": ["Pakistan", "Uzbekistan", "Tajikistan", "Turkmenistan"],
+      "dstOffset": 5
+    },
+    {
+      "id": "gmt6",
+      "name": "GMT+6 (Bangladesh Standard Time)",
+      "offset": 6,
+      "countries": ["Bangladesh", "Kyrgyzstan", "Kazakhstan"],
+      "dstOffset": 6
+    },
+    {
+      "id": "gmt7",
+      "name": "GMT+7 (Indochina Time)",
+      "offset": 7,
+      "countries": ["Thailand", "Vietnam", "Cambodia", "Laos", "Myanmar"],
+      "dstOffset": 7
+    },
+    {
+      "id": "gmt8",
+      "name": "GMT+8 (China Standard Time)",
+      "offset": 8,
+      "countries": [
+        "China",
+        "Singapore",
+        "Malaysia",
+        "Taiwan",
+        "Hong Kong",
+        "Philippines",
+        "Australia-Perth"
+      ],
+      "dstOffset": 8
+    },
+    {
+      "id": "gmt9",
+      "name": "GMT+9 (Japan Standard Time)",
+      "offset": 9,
+      "countries": ["Japan", "South Korea", "North Korea"],
+      "dstOffset": 9
+    },
+    {
+      "id": "gmt10",
+      "name": "GMT+10 (Australian Eastern Standard Time)",
+      "offset": 10,
+      "countries": [
+        "Australia-Sydney",
+        "Australia-Melbourne",
+        "Australia-Brisbane",
+        "Papua New Guinea"
+      ],
+      "dstOffset": 11
+    },
+    {
+      "id": "gmt11",
+      "name": "GMT+11 (Solomon Islands Standard Time)",
+      "offset": 11,
+      "countries": ["Solomon Islands", "Vanuatu"],
+      "dstOffset": 11
+    },
+    {
+      "id": "gmt12",
+      "name": "GMT+12 (Fiji Standard Time)",
+      "offset": 12,
+      "countries": ["Fiji", "New Zealand", "Nauru", "Tuvalu"],
+      "dstOffset": 13
+    },
+    {
+      "id": "gmtm1",
+      "name": "GMT-1 (Cape Verde Time)",
+      "offset": -1,
+      "countries": ["Cape Verde", "Azores"],
+      "dstOffset": 0
+    },
+    {
+      "id": "gmtm2",
+      "name": "GMT-2 (South Georgia Time)",
+      "offset": -2,
+      "countries": ["South Georgia", "Greenland"],
+      "dstOffset": -1
+    },
+    {
+      "id": "gmtm3",
+      "name": "GMT-3 (Brazil Time)",
+      "offset": -3,
+      "countries": ["Brazil", "Argentina", "Uruguay", "Suriname"],
+      "dstOffset": -2
+    },
+    {
+      "id": "gmtm4",
+      "name": "GMT-4 (Atlantic Standard Time)",
+      "offset": -4,
+      "countries": [
+        "Canada-Toronto",
+        "USA-New York",
+        "Venezuela",
+        "Guyana",
+        "Paraguay"
+      ],
+      "dstOffset": -3
+    },
+    {
+      "id": "gmtm5",
+      "name": "GMT-5 (Eastern Standard Time)",
+      "offset": -5,
+      "countries": ["USA-New York", "Colombia", "Ecuador", "Peru", "Jamaica"],
+      "dstOffset": -4
+    },
+    {
+      "id": "gmtm6",
+      "name": "GMT-6 (Central Standard Time)",
+      "offset": -6,
+      "countries": ["USA-Chicago", "Mexico-Central", "Guatemala", "Costa Rica"],
+      "dstOffset": -5
+    },
+    {
+      "id": "gmtm7",
+      "name": "GMT-7 (Mountain Standard Time)",
+      "offset": -7,
+      "countries": ["USA-Denver", "Mexico-Arizona"],
+      "dstOffset": -6
+    },
+    {
+      "id": "gmtm8",
+      "name": "GMT-8 (Pacific Standard Time)",
+      "offset": -8,
+      "countries": ["USA-Los Angeles", "Canada-Vancouver"],
+      "dstOffset": -7
+    },
+    {
+      "id": "gmtm9",
+      "name": "GMT-9 (Alaska Standard Time)",
+      "offset": -9,
+      "countries": ["USA-Alaska"],
+      "dstOffset": -8
+    },
+    {
+      "id": "gmtm10",
+      "name": "GMT-10 (Hawaii-Aleutian Standard Time)",
+      "offset": -10,
+      "countries": ["USA-Hawaii"],
+      "dstOffset": -9
+    },
+    {
+      "id": "gmtm11",
+      "name": "GMT-11 (Samoa Standard Time)",
+      "offset": -11,
+      "countries": ["Samoa", "American Samoa"],
+      "dstOffset": -10
+    },
+    {
+      "id": "gmtm12",
+      "name": "GMT-12 (Baker Island Time)",
+      "offset": -12,
+      "countries": ["Baker Island"],
+      "dstOffset": -12
+    }
+  ]
+}

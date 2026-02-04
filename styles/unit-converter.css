@@ -6,7 +6,9 @@
     0 8px 24px rgba(70, 130, 180, 0.15),
     0 8px 24px rgba(0, 0, 0, 0.2)
   );
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
   overflow: visible;
   position: relative;
   isolation: isolate;
@@ -346,4 +348,28 @@
   right: 12px;
   font-size: 14px;
   color: #3182ce;
+}
+/* Timezone Notice */
+.timezone-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 16px;
+  margin-bottom: 20px;
+  background: light-dark(rgba(59, 130, 246, 0.08), rgba(59, 130, 246, 0.15));
+  border-left: 4px solid #3b82f6;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  color: light-dark(#1e3a8a, #93c5fd);
+  line-height: 1.5;
+}
+
+.timezone-notice svg {
+  flex-shrink: 0;
+  color: #3b82f6;
+  margin-top: 2px;
+}
+
+.timezone-notice p {
+  margin: 0;
 }

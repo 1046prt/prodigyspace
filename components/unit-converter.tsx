@@ -22,6 +22,7 @@ import {
   Weight,
   Fuel,
   Zap,
+  Globe,
 } from "lucide-react";
 import React, { useState } from "react";
 import "@/styles/unit-converter.css";
@@ -38,6 +39,12 @@ const unitCategories = [
     name: "Time",
     units: ["milliseconds", "seconds", "minutes", "hours", "days"],
     icon: Clock,
+  },
+  {
+    id: "timezone",
+    name: "Timezone",
+    units: ["timezone-conversion"],
+    icon: Globe,
   },
   {
     id: "length",
@@ -84,6 +91,15 @@ export function UnitConverter() {
 
   const [category, setCategory] = useState("data");
   const currentCategory = unitCategories.find((cat) => cat.id === category);
+  const [showTimezoneNote, setShowTimezoneNote] = useState(false);
+
+  React.useEffect(() => {
+    if (category === "timezone") {
+      setShowTimezoneNote(true);
+    } else {
+      setShowTimezoneNote(false);
+    }
+  }, [category]);
 
   return (
     <Card className="unit-converter-card">
@@ -94,6 +110,16 @@ export function UnitConverter() {
         </CardTitle>
       </CardHeader>
       <CardContent className="unit-converter-content">
+        {showTimezoneNote && (
+          <div className="timezone-notice">
+            <Globe size={16} />
+            <p>
+              For detailed timezone conversion with specific countries, please
+              use the Timezone Converter feature. This tool provides quick time
+              conversions.
+            </p>
+          </div>
+        )}
         <div className={`unit-selector-grid category-${category}`}>
           <div className="input-group">
             <Label className="input-label">Category</Label>
@@ -188,6 +214,9 @@ export function UnitConverter() {
           <p>
             Comprehensive unit converter for students: data storage, time,
             measurements, temperature, weight, volume, and energy conversions.
+            <br />
+            For timezone conversion by country, use the Timezone Converter
+            feature.
           </p>
         </div>
       </CardContent>
