@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import { UnitConverter } from "@/components/unit-converter";
 import { Calculator } from "@/components/calculator";
+import { TimezoneConverter } from "@/components/timezone-converter";
 import { useState, useEffect } from "react";
 import {
   getCurrentDate,
@@ -91,6 +92,12 @@ export default function UtilitiesPage() {
       color: "blue-badge",
     },
     {
+      title: "Timezone Converter",
+      description: "Convert time across global timezones",
+      icon: Globe,
+      color: "blue-badge",
+    },
+    {
       title: "Color Picker",
       description: "Pick and convert colors",
       icon: Palette,
@@ -105,7 +112,7 @@ export default function UtilitiesPage() {
     {
       title: "QR Generator",
       description: "Generate QR codes",
-      icon: Globe,
+      icon: Wifi,
       color: "orange-badge",
     },
     {
@@ -323,18 +330,19 @@ export default function UtilitiesPage() {
           <TabsContent value="tools" className="space-y-4">
             <div className="utilities-grid utilities-grid-lg-2">
               <UnitConverter />
-
-              <div className="utilities-grid utilities-grid-md-1">
-                {quickTools.map((tool, index) => (
-                  <FeatureCard
-                    key={index}
-                    icon={tool.icon}
-                    title={tool.title}
-                    description={tool.description}
-                    badgeColor={tool.color}
-                  />
-                ))}
-              </div>
+              <TimezoneConverter />
+            </div>
+            
+            <div className="utilities-grid utilities-grid-md-3">
+              {quickTools.map((tool, index) => (
+                <FeatureCard
+                  key={index}
+                  icon={tool.icon}
+                  title={tool.title}
+                  description={tool.description}
+                  badgeColor={tool.color}
+                />
+              ))}
             </div>
           </TabsContent>
 
