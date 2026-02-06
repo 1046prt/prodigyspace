@@ -245,10 +245,13 @@ export function TaskManager({
               <div className="task-dialog-content overflow-y-auto">
                 <div className="space-y-6 p-6">
                   {/* Basic Information Section */}
-                  <div className="space-y-6 p-6 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-700 rounded-xl border border-blue-100 dark:border-gray-600">
-                    <div className="flex items-center gap-3 text-sm font-bold text-blue-700 dark:text-blue-300 uppercase tracking-wider">
-                      <div className="w-3 h-3 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full shadow-md"></div>
-                      <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+                  <div
+                    className="task-dialog-section space-y-6 p-6"
+                    data-tone="primary"
+                  >
+                    <div className="task-dialog-section-header flex items-center gap-3 text-sm font-bold uppercase tracking-wider">
+                      <div className="task-dialog-section-dot w-3 h-3 rounded-full shadow-md"></div>
+                      <span className="task-dialog-section-label">
                         Basic Information
                       </span>
                     </div>
@@ -261,7 +264,7 @@ export function TaskManager({
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
                         placeholder="Enter a clear, descriptive title..."
-                        className="h-11 text-base border-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-400"
+                        className="task-dialog-input h-11 text-base"
                       />
                     </div>
 
@@ -274,16 +277,19 @@ export function TaskManager({
                         onChange={(e) => setDescription(e.target.value)}
                         placeholder="Provide additional details about the task..."
                         rows={3}
-                        className="text-base border-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-400 resize-none"
+                        className="task-dialog-input text-base resize-none"
                       />
                     </div>
                   </div>
 
                   {/* Task Details Section */}
-                  <div className="space-y-6 p-6 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-gray-800 dark:to-gray-700 rounded-xl border border-green-100 dark:border-gray-600">
-                    <div className="flex items-center gap-3 text-sm font-bold text-green-700 dark:text-green-300 uppercase tracking-wider">
-                      <div className="w-3 h-3 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full shadow-md"></div>
-                      <span className="bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
+                  <div
+                    className="task-dialog-section space-y-6 p-6"
+                    data-tone="accent"
+                  >
+                    <div className="task-dialog-section-header flex items-center gap-3 text-sm font-bold uppercase tracking-wider">
+                      <div className="task-dialog-section-dot w-3 h-3 rounded-full shadow-md"></div>
+                      <span className="task-dialog-section-label">
                         Task Details
                       </span>
                     </div>
@@ -299,7 +305,7 @@ export function TaskManager({
                             setCategory(value)
                           }
                         >
-                          <SelectTrigger className="h-11 border-gray-300 dark:border-gray-600 focus:border-green-500 dark:focus:border-green-400">
+                          <SelectTrigger className="task-dialog-input h-11">
                             <SelectValue />
                           </SelectTrigger>
                           <SelectContent>
@@ -327,7 +333,7 @@ export function TaskManager({
                             setPriority(value)
                           }
                         >
-                          <SelectTrigger className="h-11 border-gray-300 dark:border-gray-600 focus:border-green-500 dark:focus:border-green-400">
+                          <SelectTrigger className="task-dialog-input h-11">
                             <SelectValue />
                           </SelectTrigger>
                           <SelectContent>
@@ -342,10 +348,13 @@ export function TaskManager({
                   </div>
 
                   {/* Schedule & Time Section */}
-                  <div className="space-y-6 p-6 bg-gradient-to-r from-purple-50 to-violet-50 dark:from-gray-800 dark:to-gray-700 rounded-xl border border-purple-100 dark:border-gray-600">
-                    <div className="flex items-center gap-3 text-sm font-bold text-purple-700 dark:text-purple-300 uppercase tracking-wider">
-                      <div className="w-3 h-3 bg-gradient-to-r from-purple-500 to-violet-600 rounded-full shadow-md"></div>
-                      <span className="bg-gradient-to-r from-purple-600 to-violet-600 bg-clip-text text-transparent">
+                  <div
+                    className="task-dialog-section space-y-6 p-6"
+                    data-tone="secondary"
+                  >
+                    <div className="task-dialog-section-header flex items-center gap-3 text-sm font-bold uppercase tracking-wider">
+                      <div className="task-dialog-section-dot w-3 h-3 rounded-full shadow-md"></div>
+                      <span className="task-dialog-section-label">
                         Schedule & Time
                       </span>
                     </div>
@@ -359,7 +368,7 @@ export function TaskManager({
                           <PopoverTrigger asChild>
                             <Button
                               variant="outline"
-                              className="w-full h-11 justify-start text-left font-normal bg-transparent border-gray-300 dark:border-gray-600 hover:border-purple-500 dark:hover:border-purple-400"
+                              className="task-dialog-input task-dialog-date-trigger w-full h-11 justify-start text-left font-normal bg-transparent"
                             >
                               <CalendarIcon className="mr-2 h-4 w-4 text-gray-500" />
                               <span
@@ -397,7 +406,7 @@ export function TaskManager({
                             value={estimatedTime}
                             onChange={(e) => setEstimatedTime(e.target.value)}
                             placeholder="60"
-                            className="h-11 pl-10 text-base border-gray-300 dark:border-gray-600 focus:border-purple-500 dark:focus:border-purple-400"
+                            className="task-dialog-input h-11 pl-10 text-base"
                           />
                           <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-sm text-gray-500">
                             minutes
@@ -408,10 +417,13 @@ export function TaskManager({
                   </div>
 
                   {/* Academic Information Section */}
-                  <div className="space-y-6 p-6 bg-gradient-to-r from-amber-50 to-orange-50 dark:from-gray-800 dark:to-gray-700 rounded-xl border border-amber-100 dark:border-gray-600">
-                    <div className="flex items-center gap-3 text-sm font-bold text-amber-700 dark:text-amber-300 uppercase tracking-wider">
-                      <div className="w-3 h-3 bg-gradient-to-r from-amber-500 to-orange-600 rounded-full shadow-md"></div>
-                      <span className="bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">
+                  <div
+                    className="task-dialog-section space-y-6 p-6"
+                    data-tone="warning"
+                  >
+                    <div className="task-dialog-section-header flex items-center gap-3 text-sm font-bold uppercase tracking-wider">
+                      <div className="task-dialog-section-dot w-3 h-3 rounded-full shadow-md"></div>
+                      <span className="task-dialog-section-label">
                         Academic Information
                       </span>
                     </div>
@@ -425,7 +437,7 @@ export function TaskManager({
                           value={course}
                           onChange={(e) => setCourse(e.target.value)}
                           placeholder="e.g., CS 101, MATH 205"
-                          className="h-11 text-base border-gray-300 dark:border-gray-600 focus:border-amber-500 dark:focus:border-amber-400"
+                          className="task-dialog-input h-11 text-base"
                         />
                       </div>
 
@@ -437,7 +449,7 @@ export function TaskManager({
                           value={professor}
                           onChange={(e) => setProfessor(e.target.value)}
                           placeholder="Professor name"
-                          className="h-11 text-base border-gray-300 dark:border-gray-600 focus:border-amber-500 dark:focus:border-amber-400"
+                          className="task-dialog-input h-11 text-base"
                         />
                       </div>
                     </div>
@@ -445,7 +457,7 @@ export function TaskManager({
                 </div>
               </div>
 
-              <div className="task-dialog-footer border-t border-gradient-to-r from-blue-200 to-purple-200 dark:border-gray-700 p-8 bg-gradient-to-r from-gray-50 to-blue-50 dark:from-gray-900 dark:to-gray-800">
+              <div className="task-dialog-footer p-8">
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6">
                   <div className="flex items-center gap-2">
                     <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
@@ -465,7 +477,7 @@ export function TaskManager({
                     <Button
                       onClick={handleCreateTask}
                       disabled={!title.trim()}
-                      className="w-full sm:w-auto h-12 px-8 bg-gradient-to-r from-blue-500 via-purple-600 to-indigo-600 hover:from-blue-600 hover:via-purple-700 hover:to-indigo-700 text-white border-0 disabled:opacity-50 disabled:cursor-not-allowed font-bold rounded-lg shadow-lg transform hover:scale-105 transition-all duration-300"
+                      className="task-button-primary w-full sm:w-auto h-12 px-8 border-0 disabled:opacity-50 disabled:cursor-not-allowed font-bold rounded-lg shadow-lg transform hover:scale-105 transition-all duration-300"
                     >
                       <Plus className="h-5 w-5 mr-2" />
                       Create Task
@@ -489,14 +501,14 @@ export function TaskManager({
         <CardContent className="filters-content p-8">
           <div className="filters-header flex items-center justify-between mb-8">
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center shadow-lg">
+              <div className="task-filter-icon w-12 h-12 rounded-full flex items-center justify-center shadow-lg">
                 <Filter className="h-6 w-6 text-white" />
               </div>
               <div>
-                <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                <h3 className="task-filter-title text-2xl font-bold">
                   Filter & Sort Tasks
                 </h3>
-                <p className="text-gray-600 dark:text-gray-300 mt-1">
+                <p className="task-filter-subtitle mt-1">
                   Organize your tasks the way you need them
                 </p>
               </div>
@@ -516,11 +528,11 @@ export function TaskManager({
           <div className="filters-grid grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="filter-group space-y-3">
               <label className="filter-label text-sm font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wide flex items-center gap-2">
-                <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                <div className="task-filter-dot w-2 h-2 rounded-full"></div>
                 Status
               </label>
               <Select value={filterStatus} onValueChange={setFilterStatus}>
-                <SelectTrigger className="filter-select h-12 border-2 border-blue-200 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-400 rounded-lg bg-white dark:bg-gray-800 shadow-sm hover:shadow-md transition-all duration-300">
+                <SelectTrigger className="filter-select task-filter-select h-12 border-2 rounded-lg shadow-sm hover:shadow-md transition-all duration-300">
                   <SelectValue placeholder="All Statuses" />
                 </SelectTrigger>
                 <SelectContent>
@@ -534,11 +546,11 @@ export function TaskManager({
 
             <div className="filter-group space-y-3">
               <label className="filter-label text-sm font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wide flex items-center gap-2">
-                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                <div className="task-filter-dot w-2 h-2 rounded-full"></div>
                 Category
               </label>
               <Select value={filterCategory} onValueChange={setFilterCategory}>
-                <SelectTrigger className="filter-select h-12 border-2 border-green-200 dark:border-gray-600 focus:border-green-500 dark:focus:border-green-400 rounded-lg bg-white dark:bg-gray-800 shadow-sm hover:shadow-md transition-all duration-300">
+                <SelectTrigger className="filter-select task-filter-select h-12 border-2 rounded-lg shadow-sm hover:shadow-md transition-all duration-300">
                   <SelectValue placeholder="All Categories" />
                 </SelectTrigger>
                 <SelectContent>
@@ -555,11 +567,11 @@ export function TaskManager({
 
             <div className="filter-group space-y-3">
               <label className="filter-label text-sm font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wide flex items-center gap-2">
-                <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+                <div className="task-filter-dot w-2 h-2 rounded-full"></div>
                 Sort By
               </label>
               <Select value={sortBy} onValueChange={setSortBy}>
-                <SelectTrigger className="filter-select h-12 border-2 border-purple-200 dark:border-gray-600 focus:border-purple-500 dark:focus:border-purple-400 rounded-lg bg-white dark:bg-gray-800 shadow-sm hover:shadow-md transition-all duration-300">
+                <SelectTrigger className="filter-select task-filter-select h-12 border-2 rounded-lg shadow-sm hover:shadow-md transition-all duration-300">
                   <SelectValue placeholder="Sort by" />
                 </SelectTrigger>
                 <SelectContent>
@@ -583,7 +595,7 @@ export function TaskManager({
             borderColor: "var(--color-border)",
           }}
         >
-          <div className="w-24 h-24 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg animate-pulse">
+          <div className="tasks-placeholder-icon-wrap w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg animate-pulse">
             <CheckCircle2 className="tasks-placeholder-icon h-12 w-12 text-white" />
           </div>
           <h3 className="tasks-placeholder-title text-2xl font-bold bg-gradient-to-r from-gray-700 to-gray-900 dark:from-gray-200 dark:to-gray-100 bg-clip-text text-transparent mb-4">
@@ -668,14 +680,14 @@ export function TaskManager({
                             completedAt: checked ? new Date() : undefined,
                           })
                         }
-                        className="task-checkbox-enhanced w-6 h-6 rounded-lg border-2 border-blue-300 data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-green-500 data-[state=checked]:to-emerald-600 data-[state=checked]:border-green-500 shadow-sm"
+                        className="task-checkbox-enhanced task-checkbox-theme w-6 h-6 rounded-lg border-2 shadow-sm"
                       />
                     </div>
                     <div className="task-actions flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 items-center">
                       <Button
                         variant="ghost"
                         size="sm"
-                        className="task-action-button h-9 w-9 rounded-lg bg-blue-100 dark:bg-blue-900/30 hover:bg-blue-200 dark:hover:bg-blue-900/50 text-blue-600 dark:text-blue-400 shadow-sm flex items-center justify-center"
+                        className="task-action-button task-action-button-primary h-9 w-9 rounded-lg shadow-sm flex items-center justify-center"
                         onClick={() => {
                           // Add edit functionality here
                         }}
@@ -685,7 +697,7 @@ export function TaskManager({
                       <Button
                         variant="ghost"
                         size="sm"
-                        className="task-action-button task-delete-button h-9 w-9 rounded-lg bg-red-100 dark:bg-red-900/30 hover:bg-red-200 dark:hover:bg-red-900/50 text-red-600 dark:text-red-400 shadow-sm flex items-center justify-center"
+                        className="task-action-button task-action-button-destructive h-9 w-9 rounded-lg shadow-sm flex items-center justify-center"
                         onClick={() => onDeleteTask(task.id)}
                       >
                         <Trash2 className="h-4 w-4" />

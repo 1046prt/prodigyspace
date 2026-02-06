@@ -14,11 +14,31 @@
   --task-bg-hover: rgba(255, 255, 255, 1);
 
   /* Gradient backgrounds */
-  --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  --gradient-success: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-  --gradient-warning: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
-  --gradient-danger: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-  --gradient-info: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  --gradient-primary: linear-gradient(
+    135deg,
+    var(--color-primary-500) 0%,
+    var(--color-secondary-500) 100%
+  );
+  --gradient-success: linear-gradient(
+    135deg,
+    var(--color-success-500) 0%,
+    var(--color-success-700) 100%
+  );
+  --gradient-warning: linear-gradient(
+    135deg,
+    var(--color-warning-500) 0%,
+    var(--color-warning-700) 100%
+  );
+  --gradient-danger: linear-gradient(
+    135deg,
+    var(--color-error-500) 0%,
+    var(--color-error-700) 100%
+  );
+  --gradient-info: linear-gradient(
+    135deg,
+    var(--color-primary-500) 0%,
+    var(--color-secondary-500) 100%
+  );
 }
 
 [data-theme="dark"] {
@@ -88,18 +108,18 @@
   background:
     radial-gradient(
       circle at 25% 25%,
-      rgba(99, 102, 241, 0.1) 0%,
+      rgba(var(--color-primary-rgb), 0.12) 0%,
       transparent 50%
     ),
     radial-gradient(
       circle at 75% 75%,
-      rgba(139, 92, 246, 0.1) 0%,
+      rgba(var(--color-secondary-rgb), 0.12) 0%,
       transparent 50%
     ),
     linear-gradient(
       135deg,
-      rgba(247, 250, 252, 0.9) 0%,
-      rgba(241, 245, 249, 0.9) 100%
+      var(--color-background) 0%,
+      var(--color-background-secondary) 100%
     );
   position: relative;
 }
@@ -108,18 +128,18 @@
   background:
     radial-gradient(
       circle at 25% 25%,
-      rgba(99, 102, 241, 0.15) 0%,
+      rgba(var(--color-primary-rgb), 0.2) 0%,
       transparent 50%
     ),
     radial-gradient(
       circle at 75% 75%,
-      rgba(139, 92, 246, 0.15) 0%,
+      rgba(var(--color-secondary-rgb), 0.2) 0%,
       transparent 50%
     ),
     linear-gradient(
       135deg,
-      rgba(15, 23, 42, 0.95) 0%,
-      rgba(30, 41, 59, 0.95) 100%
+      var(--color-background) 0%,
+      var(--color-background-secondary) 100%
     );
 }
 
@@ -145,7 +165,7 @@
 .tasks-title {
   font-size: 2.5rem;
   font-weight: 800;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--gradient-primary);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -162,7 +182,7 @@
 
 .tasks-subtitle {
   font-size: 1.125rem;
-  color: #64748b;
+  color: var(--color-foreground-muted);
   margin: 0;
   max-width: 600px;
   margin-left: auto;
@@ -200,39 +220,26 @@
 }
 
 .stat-card-primary {
-  background: linear-gradient(
-    135deg,
-    rgba(99, 102, 241, 0.1) 0%,
-    rgba(139, 92, 246, 0.05) 100%
-  );
-  border: 1px solid rgba(99, 102, 241, 0.2);
+  background: color-mix(in srgb, var(--color-primary-500) 12%, transparent);
+  border: 1px solid
+    color-mix(in srgb, var(--color-primary-500) 28%, transparent);
 }
 
 .stat-card-success {
-  background: linear-gradient(
-    135deg,
-    rgba(34, 197, 94, 0.1) 0%,
-    rgba(22, 163, 74, 0.05) 100%
-  );
-  border: 1px solid rgba(34, 197, 94, 0.2);
+  background: color-mix(in srgb, var(--color-success-500) 12%, transparent);
+  border: 1px solid
+    color-mix(in srgb, var(--color-success-500) 28%, transparent);
 }
 
 .stat-card-warning {
-  background: linear-gradient(
-    135deg,
-    rgba(251, 191, 36, 0.1) 0%,
-    rgba(245, 158, 11, 0.05) 100%
-  );
-  border: 1px solid rgba(251, 191, 36, 0.2);
+  background: color-mix(in srgb, var(--color-warning-500) 12%, transparent);
+  border: 1px solid
+    color-mix(in srgb, var(--color-warning-500) 28%, transparent);
 }
 
 .stat-card-info {
-  background: linear-gradient(
-    135deg,
-    rgba(14, 165, 233, 0.1) 0%,
-    rgba(59, 130, 246, 0.05) 100%
-  );
-  border: 1px solid rgba(14, 165, 233, 0.2);
+  background: color-mix(in srgb, var(--color-info-500) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-info-500) 28%, transparent);
 }
 
 .stat-card-content {
@@ -253,19 +260,19 @@
 }
 
 .stat-card-primary .stat-icon {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--gradient-primary);
 }
 
 .stat-card-success .stat-icon {
-  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  background: var(--gradient-success);
 }
 
 .stat-card-warning .stat-icon {
-  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+  background: var(--gradient-warning);
 }
 
 .stat-card-info .stat-icon {
-  background: linear-gradient(135deg, #0ea5e9 0%, #3b82f6 100%);
+  background: var(--gradient-info);
 }
 
 .stat-info {
@@ -275,7 +282,7 @@
 .stat-value {
   font-size: 1.75rem;
   font-weight: 700;
-  color: #1e293b;
+  color: var(--color-foreground);
   margin: 0;
   line-height: 1;
 }
@@ -286,7 +293,7 @@
 
 .stat-label {
   font-size: 0.875rem;
-  color: #64748b;
+  color: var(--color-foreground-muted);
   margin: 4px 0 0 0;
   font-weight: 500;
 }
@@ -305,8 +312,8 @@
 }
 
 .tasks-tabs-list {
-  background: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(226, 232, 240, 0.8);
+  background: color-mix(in srgb, var(--color-card) 85%, transparent);
+  border: 1px solid var(--color-border);
   border-radius: 16px;
   padding: 6px;
   display: grid;
@@ -331,7 +338,7 @@
   font-size: 14px;
   font-weight: 600;
   background: transparent;
-  color: #64748b;
+  color: var(--color-foreground-muted);
   border: none;
   transition: all 0.2s ease;
   cursor: pointer;
@@ -342,15 +349,15 @@
 }
 
 .tasks-tab-trigger:hover {
-  background: rgba(99, 102, 241, 0.1);
-  color: #6366f1;
+  background: color-mix(in srgb, var(--color-primary-500) 12%, transparent);
+  color: var(--color-primary);
   transform: translateY(-1px);
 }
 
 .tasks-tab-trigger[data-state="active"] {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--gradient-primary);
   color: white;
-  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+  box-shadow: 0 4px 12px rgba(var(--color-primary-rgb), 0.3);
   transform: translateY(-1px);
 }
 
@@ -377,6 +384,164 @@
   padding: 2px 6px;
   border-radius: 12px;
   font-weight: 700;
+}
+
+/* ===========================================
+   TASK MANAGER THEME ALIGNMENT
+   =========================================== */
+
+.task-dialog-section {
+  border-radius: 12px;
+  border: 1px solid var(--color-border);
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--section-base) 12%, transparent),
+    color-mix(in srgb, var(--section-base) 4%, transparent)
+  );
+}
+
+.task-dialog-section[data-tone="primary"] {
+  --section-base: var(--color-primary-500);
+  --section-strong: var(--color-primary-600);
+  --section-text: var(--color-primary-700);
+}
+
+.task-dialog-section[data-tone="accent"] {
+  --section-base: var(--color-accent-500);
+  --section-strong: var(--color-accent-600);
+  --section-text: var(--color-accent-700);
+}
+
+.task-dialog-section[data-tone="secondary"] {
+  --section-base: var(--color-secondary-500);
+  --section-strong: var(--color-secondary-600);
+  --section-text: var(--color-secondary-700);
+}
+
+.task-dialog-section[data-tone="warning"] {
+  --section-base: var(--color-warning-500);
+  --section-strong: var(--color-warning-600);
+  --section-text: var(--color-warning-700);
+}
+
+.task-dialog-section-header {
+  color: var(--section-text);
+}
+
+.task-dialog-section-dot {
+  background: linear-gradient(
+    90deg,
+    var(--section-base),
+    var(--section-strong)
+  );
+}
+
+.task-dialog-section-label {
+  background: linear-gradient(
+    90deg,
+    var(--section-text),
+    var(--section-strong)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.task-dialog-input {
+  border-color: var(--color-border) !important;
+  background: var(--color-input);
+  color: var(--color-foreground);
+}
+
+.task-dialog-input:focus,
+.task-dialog-input:focus-visible {
+  border-color: var(--color-primary) !important;
+  outline: 2px solid color-mix(in srgb, var(--color-primary) 30%, transparent);
+  outline-offset: 2px;
+}
+
+.task-dialog-date-trigger:hover {
+  border-color: var(--color-primary) !important;
+}
+
+.task-dialog-footer {
+  border-top: 1px solid var(--color-border);
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--color-card) 92%, transparent),
+    color-mix(in srgb, var(--color-primary-50) 60%, transparent)
+  );
+}
+
+.task-button-primary {
+  background: var(--gradient-primary);
+  color: var(--color-primary-foreground);
+}
+
+.task-filter-icon {
+  background: var(--gradient-primary);
+}
+
+.task-filter-title {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.task-filter-subtitle {
+  color: var(--color-foreground-muted);
+}
+
+.task-filter-dot {
+  background: var(--color-primary-500);
+}
+
+.task-filter-select {
+  border-color: var(--color-border);
+  background: var(--color-card);
+}
+
+.task-filter-select:focus,
+.task-filter-select:focus-visible {
+  border-color: var(--color-primary);
+  outline: 2px solid color-mix(in srgb, var(--color-primary) 25%, transparent);
+  outline-offset: 2px;
+}
+
+.tasks-placeholder-icon-wrap {
+  background: var(--gradient-primary);
+}
+
+.task-checkbox-theme {
+  border-color: color-mix(
+    in srgb,
+    var(--color-primary-500) 35%,
+    transparent
+  ) !important;
+}
+
+.task-checkbox-theme[data-state="checked"] {
+  background: var(--gradient-success) !important;
+  border-color: var(--color-success-600) !important;
+}
+
+.task-action-button-primary {
+  background: color-mix(in srgb, var(--color-primary-100) 85%, transparent);
+  color: var(--color-primary-600);
+}
+
+.task-action-button-primary:hover {
+  background: color-mix(in srgb, var(--color-primary-200) 90%, transparent);
+}
+
+.task-action-button-destructive {
+  background: color-mix(in srgb, var(--color-error-100) 85%, transparent);
+  color: var(--color-error-600);
+}
+
+.task-action-button-destructive:hover {
+  background: color-mix(in srgb, var(--color-error-200) 90%, transparent);
 }
 
 .tasks-tab-content {
