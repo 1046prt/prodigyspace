@@ -332,7 +332,7 @@ export default function UtilitiesPage() {
               <UnitConverter />
               <TimezoneConverter />
             </div>
-            
+
             <div className="utilities-grid utilities-grid-md-3">
               {quickTools.map((tool, index) => (
                 <FeatureCard
@@ -371,7 +371,7 @@ export default function UtilitiesPage() {
                     </div>
                     <div className="system-info-item">
                       <span className="system-info-label">Language:</span>
-                      <span className="system-info-label">
+                      <span className="system-info-value">
                         {systemInfo.language}
                       </span>
                     </div>

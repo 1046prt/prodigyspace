@@ -836,11 +836,22 @@
 /* Utilities Page Styles */
 .utilities-page {
   min-height: 100vh;
-  background: linear-gradient(
-    to bottom right,
-    var(--color-background),
-    var(--color-muted-200)
-  );
+  background:
+    radial-gradient(
+      circle at 20% 20%,
+      rgba(var(--color-primary-rgb), 0.08) 0%,
+      transparent 45%
+    ),
+    radial-gradient(
+      circle at 80% 80%,
+      rgba(var(--color-secondary-rgb), 0.08) 0%,
+      transparent 45%
+    ),
+    linear-gradient(
+      135deg,
+      var(--color-background) 0%,
+      var(--color-background-secondary) 100%
+    );
   padding: 16px;
 }
 
@@ -863,7 +874,7 @@
   background: linear-gradient(
     to right,
     var(--color-primary-500),
-    var(--color-primary-400)
+    var(--color-secondary-500)
   );
   background-clip: text;
   -webkit-background-clip: text;
@@ -890,6 +901,11 @@
   display: grid;
   width: 100%;
   grid-template-columns: repeat(4, minmax(0, 1fr));
+  background: color-mix(in srgb, var(--color-card) 85%, transparent);
+  border: 1px solid var(--color-border);
+  padding: 6px;
+  border-radius: 14px;
+  gap: 6px;
 }
 
 @media (min-width: 768px) {
@@ -902,6 +918,27 @@
   display: flex;
   align-items: center;
   gap: 8px;
+  justify-content: center;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-weight: 600;
+  color: var(--color-foreground-muted);
+  transition: all 0.2s ease-in-out;
+}
+
+.utilities-tab-trigger:hover {
+  background: color-mix(in srgb, var(--color-primary-500) 12%, transparent);
+  color: var(--color-primary);
+}
+
+.utilities-tab-trigger[data-state="active"] {
+  background: linear-gradient(
+    135deg,
+    var(--color-primary-500),
+    var(--color-secondary-500)
+  );
+  color: var(--color-primary-foreground);
+  box-shadow: 0 6px 16px rgba(var(--color-primary-rgb), 0.25);
 }
 
 .utilities-grid {
@@ -951,6 +988,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
+  color: var(--color-foreground);
 }
 
 /* Calculator Styles */
@@ -1014,6 +1052,7 @@
   text-align: center;
   padding: 12px;
   background-color: var(--color-muted);
+  border: 1px solid var(--color-border-light);
   border-radius: 8px;
 }
 
@@ -1038,7 +1077,7 @@
   font-size: 3.75rem;
   line-height: 1;
   font-weight: 700;
-  color: var(--color-primary-500);
+  color: var(--color-primary);
 }
 
 .timer-controls {
@@ -1098,8 +1137,12 @@
 }
 
 .calendar-day-current {
-  background-color: var(--color-primary-500);
-  color: white;
+  background: linear-gradient(
+    135deg,
+    var(--color-primary-500),
+    var(--color-secondary-500)
+  );
+  color: var(--color-primary-foreground);
 }
 
 /* Tool Card Styles */
@@ -1125,6 +1168,7 @@
   height: 40px;
   border-radius: 8px;
   background-color: var(--color-muted);
+  border: 1px solid var(--color-border-light);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1138,33 +1182,33 @@
 
 /* Badge Colors */
 .blue-badge {
-  background-color: #dbeafe;
-  color: #1e40af;
+  background-color: color-mix(in srgb, var(--color-primary-100) 85%, white);
+  color: var(--color-primary-700);
 }
 
 .purple-badge {
-  background-color: #e9d5ff;
-  color: #7c3aed;
+  background-color: color-mix(in srgb, var(--color-secondary-100) 85%, white);
+  color: var(--color-secondary-700);
 }
 
 .green-badge {
-  background-color: #dcfce7;
-  color: #166534;
+  background-color: color-mix(in srgb, var(--color-accent-100) 85%, white);
+  color: var(--color-accent-700);
 }
 
 .orange-badge {
-  background-color: #fed7aa;
-  color: #c2410c;
+  background-color: color-mix(in srgb, var(--color-warning-100) 85%, white);
+  color: var(--color-warning-700);
 }
 
 .red-badge {
-  background-color: #fee2e2;
-  color: #dc2626;
+  background-color: color-mix(in srgb, var(--color-error-100) 85%, white);
+  color: var(--color-error-700);
 }
 
 .indigo-badge {
-  background-color: #e0e7ff;
-  color: #4338ca;
+  background-color: color-mix(in srgb, var(--color-primary-100) 70%, white);
+  color: var(--color-primary-700);
 }
 
 /* System Info Styles */
@@ -1177,10 +1221,13 @@
 .system-info-item {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  gap: 12px;
 }
 
 .system-info-label {
   color: var(--color-muted-foreground);
+  min-width: 120px;
 }
 
 .system-info-value {
@@ -1197,6 +1244,8 @@
 .network-placeholder {
   text-align: center;
   padding: 32px 0;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--color-muted) 70%, transparent);
 }
 
 .network-icon {
@@ -1220,6 +1269,14 @@
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 8px;
+  background: linear-gradient(
+    135deg,
+    var(--color-primary-500),
+    var(--color-secondary-500)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .utilities-subtitle {
