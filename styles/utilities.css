@@ -830,7 +830,9 @@
 .utilities-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 32px;
+  padding: 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* Utilities Page Styles */
@@ -852,12 +854,13 @@
       var(--color-background) 0%,
       var(--color-background-secondary) 100%
     );
-  padding: 16px;
+  padding: 20px 16px 32px;
+  box-sizing: border-box;
 }
 
 @media (min-width: 768px) {
   .utilities-page {
-    padding: 24px;
+    padding: 28px 24px 40px;
   }
 }
 
@@ -1259,49 +1262,6 @@
   color: var(--color-muted-foreground);
 }
 
-.utilities-header {
-  margin-bottom: 36px;
-  text-align: center;
-  padding: 0 16px;
-}
-
-.utilities-title {
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 8px;
-  background: linear-gradient(
-    135deg,
-    var(--color-primary-500),
-    var(--color-secondary-500)
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-.utilities-subtitle {
-  color: var(--color-foreground-secondary);
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.utilities-grid {
-  display: grid;
-  gap: 32px;
-  grid-template-columns: 1fr;
-  margin-top: 8px;
-}
-
-@media (min-width: 768px) {
-  .utilities-grid-md-2 {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .utilities-grid-md-3 {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
 .utilities-card {
   height: 100%;
   overflow: hidden;
@@ -1364,7 +1324,7 @@
 
 @media (min-width: 1024px) {
   .utilities-grid-md-3 {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 
   /* Ensure equal width for the two components on large screens */
