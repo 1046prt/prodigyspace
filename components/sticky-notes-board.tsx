@@ -1,5 +1,6 @@
+"use client";
+
 import { StatCard, EmptyState } from "@/components/ui-elements";
-("use client");
 
 import { useState } from "react";
 import {

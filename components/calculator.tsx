@@ -93,7 +93,7 @@ export function Calculator({
         setInput(input + value);
       }
     },
-    [input],
+    [input, result],
   );
 
   const buttonLayout = [

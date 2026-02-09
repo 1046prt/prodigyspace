@@ -173,14 +173,6 @@ export default function UtilitiesPage() {
     return `${utcOffsetSign}${utcOffsetHours}:${utcOffsetRemainingMinutes}`;
   })();
 
-  const tabLabels: Record<string, string> = {
-    calculator: "Calculator",
-    timer: "Timer",
-    "time-conversion": "Time Conversion",
-    tools: "Tools",
-    system: "System",
-  };
-
   return (
     <div className="utilities-page">
       <div className="utilities-container">

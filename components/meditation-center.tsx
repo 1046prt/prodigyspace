@@ -1,5 +1,6 @@
+"use client";
+
 import { StatCard } from "@/components/ui-elements";
-("use client");
 
 import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
