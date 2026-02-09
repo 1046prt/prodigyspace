@@ -41,6 +41,7 @@ export default function UtilitiesPage() {
   const [isTimerRunning, setIsTimerRunning] = useState(false);
   const [currentTime, setCurrentTime] = useState(getCurrentDate());
   const [worldTimes, setWorldTimes] = useState<Record<string, string>>({});
+  const [activeTab, setActiveTab] = useState("calculator");
 
   // Update current time every second
   useEffect(() => {
@@ -146,6 +147,24 @@ export default function UtilitiesPage() {
     ...getTimeSystemInfo(),
   };
 
+  const utcOffsetMinutes = -currentTime.getTimezoneOffset();
+  const utcOffsetSign = utcOffsetMinutes >= 0 ? "+" : "-";
+  const utcOffsetHours = Math.floor(Math.abs(utcOffsetMinutes) / 60)
+    .toString()
+    .padStart(2, "0");
+  const utcOffsetRemainingMinutes = Math.abs(utcOffsetMinutes % 60)
+    .toString()
+    .padStart(2, "0");
+  const utcOffsetLabel = `${utcOffsetSign}${utcOffsetHours}:${utcOffsetRemainingMinutes}`;
+
+  const tabLabels: Record<string, string> = {
+    calculator: "Calculator",
+    timer: "Timer",
+    "time-conversion": "Time Conversion",
+    tools: "Tools",
+    system: "System",
+  };
+
   return (
     <div className="utilities-page">
       <div className="utilities-container">
@@ -154,7 +173,18 @@ export default function UtilitiesPage() {
           subtitle="Helpful tools and utilities for your daily tasks"
         />
 
-        <Tabs defaultValue="calculator" className="space-y-6">
+        <div className="utilities-active-tab">
+          <span className="utilities-active-tab-label">Active tab</span>
+          <Badge variant="secondary" className="utilities-active-tab-badge">
+            {tabLabels[activeTab] || "Calculator"}
+          </Badge>
+        </div>
+
+        <Tabs
+          value={activeTab}
+          onValueChange={setActiveTab}
+          className="space-y-6"
+        >
           <TabsList className="utilities-tabs-list">
             <TabsTrigger value="calculator" className="utilities-tab-trigger">
               <CalculatorIcon className="h-4 w-4" />
@@ -163,6 +193,13 @@ export default function UtilitiesPage() {
             <TabsTrigger value="timer" className="utilities-tab-trigger">
               <Timer className="h-4 w-4" />
               Timer
+            </TabsTrigger>
+            <TabsTrigger
+              value="time-conversion"
+              className="utilities-tab-trigger"
+            >
+              <Globe className="h-4 w-4" />
+              Time Conversion
             </TabsTrigger>
             <TabsTrigger value="tools" className="utilities-tab-trigger">
               <Ruler className="h-4 w-4" />
@@ -320,6 +357,46 @@ export default function UtilitiesPage() {
                           {day}
                         </div>
                       ))}
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </TabsContent>
+
+          <TabsContent value="time-conversion" className="space-y-4">
+            <div className="utilities-grid utilities-grid-lg-2">
+              <TimezoneConverter />
+              <Card>
+                <CardHeader>
+                  <CardTitle className="utilities-card-title">
+                    <Clock className="h-5 w-5" />
+                    Local Time Overview
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    <div className="world-clock-current">
+                      <div className="world-clock-time">
+                        {currentTime.toLocaleTimeString()}
+                      </div>
+                      <div className="world-clock-date">
+                        {getCurrentDateString()}
+                      </div>
+                    </div>
+                    <div className="system-info-grid">
+                      <div className="system-info-item">
+                        <span className="system-info-label">Timezone:</span>
+                        <span className="system-info-value">
+                          {systemInfo.timezone}
+                        </span>
+                      </div>
+                      <div className="system-info-item">
+                        <span className="system-info-label">UTC Offset:</span>
+                        <span className="system-info-value">
+                          {utcOffsetLabel}
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </CardContent>
