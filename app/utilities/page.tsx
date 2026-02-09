@@ -39,12 +39,16 @@ export default function UtilitiesPage() {
   const [timerMinutes, setTimerMinutes] = useState(25);
   const [timerSeconds, setTimerSeconds] = useState(0);
   const [isTimerRunning, setIsTimerRunning] = useState(false);
-  const [currentTime, setCurrentTime] = useState(getCurrentDate());
+  const [currentTime, setCurrentTime] = useState<Date | null>(null);
   const [worldTimes, setWorldTimes] = useState<Record<string, string>>({});
   const [activeTab, setActiveTab] = useState("calculator");
+  const [isClient, setIsClient] = useState(false);
 
   // Update current time every second
   useEffect(() => {
+    setIsClient(true);
+    setCurrentTime(getCurrentDate());
+    setWorldTimes(getAllTimeZones());
     const timer = setInterval(() => {
       setCurrentTime(getCurrentDate());
       setWorldTimes(getAllTimeZones());
@@ -132,30 +136,42 @@ export default function UtilitiesPage() {
 
   const systemInfo = {
     browser:
-      typeof navigator !== "undefined"
+      isClient && typeof navigator !== "undefined"
         ? navigator.userAgent.split(" ")[0]
         : "Unknown",
-    platform: typeof navigator !== "undefined" ? navigator.platform : "Unknown",
+    platform:
+      isClient && typeof navigator !== "undefined"
+        ? navigator.platform
+        : "Unknown",
     cookiesEnabled:
-      typeof navigator !== "undefined" ? navigator.cookieEnabled : false,
-    onlineStatus: typeof navigator !== "undefined" ? navigator.onLine : false,
+      isClient && typeof navigator !== "undefined"
+        ? navigator.cookieEnabled
+        : false,
+    onlineStatus:
+      isClient && typeof navigator !== "undefined" ? navigator.onLine : false,
     screenResolution:
-      typeof screen !== "undefined"
+      isClient && typeof screen !== "undefined"
         ? `${screen.width}x${screen.height}`
         : "Unknown",
-    colorDepth: typeof screen !== "undefined" ? screen.colorDepth : 0,
-    ...getTimeSystemInfo(),
+    colorDepth:
+      isClient && typeof screen !== "undefined" ? screen.colorDepth : 0,
+    ...(isClient
+      ? getTimeSystemInfo()
+      : { timezone: "Unknown", language: "Unknown" }),
   };
 
-  const utcOffsetMinutes = -currentTime.getTimezoneOffset();
-  const utcOffsetSign = utcOffsetMinutes >= 0 ? "+" : "-";
-  const utcOffsetHours = Math.floor(Math.abs(utcOffsetMinutes) / 60)
-    .toString()
-    .padStart(2, "0");
-  const utcOffsetRemainingMinutes = Math.abs(utcOffsetMinutes % 60)
-    .toString()
-    .padStart(2, "0");
-  const utcOffsetLabel = `${utcOffsetSign}${utcOffsetHours}:${utcOffsetRemainingMinutes}`;
+  const utcOffsetLabel = (() => {
+    if (!currentTime) return "—";
+    const utcOffsetMinutes = -currentTime.getTimezoneOffset();
+    const utcOffsetSign = utcOffsetMinutes >= 0 ? "+" : "-";
+    const utcOffsetHours = Math.floor(Math.abs(utcOffsetMinutes) / 60)
+      .toString()
+      .padStart(2, "0");
+    const utcOffsetRemainingMinutes = Math.abs(utcOffsetMinutes % 60)
+      .toString()
+      .padStart(2, "0");
+    return `${utcOffsetSign}${utcOffsetHours}:${utcOffsetRemainingMinutes}`;
+  })();
 
   const tabLabels: Record<string, string> = {
     calculator: "Calculator",
@@ -172,13 +188,6 @@ export default function UtilitiesPage() {
           title="Utilities & Tools"
           subtitle="Helpful tools and utilities for your daily tasks"
         />
-
-        <div className="utilities-active-tab">
-          <span className="utilities-active-tab-label">Active tab</span>
-          <Badge variant="secondary" className="utilities-active-tab-badge">
-            {tabLabels[activeTab] || "Calculator"}
-          </Badge>
-        </div>
 
         <Tabs
           value={activeTab}
@@ -213,23 +222,25 @@ export default function UtilitiesPage() {
 
           <TabsContent value="calculator" className="space-y-4">
             <div className="utilities-grid utilities-grid-lg-2">
-              <Calculator />
+              <Calculator className="utilities-calculator" />
 
-              <Card>
+              <Card className="world-clock-card">
                 <CardHeader>
                   <CardTitle className="utilities-card-title">
                     <Clock className="h-5 w-5" />
                     World Clock
                   </CardTitle>
                 </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
+                <CardContent className="world-clock-body">
+                  <div className="space-y-4 world-clock-content">
                     <div className="world-clock-current">
                       <div className="world-clock-time">
-                        {currentTime.toLocaleTimeString()}
+                        {currentTime
+                          ? currentTime.toLocaleTimeString()
+                          : "Loading..."}
                       </div>
                       <div className="world-clock-date">
-                        {getCurrentDateString()}
+                        {currentTime ? getCurrentDateString() : ""}
                       </div>
                     </div>
                     <div className="world-clock-grid">
@@ -349,7 +360,7 @@ export default function UtilitiesPage() {
                         <div
                           key={day}
                           className={`calendar-day ${
-                            day === currentTime.getDate()
+                            day === currentTime?.getDate()
                               ? "calendar-day-current"
                               : ""
                           }`}
@@ -378,10 +389,12 @@ export default function UtilitiesPage() {
                   <div className="space-y-4">
                     <div className="world-clock-current">
                       <div className="world-clock-time">
-                        {currentTime.toLocaleTimeString()}
+                        {currentTime
+                          ? currentTime.toLocaleTimeString()
+                          : "Loading..."}
                       </div>
                       <div className="world-clock-date">
-                        {getCurrentDateString()}
+                        {currentTime ? getCurrentDateString() : ""}
                       </div>
                     </div>
                     <div className="system-info-grid">

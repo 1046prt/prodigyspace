@@ -18,13 +18,51 @@ export function Calculator({
 
   const handleInput = useCallback(
     (value: string) => {
+      const getCurrentNumericValue = () => {
+        if (input) return Number(input);
+        if (result) return Number(result);
+        return 0;
+      };
+
+      const applyFactorial = (num: number) => {
+        if (!Number.isFinite(num) || num < 0 || !Number.isInteger(num)) {
+          setResult("Error");
+          return;
+        }
+        let total = 1;
+        for (let i = 2; i <= num; i += 1) {
+          total *= i;
+        }
+        setInput(`${num}!`);
+        setResult(total.toString());
+      };
+
+      const applyLog = (num: number) => {
+        if (!Number.isFinite(num) || num <= 0) {
+          setResult("Error");
+          return;
+        }
+        const value = Math.log10(num);
+        setInput(`log(${num})`);
+        setResult(value.toString());
+      };
+
+      const applyRoot = (num: number) => {
+        if (!Number.isFinite(num) || num < 0) {
+          setResult("Error");
+          return;
+        }
+        const value = Math.sqrt(num);
+        setInput(`√(${num})`);
+        setResult(value.toString());
+      };
+
       if (value === "=") {
         try {
-          // Replace display operators with JS operators
-          const expression = input.replace(/×/g, "*").replace(/÷/g, "/");
+          const expression = input;
 
           // Basic security: only allow numbers and basic operators
-          if (!/^[0-9+\-*/.() ]+$/.test(expression)) {
+          if (!/^[0-9+\-*/%.() ]+$/.test(expression)) {
             setResult("Error");
             return;
           }
@@ -39,6 +77,12 @@ export function Calculator({
         setResult("");
       } else if (value === "Backspace") {
         setInput(input.slice(0, -1));
+      } else if (value === "!") {
+        applyFactorial(getCurrentNumericValue());
+      } else if (value === "log") {
+        applyLog(getCurrentNumericValue());
+      } else if (value === "√") {
+        applyRoot(getCurrentNumericValue());
       } else if (value === "±") {
         if (input.startsWith("-")) {
           setInput(input.slice(1));
@@ -53,18 +97,18 @@ export function Calculator({
   );
 
   const buttonLayout = [
-    ["C", "±", "%", "÷"],
-    ["7", "8", "9", "×"],
-    ["4", "5", "6", "-"],
-    ["1", "2", "3", "+"],
+    ["C", "±", "√", "!"],
+    ["7", "8", "9", "log"],
+    ["4", "5", "6", "%"],
+    ["1", "2", "3", "Backspace"],
     ["0", ".", "="],
   ];
 
   const getButtonClassName = (btn: string) => {
     let baseClass = "calc-btn";
-    if (btn === "C" || btn === "±" || btn === "%") {
+    if (btn === "C" || btn === "±" || btn === "!" || btn === "Backspace") {
       baseClass += " calc-btn-function";
-    } else if (btn === "÷" || btn === "×" || btn === "-" || btn === "+") {
+    } else if (btn === "log" || btn === "√" || btn === "%") {
       baseClass += " calc-btn-operator";
     } else if (btn === "=") {
       baseClass += " calc-btn-equals";
@@ -96,9 +140,7 @@ export function Calculator({
             row.map((btn) => (
               <button
                 key={btn}
-                onClick={() =>
-                  handleInput(btn === "×" ? "*" : btn === "÷" ? "/" : btn)
-                }
+                onClick={() => handleInput(btn)}
                 className={getButtonClassName(btn)}
                 title={btn === "C" ? "Clear" : undefined}
               >
@@ -111,15 +153,6 @@ export function Calculator({
             )),
           )}
         </div>
-
-        <button
-          onClick={() => handleInput("Backspace")}
-          className="calc-backspace-btn"
-          title="Delete last digit"
-        >
-          <Delete size={18} />
-          <span>Backspace</span>
-        </button>
       </div>
     </div>
   );
@@ -130,17 +163,17 @@ export function Calculator({
  */
 export const calculatorButtonSets = {
   standard: [
-    ["C", "±", "%", "÷"],
-    ["7", "8", "9", "×"],
-    ["4", "5", "6", "-"],
-    ["1", "2", "3", "+"],
+    ["C", "±", "√", "!"],
+    ["7", "8", "9", "log"],
+    ["4", "5", "6", "%"],
+    ["1", "2", "3", "Backspace"],
     ["0", ".", "="],
   ],
   scientific: [
-    ["C", "±", "%", "÷", "√", "x²"],
-    ["7", "8", "9", "×", "sin", "cos"],
-    ["4", "5", "6", "-", "tan", "ln"],
-    ["1", "2", "3", "+", "(", ")"],
+    ["C", "±", "√", "!", "√", "x²"],
+    ["7", "8", "9", "log", "sin", "cos"],
+    ["4", "5", "6", "%", "tan", "ln"],
+    ["1", "2", "3", "Backspace", "(", ")"],
     ["0", ".", "=", "π", "e"],
   ],
 };

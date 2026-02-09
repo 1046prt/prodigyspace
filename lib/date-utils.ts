@@ -66,6 +66,12 @@ export const WORLD_CLOCK_TIMEZONES = {
   Dubai: "Asia/Dubai",
   "Los Angeles": "America/Los_Angeles",
   Berlin: "Europe/Berlin",
+  Singapore: "Asia/Singapore",
+  Seoul: "Asia/Seoul",
+  Toronto: "America/Toronto",
+  Chicago: "America/Chicago",
+  "Mexico City": "America/Mexico_City",
+  "Sao Paulo": "America/Sao_Paulo",
 } as const;
 
 /**
