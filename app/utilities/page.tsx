@@ -215,39 +215,6 @@ export default function UtilitiesPage() {
           <TabsContent value="calculator" className="space-y-4">
             <div className="utilities-grid utilities-grid-lg-2">
               <Calculator className="utilities-calculator" />
-
-              <Card className="world-clock-card">
-                <CardHeader>
-                  <CardTitle className="utilities-card-title">
-                    <Clock className="h-5 w-5" />
-                    World Clock
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="world-clock-body">
-                  <div className="space-y-4 world-clock-content">
-                    <div className="world-clock-current">
-                      <div className="world-clock-time">
-                        {currentTime
-                          ? currentTime.toLocaleTimeString()
-                          : "Loading..."}
-                      </div>
-                      <div className="world-clock-date">
-                        {currentTime ? getCurrentDateString() : ""}
-                      </div>
-                    </div>
-                    <div className="world-clock-grid">
-                      {Object.entries(WORLD_CLOCK_TIMEZONES).map(([city]) => (
-                        <div key={city} className="world-clock-zone">
-                          <div className="world-clock-zone-name">{city}</div>
-                          <div className="world-clock-zone-time">
-                            {worldTimes[city] || "Loading..."}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
             </div>
           </TabsContent>
 
@@ -370,15 +337,15 @@ export default function UtilitiesPage() {
           <TabsContent value="time-conversion" className="space-y-4">
             <div className="utilities-grid utilities-grid-lg-2">
               <TimezoneConverter />
-              <Card>
+              <Card className="world-clock-card">
                 <CardHeader>
                   <CardTitle className="utilities-card-title">
                     <Clock className="h-5 w-5" />
-                    Local Time Overview
+                    World Clock
                   </CardTitle>
                 </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
+                <CardContent className="world-clock-body">
+                  <div className="space-y-4 world-clock-content">
                     <div className="world-clock-current">
                       <div className="world-clock-time">
                         {currentTime
@@ -389,19 +356,15 @@ export default function UtilitiesPage() {
                         {currentTime ? getCurrentDateString() : ""}
                       </div>
                     </div>
-                    <div className="system-info-grid">
-                      <div className="system-info-item">
-                        <span className="system-info-label">Timezone:</span>
-                        <span className="system-info-value">
-                          {systemInfo.timezone}
-                        </span>
-                      </div>
-                      <div className="system-info-item">
-                        <span className="system-info-label">UTC Offset:</span>
-                        <span className="system-info-value">
-                          {utcOffsetLabel}
-                        </span>
-                      </div>
+                    <div className="world-clock-grid">
+                      {Object.entries(WORLD_CLOCK_TIMEZONES).map(([city]) => (
+                        <div key={city} className="world-clock-zone">
+                          <div className="world-clock-zone-name">{city}</div>
+                          <div className="world-clock-zone-time">
+                            {worldTimes[city] || "Loading..."}
+                          </div>
+                        </div>
+                      ))}
                     </div>
                   </div>
                 </CardContent>
