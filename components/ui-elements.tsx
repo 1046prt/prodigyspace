@@ -73,23 +73,20 @@ export function FeatureCard({
   return (
     <Card
       className={`utilities-tool-card ${isClickable ? "cursor-pointer card-hover-lift" : ""} ${className}`}
+      data-accent={badgeColor}
       onClick={onClick}
     >
-      <CardHeader className="pb-3">
-        <div className="flex items-start justify-between">
-          <div className="flex items-center gap-3">
-            <div className="icon-badge">
-              <Icon className="h-5 w-5" />
-            </div>
-            <div>
-              <CardTitle className="text-lg">{title}</CardTitle>
-              <Badge className={badgeColor} variant="secondary">
-                {badgeText}
-              </Badge>
-            </div>
+      <CardHeader className="utilities-tool-card-header">
+        <div className="utilities-tool-top">
+          <div className="utilities-tool-icon">
+            <Icon className="h-5 w-5" />
           </div>
+          <Badge className={`utilities-tool-badge ${badgeColor}`} variant="secondary">
+            {badgeText}
+          </Badge>
         </div>
-        <p className="text-sm text-muted-foreground mt-2">{description}</p>
+        <CardTitle className="utilities-tool-title">{title}</CardTitle>
+        <p className="utilities-tool-description">{description}</p>
       </CardHeader>
     </Card>
   );

@@ -976,6 +976,72 @@
   align-items: stretch;
 }
 
+.utilities-tools-section {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.utilities-tools-block {
+  background: color-mix(in srgb, var(--color-card) 90%, transparent);
+  border: 1px solid var(--color-border);
+  border-radius: 18px;
+  padding: 18px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.04);
+}
+
+.utilities-tools-block .utilities-grid {
+  margin-top: 0;
+}
+
+.utilities-tools-primary {
+  gap: 20px;
+}
+
+.utilities-tools-grid {
+  gap: 20px;
+}
+
+.utilities-tools-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.utilities-tools-title {
+  font-size: 1.1rem;
+  line-height: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--color-foreground);
+}
+
+.utilities-tools-subtitle {
+  margin: 4px 0 0;
+  color: var(--color-muted-foreground);
+  font-size: 0.9rem;
+  line-height: 1.4rem;
+}
+
+.utilities-tools-pill {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+@media (min-width: 768px) {
+  .utilities-tools-block {
+    padding: 22px;
+  }
+
+  .utilities-tools-heading {
+    margin-bottom: 20px;
+  }
+}
+
 .utilities-grid-lg-2 {
   grid-template-columns: 1fr;
 }
@@ -1264,26 +1330,43 @@
 
 /* Tool Card Styles */
 .utilities-tool-card {
-  transition: box-shadow 0.2s ease-in-out;
-  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+  gap: 0;
+  border: 1px solid var(--color-border);
+  background: color-mix(in srgb, var(--color-card) 90%, transparent);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+  transition:
+    transform 0.2s ease-in-out,
+    box-shadow 0.2s ease-in-out,
+    border-color 0.2s ease-in-out;
 }
 
 .utilities-tool-card:hover {
-  box-shadow:
-    0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.08);
+  border-color: color-mix(in srgb, var(--color-primary-500) 45%, var(--color-border));
 }
 
-.utilities-tool-header {
+.utilities-tool-card-header {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 18px;
+}
+
+.utilities-tool-top {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 12px;
 }
 
 .utilities-tool-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 8px;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
   background-color: var(--color-muted);
   border: 1px solid var(--color-border-light);
   display: flex;
@@ -1291,10 +1374,52 @@
   justify-content: center;
 }
 
+.utilities-tool-title {
+  font-size: 1.05rem;
+  line-height: 1.4rem;
+  font-weight: 700;
+  margin: 0;
+}
+
 .utilities-tool-description {
   font-size: 0.875rem;
   line-height: 1.25rem;
   color: var(--color-muted-foreground);
+  margin: 0;
+}
+
+.utilities-tool-badge {
+  border: 1px solid color-mix(in srgb, var(--color-border) 65%, transparent);
+}
+
+.utilities-tool-card[data-accent="blue-badge"] .utilities-tool-icon {
+  background: color-mix(in srgb, var(--color-primary-100) 70%, white);
+  color: var(--color-primary-700);
+}
+
+.utilities-tool-card[data-accent="purple-badge"] .utilities-tool-icon {
+  background: color-mix(in srgb, var(--color-secondary-100) 70%, white);
+  color: var(--color-secondary-700);
+}
+
+.utilities-tool-card[data-accent="green-badge"] .utilities-tool-icon {
+  background: color-mix(in srgb, var(--color-accent-100) 70%, white);
+  color: var(--color-accent-700);
+}
+
+.utilities-tool-card[data-accent="orange-badge"] .utilities-tool-icon {
+  background: color-mix(in srgb, var(--color-warning-100) 70%, white);
+  color: var(--color-warning-700);
+}
+
+.utilities-tool-card[data-accent="red-badge"] .utilities-tool-icon {
+  background: color-mix(in srgb, var(--color-error-100) 70%, white);
+  color: var(--color-error-700);
+}
+
+.utilities-tool-card[data-accent="indigo-badge"] .utilities-tool-icon {
+  background: color-mix(in srgb, var(--color-primary-100) 70%, white);
+  color: var(--color-primary-700);
 }
 
 /* Badge Colors */

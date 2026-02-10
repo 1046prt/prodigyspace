@@ -372,22 +372,48 @@ export default function UtilitiesPage() {
             </div>
           </TabsContent>
 
-          <TabsContent value="tools" className="space-y-4">
-            <div className="utilities-grid utilities-grid-lg-2">
-              <UnitConverter />
-              <TimezoneConverter />
+          <TabsContent value="tools" className="utilities-tools-section">
+            <div className="utilities-tools-block">
+              <div className="utilities-tools-heading">
+                <div>
+                  <h3 className="utilities-tools-title">Core Utilities</h3>
+                  <p className="utilities-tools-subtitle">
+                    Everyday converters to keep your workflow moving.
+                  </p>
+                </div>
+                <Badge className="utilities-tools-pill" variant="secondary">
+                  Live
+                </Badge>
+              </div>
+              <div className="utilities-grid utilities-grid-lg-2 utilities-tools-primary">
+                <UnitConverter />
+                <TimezoneConverter />
+              </div>
             </div>
 
-            <div className="utilities-grid utilities-grid-md-3">
-              {quickTools.map((tool, index) => (
-                <FeatureCard
-                  key={index}
-                  icon={tool.icon}
-                  title={tool.title}
-                  description={tool.description}
-                  badgeColor={tool.color}
-                />
-              ))}
+            <div className="utilities-tools-block">
+              <div className="utilities-tools-heading">
+                <div>
+                  <h3 className="utilities-tools-title">Quick Tools</h3>
+                  <p className="utilities-tools-subtitle">
+                    Small helpers you can launch in seconds.
+                  </p>
+                </div>
+                <Badge className="utilities-tools-pill" variant="secondary">
+                  Coming Soon
+                </Badge>
+              </div>
+              <div className="utilities-grid utilities-grid-md-3 utilities-tools-grid">
+                {quickTools.map((tool, index) => (
+                  <FeatureCard
+                    key={index}
+                    icon={tool.icon}
+                    title={tool.title}
+                    description={tool.description}
+                    badgeColor={tool.color}
+                  />
+                ))}
+              </div>
             </div>
           </TabsContent>
 
