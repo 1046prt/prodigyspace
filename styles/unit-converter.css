@@ -335,6 +335,15 @@
   min-width: 180px !important;
 }
 
+@media (max-width: 640px) {
+  /* On small screens allow selects to take full width and not force min width */
+  .category-select,
+  .unit-select {
+    min-width: auto !important;
+    width: 100% !important;
+  }
+}
+
 /* Add a visual indicator to the selected item */
 [data-slot="select-item"][data-state="checked"] {
   background-color: rgba(70, 130, 180, 0.15) !important;

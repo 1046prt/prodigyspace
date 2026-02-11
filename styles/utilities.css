@@ -1643,3 +1643,76 @@
     margin: 0 12px;
   }
 }
+
+  /* Mobile-specific fixes for utilities page to improve responsiveness */
+  @media (max-width: 640px) {
+    /* Make tabs horizontally scrollable instead of squishing */
+    .utilities-tabs-list {
+      display: flex;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      gap: 8px;
+      padding: 6px;
+      grid-template-columns: none;
+      width: 100%;
+    }
+
+    .utilities-tab-trigger {
+      flex: 0 0 auto;
+      padding: 8px 10px;
+      white-space: nowrap;
+    }
+
+    /* Calculator buttons: reduce columns to avoid overflow */
+    .calculator-buttons {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 6px;
+    }
+
+    .calculator-button {
+      height: 44px;
+    }
+
+    /* Reduce pomodoro timer display size on small screens */
+    .timer-display {
+      font-size: 2.25rem;
+      line-height: 1;
+    }
+
+    /* Ensure world clock list and other grids stack nicely */
+    .world-clock-grid {
+      grid-template-columns: 1fr;
+    }
+
+    /* Make tool cards more compact on mobile */
+    .utilities-tool-card {
+      padding: 0;
+    }
+
+    .utilities-tool-card-header {
+      padding: 12px;
+    }
+
+    /* Conversion arrow spacing */
+    .conversion-arrow-container {
+      min-height: auto;
+      padding: 6px 0;
+    }
+
+    /* Ensure selects and inputs wrap to full width */
+    .category-select,
+    .unit-select,
+    .timezone-select,
+    .date-input,
+    .time-input,
+    .result-input,
+    .value-input {
+      min-width: auto !important;
+      width: 100% !important;
+    }
+
+    /* Utilities grid spacing adjustments */
+    .utilities-grid {
+      gap: 16px;
+    }
+  }
