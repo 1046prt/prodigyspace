@@ -343,6 +343,32 @@
   .contact-item {
     font-size: var(--text-xs);
   }
+
+  /* Ensure footer content is centered on small screens and doesn't overflow */
+  .footer,
+  .footer .container,
+  .footer .grid {
+    width: 100%;
+    box-sizing: border-box;
+    justify-items: center;
+    text-align: center;
+  }
+
+  .brand-section,
+  .links-section,
+  .contact-section {
+    text-align: center;
+    align-items: center;
+  }
+
+  .logo-container {
+    justify-content: center;
+  }
+
+  .description {
+    max-width: 100%;
+    padding: 0 var(--space-2);
+  }
 }
 
 @media (max-width: 480px) {
