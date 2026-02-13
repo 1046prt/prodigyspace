@@ -1,27 +1,38 @@
 /* QR Generator styles */
+/* QR Generator styles - improved UI */
 .qr-generator-card {
   width: 100%;
   box-sizing: border-box;
+  --card-padding: 18px;
 }
 
 .qr-title {
   font-weight: 700;
+  font-size: 1.1rem;
 }
 
 .qr-grid {
   display: grid;
-  grid-template-columns: 1fr 320px;
-  gap: 16px;
+  grid-template-columns: 1fr 360px;
+  gap: 20px;
   align-items: start;
 }
 
 .qr-controls {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
 }
 
-.qr-mode {
+.input-group,
+.file-upload {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.qr-mode,
+.format-select {
   display: flex;
   gap: 12px;
   align-items: center;
@@ -29,8 +40,9 @@
 
 .qr-mode-option {
   display: flex;
-  gap: 6px;
+  gap: 8px;
   align-items: center;
+  font-size: 0.95rem;
 }
 
 .qr-input {
@@ -43,18 +55,30 @@
 
 .size-row {
   display: flex;
-  gap: 12px;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.size-control {
+  flex: 1 1 auto;
+}
+
+.size-input-row {
+  display: flex;
+  gap: 8px;
   align-items: center;
 }
 
 .size-value {
-  min-width: 48px;
+  min-width: 56px;
   text-align: right;
+  font-weight: 600;
 }
 
 .actions {
   display: flex;
-  gap: 8px;
+  gap: 10px;
   align-items: center;
   flex-wrap: wrap;
 }
@@ -73,17 +97,19 @@
 
 .qr-preview-inner {
   width: 100%;
-  max-width: 320px;
+  max-width: 360px;
   height: auto;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0,0,0,0.04);
-  border-radius: 8px;
-  padding: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 10px;
+  padding: 16px;
+  border: 1px dashed rgba(255,255,255,0.06);
 }
 
-.qr-preview img {
+.qr-preview img,
+.qr-svg svg {
   width: 100%;
   height: auto;
   display: block;
@@ -92,12 +118,16 @@
 .qr-placeholder {
   color: var(--color-foreground-muted);
   font-size: 0.95rem;
-  padding: 24px;
+  padding: 20px;
+}
+
+.qr-svg {
+  width: 100%;
 }
 
 .hint-row {
   display: flex;
-  gap: 8px;
+  gap: 10px;
   flex-direction: column;
   width: 100%;
 }
@@ -106,7 +136,7 @@
   display: flex;
   gap: 8px;
   align-items: center;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   color: var(--color-foreground-secondary);
 }
 
@@ -115,7 +145,7 @@
   height: 1rem;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .qr-grid {
     grid-template-columns: 1fr;
   }
@@ -124,3 +154,4 @@
     max-width: 100%;
   }
 }
+

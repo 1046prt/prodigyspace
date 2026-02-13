@@ -14,7 +14,9 @@ export function QrGenerator() {
   const [inputValue, setInputValue] = useState("");
   const [size, setSize] = useState(300);
   const [qrDataUrl, setQrDataUrl] = useState<string | null>(null);
+  const [qrSvg, setQrSvg] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [format, setFormat] = useState<"png" | "svg">("png");
   const fileRef = useRef<HTMLInputElement | null>(null);
 
   const generateQr = async () => {
@@ -31,11 +33,22 @@ export function QrGenerator() {
         return;
       }
 
-      const dataUrl = await QRCode.toDataURL(inputValue, {
-        width: size,
-        margin: 2,
-      });
-      setQrDataUrl(dataUrl);
+      if (format === "png") {
+        const dataUrl = await QRCode.toDataURL(inputValue, {
+          width: size,
+          margin: 2,
+        });
+        setQrSvg(null);
+        setQrDataUrl(dataUrl);
+      } else {
+        const svg = await QRCode.toString(inputValue, {
+          type: "svg",
+          width: size,
+          margin: 2,
+        });
+        setQrDataUrl(null);
+        setQrSvg(svg);
+      }
     } catch {
       setError("Failed to generate QR code. Try shorter text or a smaller image.");
     }
@@ -56,13 +69,40 @@ export function QrGenerator() {
   };
 
   const handleDownload = () => {
-    if (!qrDataUrl) return;
-    const a = document.createElement("a");
-    a.href = qrDataUrl;
-    a.download = "qr-code.png";
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
+    try {
+      if (format === "png" && qrDataUrl) {
+        const a = document.createElement("a");
+        a.href = qrDataUrl;
+        a.download = "qr-code.png";
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+      } else if (format === "svg" && qrSvg) {
+        const blob = new Blob([qrSvg], { type: "image/svg+xml" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "qr-code.svg";
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+      }
+    } catch {
+      setError("Download failed.");
+    }
+  };
+
+  const handleCopy = async () => {
+    try {
+      if (format === "png" && qrDataUrl) {
+        await navigator.clipboard.writeText(qrDataUrl);
+      } else if (format === "svg" && qrSvg) {
+        await navigator.clipboard.writeText(qrSvg);
+      }
+    } catch {
+      setError("Copy failed. Your browser may block clipboard access.");
+    }
   };
 
   return (
@@ -119,25 +159,52 @@ export function QrGenerator() {
             </div>
 
             <div className="size-row">
-              <Label className="input-label">Size</Label>
-              <input
-                type="range"
-                min={128}
-                max={1024}
-                value={size}
-                onChange={(e) => setSize(Number(e.target.value))}
-              />
-              <div className="size-value">{size}px</div>
+              <div>
+                <Label className="input-label">Format</Label>
+                <div className="format-select">
+                  <label>
+                    <input type="radio" name="format" checked={format === "png"} onChange={() => setFormat("png")} /> PNG
+                  </label>
+                  <label>
+                    <input type="radio" name="format" checked={format === "svg"} onChange={() => setFormat("svg")} /> SVG
+                  </label>
+                </div>
+              </div>
+
+              <div className="size-control">
+                <Label className="input-label">Size</Label>
+                <div className="size-input-row">
+                  <input
+                    type="range"
+                    min={128}
+                    max={1024}
+                    value={size}
+                    onChange={(e) => setSize(Number(e.target.value))}
+                  />
+                  <div className="size-value">{size}px</div>
+                </div>
+              </div>
             </div>
 
             <div className="actions">
               <Button onClick={generateQr}>Generate</Button>
-              <Button variant="outline" onClick={() => { setInputValue(""); setQrDataUrl(null); setError(null); }}>
+              <Button
+                variant="outline"
+                onClick={() => {
+                  setInputValue("");
+                  setQrDataUrl(null);
+                  setQrSvg(null);
+                  setError(null);
+                }}
+              >
                 Clear
               </Button>
-              <Button variant="ghost" onClick={handleDownload} disabled={!qrDataUrl}>
+              <Button variant="default" onClick={handleDownload} disabled={!qrDataUrl && !qrSvg}>
                 <Download className="h-4 w-4" />
                 Download
+              </Button>
+              <Button variant="ghost" onClick={handleCopy} disabled={!qrDataUrl && !qrSvg}>
+                Copy
               </Button>
             </div>
 
@@ -145,10 +212,12 @@ export function QrGenerator() {
           </div>
 
           <div className="qr-preview">
-            <div className="qr-preview-inner">
+            <div className="qr-preview-inner" role="img" aria-label="QR preview">
               {qrDataUrl ? (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img src={qrDataUrl} alt="Generated QR code" />
+              ) : qrSvg ? (
+                <div className="qr-svg" dangerouslySetInnerHTML={{ __html: qrSvg }} />
               ) : (
                 <div className="qr-placeholder">Preview will appear here</div>
               )}
