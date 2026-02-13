@@ -21,6 +21,7 @@ import {
 import { UnitConverter } from "@/components/unit-converter";
 import { Calculator } from "@/components/calculator";
 import { TimezoneConverter } from "@/components/timezone-converter";
+import { QrGenerator } from "@/components/qr-generator";
 import { useState, useEffect } from "react";
 import {
   getCurrentDate,
@@ -160,18 +161,19 @@ export default function UtilitiesPage() {
       : { timezone: "Unknown", language: "Unknown" }),
   };
 
-  const utcOffsetLabel = (() => {
-    if (!currentTime) return "—";
-    const utcOffsetMinutes = -currentTime.getTimezoneOffset();
-    const utcOffsetSign = utcOffsetMinutes >= 0 ? "+" : "-";
-    const utcOffsetHours = Math.floor(Math.abs(utcOffsetMinutes) / 60)
-      .toString()
-      .padStart(2, "0");
-    const utcOffsetRemainingMinutes = Math.abs(utcOffsetMinutes % 60)
-      .toString()
-      .padStart(2, "0");
-    return `${utcOffsetSign}${utcOffsetHours}:${utcOffsetRemainingMinutes}`;
-  })();
+  // UTC offset label not currently used in UI — keep function available if needed later
+  // const utcOffsetLabel = (() => {
+  //   if (!currentTime) return "—";
+  //   const utcOffsetMinutes = -currentTime.getTimezoneOffset();
+  //   const utcOffsetSign = utcOffsetMinutes >= 0 ? "+" : "-";
+  //   const utcOffsetHours = Math.floor(Math.abs(utcOffsetMinutes) / 60)
+  //     .toString()
+  //     .padStart(2, "0");
+  //   const utcOffsetRemainingMinutes = Math.abs(utcOffsetMinutes % 60)
+  //     .toString()
+  //     .padStart(2, "0");
+  //   return `${utcOffsetSign}${utcOffsetHours}:${utcOffsetRemainingMinutes}`;
+  // })();
 
   return (
     <div className="utilities-page">
@@ -388,6 +390,7 @@ export default function UtilitiesPage() {
               <div className="utilities-grid utilities-grid-lg-2 utilities-tools-primary">
                 <UnitConverter />
                 <TimezoneConverter />
+                <QrGenerator />
               </div>
             </div>
 
