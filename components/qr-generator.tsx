@@ -108,7 +108,10 @@ export function QrGenerator() {
   return (
     <Card className="qr-generator-card">
       <CardHeader>
-        <CardTitle className="qr-title">QR Code Generator</CardTitle>
+        <div className="qr-header">
+          <CardTitle className="qr-title">QR Code Generator</CardTitle>
+          <p className="qr-subtitle">Quickly generate high‑quality QR codes for URLs, text, or embedded images.</p>
+        </div>
       </CardHeader>
       <CardContent>
         <div className="qr-grid">
@@ -155,7 +158,12 @@ export function QrGenerator() {
                 type="file"
                 accept="image/*"
                 onChange={(e) => handleFile(e.target.files?.[0])}
+                className="file-input-hidden"
               />
+              <Button variant="outline" onClick={() => fileRef.current?.click()} className="upload-btn">
+                Upload image
+              </Button>
+              <div className="upload-hint">Supported: PNG, JPG, SVG — keep images small for embedding.</div>
             </div>
 
             <div className="size-row">
@@ -187,7 +195,9 @@ export function QrGenerator() {
             </div>
 
             <div className="actions">
-              <Button onClick={generateQr}>Generate</Button>
+              <Button onClick={generateQr} className="btn-primary">
+                Generate
+              </Button>
               <Button
                 variant="outline"
                 onClick={() => {
@@ -199,12 +209,13 @@ export function QrGenerator() {
               >
                 Clear
               </Button>
+              <Button variant="outline" onClick={handleCopy} disabled={!qrDataUrl && !qrSvg}>
+                <Download className="h-4 w-4" />
+                Copy Data
+              </Button>
               <Button variant="default" onClick={handleDownload} disabled={!qrDataUrl && !qrSvg}>
                 <Download className="h-4 w-4" />
                 Download
-              </Button>
-              <Button variant="ghost" onClick={handleCopy} disabled={!qrDataUrl && !qrSvg}>
-                Copy
               </Button>
             </div>
 
