@@ -4,7 +4,7 @@
   z-index: var(--z-index-sticky);
   width: 100%;
   border-bottom: var(--border-width-1) solid var(--color-border);
-  background-color: rgba(255, 255, 255, 0.95);
+  background-color: var(--overlay-white-95);
   backdrop-filter: blur(12px);
   box-shadow: var(--shadow-sm);
 }
@@ -12,7 +12,7 @@
 /* Support for browsers that support backdrop-filter */
 @supports (backdrop-filter: blur(12px)) {
   .header {
-    background-color: rgba(255, 255, 255, 0.6);
+    background-color: var(--overlay-white-60);
   }
 }
 

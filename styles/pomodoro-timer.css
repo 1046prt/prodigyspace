@@ -1,9 +1,33 @@
+:root {
+	--pomodoro__box__shadow--1: rgba(255, 99, 71, 0.15);
+	--pomodoro__box__shadow--2: rgba(255, 99, 71, 0.2);
+	--pomodoro__bg--3: #fff0ed;
+	--pomodoro__bg--4: #ffe6e2;
+	--pomodoro__txt--5: #e73c00;
+	--timer__txt--6: #ff5e45;
+	--timer__filter--7: rgba(255, 99, 71, 0.3);
+	--settings__bg--8: rgba(255, 99, 71, 0.1);
+	--settings__bg--9: rgba(255, 240, 237, 0.8);
+	--settings__box__shadow--10: rgba(255, 99, 71, 0.08);
+	--setting__bg--11: rgba(255, 255, 255, 0.9);
+	--setting__border--12: rgba(255, 99, 71, 0.7);
+	--save__txt--13: white;
+	--timer__bg--14: #ff8c7f;
+	--time__txt__shadow--15: rgba(0, 0, 0, 0.1);
+	--session__txt--16: #666;
+	--pause__bg--17: #ffab9d;
+	--stop__bg--18: #8b8b8b;
+	--stop__bg--19: #727272;
+	--stat__bg--20: rgba(255, 240, 237, 0.7);
+	--stat__bg--21: rgba(255, 240, 237, 0.9);
+	--break__txt--22: #3cc5ff;
+}
 .pomodoro-card {
   border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(255, 99, 71, 0.15);
+  box-shadow: 0 8px 24px var(--pomodoro__box__shadow--1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   overflow: hidden;
-  border: 1px solid rgba(255, 99, 71, 0.15);
+  border: 1px solid var(--pomodoro__box__shadow--1);
   height: 100%;
   padding: 3px;
   margin: 2px;
@@ -11,12 +35,12 @@
 
 .pomodoro-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 24px rgba(255, 99, 71, 0.2);
+  box-shadow: 0 8px 24px var(--pomodoro__box__shadow--2);
 }
 
 .pomodoro-header {
-  background: linear-gradient(135deg, #fff0ed, #ffe6e2);
-  border-bottom: 1px solid rgba(255, 99, 71, 0.15);
+  background: linear-gradient(135deg, var(--pomodoro__bg--3), var(--pomodoro__bg--4));
+  border-bottom: 1px solid var(--pomodoro__box__shadow--1);
   padding: 18px;
   margin: 2px;
   border-radius: 11px 11px 0 0;
@@ -24,7 +48,7 @@
 
 .pomodoro-title {
   font-weight: 600;
-  color: #e73c00;
+  color: var(--pomodoro__txt--5);
   font-size: 18px;
   display: flex;
   align-items: center;
@@ -32,14 +56,14 @@
 }
 
 .timer-icon {
-  color: #ff5e45 !important;
-  filter: drop-shadow(0 2px 4px rgba(255, 99, 71, 0.3));
+  color: var(--timer__txt--6) !important;
+  filter: drop-shadow(0 2px 4px var(--timer__filter--7));
 }
 
 .settings-button {
   background: none;
   border: none;
-  color: #e73c00;
+  color: var(--pomodoro__txt--5);
   cursor: pointer;
   padding: 8px;
   border-radius: 50%;
@@ -52,17 +76,17 @@
 }
 
 .settings-button:hover {
-  background-color: rgba(255, 99, 71, 0.1);
+  background-color: var(--settings__bg--8);
 }
 
 .settings-container {
-  background-color: rgba(255, 240, 237, 0.8);
+  background-color: var(--settings__bg--9);
   border-radius: 10px;
   padding: 24px;
   margin: 0 12px 24px;
-  border: 1px solid rgba(255, 99, 71, 0.2);
+  border: 1px solid var(--pomodoro__box__shadow--2);
   animation: fadeIn 0.3s ease-in-out;
-  box-shadow: 0 2px 8px rgba(255, 99, 71, 0.08);
+  box-shadow: 0 2px 8px var(--settings__box__shadow--10);
 }
 
 @keyframes fadeIn {
@@ -92,26 +116,26 @@
 .setting-label {
   font-size: 14px;
   font-weight: 500;
-  color: #e73c00;
+  color: var(--pomodoro__txt--5);
 }
 
 .setting-input {
   border-radius: 8px;
-  border: 1px solid rgba(255, 99, 71, 0.3);
+  border: 1px solid var(--timer__filter--7);
   padding: 8px;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: var(--setting__bg--11);
 }
 
 .setting-input:focus {
   outline: none;
-  border-color: rgba(255, 99, 71, 0.7);
-  box-shadow: 0 0 0 2px rgba(255, 99, 71, 0.2);
+  border-color: var(--setting__border--12);
+  box-shadow: 0 0 0 2px var(--pomodoro__box__shadow--2);
 }
 
 .save-settings-button {
   width: 100%;
-  background-color: #ff5e45;
-  color: white;
+  background-color: var(--timer__txt--6);
+  color: var(--save__txt--13);
   border: none;
   border-radius: 8px;
   padding: 8px 16px;
@@ -121,18 +145,18 @@
 }
 
 .save-settings-button:hover {
-  background-color: #e73c00;
+  background-color: var(--pomodoro__txt--5);
 }
 
 .timer-display {
   text-align: center;
   padding: 40px 24px;
-  background-color: white;
+  background-color: var(--save__txt--13);
   border-radius: 12px;
   margin: 24px 16px;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 6px 16px rgba(255, 99, 71, 0.1);
+  box-shadow: 0 6px 16px var(--settings__bg--8);
 }
 
 .timer-display::before {
@@ -142,7 +166,7 @@
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(to right, #ff5e45, #ff8c7f);
+  background: linear-gradient(to right, var(--timer__txt--6), var(--timer__bg--14));
 }
 
 .time-text {
@@ -150,19 +174,19 @@
   line-height: 1;
   font-weight: 700;
   font-family: "JetBrains Mono", monospace;
-  background: linear-gradient(to right, #e73c00, #ff8c7f);
+  background: linear-gradient(to right, var(--pomodoro__txt--5), var(--timer__bg--14));
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   margin: 16px 0 20px;
   padding: 8px;
-  text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  text-shadow: 0px 2px 4px var(--time__txt__shadow--15);
 }
 
 .session-type {
   font-size: 16px;
   font-weight: 500;
-  color: #666;
+  color: var(--session__txt--16);
   margin-bottom: 20px;
   position: relative;
   display: inline-block;
@@ -177,7 +201,7 @@
   transform: translateX(-50%);
   width: 40px;
   height: 2px;
-  background-color: #ff5e45;
+  background-color: var(--timer__txt--6);
   border-radius: 2px;
 }
 
@@ -190,8 +214,8 @@
 }
 
 .start-button {
-  background-color: #ff5e45;
-  color: white;
+  background-color: var(--timer__txt--6);
+  color: var(--save__txt--13);
   border: none;
   border-radius: 50%;
   width: 56px;
@@ -201,13 +225,13 @@
   justify-content: center;
   cursor: pointer;
   transition: all 0.2s ease;
-  box-shadow: 0 4px 8px rgba(255, 99, 71, 0.2);
+  box-shadow: 0 4px 8px var(--pomodoro__box__shadow--2);
 }
 
 .start-button:hover {
-  background-color: #e73c00;
+  background-color: var(--pomodoro__txt--5);
   transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(255, 99, 71, 0.3);
+  box-shadow: 0 6px 12px var(--timer__filter--7);
 }
 
 .start-button svg,
@@ -216,12 +240,12 @@
 .stop-button svg {
   width: 24px;
   height: 24px;
-  color: white;
+  color: var(--save__txt--13);
 }
 
 .pause-button {
-  background-color: #ffab9d;
-  color: white;
+  background-color: var(--pause__bg--17);
+  color: var(--save__txt--13);
   border: none;
   border-radius: 50%;
   width: 48px;
@@ -234,12 +258,12 @@
 }
 
 .pause-button:hover {
-  background-color: #ff8c7f;
+  background-color: var(--timer__bg--14);
 }
 
 .resume-button {
-  background-color: #ff5e45;
-  color: white;
+  background-color: var(--timer__txt--6);
+  color: var(--save__txt--13);
   border: none;
   border-radius: 50%;
   width: 48px;
@@ -252,12 +276,12 @@
 }
 
 .resume-button:hover {
-  background-color: #e73c00;
+  background-color: var(--pomodoro__txt--5);
 }
 
 .stop-button {
-  background-color: #8b8b8b;
-  color: white;
+  background-color: var(--stop__bg--18);
+  color: var(--save__txt--13);
   border: none;
   border-radius: 50%;
   width: 48px;
@@ -270,7 +294,7 @@
 }
 
 .stop-button:hover {
-  background-color: #727272;
+  background-color: var(--stop__bg--19);
 }
 
 .stats-container {
@@ -282,44 +306,44 @@
 }
 
 .stat-card {
-  background-color: rgba(255, 240, 237, 0.7);
+  background-color: var(--stat__bg--20);
   border-radius: 10px;
   padding: 24px 20px;
   text-align: center;
   transition: all 0.2s ease;
-  border: 1px solid rgba(255, 99, 71, 0.1);
-  box-shadow: 0 4px 8px rgba(255, 99, 71, 0.08);
+  border: 1px solid var(--settings__bg--8);
+  box-shadow: 0 4px 8px var(--settings__box__shadow--10);
   margin: 4px;
 }
 
 .stat-card:hover {
-  background-color: rgba(255, 240, 237, 0.9);
+  background-color: var(--stat__bg--21);
   transform: translateY(-3px);
 }
 
 .work-count {
   font-size: 24px;
   font-weight: 700;
-  color: #e73c00;
+  color: var(--pomodoro__txt--5);
   margin-bottom: 4px;
 }
 
 .break-count {
   font-size: 24px;
   font-weight: 700;
-  color: #3cc5ff;
+  color: var(--break__txt--22);
   margin-bottom: 4px;
 }
 
 .stat-label {
   font-size: 13px;
-  color: #666;
+  color: var(--session__txt--16);
 }
 
 .timer-progress {
   width: 100%;
   height: 4px;
-  background-color: rgba(255, 99, 71, 0.1);
+  background-color: var(--settings__bg--8);
   border-radius: 2px;
   margin: 16px 0;
   overflow: hidden;
@@ -327,7 +351,7 @@
 
 .timer-progress-fill {
   height: 100%;
-  background: linear-gradient(to right, #ff5e45, #ff8c7f);
+  background: linear-gradient(to right, var(--timer__txt--6), var(--timer__bg--14));
   transition: width 1s linear;
 }
 

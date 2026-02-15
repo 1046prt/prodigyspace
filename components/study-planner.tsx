@@ -37,7 +37,6 @@ const studyTechniques = [
 ];
 
 import "@/styles/study-planner.css";
-import "@/styles/study-planner-responsive.css";
 import "@/styles/study-planner-select.css";
 
 export function StudyPlanner({ studySessions, tasks }: StudyPlannerProps) {

@@ -1,18 +1,74 @@
+:root {
+	--study__defaultElement--1: #4f46e5;
+	--study__defaultElement--2: #6366f1;
+	--study__defaultElement--3: #818cf8;
+	--study__defaultElement--4: #c7d2fe;
+	--study__defaultElement--5: rgba(129, 140, 248, 0.3);
+	--study__defaultElement--6: #eef2ff;
+	--study__defaultElement--7: rgba(79, 70, 229, 0.1);
+	--study__defaultElement--8: #312e81;
+	--study__defaultElement--9: #10b981;
+	--study__defaultElement--10: #34d399;
+	--study__defaultElement--11: #f59e0b;
+	--study__defaultElement--12: #fbbf24;
+	--study__defaultElement--13: #ef4444;
+	--study__defaultElement--14: #f87171;
+	--calendar__bg--15: rgba(248, 250, 252, 0.8);
+	--calendar__bg--16: rgba(30, 41, 59, 0.8);
+	--enhanced__bg--17: white;
+	--enhanced__box__shadow--18: rgba(0, 0, 0, 0.05);
+	--enhanced__box__shadow--19: rgba(0, 0, 0, 0.2);
+	--enhanced__border--20: rgba(226, 232, 240, 0.8);
+	--calendar__txt--21: #000000;
+	--calendar__bg--22: rgba(99, 102, 241, 0.2);
+	--empty__bg--23: rgba(79, 70, 229, 0.03);
+	--empty__bg--24: rgba(30, 41, 59, 0.3);
+	--enhanced__txt--25: white ;
+	--enhanced__box__shadow--26: rgba(79, 70, 229, 0.25);
+	--enhanced__box__shadow--27: rgba(0, 0, 0, 0.3);
+	--enhanced__box__shadow--28: rgba(79, 70, 229, 0.35);
+	--enhanced__box__shadow--29: rgba(0, 0, 0, 0.4);
+	--calendar__bg--30: #ffffff;
+	--calendar__box__shadow--31: rgba(0, 0, 0, 0.25);
+	--calendar__box__shadow--32: rgba(79, 70, 229, 0.05);
+	--calendar__box__shadow--33: rgba(0, 0, 0, 0.1);
+	--empty__bg--34: rgba(255, 255, 255, 0.6);
+	--empty__box__shadow--35: rgba(99, 102, 241, 0.05);
+	--empty__filter--36: rgba(79, 70, 229, 0.2);
+	--session__box__shadow--37: rgba(0, 0, 0, 0.15);
+	--session__box__shadow--38: rgba(99, 102, 241, 0.1);
+	--session__border--39: rgba(99, 102, 241, 0.3);
+	--session__txt--40: #6b7280;
+	--week__box__shadow--41: rgba(79, 70, 229, 0.3);
+	--techniques__box__shadow--42: rgba(79, 70, 229, 0.08);
+	--technique__border--43: rgba(79, 70, 229, 0.15);
+	--technique__bg--44: rgba(99, 102, 241, 0.15);
+	--technique__bg--45: rgba(79, 70, 229, 0.12);
+	--technique__bg--46: rgba(99, 102, 241, 0.25);
+	--task__bg--47: rgba(239, 68, 68, 0.1);
+	--task__bg--48: rgba(248, 113, 113, 0.2);
+	--task__bg--49: rgba(245, 158, 11, 0.1);
+	--task__bg--50: rgba(251, 191, 36, 0.2);
+	--task__bg--51: rgba(239, 68, 68, 0.08);
+	--task__bg--52: rgba(248, 113, 113, 0.15);
+	--task__bg--53: rgba(245, 158, 11, 0.08);
+	--task__bg--54: rgba(251, 191, 36, 0.15);
+}
 .study-planner {
-  --study-primary: light-dark(#4f46e5, #6366f1);
-  --study-secondary: #818cf8;
-  --study-accent: light-dark(#c7d2fe, rgba(129, 140, 248, 0.3));
-  --study-light: light-dark(#eef2ff, rgba(79, 70, 229, 0.1));
-  --study-dark: light-dark(#312e81, #c7d2fe);
-  --study-success: light-dark(#10b981, #34d399);
-  --study-warning: light-dark(#f59e0b, #fbbf24);
-  --study-danger: light-dark(#ef4444, #f87171);
+  --study-primary: light-dark(var(--study__defaultElement--1), var(--study__defaultElement--2));
+  --study-secondary: var(--study__defaultElement--3);
+  --study-accent: light-dark(var(--study__defaultElement--4), var(--study__defaultElement--5));
+  --study-light: light-dark(var(--study__defaultElement--6), var(--study__defaultElement--7));
+  --study-dark: light-dark(var(--study__defaultElement--8), var(--study__defaultElement--4));
+  --study-success: light-dark(var(--study__defaultElement--9), var(--study__defaultElement--10));
+  --study-warning: light-dark(var(--study__defaultElement--11), var(--study__defaultElement--12));
+  --study-danger: light-dark(var(--study__defaultElement--13), var(--study__defaultElement--14));
 }
 
 .calendar-container {
   display: flex;
   justify-content: center;
-  background: light-dark(rgba(248, 250, 252, 0.8), rgba(30, 41, 59, 0.8));
+  background: light-dark(var(--calendar__bg--15), var(--calendar__bg--16));
   border-radius: 1rem;
   padding: 0.5rem;
   margin: 2px 20px;
@@ -20,15 +76,15 @@
 }
 
 .enhanced-calendar {
-  background-color: light-dark(white, var(--color-background-card));
+  background-color: light-dark(var(--enhanced__bg--17), var(--color-background-card));
   padding: 0.75rem;
   border-radius: 0.75rem !important;
   box-shadow: light-dark(
-    0 4px 12px rgba(0, 0, 0, 0.05),
-    0 4px 12px rgba(0, 0, 0, 0.2)
+    0 4px 12px var(--enhanced__box__shadow--18),
+    0 4px 12px var(--enhanced__box__shadow--19)
   ) !important;
   border-color: light-dark(
-    rgba(226, 232, 240, 0.8),
+    var(--enhanced__border--20),
     var(--color-border)
   ) !important;
   overflow: hidden;
@@ -39,26 +95,26 @@
   border-radius: 0.5rem !important;
   font-weight: 500;
   transition: all 0.2s ease;
-  color: light-dark(#000000, var(--color-text));
+  color: light-dark(var(--calendar__txt--21), var(--color-text));
 }
 
 .calendar-day-item:hover {
   background-color: light-dark(
-    rgba(79, 70, 229, 0.1),
-    rgba(99, 102, 241, 0.2)
+    var(--study__defaultElement--7),
+    var(--calendar__bg--22)
   ) !important;
   transform: translateY(-1px);
 }
 
 .empty-schedule {
-  background: light-dark(rgba(79, 70, 229, 0.03), rgba(30, 41, 59, 0.3));
+  background: light-dark(var(--empty__bg--23), var(--empty__bg--24));
   border-radius: 0.5rem;
   border: 1px dashed var(--study-accent);
 }
 
 .enhanced-button {
   background: var(--study-primary) !important;
-  color: white !important;
+  color: var(--enhanced__txt--25)!important;
   border: none !important;
   padding: 0.5rem 1.25rem !important;
   border-radius: 0.5rem !important;
@@ -67,16 +123,16 @@
   display: inline-flex !important;
   align-items: center !important;
   box-shadow: light-dark(
-    0 4px 10px rgba(79, 70, 229, 0.25),
-    0 4px 10px rgba(0, 0, 0, 0.3)
+    0 4px 10px var(--enhanced__box__shadow--26),
+    0 4px 10px var(--enhanced__box__shadow--27)
   ) !important;
 }
 
 .enhanced-button:hover {
   transform: translateY(-1px) !important;
   box-shadow: light-dark(
-    0 6px 15px rgba(79, 70, 229, 0.35),
-    0 6px 15px rgba(0, 0, 0, 0.4)
+    0 6px 15px var(--enhanced__box__shadow--28),
+    0 6px 15px var(--enhanced__box__shadow--29)
   ) !important;
 }
 
@@ -112,7 +168,7 @@
 
 /* Calendar Card Styling */
 .calendar-card {
-  background: light-dark(#ffffff, var(--color-background-card));
+  background: light-dark(var(--calendar__bg--30), var(--color-background-card));
   border-color: var(--study-accent);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   display: flex;
@@ -123,12 +179,12 @@
 
 .calendar-card:hover {
   box-shadow: light-dark(
-      0 10px 25px -5px rgba(79, 70, 229, 0.1),
-      0 10px 25px -5px rgba(0, 0, 0, 0.25)
+      0 10px 25px -5px var(--study__defaultElement--7),
+      0 10px 25px -5px var(--calendar__box__shadow--31)
     ),
     light-dark(
-      0 8px 10px -6px rgba(79, 70, 229, 0.05),
-      0 8px 10px -6px rgba(0, 0, 0, 0.1)
+      0 8px 10px -6px var(--calendar__box__shadow--32),
+      0 8px 10px -6px var(--calendar__box__shadow--33)
     );
 }
 
@@ -162,7 +218,7 @@
 
 /* Study Schedule Card Styling */
 .schedule-card {
-  background: light-dark(#ffffff, var(--color-background-card));
+  background: light-dark(var(--calendar__bg--30), var(--color-background-card));
   border-color: var(--study-accent);
   transition: all 0.2s ease;
   display: flex;
@@ -214,13 +270,13 @@
   align-items: center;
   justify-content: center;
   padding: 3rem 1.5rem;
-  background: light-dark(rgba(255, 255, 255, 0.6), rgba(30, 41, 59, 0.3));
+  background: light-dark(var(--empty__bg--34), var(--empty__bg--24));
   border-radius: 0.75rem;
   border: 1px dashed var(--study-accent);
   min-height: 200px;
   box-shadow: light-dark(
-    inset 0 0 20px rgba(79, 70, 229, 0.03),
-    inset 0 0 20px rgba(99, 102, 241, 0.05)
+    inset 0 0 20px var(--empty__bg--23),
+    inset 0 0 20px var(--empty__box__shadow--35)
   );
 }
 
@@ -228,7 +284,7 @@
   color: var(--study-secondary);
   margin-bottom: 1.25rem;
   opacity: 0.7;
-  filter: drop-shadow(0 1px 2px rgba(79, 70, 229, 0.2));
+  filter: drop-shadow(0 1px 2px var(--empty__filter--36));
 }
 
 .empty-schedule p {
@@ -240,16 +296,16 @@
 
 /* Session Card Styling */
 .session-card {
-  background: light-dark(#ffffff, var(--color-background-card));
-  border: 1px solid light-dark(rgba(79, 70, 229, 0.1), rgba(99, 102, 241, 0.2));
+  background: light-dark(var(--calendar__bg--30), var(--color-background-card));
+  border: 1px solid light-dark(var(--study__defaultElement--7), var(--calendar__bg--22));
   border-radius: 0.75rem;
   box-shadow: light-dark(
-      0 2px 5px rgba(79, 70, 229, 0.05),
-      0 2px 5px rgba(0, 0, 0, 0.15)
+      0 2px 5px var(--calendar__box__shadow--32),
+      0 2px 5px var(--session__box__shadow--37)
     ),
     light-dark(
-      0 0 0 1px rgba(79, 70, 229, 0.03),
-      0 0 0 1px rgba(99, 102, 241, 0.1)
+      0 0 0 1px var(--empty__bg--23),
+      0 0 0 1px var(--session__box__shadow--38)
     );
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   overflow: hidden;
@@ -260,10 +316,10 @@
 .session-card:hover {
   transform: translateY(-2px);
   box-shadow: light-dark(
-    0 6px 15px rgba(79, 70, 229, 0.1),
-    0 6px 15px rgba(0, 0, 0, 0.25)
+    0 6px 15px var(--study__defaultElement--7),
+    0 6px 15px var(--calendar__box__shadow--31)
   );
-  border-color: light-dark(rgba(79, 70, 229, 0.2), rgba(99, 102, 241, 0.3));
+  border-color: light-dark(var(--empty__filter--36), var(--session__border--39));
 }
 
 .session-card::before {
@@ -284,7 +340,7 @@
 }
 
 .session-topic {
-  color: light-dark(#6b7280, var(--color-text-muted));
+  color: light-dark(var(--session__txt--40), var(--color-text-muted));
   font-size: 0.875rem;
 }
 
@@ -293,7 +349,7 @@
   align-items: center;
   gap: 0.5rem;
   font-size: 0.75rem;
-  color: light-dark(#6b7280, var(--color-text-muted));
+  color: light-dark(var(--session__txt--40), var(--color-text-muted));
   margin-top: 0.5rem;
 }
 
@@ -305,7 +361,7 @@
 
 .session-productivity {
   font-size: 0.75rem;
-  color: #6b7280;
+  color: var(--session__txt--40);
 }
 
 /* Week View Styling */
@@ -313,12 +369,12 @@
   padding: 0.875rem 1rem;
   border: 1px solid var(--study-accent);
   border-radius: 0.5rem;
-  background: light-dark(#ffffff, var(--color-background-card));
+  background: light-dark(var(--calendar__bg--30), var(--color-background-card));
   margin-bottom: 0.75rem;
   transition: all 0.2s ease;
   box-shadow: light-dark(
-    0 1px 3px rgba(79, 70, 229, 0.05),
-    0 1px 3px rgba(0, 0, 0, 0.2)
+    0 1px 3px var(--calendar__box__shadow--32),
+    0 1px 3px var(--enhanced__box__shadow--19)
   );
 }
 
@@ -326,8 +382,8 @@
   background: var(--study-light);
   transform: translateX(2px);
   box-shadow: light-dark(
-    0 2px 5px rgba(79, 70, 229, 0.1),
-    0 2px 5px rgba(0, 0, 0, 0.25)
+    0 2px 5px var(--study__defaultElement--7),
+    0 2px 5px var(--calendar__box__shadow--31)
   );
 }
 
@@ -386,44 +442,44 @@
   height: fit-content;
   margin-left: auto;
   box-shadow: light-dark(
-    0 2px 4px rgba(0, 0, 0, 0.05),
-    0 2px 4px rgba(0, 0, 0, 0.1)
+    0 2px 4px var(--enhanced__box__shadow--18),
+    0 2px 4px var(--calendar__box__shadow--33)
   );
   letter-spacing: 0.02em;
 }
 
 .week-day-button:hover {
   background: var(--study-primary);
-  color: white;
+  color: var(--enhanced__bg--17);
   border-color: var(--study-primary);
   box-shadow: light-dark(
-    0 4px 8px rgba(79, 70, 229, 0.3),
-    0 4px 8px rgba(0, 0, 0, 0.2)
+    0 4px 8px var(--week__box__shadow--41),
+    0 4px 8px var(--enhanced__box__shadow--19)
   );
   transform: translateY(-1px);
 }
 
 .week-day-button.active {
   background: var(--study-primary);
-  color: white;
+  color: var(--enhanced__bg--17);
   border-color: var(--study-primary);
   box-shadow: light-dark(
-    0 3px 6px rgba(79, 70, 229, 0.25),
-    0 3px 6px rgba(0, 0, 0, 0.15)
+    0 3px 6px var(--enhanced__box__shadow--26),
+    0 3px 6px var(--session__box__shadow--37)
   );
 }
 
 /* Study Techniques Styling */
 .techniques-card {
-  background-color: light-dark(#ffffff, var(--color-background-card));
+  background-color: light-dark(var(--calendar__bg--30), var(--color-background-card));
   border-color: var(--study-accent);
   height: 100%;
   display: flex;
   flex-direction: column;
   border-radius: 0.75rem;
   box-shadow: light-dark(
-    0 4px 20px rgba(79, 70, 229, 0.08),
-    0 4px 20px rgba(0, 0, 0, 0.25)
+    0 4px 20px var(--techniques__box__shadow--42),
+    0 4px 20px var(--calendar__box__shadow--31)
   );
   position: relative;
   overflow: hidden;
@@ -451,8 +507,8 @@
 }
 
 .technique-item {
-  background: light-dark(#ffffff, var(--color-background-card));
-  border: 1px solid light-dark(rgba(79, 70, 229, 0.15), rgba(99, 102, 241, 0.2));
+  background: light-dark(var(--calendar__bg--30), var(--color-background-card));
+  border: 1px solid light-dark(var(--technique__border--43), var(--calendar__bg--22));
   border-radius: 0.75rem;
   padding: 1.25rem;
   margin-bottom: 1.25rem;
@@ -464,8 +520,8 @@
   align-items: flex-start;
   gap: 1rem;
   box-shadow: light-dark(
-    0 3px 8px rgba(79, 70, 229, 0.08),
-    0 3px 8px rgba(0, 0, 0, 0.2)
+    0 3px 8px var(--techniques__box__shadow--42),
+    0 3px 8px var(--enhanced__box__shadow--19)
   );
   position: relative;
   overflow: hidden;
@@ -477,12 +533,12 @@
 }
 
 .technique-item:hover {
-  background: #ffffff;
+  background: var(--calendar__bg--30);
   border-color: var(--study-primary);
   transform: translateY(-3px);
   box-shadow: light-dark(
-    0 8px 20px rgba(79, 70, 229, 0.15),
-    0 8px 20px rgba(0, 0, 0, 0.3)
+    0 8px 20px var(--technique__border--43),
+    0 8px 20px var(--enhanced__box__shadow--27)
   );
   border-top-width: 4px;
 }
@@ -495,25 +551,25 @@
   align-items: center;
   justify-content: center;
   height: 48px;
-  background: light-dark(rgba(79, 70, 229, 0.08), rgba(99, 102, 241, 0.15));
+  background: light-dark(var(--techniques__box__shadow--42), var(--technique__bg--44));
   border-radius: 12px;
   margin-top: 0.25rem;
   padding: 0.25rem;
   color: var(--study-primary);
   box-shadow: light-dark(
-    0 4px 10px rgba(79, 70, 229, 0.1),
-    0 4px 10px rgba(0, 0, 0, 0.2)
+    0 4px 10px var(--study__defaultElement--7),
+    0 4px 10px var(--enhanced__box__shadow--19)
   );
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .technique-item:hover .technique-icon {
   transform: scale(1.1) rotate(5deg);
-  background: light-dark(rgba(79, 70, 229, 0.12), rgba(99, 102, 241, 0.25));
+  background: light-dark(var(--technique__bg--45), var(--technique__bg--46));
   color: var(--study-primary);
   box-shadow: light-dark(
-    0 6px 15px rgba(79, 70, 229, 0.15),
-    0 6px 15px rgba(0, 0, 0, 0.25)
+    0 6px 15px var(--technique__border--43),
+    0 6px 15px var(--calendar__box__shadow--31)
   );
 }
 
@@ -544,7 +600,7 @@
 }
 
 .technique-description {
-  color: light-dark(#6b7280, var(--color-text-muted));
+  color: light-dark(var(--session__txt--40), var(--color-text-muted));
   font-size: 0.875rem;
   line-height: 1.5;
   position: relative;
@@ -553,15 +609,15 @@
 
 /* Upcoming Tasks Styling */
 .tasks-card {
-  background-color: light-dark(#ffffff, var(--color-background-card));
+  background-color: light-dark(var(--calendar__bg--30), var(--color-background-card));
   border-color: var(--study-accent);
   height: 100%;
   display: flex;
   flex-direction: column;
   border-radius: 0.75rem;
   box-shadow: light-dark(
-    0 4px 20px rgba(79, 70, 229, 0.08),
-    0 4px 20px rgba(0, 0, 0, 0.25)
+    0 4px 20px var(--techniques__box__shadow--42),
+    0 4px 20px var(--calendar__box__shadow--31)
   );
   position: relative;
   overflow: hidden;
@@ -589,7 +645,7 @@
 }
 
 .task-item {
-  background: light-dark(#ffffff, var(--color-background-card));
+  background: light-dark(var(--calendar__bg--30), var(--color-background-card));
   border-left: 4px solid var(--study-primary);
   border-radius: 0.5rem;
   padding: 1.2rem 1.4rem;
@@ -598,8 +654,8 @@
   margin-right: 0.5rem;
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: light-dark(
-    0 3px 10px rgba(79, 70, 229, 0.05),
-    0 1px 3px rgba(0, 0, 0, 0.15)
+    0 3px 10px var(--calendar__box__shadow--32),
+    0 1px 3px var(--session__box__shadow--37)
   );
   position: relative;
   overflow: hidden;
@@ -615,8 +671,8 @@
   border-left-width: 6px;
   transform: translateX(3px);
   box-shadow: light-dark(
-    0 6px 16px rgba(79, 70, 229, 0.12),
-    0 4px 12px rgba(0, 0, 0, 0.25)
+    0 6px 16px var(--technique__bg--45),
+    0 4px 12px var(--calendar__box__shadow--31)
   );
 }
 
@@ -660,8 +716,8 @@
   font-weight: 600;
   letter-spacing: 0.02em;
   box-shadow: light-dark(
-    0 2px 4px rgba(79, 70, 229, 0.1),
-    0 2px 4px rgba(0, 0, 0, 0.2)
+    0 2px 4px var(--study__defaultElement--7),
+    0 2px 4px var(--enhanced__box__shadow--19)
   );
   transition: all 0.2s ease;
 }
@@ -669,28 +725,28 @@
 .task-badge:hover {
   transform: translateY(-1px);
   box-shadow: light-dark(
-    0 3px 6px rgba(79, 70, 229, 0.15),
-    0 3px 6px rgba(0, 0, 0, 0.25)
+    0 3px 6px var(--technique__border--43),
+    0 3px 6px var(--calendar__box__shadow--31)
   );
 }
 
 .task-badge.subject {
-  background-color: light-dark(rgba(79, 70, 229, 0.1), rgba(99, 102, 241, 0.2));
+  background-color: light-dark(var(--study__defaultElement--7), var(--calendar__bg--22));
   color: var(--study-primary);
 }
 
 .task-badge.priority-high {
   background-color: light-dark(
-    rgba(239, 68, 68, 0.1),
-    rgba(248, 113, 113, 0.2)
+    var(--task__bg--47),
+    var(--task__bg--48)
   );
   color: var(--study-danger);
 }
 
 .task-badge.priority-medium {
   background-color: light-dark(
-    rgba(245, 158, 11, 0.1),
-    rgba(251, 191, 36, 0.2)
+    var(--task__bg--49),
+    var(--task__bg--50)
   );
   color: var(--study-warning);
 }
@@ -704,8 +760,8 @@
   padding: 0.3rem 0.6rem;
   border-radius: 0.375rem;
   background-color: light-dark(
-    rgba(79, 70, 229, 0.05),
-    rgba(99, 102, 241, 0.15)
+    var(--calendar__box__shadow--32),
+    var(--technique__bg--44)
   );
   margin-top: 0.35rem;
 }
@@ -713,30 +769,30 @@
 .task-due-overdue {
   color: var(--study-danger);
   background-color: light-dark(
-    rgba(239, 68, 68, 0.08),
-    rgba(248, 113, 113, 0.15)
+    var(--task__bg--51),
+    var(--task__bg--52)
   );
 }
 
 .task-due-soon {
   color: var(--study-warning);
   background-color: light-dark(
-    rgba(245, 158, 11, 0.08),
-    rgba(251, 191, 36, 0.15)
+    var(--task__bg--53),
+    var(--task__bg--54)
   );
 }
 
 .task-due-future {
   color: var(--study-primary);
   background-color: light-dark(
-    rgba(79, 70, 229, 0.05),
-    rgba(99, 102, 241, 0.15)
+    var(--calendar__box__shadow--32),
+    var(--technique__bg--44)
   );
 }
 
 .task-time {
   font-size: 0.75rem;
-  color: light-dark(#6b7280, var(--color-text-muted));
+  color: light-dark(var(--session__txt--40), var(--color-text-muted));
 }
 
 /* Select Styling */
@@ -744,7 +800,7 @@
   min-width: 120px;
   border: 1px solid var(--study-accent);
   border-radius: 0.375rem;
-  background: #ffffff;
+  background: var(--calendar__bg--30);
   color: var(--study-dark);
   font-size: 0.875rem;
   font-weight: 500;
@@ -759,5 +815,5 @@
 
 .view-select:focus {
   outline: none;
-  box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+  box-shadow: 0 0 0 2px var(--empty__filter--36);
 }

@@ -1,3 +1,35 @@
+:root {
+	--text__txt--1: #10b981;
+	--text__txt--2: #f59e0b;
+	--text__txt--3: #ef4444;
+	--hover__box__shadow--4: rgba(0, 0, 0, 0.1);
+	--hover__box__shadow--5: rgba(0, 0, 0, 0.06);
+	--gradient__bg--6: #667eea;
+	--gradient__bg--7: #764ba2;
+	--gradient__bg--8: #ff6b6b;
+	--gradient__bg--9: #ff8e8e;
+	--gradient__bg--10: #4e6ef2;
+	--gradient__bg--11: #88a4ff;
+	--gradient__bg--12: #9c27b0;
+	--gradient__bg--13: #ba68c8;
+	--gradient__bg--14: #2ecc71;
+	--gradient__bg--15: #78e08f;
+	--icon__txt--16: white;
+	--badge__bg--17: #dbeafe;
+	--badge__txt--18: #1e40af;
+	--badge__bg--19: #f3e8ff;
+	--badge__txt--20: #7c3aed;
+	--badge__bg--21: #d1fae5;
+	--badge__txt--22: #065f46;
+	--badge__bg--23: #fed7aa;
+	--badge__txt--24: #c2410c;
+	--badge__bg--25: #fee2e2;
+	--badge__txt--26: #dc2626;
+	--badge__bg--27: #e0e7ff;
+	--badge__txt--28: #3730a3;
+	--utilities__box__shadow--29: rgba(0, 0, 0, 0.04);
+	--utilities__box__shadow--30: rgba(0, 0, 0, 0.08);
+}
 /* Utility Classes to Replace Tailwind CSS */
 
 /* Popup and Dropdown Z-index Management */
@@ -372,15 +404,15 @@
 }
 
 .text-green-500 {
-  color: #10b981;
+  color: var(--text__txt--1);
 }
 
 .text-yellow-500 {
-  color: #f59e0b;
+  color: var(--text__txt--2);
 }
 
 .text-red-500 {
-  color: #ef4444;
+  color: var(--text__txt--3);
 }
 
 .text-transparent {
@@ -453,8 +485,8 @@
 /* Interactive States */
 .hover-shadow-md:hover {
   box-shadow:
-    0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    0 4px 6px -1px var(--hover__box__shadow--4),
+    0 2px 4px -1px var(--hover__box__shadow--5);
 }
 
 .transition-shadow {
@@ -543,7 +575,7 @@
 
 /* Common gradients */
 .gradient-primary {
-  background: linear-gradient(45deg, #667eea, #764ba2);
+  background: linear-gradient(45deg, var(--gradient__bg--6), var(--gradient__bg--7));
 }
 
 .gradient-brand {
@@ -569,19 +601,19 @@
 }
 
 .gradient-mood-1 {
-  background: linear-gradient(to right, #ff6b6b, #ff8e8e);
+  background: linear-gradient(to right, var(--gradient__bg--8), var(--gradient__bg--9));
 }
 
 .gradient-mood-2 {
-  background: linear-gradient(to right, #4e6ef2, #88a4ff);
+  background: linear-gradient(to right, var(--gradient__bg--10), var(--gradient__bg--11));
 }
 
 .gradient-mood-3 {
-  background: linear-gradient(to right, #9c27b0, #ba68c8);
+  background: linear-gradient(to right, var(--gradient__bg--12), var(--gradient__bg--13));
 }
 
 .gradient-mood-4 {
-  background: linear-gradient(to right, #2ecc71, #78e08f);
+  background: linear-gradient(to right, var(--gradient__bg--14), var(--gradient__bg--15));
 }
 
 @keyframes gradient-shift {
@@ -649,7 +681,7 @@
 
 .card-hover-lift:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 25px var(--hover__box__shadow--4);
 }
 
 /* Icon patterns */
@@ -660,8 +692,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(45deg, #667eea, #764ba2);
-  color: white;
+  background: linear-gradient(45deg, var(--gradient__bg--6), var(--gradient__bg--7));
+  color: var(--icon__txt--16);
 }
 
 /* Progress bars */
@@ -675,40 +707,40 @@
 
 .progress-bar-fill {
   height: 100%;
-  background: linear-gradient(90deg, #667eea, #764ba2);
+  background: linear-gradient(90deg, var(--gradient__bg--6), var(--gradient__bg--7));
   border-radius: 2px;
   transition: width 0.3s ease;
 }
 
 /* Badge variants for consistency */
 .badge-blue {
-  background-color: #dbeafe;
-  color: #1e40af;
+  background-color: var(--badge__bg--17);
+  color: var(--badge__txt--18);
 }
 
 .badge-purple {
-  background-color: #f3e8ff;
-  color: #7c3aed;
+  background-color: var(--badge__bg--19);
+  color: var(--badge__txt--20);
 }
 
 .badge-green {
-  background-color: #d1fae5;
-  color: #065f46;
+  background-color: var(--badge__bg--21);
+  color: var(--badge__txt--22);
 }
 
 .badge-orange {
-  background-color: #fed7aa;
-  color: #c2410c;
+  background-color: var(--badge__bg--23);
+  color: var(--badge__txt--24);
 }
 
 .badge-red {
-  background-color: #fee2e2;
-  color: #dc2626;
+  background-color: var(--badge__bg--25);
+  color: var(--badge__txt--26);
 }
 
 .badge-indigo {
-  background-color: #e0e7ff;
-  color: #3730a3;
+  background-color: var(--badge__bg--27);
+  color: var(--badge__txt--28);
 }
 
 /* Common spacing patterns */
@@ -987,7 +1019,7 @@
   border: 1px solid var(--color-border);
   border-radius: 18px;
   padding: 18px;
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 10px 24px var(--utilities__box__shadow--29);
 }
 
 .utilities-tools-block .utilities-grid {
@@ -1336,7 +1368,7 @@
   gap: 0;
   border: 1px solid var(--color-border);
   background: color-mix(in srgb, var(--color-card) 90%, transparent);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 8px 20px var(--hover__box__shadow--5);
   transition:
     transform 0.2s ease-in-out,
     box-shadow 0.2s ease-in-out,
@@ -1345,7 +1377,7 @@
 
 .utilities-tool-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 14px 28px var(--utilities__box__shadow--30);
   border-color: color-mix(in srgb, var(--color-primary-500) 45%, var(--color-border));
 }
 
@@ -1393,63 +1425,63 @@
 }
 
 .utilities-tool-card[data-accent="blue-badge"] .utilities-tool-icon {
-  background: color-mix(in srgb, var(--color-primary-100) 70%, white);
+  background: color-mix(in srgb, var(--color-primary-100) 70%, var(--icon__txt--16));
   color: var(--color-primary-700);
 }
 
 .utilities-tool-card[data-accent="purple-badge"] .utilities-tool-icon {
-  background: color-mix(in srgb, var(--color-secondary-100) 70%, white);
+  background: color-mix(in srgb, var(--color-secondary-100) 70%, var(--icon__txt--16));
   color: var(--color-secondary-700);
 }
 
 .utilities-tool-card[data-accent="green-badge"] .utilities-tool-icon {
-  background: color-mix(in srgb, var(--color-accent-100) 70%, white);
+  background: color-mix(in srgb, var(--color-accent-100) 70%, var(--icon__txt--16));
   color: var(--color-accent-700);
 }
 
 .utilities-tool-card[data-accent="orange-badge"] .utilities-tool-icon {
-  background: color-mix(in srgb, var(--color-warning-100) 70%, white);
+  background: color-mix(in srgb, var(--color-warning-100) 70%, var(--icon__txt--16));
   color: var(--color-warning-700);
 }
 
 .utilities-tool-card[data-accent="red-badge"] .utilities-tool-icon {
-  background: color-mix(in srgb, var(--color-error-100) 70%, white);
+  background: color-mix(in srgb, var(--color-error-100) 70%, var(--icon__txt--16));
   color: var(--color-error-700);
 }
 
 .utilities-tool-card[data-accent="indigo-badge"] .utilities-tool-icon {
-  background: color-mix(in srgb, var(--color-primary-100) 70%, white);
+  background: color-mix(in srgb, var(--color-primary-100) 70%, var(--icon__txt--16));
   color: var(--color-primary-700);
 }
 
 /* Badge Colors */
 .blue-badge {
-  background-color: color-mix(in srgb, var(--color-primary-100) 85%, white);
+  background-color: color-mix(in srgb, var(--color-primary-100) 85%, var(--icon__txt--16));
   color: var(--color-primary-700);
 }
 
 .purple-badge {
-  background-color: color-mix(in srgb, var(--color-secondary-100) 85%, white);
+  background-color: color-mix(in srgb, var(--color-secondary-100) 85%, var(--icon__txt--16));
   color: var(--color-secondary-700);
 }
 
 .green-badge {
-  background-color: color-mix(in srgb, var(--color-accent-100) 85%, white);
+  background-color: color-mix(in srgb, var(--color-accent-100) 85%, var(--icon__txt--16));
   color: var(--color-accent-700);
 }
 
 .orange-badge {
-  background-color: color-mix(in srgb, var(--color-warning-100) 85%, white);
+  background-color: color-mix(in srgb, var(--color-warning-100) 85%, var(--icon__txt--16));
   color: var(--color-warning-700);
 }
 
 .red-badge {
-  background-color: color-mix(in srgb, var(--color-error-100) 85%, white);
+  background-color: color-mix(in srgb, var(--color-error-100) 85%, var(--icon__txt--16));
   color: var(--color-error-700);
 }
 
 .indigo-badge {
-  background-color: color-mix(in srgb, var(--color-primary-100) 70%, white);
+  background-color: color-mix(in srgb, var(--color-primary-100) 70%, var(--icon__txt--16));
   color: var(--color-primary-700);
 }
 
@@ -1526,7 +1558,7 @@
   width: 100%;
   padding: 4px;
   border-radius: 16px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 6px 20px var(--hover__box__shadow--5);
   background-color: var(--color-card);
   border: 1px solid var(--color-border);
   transition:
@@ -1536,7 +1568,7 @@
 
 .utilities-card-equal:hover {
   transform: translateY(-4px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 25px var(--hover__box__shadow--4);
   border-color: var(--color-primary);
 }
 

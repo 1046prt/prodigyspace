@@ -55,7 +55,7 @@
     var(--color-primary-400),
     var(--color-primary-600)
   );
-  color: white;
+  color: var(--time__txt--1);
   box-shadow: 0 2px 8px rgba(var(--color-primary), 0.4);
   transform: translateY(-1px);
 }
@@ -103,7 +103,7 @@
 .icon-container {
   padding: 0.75rem;
   border-radius: 9999px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 12px var(--icon__box__shadow--2);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -115,41 +115,41 @@
 }
 
 .mood-icon-bg {
-  background: linear-gradient(135deg, #dbeafe, #93c5fd);
+  background: linear-gradient(135deg, var(--mood__bg--3), var(--mood__bg--4));
 }
 
 .mood-icon {
-  color: #2563eb;
+  color: var(--mood__txt--5);
   height: 1.5rem;
   width: 1.5rem;
 }
 
 .activity-icon-bg {
-  background: linear-gradient(135deg, #dcfce7, #86efac);
+  background: linear-gradient(135deg, var(--activity__bg--6), var(--activity__bg--7));
 }
 
 .activity-icon {
-  color: #16a34a;
+  color: var(--activity__txt--8);
   height: 1.5rem;
   width: 1.5rem;
 }
 
 .brain-icon-bg {
-  background: linear-gradient(135deg, #e9d5ff, #c4b5fd);
+  background: linear-gradient(135deg, var(--brain__bg--9), var(--brain__bg--10));
 }
 
 .brain-icon {
-  color: #9333ea;
+  color: var(--brain__txt--11);
   height: 1.5rem;
   width: 1.5rem;
 }
 
 .trend-icon-bg {
-  background: linear-gradient(135deg, #fed7aa, #fdba74);
+  background: linear-gradient(135deg, var(--trend__bg--12), var(--trend__bg--13));
 }
 
 .trend-icon {
-  color: #ea580c;
+  color: var(--trend__txt--14);
   height: 1.5rem;
   width: 1.5rem;
 }
@@ -169,7 +169,7 @@
   background: linear-gradient(
     135deg,
     var(--color-foreground-900),
-    var(--color-foreground-700, #333)
+    var(--color-foreground-700, var(--stat__bg--15))
   );
   background-clip: text;
   -webkit-background-clip: text;
@@ -192,19 +192,19 @@
   border-radius: var(--radius-lg);
   overflow: hidden;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 12px var(--starSelector__box__shadow--16);
   background: linear-gradient(
     to bottom right,
-    rgba(255, 255, 255, 0.05),
-    rgba(255, 255, 255, 0.02)
+    var(--starSelector__bg--17),
+    var(--starSelector__bg--18)
   );
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--starSelector__border--19);
 }
 
 .charts-grid > *:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 24px var(--icon__box__shadow--2);
 }
 
 .full-width-chart {
@@ -336,7 +336,7 @@
 
 .recharts-default-tooltip {
   border-radius: var(--radius-md) !important;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1) !important;
+  box-shadow: 0 4px 16px var(--recharts__box__shadow--20) !important;
   border: none !important;
   padding: 0.75rem !important;
 }

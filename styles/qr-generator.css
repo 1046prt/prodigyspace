@@ -1,3 +1,16 @@
+
+:root {
+	--qr__txt--1: #9ca3af;
+	--radio__accent--2: #6d28d9;
+	--btn__bg--3: #7c3aed;
+	--btn__bg--4: #06b6d4;
+	--btn__txt--5: white;
+	--qr__txt--6: #ef4444;
+	--qr__bg--7: rgba(255,255,255,0.02);
+	--qr__bg--8: rgba(0,0,0,0.02);
+	--qr__border--9: rgba(255,255,255,0.04);
+	--qr__box__shadow--10: rgba(2,6,23,0.4);
+}
 /* QR Generator styles */
 /* QR Generator styles - improved UI */
 .qr-generator-card {
@@ -19,7 +32,7 @@
 
 .qr-subtitle {
   margin: 0;
-  color: var(--color-foreground-secondary, #9ca3af);
+  color: var(--color-foreground-secondary, var(--qr__txt--1));
   font-size: 0.9rem;
 }
 
@@ -58,7 +71,7 @@
 }
 
 .qr-mode-option input[type="radio"] {
-  accent-color: var(--primary, #6d28d9);
+  accent-color: var(--primary, var(--radio__accent--2));
 }
 
 .qr-input {
@@ -80,7 +93,7 @@
 
 .upload-hint {
   font-size: 0.85rem;
-  color: var(--color-foreground-secondary, #9ca3af);
+  color: var(--color-foreground-secondary, var(--qr__txt--1));
   margin-top: 6px;
 }
 
@@ -115,8 +128,8 @@
 }
 
 .btn-primary {
-  background: linear-gradient(90deg, #7c3aed, #06b6d4);
-  color: white;
+  background: linear-gradient(90deg, var(--btn__bg--3), var(--btn__bg--4));
+  color: var(--btn__txt--5);
   border: none;
 }
 
@@ -125,7 +138,7 @@
 }
 
 .qr-error {
-  color: var(--color-destructive, #ef4444);
+  color: var(--color-destructive, var(--qr__txt--6));
   font-size: 0.9rem;
 }
 
@@ -143,11 +156,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02));
+  background: linear-gradient(180deg, var(--qr__bg--7), var(--qr__bg--8));
   border-radius: 14px;
   padding: 18px;
-  border: 1px solid rgba(255,255,255,0.04);
-  box-shadow: 0 8px 28px rgba(2,6,23,0.4), inset 0 1px 0 rgba(255,255,255,0.02);
+  border: 1px solid var(--qr__border--9);
+  box-shadow: 0 8px 28px var(--qr__box__shadow--10), inset 0 1px 0 var(--qr__bg--7);
 }
 
 .qr-preview img,
