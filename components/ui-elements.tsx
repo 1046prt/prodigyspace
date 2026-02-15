@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { LucideIcon } from "lucide-react";
+import "@/styles/ui-elements.css";
 
 /**
  * Standardized card with icon and title
@@ -31,15 +32,13 @@ export function IconCard({
   };
 
   return (
-    <Card className={`${variantClasses[variant]} ${className}`}>
+      <Card className={`${variantClasses[variant]} ${className}`}>
       <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <Icon className="h-5 w-5" />
+        <CardTitle className="icon-card-title">
+          <Icon className="icon-md" />
           {title}
         </CardTitle>
-        {description && (
-          <p className="text-sm text-muted-foreground">{description}</p>
-        )}
+        {description && <p className="icon-card-desc">{description}</p>}
       </CardHeader>
       {children && <CardContent>{children}</CardContent>}
     </Card>
@@ -108,8 +107,8 @@ export function IconButton({
   ...props
 }: IconButtonProps) {
   return (
-    <Button className={`flex items-center gap-2 ${className}`} {...props}>
-      <Icon className="h-4 w-4" />
+    <Button className={`icon-button ${className}`} {...props}>
+      <Icon className="icon-sm" />
       {children}
     </Button>
   );
@@ -143,9 +142,9 @@ export function ProgressIndicator({
   };
 
   return (
-    <div className={`space-y-2 ${className}`}>
+    <div className={`progress-indicator ${className}`}>
       {label && (
-        <div className="flex justify-between items-center">
+        <div className="progress-header">
           <span className="text-sm font-medium">{label}</span>
           {showPercentage && (
             <span className="text-sm text-muted-foreground">
@@ -194,7 +193,7 @@ export function StatCard({
   };
 
   return (
-    <Card className={`p-4 ${className}`}>
+    <Card className={`stat-card ${className}`}>
       <div className="flex items-center justify-between">
         <div>
           <p className="text-sm font-medium text-muted-foreground">{title}</p>
@@ -205,7 +204,7 @@ export function StatCard({
         </div>
         {Icon && (
           <div className="icon-badge">
-            <Icon className="h-5 w-5" />
+            <Icon className="icon-md" />
           </div>
         )}
       </div>
@@ -232,20 +231,20 @@ export function QuickAction({
   className = "",
 }: QuickActionProps) {
   const variantClasses = {
-    default: "bg-muted hover:bg-muted/80",
-    primary: "bg-primary text-primary-foreground hover:bg-primary/90",
-    success: "bg-green-500 text-white hover:bg-green-600",
-    warning: "bg-yellow-500 text-white hover:bg-yellow-600",
-    danger: "bg-red-500 text-white hover:bg-red-600",
+    default: "variant-default",
+    primary: "variant-primary",
+    success: "variant-success",
+    warning: "variant-warning",
+    danger: "variant-danger",
   };
 
   return (
     <Button
       variant="ghost"
-      className={`h-auto p-4 flex-col gap-2 ${variantClasses[variant]} ${className}`}
+      className={`quick-action ${variantClasses[variant]} ${className}`}
       onClick={onClick}
     >
-      <Icon className="h-6 w-6" />
+      <Icon className="icon-lg" />
       <span className="text-xs font-medium">{label}</span>
     </Button>
   );
@@ -273,9 +272,9 @@ export function EmptyState({
   className = "",
 }: EmptyStateProps) {
   return (
-    <div className={`text-center py-12 ${className}`}>
+    <div className={`empty-state ${className}`}>
       <div className="icon-badge mx-auto mb-4">
-        <Icon className="h-8 w-8" />
+        <Icon className="icon-lg" />
       </div>
       <h3 className="text-lg font-semibold mb-2">{title}</h3>
       <p className="text-muted-foreground mb-4 max-w-md mx-auto">
@@ -304,7 +303,7 @@ export function PageHeader({
 }: PageHeaderProps) {
   return (
     <div className={`page-header ${className}`}>
-      <div className="flex items-center justify-between">
+      <div className="page-header-row">
         <div>
           <h1 className="page-title">{title}</h1>
           {subtitle && <p className="page-subtitle">{subtitle}</p>}

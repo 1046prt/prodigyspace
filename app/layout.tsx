@@ -9,6 +9,7 @@ import { Footer } from "@/components/footer";
 import "@/styles/globals.css";
 import "@/styles/utilities.css";
 import "@/styles/app.css";
+import "@/styles/layout.css";
 import { Suspense } from "react";
 
 export const metadata: Metadata = {
@@ -126,39 +127,17 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
       </head>
-      <body
-        className={`${GeistSans.variable} ${GeistMono.variable}`}
-        style={{
-          fontFamily: "var(--font-sans)",
-          margin: 0,
-          padding: 0,
-          minHeight: "100vh",
-          display: "flex",
-          flexDirection: "column",
-        }}
-      >
+      <body className={`${GeistSans.variable} ${GeistMono.variable} app-root`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              minHeight: "100vh",
-              backgroundColor: "var(--color-background)",
-            }}
-          >
+          <div className="app-container">
             <Navigation />
-            <main
-              style={{
-                flexGrow: 1,
-                width: "100%",
-              }}
-            >
-              <div style={{ width: "100%" }}>
+            <main className="app-main">
+              <div className="app-content">
                 <Suspense fallback={null}>{children}</Suspense>
               </div>
             </main>

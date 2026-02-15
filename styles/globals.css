@@ -33,6 +33,9 @@
   --color-primary-rgb: 59, 130, 246; /* #3b82f6 */
   --color-secondary-rgb: 168, 85, 247; /* #a855f7 */
 
+  /* Explicit dark-mode foreground fallback */
+  --color-foreground-dark: #000000;
+
   /* RGB Values for UI Colors */
   --color-muted-rgb: 241, 245, 249; /* light mode muted */
   --color-accent-rgb: 34, 197, 94; /* #22c55e */
@@ -208,6 +211,81 @@
 
   --color-ring: light-dark(var(--color-primary-500), var(--color-primary-500));
   --color-ring-offset: light-dark(#ffffff, var(--color-gray-950));
+
+  /* Feature / UI specific color aliases */
+  --feature-color-blue: var(--color-primary-600);
+  --feature-color-green: var(--color-accent-600);
+  --feature-color-emerald: var(--color-accent-600);
+  --feature-color-orange: var(--color-warning-500);
+  --feature-color-purple: var(--color-secondary-700);
+  --feature-color-pink: #db2777; /* kept as specific */
+  --feature-color-yellow: var(--color-warning-500);
+  --feature-color-red: var(--color-error-500);
+  /* Additional semantic accents discovered during refactor */
+  --color-cyan-600: #0284c7;
+  --color-cyan-300: #38bdf8;
+  --color-orange-600: #ea580c;
+  --color-orange-300: #fb923c;
+  --feature-color-indigo: var(--color-primary-600);
+
+  --ui-foreground-muted: var(--color-foreground-muted);
+  /* Overlay and commonly used RGBA aliases */
+  --overlay-white-95: rgba(255, 255, 255, 0.95);
+  --overlay-white-60: rgba(255, 255, 255, 0.6);
+  --overlay-white-20: rgba(255, 255, 255, 0.2);
+  --overlay-white-15: rgba(255, 255, 255, 0.15);
+  --overlay-white-10: rgba(255, 255, 255, 0.1);
+  --overlay-gray-98: rgba(248, 250, 252, 0.98);
+  --overlay-dark-95: rgba(15, 23, 42, 0.95);
+  --overlay-dark-98: rgba(30, 41, 59, 0.98);
+  --shadow-black-15: rgba(0, 0, 0, 0.15);
+  --shadow-black-10: rgba(0, 0, 0, 0.1);
+  --shadow-black-04: rgba(0, 0, 0, 0.04);
+
+  /* Brand / accent rgb aliases */
+  --brand-purple-rgb: 124, 58, 237; /* rgb(124,58,237) */
+  --brand-purple: rgb(var(--brand-purple-rgb));
+  --brand-purple-dark: rgb(109, 40, 217);
+  /* Missing RGB aliases used by CSS files */
+  --color-error-rgb: 239, 68, 68; /* #ef4444 */
+  --shadow-black-rgb: 0, 0, 0;
+
+  /* Wellbeing gradients (used in wellbeing.css) */
+  --wellbeing-gradient-red-start: #ff6b6b;
+  --wellbeing-gradient-red-end: #ff8e8e;
+  --wellbeing-gradient-blue-start: #4e6ef2;
+  --wellbeing-gradient-blue-end: #88a4ff;
+  --wellbeing-gradient-purple-start: #9c27b0;
+  --wellbeing-gradient-purple-end: #ba68c8;
+  --wellbeing-gradient-green-start: #2ecc71;
+  --wellbeing-gradient-green-end: #78e08f;
+
+  /* Fine-grain overlay */
+  --overlay-white-05: rgba(255, 255, 255, 0.05);
+  /* Water tracker color tokens */
+  --water-blue-rgb-120: 0, 120, 255; /* used in some rgba() occurrences */
+  --water-blue-rgb: 0, 136, 255; /* #0088ff */
+  --water-blue-rgb-100: 0, 100, 200; /* used in some darker accents */
+  --water-blue: rgb(var(--water-blue-rgb));
+  --water-blue-variant: #00b3ff;
+  --water-blue-600: #0066cc;
+  --water-blue-light-start: #e0f7ff;
+  --water-blue-light-end: #d5efff;
+  --water-green: #00b300;
+  --water-green-rgb: 0, 179, 0;
+  --brand-purple-shadow-20: rgba(var(--brand-purple-rgb), 0.2);
+  /* Category specific colors (used in some components) */
+  --category-study-rgb: 139, 92, 246;
+  --category-research-rgb: 34, 197, 94;
+  --category-tools-rgb: 14, 165, 233;
+  --category-study: rgb(var(--category-study-rgb));
+  --category-research: rgb(var(--category-research-rgb));
+  --category-tools: rgb(var(--category-tools-rgb));
+  /* Additional overlay and semantic RGB aliases */
+  --color-error-rgb: 239, 68, 68; /* #ef4444 */
+  --overlay-white-80: rgba(255, 255, 255, 0.8);
+  --overlay-dark-40: rgba(17, 24, 39, 0.4);
+  --color-muted-100-rgb: 237, 242, 247;
 
   /* ===========================================
      SPACING SYSTEM

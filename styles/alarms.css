@@ -75,13 +75,13 @@
 }
 
 .mainpage-notification-card {
-  border-color: #fef08a;
-  background-color: #fefce8;
+  border-color: var(--color-warning-500);
+  background-color: var(--color-warning-50);
 }
 
 .mainpage-notification-card-dark {
-  border-color: #854d0e;
-  background-color: #0c0a09;
+  border-color: var(--color-warning-700);
+  background-color: var(--color-gray-950);
 }
 
 .mainpage-card-header {

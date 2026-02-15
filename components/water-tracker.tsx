@@ -47,9 +47,9 @@ export function WaterTracker() {
 
   return (
     <Card className="water-tracker-card">
-      <CardHeader className="water-tracker-header flex flex-row items-center justify-between">
-        <CardTitle className="water-tracker-title flex items-center gap-2">
-          <Droplets className="water-tracker-icon h-5 w-5" />
+      <CardHeader className="water-tracker-header">
+        <CardTitle className="water-tracker-title">
+          <Droplets className="water-tracker-icon icon-md" />
           Water Tracker
         </CardTitle>
         <Button
@@ -58,10 +58,10 @@ export function WaterTracker() {
           onClick={() => setShowSettings(!showSettings)}
           aria-label="Settings"
         >
-          <Settings className="h-4 w-4" />
+          <Settings className="icon-sm" />
         </Button>
       </CardHeader>
-      <CardContent className="space-y-6 p-6 pt-4 pb-8">
+      <CardContent className="water-tracker-content">
         {showSettings && (
           <div className="settings-container">
             <Label htmlFor="goal" className="settings-label">
@@ -113,12 +113,12 @@ export function WaterTracker() {
           <Label className="section-label">Quick Add</Label>
           <div className="quick-add-container">
             {quickAmounts.map((amount) => (
-              <button
+                <button
                 key={amount}
                 onClick={() => addWaterIntake(amount)}
-                className="quick-add-button"
+                  className="quick-add-button"
               >
-                <Plus className="h-4 w-4" />
+                <Plus className="icon-sm" />
                 {amount}ml
               </button>
             ))}
@@ -166,7 +166,7 @@ export function WaterTracker() {
                       onClick={() => removeWaterIntake(intake.id)}
                       aria-label="Delete intake"
                     >
-                      <Minus className="h-3 w-3" />
+                      <Minus className="icon-xs" />
                     </button>
                   </div>
                 ))}

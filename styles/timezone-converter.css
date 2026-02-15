@@ -1,28 +1,54 @@
+:root {
+	--timezone__bg--1: #3b82f6;
+	--timezone__bg--2: #8b5cf6;
+	--timezone__border--3: rgba(255, 255, 255, 0.2);
+	--timezone__box__shadow--4: rgba(0, 0, 0, 0.1);
+	--timezone__box__shadow--5: rgba(0, 0, 0, 0.15);
+	--timezone__bg--6: rgba(255, 255, 255, 0.05);
+	--timezone__txt--7: #fff;
+	--timezone__txt--8: rgba(255, 255, 255, 0.9);
+	--timezone__bg--9: rgba(255, 255, 255, 0.02);
+	--timezone__bg--10: rgba(255, 255, 255, 0.08);
+	--timezone__border--11: rgba(255, 255, 255, 0.1);
+	--timezone__bg--12: rgba(255, 255, 255, 0.12);
+	--conversion__txt--13: rgba(255, 255, 255, 0.6);
+	--input__txt--14: rgba(255, 255, 255, 0.85);
+	--timezone__border--15: rgba(255, 255, 255, 0.4);
+	--timezone__bg--16: rgba(255, 255, 255, 0.15);
+	--result__bg--17: rgba(0, 0, 0, 0.2);
+	--info__txt--18: rgba(255, 255, 255, 1);
+	--help__border__left--19: rgba(255, 255, 255, 0.3);
+	--help__txt--20: rgba(255, 255, 255, 0.7);
+	--select__bg--21: rgba(30, 30, 40, 0.95);
+	--timezone__bg--22: rgba(59, 130, 246, 0.1);
+	--timezone__bg--23: rgba(139, 92, 246, 0.1);
+	--timezone__border--24: rgba(139, 92, 246, 0.2);
+}
 /* Timezone Converter Styles */
 
 .timezone-converter-card {
   background: linear-gradient(
     135deg,
-    var(--primary, #3b82f6) 0%,
-    var(--accent, #8b5cf6) 100%
+    var(--primary, var(--timezone__bg--1)) 0%,
+    var(--accent, var(--timezone__bg--2)) 100%
   );
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid var(--timezone__border--3);
   border-radius: 12px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 32px var(--timezone__box__shadow--4);
   transition: all 0.3s ease;
   width: 100%;
   box-sizing: border-box;
 }
 
 .timezone-converter-card:hover {
-  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 12px 48px var(--timezone__box__shadow--5);
   transform: translateY(-2px);
 }
 
 .timezone-converter-header {
   padding: 20px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  background: rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid var(--timezone__border--3);
+  background: var(--timezone__bg--6);
 }
 
 .timezone-converter-title {
@@ -31,17 +57,17 @@
   gap: 12px;
   font-size: 1.5rem;
   font-weight: 700;
-  color: #fff;
+  color: var(--timezone__txt--7);
   margin: 0;
 }
 
 .timezone-icon {
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--timezone__txt--8);
 }
 
 .timezone-converter-content {
   padding: 24px;
-  background: rgba(255, 255, 255, 0.02);
+  background: var(--timezone__bg--9);
 }
 
 .timezone-grid {
@@ -57,26 +83,26 @@
   flex-direction: column;
   gap: 16px;
   padding: 16px;
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--timezone__bg--10);
   border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--timezone__border--11);
   transition: all 0.3s ease;
 }
 
 .timezone-section:hover {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(255, 255, 255, 0.2);
+  background: var(--timezone__bg--12);
+  border-color: var(--timezone__border--3);
 }
 
 .section-header {
-  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 2px solid var(--timezone__border--3);
   padding-bottom: 12px;
 }
 
 .section-title {
   font-size: 1.1rem;
   font-weight: 600;
-  color: #fff;
+  color: var(--timezone__txt--7);
   margin: 0;
   display: flex;
   align-items: center;
@@ -92,7 +118,7 @@
 }
 
 .conversion-arrow {
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--conversion__txt--13);
   transition: all 0.3s ease;
   animation: pulse 2s ease-in-out infinite;
 }
@@ -118,7 +144,7 @@
 .input-label {
   font-size: 0.9rem;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.85);
+  color: var(--input__txt--14);
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
@@ -128,10 +154,10 @@
 .time-input,
 .result-input {
   padding: 10px 12px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid var(--timezone__border--3);
   border-radius: 6px;
-  background: rgba(255, 255, 255, 0.08);
-  color: #fff;
+  background: var(--timezone__bg--10);
+  color: var(--timezone__txt--7);
   font-size: 0.95rem;
   transition: all 0.3s ease;
   width: 100%;
@@ -142,23 +168,23 @@
 .date-input:hover,
 .time-input:hover,
 .result-input:hover {
-  border-color: rgba(255, 255, 255, 0.4);
-  background: rgba(255, 255, 255, 0.12);
+  border-color: var(--timezone__border--15);
+  background: var(--timezone__bg--12);
 }
 
 .timezone-select:focus,
 .date-input:focus,
 .time-input:focus {
   outline: none;
-  border-color: rgba(255, 255, 255, 0.6);
-  background: rgba(255, 255, 255, 0.15);
-  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+  border-color: var(--conversion__txt--13);
+  background: var(--timezone__bg--16);
+  box-shadow: 0 0 0 3px var(--timezone__border--11);
 }
 
 .result-input {
-  background: rgba(0, 0, 0, 0.2);
-  border-color: rgba(255, 255, 255, 0.15);
-  color: rgba(255, 255, 255, 0.9);
+  background: var(--result__bg--17);
+  border-color: var(--timezone__bg--16);
+  color: var(--timezone__txt--8);
   font-weight: 600;
   cursor: default;
 }
@@ -176,18 +202,18 @@
 
 .timezone-info {
   padding: 8px 12px;
-  background: rgba(0, 0, 0, 0.2);
-  border-left: 3px solid rgba(255, 255, 255, 0.4);
+  background: var(--result__bg--17);
+  border-left: 3px solid var(--timezone__border--15);
   border-radius: 4px;
   font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--timezone__txt--8);
   margin: 0;
   overflow-wrap: anywhere;
 }
 
 .info-label {
   font-weight: 600;
-  color: rgba(255, 255, 255, 1);
+  color: var(--info__txt--18);
 }
 
 .help-text {
@@ -195,11 +221,11 @@
   align-items: flex-start;
   gap: 12px;
   padding: 16px;
-  background: rgba(0, 0, 0, 0.2);
-  border-left: 4px solid rgba(255, 255, 255, 0.3);
+  background: var(--result__bg--17);
+  border-left: 4px solid var(--help__border__left--19);
   border-radius: 6px;
   font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.85);
+  color: var(--input__txt--14);
   line-height: 1.5;
 }
 
@@ -209,26 +235,26 @@
 
 .help-icon {
   flex-shrink: 0;
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--help__txt--20);
   margin-top: 2px;
 }
 
 .select-content {
-  background: rgba(30, 30, 40, 0.95);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--select__bg--21);
+  border: 1px solid var(--timezone__border--11);
   max-height: 320px;
   overflow: auto;
 }
 
 .select-item {
-  color: rgba(255, 255, 255, 0.85);
+  color: var(--input__txt--14);
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .select-item:hover {
-  background: rgba(255, 255, 255, 0.1) !important;
-  color: #fff !important;
+  background: var(--timezone__border--11) !important;
+  color: var(--timezone__txt--7) !important;
 }
 
 /* Responsive Design */
@@ -293,16 +319,16 @@
   .timezone-converter-card {
     background: linear-gradient(
       135deg,
-      rgba(59, 130, 246, 0.1) 0%,
-      rgba(139, 92, 246, 0.1) 100%
+      var(--timezone__bg--22) 0%,
+      var(--timezone__bg--23) 100%
     );
-    border-color: rgba(139, 92, 246, 0.2);
+    border-color: var(--timezone__border--24);
   }
 
   .timezone-select,
   .date-input,
   .time-input {
-    background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(255, 255, 255, 0.15);
+    background: var(--timezone__bg--6);
+    border-color: var(--timezone__bg--16);
   }
 }

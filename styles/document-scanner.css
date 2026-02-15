@@ -1,18 +1,16 @@
-/* Document Scanner Styles */
-
 .document-scanner-card {
   border-radius: 12px;
   box-shadow: light-dark(
-    0 8px 24px rgba(59, 130, 246, 0.12),
-    0 8px 24px rgba(0, 0, 0, 0.2)
+    0 8px 24px rgba(var(--color-primary-rgb), 0.12),
+    0 8px 24px var(--shadow-black-15)
   );
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   overflow: hidden;
   border: 1px solid
-    light-dark(rgba(59, 130, 246, 0.15), rgba(59, 130, 246, 0.25));
+    light-dark(rgba(var(--color-primary-rgb), 0.15), rgba(var(--color-primary-rgb), 0.25));
   height: auto; /* Changed from 100% to auto to fit content */
   background: light-dark(
-    linear-gradient(to bottom right, #ffffff, #f0f9ff),
+    linear-gradient(to bottom right, var(--color-card), var(--color-info-50)),
     linear-gradient(
       to bottom right,
       var(--color-background-card),
@@ -29,11 +27,11 @@
   align-items: center;
   justify-content: space-between;
   background: light-dark(
-    linear-gradient(135deg, #e6f2ff, #dbeafe),
-    linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(59, 130, 246, 0.2))
+    linear-gradient(135deg, var(--color-info-50), var(--color-primary-50)),
+    linear-gradient(135deg, rgba(var(--color-primary-rgb), 0.1), rgba(var(--color-primary-rgb), 0.2))
   );
   border-bottom: 1px solid
-    light-dark(rgba(59, 130, 246, 0.15), rgba(59, 130, 246, 0.2));
+    light-dark(rgba(var(--color-primary-rgb), 0.15), rgba(var(--color-primary-rgb), 0.2));
   padding: 18px 24px;
   margin: 2px;
   border-radius: 10px 10px 0 0;
@@ -44,11 +42,11 @@
   align-items: center;
   gap: 0.85rem;
   font-weight: 700;
-  color: light-dark(#1e40af, var(--color-primary-lightest));
+  color: light-dark(var(--color-primary-800), var(--color-primary-lightest));
   font-size: 18px;
   letter-spacing: -0.01em;
   text-shadow: light-dark(
-    0 1px 0 rgba(255, 255, 255, 0.8),
+    0 1px 0 var(--overlay-white-80),
     0 1px 0 rgba(0, 0, 0, 0.4)
   );
   position: relative;
@@ -56,18 +54,18 @@
 }
 
 .scanner-icon {
-  color: light-dark(#3b82f6, var(--color-primary-light)) !important;
+  color: light-dark(var(--color-primary-500), var(--color-primary-light)) !important;
   filter: drop-shadow(
     light-dark(
-      0 2px 4px rgba(59, 130, 246, 0.3),
-      0 2px 4px rgba(59, 130, 246, 0.5)
+      0 2px 4px rgba(var(--color-primary-rgb), 0.3),
+      0 2px 4px rgba(var(--color-primary-rgb), 0.5)
     )
   );
 }
 
 .document-scanner-content {
   padding: 24px;
-  background-color: light-dark(rgba(255, 255, 255, 0.6), rgba(17, 24, 39, 0.4));
+  background-color: light-dark(var(--overlay-white-60), var(--overlay-dark-40));
   border-radius: 0 0 10px 10px;
 }
 
@@ -92,35 +90,35 @@
 
 .form-label {
   font-weight: 500;
-  color: light-dark(#1e40af, var(--color-primary-lightest));
+  color: light-dark(var(--color-primary-800), var(--color-primary-lightest));
   font-size: 14px;
   margin-left: 2px;
 }
 
 .document-name-input {
-  background-color: light-dark(#ffffff, var(--color-background));
-  border-color: light-dark(rgba(59, 130, 246, 0.2), var(--color-border));
+  background-color: light-dark(var(--color-card), var(--color-background));
+  border-color: light-dark(rgba(var(--color-primary-rgb), 0.2), var(--color-border));
   border-radius: 8px;
   padding: 10px 14px;
   transition: all 0.2s ease;
   width: 100%; /* Ensure it takes full width of its container */
-  color: light-dark(#000000, var(--color-text));
+  color: light-dark(var(--color-foreground-dark), var(--color-text));
 }
 
 .document-name-input:focus {
-  border-color: light-dark(rgba(59, 130, 246, 0.5), var(--color-primary));
+  border-color: light-dark(rgba(var(--color-primary-rgb), 0.5), var(--color-primary));
   box-shadow: 0 0 0 2px
-    light-dark(rgba(59, 130, 246, 0.1), rgba(59, 130, 246, 0.2));
+    light-dark(rgba(var(--color-primary-rgb), 0.1), rgba(var(--color-primary-rgb), 0.2));
 }
 
 .category-select {
-  border-color: light-dark(rgba(59, 130, 246, 0.2), var(--color-border));
+  border-color: light-dark(rgba(var(--color-primary-rgb), 0.2), var(--color-border));
   border-radius: 8px;
   height: 42px;
   width: 100% !important;
   max-width: 100%; /* Added to constrain width */
   background: light-dark(
-    linear-gradient(to bottom, #ffffff, rgba(237, 242, 247, 0.6)),
+    linear-gradient(to bottom, var(--color-card), rgba(var(--color-muted-100-rgb), 0.6)),
     linear-gradient(
       to bottom,
       var(--color-background),
@@ -134,10 +132,10 @@
   padding: 0 12px;
   position: relative; /* Ensure positioning context for the dropdown */
   box-shadow: light-dark(
-    0 2px 5px rgba(59, 130, 246, 0.05),
+    0 2px 5px rgba(var(--color-primary-rgb), 0.05),
     0 2px 5px rgba(0, 0, 0, 0.2)
   );
-  color: light-dark(#000000, var(--color-text));
+  color: light-dark(var(--color-foreground-dark), var(--color-text));
 }
 
 /* Add this to ensure the content uses the same width as the trigger */
@@ -153,9 +151,9 @@
 }
 
 .category-select:hover {
-  border-color: light-dark(rgba(59, 130, 246, 0.35), var(--color-primary));
+  border-color: light-dark(rgba(var(--color-primary-rgb), 0.35), var(--color-primary));
   background: light-dark(
-    linear-gradient(to bottom, #ffffff, rgba(237, 242, 247, 0.8)),
+    linear-gradient(to bottom, var(--color-card), rgba(var(--color-muted-100-rgb), 0.8)),
     linear-gradient(
       to bottom,
       var(--color-background-darker),
@@ -163,16 +161,16 @@
     )
   );
   box-shadow: light-dark(
-    0 3px 8px rgba(59, 130, 246, 0.08),
-    0 3px 8px rgba(0, 0, 0, 0.2)
+    0 3px 8px rgba(var(--color-primary-rgb), 0.08),
+    0 3px 8px var(--shadow-black-15)
   );
 }
 
 .category-select:focus {
-  border-color: light-dark(rgba(59, 130, 246, 0.5), var(--color-primary));
+  border-color: light-dark(rgba(var(--color-primary-rgb), 0.5), var(--color-primary));
   box-shadow: 0 0 0 2px
-    light-dark(rgba(59, 130, 246, 0.15), rgba(59, 130, 246, 0.3));
-  background: light-dark(#ffffff, var(--color-background-darker));
+    light-dark(rgba(var(--color-primary-rgb), 0.15), rgba(var(--color-primary-rgb), 0.3));
+  background: light-dark(var(--color-card), var(--color-background-darker));
 }
 
 /* Ensure the select value is right aligned */
@@ -215,23 +213,23 @@
 
 .category-dropdown-item:hover {
   background-color: light-dark(
-    rgba(59, 130, 246, 0.08),
-    rgba(59, 130, 246, 0.2)
+    rgba(var(--color-primary-rgb), 0.08),
+    rgba(var(--color-primary-rgb), 0.2)
   );
   transform: translateY(-1px); /* Slight lift effect */
   box-shadow: light-dark(
-    0 2px 4px rgba(59, 130, 246, 0.05),
+    0 2px 4px rgba(var(--color-primary-rgb), 0.05),
     0 2px 4px rgba(0, 0, 0, 0.2)
   );
 }
 
 .category-dropdown-item[data-highlighted] {
   background-color: light-dark(
-    rgba(59, 130, 246, 0.12),
-    rgba(59, 130, 246, 0.25)
+    rgba(var(--color-primary-rgb), 0.12),
+    rgba(var(--color-primary-rgb), 0.25)
   );
   box-shadow: light-dark(
-    0 2px 5px rgba(59, 130, 246, 0.1),
+    0 2px 5px rgba(var(--color-primary-rgb), 0.1),
     0 2px 5px rgba(0, 0, 0, 0.3)
   );
 }
@@ -256,7 +254,7 @@
   overflow-y: auto;
   padding: 10px;
   background: light-dark(
-    linear-gradient(to bottom, #ffffff, #f8fafc),
+    linear-gradient(to bottom, var(--color-card), var(--color-gray-50)),
     linear-gradient(
       to bottom,
       var(--color-background),
@@ -265,12 +263,12 @@
   );
   border-radius: 10px;
   box-shadow: light-dark(
-    0 10px 25px -5px rgba(0, 0, 0, 0.1),
-    0 4px 10px rgba(59, 130, 246, 0.08),
+    0 10px 25px -5px var(--shadow-black-10),
+    0 4px 10px rgba(var(--color-primary-rgb), 0.08),
     0 10px 25px -5px rgba(0, 0, 0, 0.3),
-    0 4px 10px rgba(0, 0, 0, 0.2)
+    0 4px 10px var(--shadow-black-15)
   );
-  border: 1px solid light-dark(rgba(59, 130, 246, 0.2), var(--color-border));
+  border: 1px solid light-dark(rgba(var(--color-primary-rgb), 0.2), var(--color-border));
   width: var(
     --radix-select-trigger-width
   ); /* Match the exact width of the trigger */
@@ -280,8 +278,8 @@
   /* Custom scrollbar for the dropdown */
   scrollbar-width: thin;
   scrollbar-color: light-dark(
-    rgba(59, 130, 246, 0.3) rgba(237, 242, 247, 0.5),
-    var(--color-primary) rgba(17, 24, 39, 0.5)
+    rgba(var(--color-primary-rgb), 0.3) rgba(var(--color-muted-100-rgb), 0.5),
+    var(--color-primary) rgba(var(--overlay-dark-40), 0.5)
   );
 }
 
@@ -291,23 +289,23 @@
 }
 
 .category-dropdown-content::-webkit-scrollbar-track {
-  background: rgba(237, 242, 247, 0.5);
+  background: rgba(var(--color-muted-100-rgb), 0.5);
   border-radius: 10px;
 }
 
 .category-dropdown-content::-webkit-scrollbar-thumb {
-  background: rgba(59, 130, 246, 0.3);
+  background: rgba(var(--color-primary-rgb), 0.3);
   border-radius: 10px;
 }
 
 .category-dropdown-content::-webkit-scrollbar-thumb:hover {
-  background: rgba(59, 130, 246, 0.5);
+  background: rgba(var(--color-primary-rgb), 0.5);
 }
 
 .category-dropdown-label {
   font-size: 0.8rem;
   font-weight: 600;
-  color: light-dark(#3b82f6, var(--color-primary-light));
+  color: light-dark(var(--color-primary-500), var(--color-primary-light));
   text-transform: uppercase;
   letter-spacing: 0.5px;
   margin-bottom: 8px;
@@ -319,7 +317,7 @@
 .category-dropdown-label::after {
   content: "";
   height: 1px;
-  background: linear-gradient(to right, rgba(59, 130, 246, 0.3), transparent);
+  background: linear-gradient(to right, rgba(var(--color-primary-rgb), 0.3), transparent);
   flex-grow: 1;
   margin-left: 8px;
 }
@@ -344,13 +342,13 @@
     linear-gradient(
       to right,
       transparent,
-      rgba(59, 130, 246, 0.15),
+      rgba(var(--color-primary-rgb), 0.15),
       transparent
     ),
     linear-gradient(
       to right,
       transparent,
-      rgba(59, 130, 246, 0.25),
+      rgba(var(--color-primary-rgb), 0.25),
       transparent
     )
   );
@@ -361,14 +359,14 @@
   background: light-dark(
     linear-gradient(
       to bottom,
-      rgba(59, 130, 246, 0.04),
-      rgba(59, 130, 246, 0.12)
+      rgba(var(--color-primary-rgb), 0.04),
+      rgba(var(--color-primary-rgb), 0.12)
     ),
-    linear-gradient(to bottom, rgba(59, 130, 246, 0.1), rgba(59, 130, 246, 0.2))
+    linear-gradient(to bottom, rgba(var(--color-primary-rgb), 0.1), rgba(var(--color-primary-rgb), 0.2))
   );
-  color: light-dark(#2563eb, var(--color-primary-lightest));
+  color: light-dark(var(--color-primary-600), var(--color-primary-lightest));
   border: 1px solid
-    light-dark(rgba(59, 130, 246, 0.25), rgba(59, 130, 246, 0.4));
+    light-dark(rgba(var(--color-primary-rgb), 0.25), rgba(var(--color-primary-rgb), 0.4));
   border-radius: 12px;
   padding: 14px 20px;
   font-size: 0.95rem;
@@ -380,11 +378,11 @@
   justify-content: center;
   gap: 10px;
   box-shadow: light-dark(
-    0 2px 8px rgba(59, 130, 246, 0.08),
-    0 0 0 1px rgba(59, 130, 246, 0.03),
+    0 2px 8px rgba(var(--color-primary-rgb), 0.08),
+    0 0 0 1px rgba(var(--color-primary-rgb), 0.03),
     inset 0 1px 0 rgba(255, 255, 255, 0.6),
     0 2px 8px rgba(0, 0, 0, 0.2),
-    0 0 0 1px rgba(59, 130, 246, 0.1),
+    0 0 0 1px rgba(var(--color-primary-rgb), 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.1)
   );
   position: relative;
@@ -413,26 +411,26 @@
   background: light-dark(
     linear-gradient(
       to bottom,
-      rgba(59, 130, 246, 0.08),
-      rgba(59, 130, 246, 0.2)
+      rgba(var(--color-primary-rgb), 0.08),
+      rgba(var(--color-primary-rgb), 0.2)
     ),
     linear-gradient(
       to bottom,
-      rgba(59, 130, 246, 0.15),
-      rgba(59, 130, 246, 0.3)
+      rgba(var(--color-primary-rgb), 0.15),
+      rgba(var(--color-primary-rgb), 0.3)
     )
   );
-  border-color: light-dark(rgba(59, 130, 246, 0.45), rgba(59, 130, 246, 0.6));
+  border-color: light-dark(rgba(var(--color-primary-rgb), 0.45), rgba(var(--color-primary-rgb), 0.6));
   transform: translateY(-3px);
   box-shadow: light-dark(
-    0 8px 16px rgba(59, 130, 246, 0.15),
-    0 2px 5px rgba(59, 130, 246, 0.1),
+    0 8px 16px rgba(var(--color-primary-rgb), 0.15),
+    0 2px 5px rgba(var(--color-primary-rgb), 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.8),
     0 8px 16px rgba(0, 0, 0, 0.3),
     0 2px 5px rgba(0, 0, 0, 0.2),
     inset 0 1px 0 rgba(255, 255, 255, 0.2)
   );
-  color: light-dark(#1d4ed8, var(--color-primary-lightest));
+  color: light-dark(var(--color-primary-700), var(--color-primary-lightest));
 }
 
 .upload-button:hover::before {
@@ -442,19 +440,19 @@
 .upload-button:active {
   transform: translateY(-1px);
   box-shadow: light-dark(
-    0 2px 4px rgba(59, 130, 246, 0.1),
+    0 2px 4px rgba(var(--color-primary-rgb), 0.1),
     0 2px 4px rgba(0, 0, 0, 0.1)
   );
   background: light-dark(
     linear-gradient(
       to bottom,
-      rgba(59, 130, 246, 0.12),
-      rgba(59, 130, 246, 0.15)
+      rgba(var(--color-primary-rgb), 0.12),
+      rgba(var(--color-primary-rgb), 0.15)
     ),
     linear-gradient(
       to bottom,
-      rgba(59, 130, 246, 0.2),
-      rgba(59, 130, 246, 0.25)
+      rgba(var(--color-primary-rgb), 0.2),
+      rgba(var(--color-primary-rgb), 0.25)
     )
   );
   transition-duration: 0.1s;
@@ -467,7 +465,7 @@ input[type="file"] {
 .upload-button:focus {
   outline: none;
   box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.8),
-    0 0 0 4px rgba(59, 130, 246, 0.3);
+    0 0 0 4px rgba(var(--color-primary-rgb), 0.3);
 }
 
 .upload-button svg {
@@ -475,8 +473,8 @@ input[type="file"] {
   height: 20px;
   filter: drop-shadow(
     light-dark(
-      0 1px 2px rgba(59, 130, 246, 0.3),
-      0 1px 2px rgba(59, 130, 246, 0.5)
+      0 1px 2px rgba(var(--color-primary-rgb), 0.3),
+      0 1px 2px rgba(var(--color-primary-rgb), 0.5)
     )
   );
   transition: transform 0.3s ease;
@@ -486,8 +484,8 @@ input[type="file"] {
   transform: translateY(-2px);
   filter: drop-shadow(
     light-dark(
-      0 2px 3px rgba(59, 130, 246, 0.4),
-      0 2px 3px rgba(59, 130, 246, 0.6)
+      0 2px 3px rgba(var(--color-primary-rgb), 0.4),
+      0 2px 3px rgba(var(--color-primary-rgb), 0.6)
     )
   );
 }
@@ -499,7 +497,7 @@ input[type="file"] {
 
 .scanned-pages-label {
   font-weight: 500;
-  color: #1e40af;
+  color: var(--color-primary-800);
   font-size: 14px;
   margin-bottom: 12px;
   display: block;
@@ -515,7 +513,7 @@ input[type="file"] {
   padding: 8px;
   background-color: light-dark(rgba(241, 245, 249, 0.5), rgba(17, 24, 39, 0.3));
   border-radius: 8px;
-  border: 1px solid light-dark(rgba(59, 130, 246, 0.1), var(--color-border));
+  border: 1px solid light-dark(rgba(var(--color-primary-rgb), 0.1), var(--color-border));
 }
 
 @media (min-width: 768px) {
@@ -541,7 +539,7 @@ input[type="file"] {
   height: 96px;
   object-fit: cover;
   border-radius: 6px;
-  border: 1px solid light-dark(rgba(59, 130, 246, 0.2), rgba(59, 130, 246, 0.3));
+  border: 1px solid light-dark(rgba(var(--color-primary-rgb), 0.2), rgba(var(--color-primary-rgb), 0.3));
 }
 
 .delete-button {
@@ -567,7 +565,7 @@ input[type="file"] {
 
 .save-button {
   width: 100%;
-  background-color: light-dark(#3b82f6, var(--color-primary));
+  background-color: light-dark(var(--color-primary-500), var(--color-primary));
   color: white;
   border: none;
   border-radius: 8px;
@@ -581,10 +579,10 @@ input[type="file"] {
 }
 
 .save-button:hover:not(:disabled) {
-  background-color: light-dark(#2563eb, var(--color-primary-darker));
+  background-color: light-dark(var(--color-primary-600), var(--color-primary-darker));
   transform: translateY(-2px);
   box-shadow: light-dark(
-    0 4px 12px rgba(59, 130, 246, 0.3),
+    0 4px 12px rgba(var(--color-primary-rgb), 0.3),
     0 4px 12px rgba(0, 0, 0, 0.3)
   );
 }
@@ -603,15 +601,15 @@ input[type="file"] {
 .documents-card {
   border-radius: 12px;
   box-shadow: light-dark(
-    0 6px 18px rgba(59, 130, 246, 0.08),
+    0 6px 18px rgba(var(--color-primary-rgb), 0.08),
     0 6px 18px rgba(0, 0, 0, 0.2)
   );
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   overflow: hidden;
-  border: 1px solid light-dark(rgba(59, 130, 246, 0.15), var(--color-border));
+  border: 1px solid light-dark(rgba(var(--color-primary-rgb), 0.15), var(--color-border));
   height: auto; /* Changed from 100% to auto to fit content */
   background: light-dark(
-    linear-gradient(to bottom, #ffffff, #f8fafc),
+    linear-gradient(to bottom, var(--color-card), var(--color-gray-50)),
     linear-gradient(
       to bottom,
       var(--color-background-card),
@@ -627,11 +625,11 @@ input[type="file"] {
   align-items: center;
   justify-content: space-between;
   background: light-dark(
-    linear-gradient(135deg, #f0f7ff, #e6f2ff),
-    linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(59, 130, 246, 0.2))
+    linear-gradient(135deg, var(--color-info-50), var(--color-info-100)),
+    linear-gradient(135deg, rgba(var(--color-primary-rgb), 0.1), rgba(var(--color-primary-rgb), 0.2))
   );
   border-bottom: 1px solid
-    light-dark(rgba(59, 130, 246, 0.15), var(--color-border));
+    light-dark(rgba(var(--color-primary-rgb), 0.15), var(--color-border));
   padding: 16px 20px;
   margin: 2px;
   border-radius: 10px 10px 0 0;
@@ -639,7 +637,7 @@ input[type="file"] {
 
 .documents-title {
   font-weight: 600;
-  color: light-dark(#1e40af, var(--color-primary-lightest));
+  color: light-dark(var(--color-primary-800), var(--color-primary-lightest));
   font-size: 16px;
 }
 
@@ -650,7 +648,7 @@ input[type="file"] {
 
 .documents-empty {
   text-align: center;
-  color: light-dark(#64748b, var(--color-text-muted));
+  color: light-dark(var(--color-gray-500), var(--color-text-muted));
   padding: 40px 20px;
   font-size: 15px;
   background: light-dark(rgba(248, 250, 252, 0.7), rgba(17, 24, 39, 0.3));
@@ -664,7 +662,7 @@ input[type="file"] {
 .no-categories {
   text-align: center;
   padding: 16px 10px;
-  color: light-dark(#64748b, var(--color-text-muted));
+  color: light-dark(var(--color-gray-500), var(--color-text-muted));
   font-style: italic;
   font-size: 0.95rem;
   background: light-dark(rgba(247, 250, 252, 0.7), rgba(17, 24, 39, 0.3));
@@ -683,7 +681,7 @@ input[type="file"] {
 
   /* Custom scrollbar for documents grid */
   scrollbar-width: thin;
-  scrollbar-color: rgba(59, 130, 246, 0.3) rgba(237, 242, 247, 0.5);
+  scrollbar-color: rgba(var(--color-primary-rgb), 0.3) rgba(237, 242, 247, 0.5);
 }
 
 /* WebKit scrollbar styles for documents grid */
@@ -697,12 +695,12 @@ input[type="file"] {
 }
 
 .documents-grid::-webkit-scrollbar-thumb {
-  background: rgba(59, 130, 246, 0.3);
+  background: rgba(var(--color-primary-rgb), 0.3);
   border-radius: 10px;
 }
 
 .documents-grid::-webkit-scrollbar-thumb:hover {
-  background: rgba(59, 130, 246, 0.5);
+  background: rgba(var(--color-primary-rgb), 0.5);
 }
 
 @media (min-width: 768px) {
@@ -719,9 +717,9 @@ input[type="file"] {
 
 .document-card {
   border-radius: 10px;
-  border: 1px solid light-dark(rgba(59, 130, 246, 0.15), var(--color-border));
+  border: 1px solid light-dark(rgba(var(--color-primary-rgb), 0.15), var(--color-border));
   background: light-dark(
-    linear-gradient(to bottom, #ffffff, #f9fafc),
+    linear-gradient(to bottom, var(--color-card), var(--color-gray-50)),
     linear-gradient(
       to bottom,
       var(--color-background-card),
@@ -730,7 +728,7 @@ input[type="file"] {
   );
   box-shadow: light-dark(
     0 4px 10px rgba(0, 0, 0, 0.03),
-    0 1px 3px rgba(59, 130, 246, 0.05),
+    0 1px 3px rgba(var(--color-primary-rgb), 0.05),
     inset 0 1px 0 rgba(255, 255, 255, 0.7),
     0 4px 10px rgba(0, 0, 0, 0.15),
     0 1px 3px rgba(0, 0, 0, 0.2),
@@ -748,16 +746,16 @@ input[type="file"] {
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(to right, #3b82f6, #60a5fa);
+  background: linear-gradient(to right, var(--color-primary-500), var(--color-primary-400));
   opacity: 0;
   transition: opacity 0.3s ease;
 }
 
 .document-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05), 0 3px 8px rgba(59, 130, 246, 0.1),
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05), 0 3px 8px rgba(var(--color-primary-rgb), 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.8);
-  border-color: rgba(59, 130, 246, 0.25);
+  border-color: rgba(var(--color-primary-rgb), 0.25);
 }
 
 .document-card:hover::before {
@@ -779,7 +777,7 @@ input[type="file"] {
 
 .document-title {
   font-weight: 600;
-  color: light-dark(#1e3a8a, var(--color-primary-lightest));
+  color: light-dark(var(--color-primary-900), var(--color-primary-lightest));
   margin: 0;
   font-size: 16px;
   overflow: hidden;
@@ -796,11 +794,11 @@ input[type="file"] {
 }
 
 .document-card:hover .document-title {
-  color: light-dark(#1d4ed8, var(--color-primary-light));
+  color: light-dark(var(--color-primary-700), var(--color-primary-light));
 }
 
 .document-delete {
-  color: #ef4444;
+  color: var(--color-error-500);
   background: none;
   border: none;
   padding: 4px;
@@ -831,7 +829,7 @@ input[type="file"] {
 
 .document-meta {
   font-size: 13px;
-  color: light-dark(#64748b, var(--color-text-muted));
+  color: light-dark(var(--color-gray-500), var(--color-text-muted));
   margin-bottom: 12px;
   display: flex;
   align-items: center;
@@ -841,10 +839,10 @@ input[type="file"] {
 
 .document-category {
   background-color: light-dark(
-    rgba(59, 130, 246, 0.1),
-    rgba(59, 130, 246, 0.15)
+    rgba(var(--color-primary-rgb), 0.1),
+    rgba(var(--color-primary-rgb), 0.15)
   );
-  color: light-dark(#3b82f6, var(--color-primary-light));
+  color: light-dark(var(--color-primary-500), var(--color-primary-light));
   font-size: 12px;
   padding: 3px 10px;
   border-radius: 12px;
@@ -852,25 +850,25 @@ input[type="file"] {
   display: inline-flex;
   align-items: center;
   box-shadow: light-dark(
-    0 1px 2px rgba(59, 130, 246, 0.05),
+    0 1px 2px rgba(var(--color-primary-rgb), 0.05),
     inset 0 1px 0 rgba(255, 255, 255, 0.7),
     0 1px 2px rgba(0, 0, 0, 0.2),
     inset 0 1px 0 rgba(255, 255, 255, 0.1)
   );
-  border: 1px solid light-dark(rgba(59, 130, 246, 0.2), rgba(59, 130, 246, 0.3));
+  border: 1px solid light-dark(rgba(var(--color-primary-rgb), 0.2), rgba(var(--color-primary-rgb), 0.3));
   transition: all 0.2s ease;
 }
 
 .document-card:hover .document-category {
   background-color: light-dark(
-    rgba(59, 130, 246, 0.15),
-    rgba(59, 130, 246, 0.25)
+    rgba(var(--color-primary-rgb), 0.15),
+    rgba(var(--color-primary-rgb), 0.25)
   );
-  border-color: light-dark(rgba(59, 130, 246, 0.3), rgba(59, 130, 246, 0.4));
+  border-color: light-dark(rgba(var(--color-primary-rgb), 0.3), rgba(var(--color-primary-rgb), 0.4));
 }
 
 .document-pages {
-  color: light-dark(#64748b, var(--color-text-muted));
+  color: light-dark(var(--color-gray-500), var(--color-text-muted));
   font-size: 13px;
   display: inline-flex;
   align-items: center;
@@ -885,7 +883,7 @@ input[type="file"] {
 
 .document-date {
   font-size: 12px;
-  color: light-dark(#94a3b8, var(--color-text-muted));
+  color: light-dark(var(--color-gray-400), var(--color-text-muted));
   margin-left: auto;
   font-style: italic;
 }
@@ -894,8 +892,8 @@ input[type="file"] {
   margin-top: 14px;
   border-radius: 8px;
   overflow: hidden;
-  border: 1px solid rgba(59, 130, 246, 0.15);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(59, 130, 246, 0.03);
+  border: 1px solid rgba(var(--color-primary-rgb), 0.15);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(var(--color-primary-rgb), 0.03);
   transition: all 0.3s ease;
   position: relative;
 }
@@ -920,7 +918,7 @@ input[type="file"] {
 
 .document-card:hover .document-preview {
   transform: scale(1.02);
-  border-color: rgba(59, 130, 246, 0.25);
+  border-color: rgba(var(--color-primary-rgb), 0.25);
 }
 
 .document-card:hover .document-preview::before {
@@ -945,7 +943,7 @@ input[type="file"] {
     rgba(139, 92, 246, 0.15),
     rgba(139, 92, 246, 0.2)
   );
-  color: light-dark(#7c3aed, #a78bfa);
+  color: light-dark(var(--color-secondary-700), var(--color-secondary-300));
   border-color: light-dark(rgba(139, 92, 246, 0.3), rgba(139, 92, 246, 0.4));
   box-shadow: light-dark(
     0 1px 3px rgba(139, 92, 246, 0.1),
@@ -958,7 +956,7 @@ input[type="file"] {
     rgba(14, 165, 233, 0.15),
     rgba(14, 165, 233, 0.2)
   );
-  color: light-dark(#0284c7, #38bdf8);
+  color: light-dark(var(--color-cyan-600), var(--color-cyan-300));
   border-color: light-dark(rgba(14, 165, 233, 0.3), rgba(14, 165, 233, 0.4));
   box-shadow: light-dark(
     0 1px 3px rgba(14, 165, 233, 0.1),
@@ -971,7 +969,7 @@ input[type="file"] {
     rgba(249, 115, 22, 0.15),
     rgba(249, 115, 22, 0.2)
   );
-  color: light-dark(#ea580c, #fb923c);
+  color: light-dark(var(--color-orange-600), var(--color-orange-300));
   border-color: light-dark(rgba(249, 115, 22, 0.3), rgba(249, 115, 22, 0.4));
   box-shadow: light-dark(
     0 1px 3px rgba(249, 115, 22, 0.1),
@@ -981,7 +979,7 @@ input[type="file"] {
 
 .category-notes {
   background-color: light-dark(rgba(34, 197, 94, 0.15), rgba(34, 197, 94, 0.2));
-  color: light-dark(#16a34a, #4ade80);
+  color: light-dark(var(--color-accent-600), var(--color-accent-400));
   border-color: light-dark(rgba(34, 197, 94, 0.3), rgba(34, 197, 94, 0.4));
   box-shadow: light-dark(
     0 1px 3px rgba(34, 197, 94, 0.1),
@@ -994,7 +992,7 @@ input[type="file"] {
     rgba(100, 116, 139, 0.15),
     rgba(100, 116, 139, 0.2)
   );
-  color: light-dark(#475569, #94a3b8);
+  color: light-dark(var(--color-gray-600), var(--color-gray-400));
   border-color: light-dark(rgba(100, 116, 139, 0.3), rgba(100, 116, 139, 0.4));
   box-shadow: light-dark(
     0 1px 3px rgba(100, 116, 139, 0.1),

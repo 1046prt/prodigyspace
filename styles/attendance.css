@@ -1,7 +1,3 @@
-/* ===========================================
-   ATTENDANCE COMPONENT STYLES
-   =========================================== */
-
 .attendance {
   min-height: 100vh;
   background: linear-gradient(
@@ -749,26 +745,6 @@
   padding: 0.75rem 1.5rem;
   font-weight: var(--font-medium);
 }
-
-/* ===========================================
-   ACCESSIBILITY
-   =========================================== */
-
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
-}
-
-/* ===========================================
-   ENHANCED ANIMATIONS
-   =========================================== */
 
 @keyframes gradientShift {
   0% {

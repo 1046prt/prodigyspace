@@ -1,34 +1,51 @@
+:root {
+	--view__bg--1: rgba(255, 255, 255, 0.9);
+	--view__bg--2: rgba(248, 250, 252, 0.9);
+	--view__bg--3: rgba(30, 41, 59, 0.9);
+	--view__bg--4: rgba(15, 23, 42, 0.9);
+	--view__box__shadow--5: rgba(0, 0, 0, 0.05);
+	--view__box__shadow--6: rgba(0, 0, 0, 0.2);
+	--view__txt--7: #000000;
+	--view__box__shadow--8: rgba(79, 70, 229, 0.15);
+	--view__box__shadow--9: rgba(79, 70, 229, 0.2);
+	--view__box__shadow--10: rgba(0, 0, 0, 0.08);
+	--view__bg--11: #ffffff;
+	--checked__bg--12: rgba(79, 70, 229, 0.1);
+	--checked__bg--13: rgba(99, 102, 241, 0.2);
+	--option__bg--14: rgba(79, 70, 229, 0.05);
+	--option__bg--15: rgba(99, 102, 241, 0.1);
+}
 /* Custom styling for the view select dropdown */
 .view-select-trigger {
   border-color: var(--study-accent) !important;
   background: light-dark(
     linear-gradient(
       to bottom,
-      rgba(255, 255, 255, 0.9),
-      rgba(248, 250, 252, 0.9)
+      var(--view__bg--1),
+      var(--view__bg--2)
     ),
-    linear-gradient(to bottom, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.9))
+    linear-gradient(to bottom, var(--view__bg--3), var(--view__bg--4))
   ) !important;
   border-radius: 0.5rem !important;
   font-weight: 500 !important;
   box-shadow: light-dark(
-    0 2px 5px rgba(0, 0, 0, 0.05),
-    0 2px 5px rgba(0, 0, 0, 0.2)
+    0 2px 5px var(--view__box__shadow--5),
+    0 2px 5px var(--view__box__shadow--6)
   ) !important;
   transition: all 0.3s ease !important;
   padding: 0.5rem 0.75rem !important;
-  color: light-dark(#000000, var(--color-text)) !important;
+  color: light-dark(var(--view__txt--7), var(--color-text)) !important;
 }
 
 .view-select-trigger:hover {
   border-color: var(--study-primary) !important;
-  box-shadow: 0 3px 8px rgba(79, 70, 229, 0.15) !important;
+  box-shadow: 0 3px 8px var(--view__box__shadow--8) !important;
   transform: translateY(-1px) !important;
 }
 
 .view-select-trigger:focus {
   border-color: var(--study-primary) !important;
-  box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2) !important;
+  box-shadow: 0 0 0 2px var(--view__box__shadow--9) !important;
   outline: none !important;
 }
 
@@ -37,19 +54,19 @@
   border-color: var(--study-accent) !important;
   overflow: hidden !important;
   box-shadow: light-dark(
-    0 4px 15px rgba(0, 0, 0, 0.08),
-    0 4px 15px rgba(0, 0, 0, 0.2)
+    0 4px 15px var(--view__box__shadow--10),
+    0 4px 15px var(--view__box__shadow--6)
   ) !important;
   background-color: light-dark(
-    #ffffff,
+    var(--view__bg--11),
     var(--color-background-card)
   ) !important;
 }
 
 .view-select-content [data-state="checked"] {
   background-color: light-dark(
-    rgba(79, 70, 229, 0.1),
-    rgba(99, 102, 241, 0.2)
+    var(--checked__bg--12),
+    var(--checked__bg--13)
   ) !important;
   color: light-dark(var(--study-primary), var(--study-dark)) !important;
   font-weight: 500 !important;
@@ -64,11 +81,45 @@
 
 .view-select-content [role="option"]:hover {
   background-color: light-dark(
-    rgba(79, 70, 229, 0.05),
-    rgba(99, 102, 241, 0.1)
+    var(--option__bg--14),
+    var(--option__bg--15)
   ) !important;
 }
 
 .view-select-content [role="option"] {
-  color: light-dark(#000000, var(--color-text)) !important;
+  color: light-dark(var(--view__txt--7), var(--color-text)) !important;
+}
+
+@media (max-width: 640px) {
+  .calendar-container {
+    padding: 0.25rem;
+  }
+
+  .enhanced-calendar {
+    padding: 0.5rem;
+  }
+
+  .week-day .grid {
+    grid-template-columns: auto 1fr !important;
+    grid-template-rows: auto auto;
+  }
+
+  .week-day-button {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    width: 100%;
+    margin-top: 0.75rem;
+  }
+
+  .week-day-name {
+    border-right: none;
+    padding-right: 0.5rem;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .week-day-date {
+    margin-top: 0;
+  }
 }
