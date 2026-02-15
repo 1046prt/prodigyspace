@@ -23,6 +23,7 @@ import { useCollaboration } from "@/hooks/use-collaboration";
 import { useWellbeing } from "@/hooks/use-wellbeing";
 import { useAttendance } from "@/hooks/use-attendance";
 import "@/styles/homepage.css";
+import "@/styles/app.css";
 
 export default function HomePage() {
   const { tasks } = useTasks();
@@ -93,19 +94,19 @@ export default function HomePage() {
   ).length;
 
   const features = [
-    {
-      icon: FileText,
-      title: "Notes & Documents",
-      description: "Smart note-taking with document scanning and organization",
-      color: "text-blue-600",
-      href: "/notes",
-      stats: `${notes.length} notes, ${scannedDocs.length} docs`,
-    },
+      {
+        icon: FileText,
+        title: "Notes & Documents",
+        description: "Smart note-taking with document scanning and organization",
+        color: "feature-color-blue",
+        href: "/notes",
+        stats: `${notes.length} notes, ${scannedDocs.length} docs`,
+      },
     {
       icon: CheckSquare,
       title: "Task Management",
       description: "Advanced task tracking with study planning and reminders",
-      color: "text-green-600",
+      color: "feature-color-green",
       href: "/tasks",
       stats: `${completedTasks}/${tasks.length} completed`,
     },
@@ -113,7 +114,7 @@ export default function HomePage() {
       icon: CheckSquare,
       title: "Todo Manager",
       description: "Simple and efficient todo list management",
-      color: "text-emerald-600",
+      color: "feature-color-emerald",
       href: "/todos",
       stats: "Quick task tracking",
     },
@@ -121,7 +122,7 @@ export default function HomePage() {
       icon: GraduationCap,
       title: "Attendance Tracker",
       description: "Monitor class attendance and maintain target percentages",
-      color: "text-orange-600",
+      color: "feature-color-orange",
       href: "/attendance",
       stats: `${onTrackSubjects}/${subjects.length} on track`,
     },
@@ -129,7 +130,7 @@ export default function HomePage() {
       icon: Users,
       title: "Collaboration Hub",
       description: "Study groups, project management, and peer communication",
-      color: "text-purple-600",
+      color: "feature-color-purple",
       href: "/collaboration",
       stats: `${studyGroups.length} groups, ${projects.length} projects`,
     },
@@ -137,7 +138,7 @@ export default function HomePage() {
       icon: Heart,
       title: "Well-being Center",
       description: "Mental health tracking, meditation, and stress management",
-      color: "text-pink-600",
+      color: "feature-color-pink",
       href: "/wellbeing",
       stats: `${moodEntries.length} mood entries, ${totalStudyTime}min meditation`,
     },
@@ -145,7 +146,7 @@ export default function HomePage() {
       icon: DollarSign,
       title: "Expense Tracker",
       description: "Track and manage your educational expenses and budgets",
-      color: "text-yellow-600",
+      color: "feature-color-yellow",
       href: "/expenses",
       stats: "Financial management",
     },
@@ -153,7 +154,7 @@ export default function HomePage() {
       icon: AlarmClock,
       title: "Alarm Manager",
       description: "Set up study alarms and deadline reminders",
-      color: "text-red-600",
+      color: "feature-color-red",
       href: "/alarms",
       stats: "Never miss deadlines",
     },
@@ -161,7 +162,7 @@ export default function HomePage() {
       icon: Calculator,
       title: "Utilities",
       description: "Unit converter, calculator and other useful tools",
-      color: "text-indigo-600",
+      color: "feature-color-indigo",
       href: "/utilities",
       stats: "Helpful tools",
     },
@@ -255,21 +256,13 @@ export default function HomePage() {
         <div className="homepage-content-grid">
           {/* Upcoming Tasks */}
           <div className="homepage-section-card">
-            <div style={{ padding: "var(--space-6)" }}>
+              <div className="section-padding-6">
               <h3 className="homepage-section-header">
                 <Clock />
                 Upcoming Tasks
               </h3>
               {upcomingTasks.length === 0 ? (
-                <p
-                  style={{
-                    color: "var(--foreground-muted)",
-                    textAlign: "center",
-                    padding: "var(--space-4) 0",
-                  }}
-                >
-                  No upcoming tasks
-                </p>
+                <p className="muted-centered">No upcoming tasks</p>
               ) : (
                 <div>
                   {upcomingTasks.map((task) => {
@@ -322,21 +315,13 @@ export default function HomePage() {
 
           {/* Recent Notes */}
           <div className="homepage-section-card">
-            <div style={{ padding: "var(--space-6)" }}>
+              <div className="section-padding-6">
               <h3 className="homepage-section-header">
                 <FileText />
                 Recent Notes
               </h3>
               {recentNotes.length === 0 ? (
-                <p
-                  style={{
-                    color: "var(--foreground-muted)",
-                    textAlign: "center",
-                    padding: "var(--space-4) 0",
-                  }}
-                >
-                  No notes yet
-                </p>
+                <p className="muted-centered">No notes yet</p>
               ) : (
                 <div>
                   {recentNotes.map((note) => (
@@ -369,10 +354,10 @@ export default function HomePage() {
         </div>
 
         {tasks.length > 0 && (
-          <Card className="mainpage-progress-section">
+                <Card className="mainpage-progress-section">
             <CardHeader>
               <CardTitle className="mainpage-section-header">
-                <TrendingUp className="h-5 w-5" />
+                <TrendingUp className="icon-size" />
                 Progress Overview
               </CardTitle>
             </CardHeader>
@@ -403,7 +388,7 @@ export default function HomePage() {
                 <div>
                   <div className="mainpage-progress-header">
                     <span>Overdue Tasks</span>
-                    <span className="text-red-600">{overdueTasks}</span>
+                    <span className="text-red">{overdueTasks}</span>
                   </div>
                   <Progress
                     value={(overdueTasks / tasks.length) * 100}

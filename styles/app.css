@@ -181,3 +181,30 @@
     animation: none;
   }
 }
+
+/* ===========================================
+   Utility replacements for homepage and page.tsx
+   =========================================== */
+
+.icon-size {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.feature-color-blue { color: #2563eb; }
+.feature-color-green { color: #16a34a; }
+.feature-color-emerald { color: #10b981; }
+.feature-color-orange { color: #f97316; }
+.feature-color-purple { color: #7c3aed; }
+.feature-color-pink { color: #db2777; }
+.feature-color-yellow { color: #f59e0b; }
+.feature-color-red { color: #ef4444; }
+.feature-color-indigo { color: #4f46e5; }
+
+.section-padding-6 { padding: var(--space-6); }
+.muted-centered { color: var(--foreground-muted); text-align: center; padding: var(--space-4) 0; }
+
+.text-red { color: #ef4444; }
+
+.homepage-feature-icon-bg { display: inline-flex; align-items: center; justify-content: center; }
+.homepage-feature-badge { font-size: 0.85rem; color: var(--foreground-muted); }
