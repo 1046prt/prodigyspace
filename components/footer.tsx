@@ -69,7 +69,7 @@ export function Footer() {
                   href="https://github.com/1046prt/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  style={{ color: "inherit", textDecoration: "none" }}
+                  className="external-link"
                 >
                   GitHub
                 </Link>
@@ -80,7 +80,7 @@ export function Footer() {
                   href="https://x.com/1046prt/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  style={{ color: "inherit", textDecoration: "none" }}
+                  className="external-link"
                 >
                   Twitter
                 </Link>

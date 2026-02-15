@@ -1,0 +1,16 @@
+.icon-badge {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(45deg, var(--gradient__bg--6), var(--gradient__bg--7));
+  color: var(--icon__txt--16);
+}
+
+/* Standard icon size utilities (centralized) */
+.icon-xs { width: 0.75rem; height: 0.75rem; }
+.icon-sm { width: 1rem; height: 1rem; }
+.icon-md { width: 1.25rem; height: 1.25rem; }
+.icon-lg { width: 2rem; height: 2rem; }

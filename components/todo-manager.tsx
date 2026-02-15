@@ -49,6 +49,7 @@ import {
   Award,
   Sparkles,
 } from "lucide-react";
+import "@/styles/todo-manager.css";
 import { exportToCSV } from "@/lib/csv-export";
 
 const categoryLabels: Record<TodoCategory, string> = {
@@ -178,7 +179,7 @@ export function TodoManager() {
       <div className="todos-header-section animate-fade-in">
         <div className="todos-header-content">
           <div className="todos-header-icon-wrapper">
-            <Sparkles className="todos-header-icon" />
+            <Sparkles className="todos-header-icon icon-md" />
             <h2 className="todos-header-title">My Tasks</h2>
           </div>
           <p className="todos-header-subtitle">
@@ -202,20 +203,20 @@ export function TodoManager() {
             </div>
           )}
         </div>
-        <div className="todos-button-container">
+          <div className="todos-button-container">
           <Button
             onClick={handleExportCSV}
             variant="outline"
             size="sm"
             className="todos-export-btn"
           >
-            <Download className="h-4 w-4" />
+            <Download className="icon-sm" />
             Export
           </Button>
           <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
-            <DialogTrigger asChild>
+              <DialogTrigger asChild>
               <Button className="todos-add-btn">
-                <Plus className="h-4 w-4" />
+                <Plus className="icon-sm" />
                 Add Task
               </Button>
             </DialogTrigger>

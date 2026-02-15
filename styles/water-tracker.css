@@ -30,6 +30,24 @@
   color: var(--water-blue-600);
 }
 
+/* Ensure title shows icon + text inline */
+.water-tracker-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Icon sizes are provided by centralized utilities.css */
+
+/* Card content spacing wrapper */
+.water-tracker-content {
+  padding: 1.5rem;
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+  display: block;
+  gap: 1.5rem;
+}
+
 .water-tracker-icon {
   color: var(--water-blue) !important;
   filter: drop-shadow(0 2px 4px rgba(var(--water-blue-rgb), 0.3));
@@ -211,20 +229,7 @@
   color: light-dark(#718096, #a0aec0);
 }
 
-.delete-button {
-  background: none;
-  border: none;
-  color: #e53e3e;
-  cursor: pointer;
-  padding: 4px;
-  border-radius: 4px;
-  transition: all 0.2s ease;
-}
-
-.delete-button:hover {
-  background-color: rgba(229, 62, 62, 0.1);
-}
-
+/* Uses base .delete-button from utilities.css; per-component overrides may be added here if needed */
 .delete-button svg {
   width: 16px;
   height: 16px;

@@ -355,13 +355,8 @@
 }
 
 .delete-button {
-  color: var(--color-foreground-secondary);
+  /* base styles are provided in utilities.css; keep spacing modifier if needed */
   padding: var(--space-1);
-}
-
-.delete-button:hover {
-  color: var(--color-destructive);
-  background-color: var(--color-destructive-light);
 }
 
 /* ===========================================
@@ -548,21 +543,7 @@
   outline-offset: 2px;
 }
 
-/* ===========================================
-   ACCESSIBILITY
-   =========================================== */
-
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
-}
+/* Accessibility helpers are centralized in globals.css (.sr-only) */
 
 /* ===========================================
    REDUCED MOTION

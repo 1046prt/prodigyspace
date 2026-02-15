@@ -30,6 +30,10 @@
 	--utilities__box__shadow--29: rgba(0, 0, 0, 0.04);
 	--utilities__box__shadow--30: rgba(0, 0, 0, 0.08);
 }
+@import "./utilities/icons.css";
+@import "./utilities/links.css";
+@import "./utilities/buttons.css";
+@import "./utilities/progress.css";
 /* Utility Classes to Replace Tailwind CSS */
 
 /* Popup and Dropdown Z-index Management */
@@ -684,33 +688,7 @@
   box-shadow: 0 10px 25px var(--hover__box__shadow--4);
 }
 
-/* Icon patterns */
-.icon-badge {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(45deg, var(--gradient__bg--6), var(--gradient__bg--7));
-  color: var(--icon__txt--16);
-}
-
-/* Progress bars */
-.progress-bar {
-  width: 100%;
-  height: 8px;
-  background: var(--color-muted-200);
-  border-radius: 4px;
-  overflow: hidden;
-}
-
-.progress-bar-fill {
-  height: 100%;
-  background: linear-gradient(90deg, var(--gradient__bg--6), var(--gradient__bg--7));
-  border-radius: 2px;
-  transition: width 0.3s ease;
-}
+/* Icon/link/button/progress utilities imported from modular files */
 
 /* Badge variants for consistency */
 .badge-blue {

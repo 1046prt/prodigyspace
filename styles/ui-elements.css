@@ -1,0 +1,50 @@
+.icon-card-title{
+  display:inline-flex;
+  align-items:center;
+  gap:0.5rem;
+}
+
+.icon-card-desc{
+  color:var(--color-foreground-secondary);
+  font-size:0.875rem;
+}
+
+.icon-button{
+  display:inline-flex;
+  align-items:center;
+  gap:0.5rem;
+}
+
+.progress-indicator{
+  display:flex;
+  flex-direction:column;
+  gap:0.5rem;
+}
+
+.progress-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.stat-card{
+  padding:1rem;
+}
+
+.icon-badge{
+  /* uses centralized icon-badge in utilities.css; keep this block minimal to allow component-level tweaks if needed */
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.empty-state{ text-align:center; padding:3rem 1rem; }
+
+.page-header-row{ display:flex; align-items:center; justify-content:space-between; }
+
+.quick-action{ display:flex; flex-direction:column; gap:0.5rem; align-items:center; justify-content:center; padding:1rem; border-radius:0.5rem; }
+.quick-action.variant-default{ background-color:var(--color-muted); color:var(--color-foreground); }
+.quick-action.variant-primary{ background:linear-gradient(90deg,var(--color-primary-500),var(--color-primary-600)); color:var(--color-primary-foreground); }
+.quick-action.variant-success{ background:var(--color-green-600); color:white; }
+.quick-action.variant-warning{ background:var(--color-yellow-500); color:white; }
+.quick-action.variant-danger{ background:var(--color-red-500); color:white; }

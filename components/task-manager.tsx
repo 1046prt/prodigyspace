@@ -40,6 +40,7 @@ import {
   BookOpen,
   CheckSquare,
 } from "lucide-react";
+import "@/styles/task-manager.css";
 import type { Task } from "@/types/tasks";
 
 interface TaskManagerProps {
@@ -136,63 +137,29 @@ export function TaskManager({
   };
 
   return (
-    <div className="space-y-8" style={{ color: "var(--color-foreground)" }}>
+    <div className="task-manager-root" style={{ color: "var(--color-foreground)" }}>
       {/* Enhanced Header Section with Gradient Background */}
-      <div
-        className="task-manager-header-enhanced rounded-2xl p-8 shadow-lg"
-        style={{
-          background: "var(--color-card)",
-          border: "1.5px solid var(--color-border)",
-        }}
-      >
+      <div className="task-manager-header-enhanced">
         <div className="task-manager-title-section flex flex-col items-center text-center">
-          <div className="flex items-center justify-center mb-4">
-            <div
-              className="w-16 h-16 rounded-full flex items-center justify-center shadow-lg transform hover:scale-110 transition-all duration-300"
-              style={{
-                background:
-                  "linear-gradient(135deg, var(--color-primary-500), var(--color-secondary-500))",
-              }}
-            >
-              <CheckSquare className="h-8 w-8 text-white" />
+          <div className="task-manager-title-section">
+            <div className="task-manager-logo">
+              <div className="task-manager-logo-inner">
+                <CheckSquare className="icon-lg text-white" />
+              </div>
             </div>
           </div>
-          <h2
-            className="text-4xl font-bold mb-3"
-            style={{
-              background:
-                "linear-gradient(90deg, var(--color-primary-700), var(--color-secondary-700))",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-              color: "transparent",
-            }}
-          >
-            Task Manager
-          </h2>
-          <p
-            className="text-lg max-w-2xl mx-auto leading-relaxed"
-            style={{ color: "var(--color-foreground-secondary)" }}
-          >
+          <h2 className="task-manager-heading">Task Manager</h2>
+          <p className="task-manager-subtitle">
             Transform your productivity with intelligent task organization and
             beautiful progress tracking
           </p>
         </div>
-        <div className="flex justify-center items-center mt-6">
+        <div className="task-manager-actions">
           <Dialog open={showCreateDialog} onOpenChange={setShowCreateDialog}>
             <DialogTrigger asChild>
-              <Button
-                style={{
-                  background:
-                    "linear-gradient(90deg, var(--color-primary-500), var(--color-secondary-500))",
-                  color: "var(--color-primary-foreground)",
-                  border: 0,
-                }}
-                className="px-8 py-3 rounded-xl font-semibold shadow-lg transform hover:scale-105 transition-all duration-300"
-              >
-                <Plus className="h-5 w-5 mr-3" />
-                <span className="hidden sm:inline">Create New Task</span>
-                <span className="sm:hidden">New Task</span>
+              <Button className="task-create-btn">
+                <Plus className="icon-md mr-2" />
+                <span className="task-create-label">Create New Task</span>
               </Button>
             </DialogTrigger>
             <DialogContent
