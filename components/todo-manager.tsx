@@ -327,12 +327,12 @@ export function TodoManager() {
             <CardTitle className="text-sm font-medium text-white/90">
               Total Tasks
             </CardTitle>
-            <Target className="h-5 w-5 text-white/70" />
+            <Target className="icon-md text-white/70" />
           </CardHeader>
           <CardContent>
             <div className="text-3xl font-bold text-white">{stats.total}</div>
             <p className="text-sm text-white/70 flex items-center gap-1">
-              <CheckCircle2 className="h-3 w-3" />
+              <CheckCircle2 className="icon-xs" />
               {stats.completed} completed
             </p>
           </CardContent>
@@ -342,14 +342,14 @@ export function TodoManager() {
             <CardTitle className="text-sm font-medium text-white/90">
               Due Today
             </CardTitle>
-            <Timer className="h-5 w-5 text-white/70" />
+            <Timer className="icon-md text-white/70" />
           </CardHeader>
           <CardContent>
             <div className="text-3xl font-bold text-white">
               {stats.todayTasks}
             </div>
             <p className="text-sm text-white/70 flex items-center gap-1">
-              <Calendar className="h-3 w-3" />
+              <Calendar className="icon-xs" />
               Focus time
             </p>
           </CardContent>
@@ -359,12 +359,12 @@ export function TodoManager() {
             <CardTitle className="text-sm font-medium text-white/90">
               Overdue
             </CardTitle>
-            <AlertTriangle className="h-5 w-5 text-white/70" />
+            <AlertTriangle className="icon-md text-white/70" />
           </CardHeader>
           <CardContent>
             <div className="text-3xl font-bold text-white">{stats.overdue}</div>
             <p className="text-sm text-white/70 flex items-center gap-1">
-              <Zap className="h-3 w-3" />
+              <Zap className="icon-xs" />
               Need attention
             </p>
           </CardContent>
@@ -374,12 +374,12 @@ export function TodoManager() {
             <CardTitle className="text-sm font-medium text-white/90">
               Pending
             </CardTitle>
-            <TrendingUp className="h-5 w-5 text-white/70" />
+            <TrendingUp className="icon-md text-white/70" />
           </CardHeader>
           <CardContent>
             <div className="text-3xl font-bold text-white">{stats.pending}</div>
             <p className="text-sm text-white/70 flex items-center gap-1">
-              <Star className="h-3 w-3" />
+              <Star className="icon-xs" />
               Ready to go
             </p>
           </CardContent>
@@ -395,28 +395,28 @@ export function TodoManager() {
             value="all"
             className="todos-tab-trigger todos-tab-trigger-all"
           >
-            <Target className="h-4 w-4" />
+            <Target className="icon-sm" />
             All Tasks
           </TabsTrigger>
           <TabsTrigger
             value="today"
             className="todos-tab-trigger todos-tab-trigger-today"
           >
-            <Timer className="h-4 w-4" />
+            <Timer className="icon-sm" />
             Today
           </TabsTrigger>
           <TabsTrigger
             value="overdue"
             className="todos-tab-trigger todos-tab-trigger-overdue"
           >
-            <AlertTriangle className="h-4 w-4" />
+            <AlertTriangle className="icon-sm" />
             Overdue
           </TabsTrigger>
           <TabsTrigger
             value="completed"
             className="todos-tab-trigger todos-tab-trigger-completed"
           >
-            <Award className="h-4 w-4" />
+            <Award className="icon-sm" />
             Completed
           </TabsTrigger>
         </TabsList>
@@ -444,7 +444,7 @@ export function TodoManager() {
                     onClick={() => setIsAddDialogOpen(true)}
                     className="todos-empty-cta"
                   >
-                    <Plus className="h-4 w-4" />
+                    <Plus className="icon-sm" />
                     Create First Task
                   </Button>
                 </div>
@@ -518,7 +518,7 @@ export function TodoManager() {
                               }
                               className="todos-badge-date"
                             >
-                              <Calendar className="h-3 w-3 mr-1" />
+                              <Calendar className="icon-xs mr-1" />
                               {formatDate(todo.dueDate)}
                             </Badge>
                           )}
@@ -531,7 +531,7 @@ export function TodoManager() {
                           onClick={() => deleteTodo(todo.id)}
                           className="todos-delete-btn"
                         >
-                          <Trash2 className="h-4 w-4" />
+                          <Trash2 className="icon-sm" />
                         </Button>
                       </div>
                     </div>
@@ -546,7 +546,7 @@ export function TodoManager() {
           <Card className="todos-content-card">
             <CardHeader className="todos-card-header">
               <CardTitle className="flex items-center gap-2">
-                <Timer className="h-5 w-5 text-primary" />
+                <Timer className="icon-md text-primary" />
                 Today&apos;s Tasks
               </CardTitle>
               <CardDescription>Focus on what&apos;s due today</CardDescription>
@@ -818,7 +818,7 @@ export function TodoManager() {
                                 variant="secondary"
                                 className="todos-badge-date todos-badge-faded"
                               >
-                                <Calendar className="h-3 w-3 mr-1" />
+                                <Calendar className="icon-xs mr-1" />
                                 {formatDate(todo.dueDate)}
                               </Badge>
                             )}
@@ -831,7 +831,7 @@ export function TodoManager() {
                             onClick={() => deleteTodo(todo.id)}
                             className="todos-delete-btn"
                           >
-                            <Trash2 className="h-4 w-4" />
+                            <Trash2 className="icon-sm" />
                           </Button>
                         </div>
                       </div>

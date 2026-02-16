@@ -30,6 +30,7 @@ import {
 } from "@/components/ui/popover";
 import { format } from "date-fns";
 import { Plus, CalendarIcon, Users, FileText, Clock } from "lucide-react";
+import "@/styles/project-collaboration.css";
 import type { Project, StudyGroup } from "@/types/collaboration";
 
 interface ProjectCollaborationProps {
@@ -82,9 +83,9 @@ export function ProjectCollaboration({
       <div className={"projectCollaborationHeader"}>
         <h2 className={"projectCollaborationTitle"}>Group Projects</h2>
         <Dialog open={showCreateDialog} onOpenChange={setShowCreateDialog}>
-          <DialogTrigger asChild>
+              <DialogTrigger asChild>
             <Button disabled={studyGroups.length === 0}>
-              <Plus style={{ height: 16, width: 16, marginRight: 8 }} />
+              <Plus className="icon-sm icon-gap" />
               New Project
             </Button>
           </DialogTrigger>
@@ -125,17 +126,9 @@ export function ProjectCollaboration({
                   <PopoverTrigger asChild>
                     <Button
                       variant="outline"
-                      style={{
-                        width: "100%",
-                        justifyContent: "start",
-                        textAlign: "left",
-                        fontWeight: "normal",
-                        background: "transparent",
-                      }}
+                      className="popover-trigger-button"
                     >
-                      <CalendarIcon
-                        style={{ marginRight: 8, height: 16, width: 16 }}
-                      />
+                      <CalendarIcon className="icon-sm icon-gap" />
                       {dueDate ? format(dueDate, "PPP") : "Pick a date"}
                     </Button>
                   </PopoverTrigger>
@@ -158,13 +151,7 @@ export function ProjectCollaboration({
                   rows={3}
                 />
               </div>
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "end",
-                  gap: "0.5rem",
-                }}
-              >
+              <div className="dialog-actions">
                 <Button
                   variant="outline"
                   onClick={() => setShowCreateDialog(false)}
@@ -188,31 +175,16 @@ export function ProjectCollaboration({
       {projects.length === 0 ? (
         <Card>
           <CardContent className={"projectCardContent"}>
-            <FileText
-              style={{
-                height: 48,
-                width: 48,
-                color: "#6b7280",
-                margin: "0 auto 1rem",
-              }}
-            />
-            <h3
-              style={{
-                fontSize: "1.125rem",
-                fontWeight: 500,
-                marginBottom: "0.5rem",
-              }}
-            >
-              No projects yet
-            </h3>
-            <p style={{ color: "#6b7280", marginBottom: "1rem" }}>
+            <FileText className="project-empty-icon" />
+            <h3 className="project-empty-title">No projects yet</h3>
+            <p className="project-empty-message">
               {studyGroups.length === 0
                 ? "Create a study group first, then start collaborating on projects!"
                 : "Create your first group project to start collaborating!"}
             </p>
             {studyGroups.length > 0 && (
               <Button onClick={() => setShowCreateDialog(true)}>
-                <Plus style={{ height: 16, width: 16, marginRight: 8 }} />
+                <Plus className="icon-sm icon-gap" />
                 Create Project
               </Button>
             )}
@@ -242,14 +214,8 @@ export function ProjectCollaboration({
 
             return (
               <Card key={project.id} className={"projectCard"}>
-                <CardHeader style={{ paddingBottom: "0.75rem" }}>
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "start",
-                      justifyContent: "space-between",
-                    }}
-                  >
+                <CardHeader className="project-card-header">
+                  <div className="project-card-header-row">
                     <CardTitle className={"projectCardTitle"}>
                       {project.title}
                     </CardTitle>
@@ -258,7 +224,7 @@ export function ProjectCollaboration({
                     </Badge>
                   </div>
                   {group && (
-                    <Badge variant="secondary" style={{ width: "fit-content" }}>
+                    <Badge variant="secondary" className="badge-fit">
                       {group.name}
                     </Badge>
                   )}
@@ -268,37 +234,17 @@ export function ProjectCollaboration({
                     {project.description || "No description"}
                   </p>
 
-                  <div style={{ marginBottom: "1rem" }}>
-                    <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        fontSize: "0.875rem",
-                        marginBottom: "0.25rem",
-                      }}
-                    >
+                  <div className="project-progress-wrapper">
+                    <div className="project-progress-row">
                       <span>Progress</span>
                       <span>{Math.round(progress)}%</span>
                     </div>
                     <Progress value={progress} className={"projectProgress"} />
                   </div>
 
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "space-between",
-                      fontSize: "0.875rem",
-                    }}
-                  >
-                    <div
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "0.25rem",
-                      }}
-                    >
-                      <Clock style={{ height: 12, width: 12 }} />
+                  <div className="project-meta-row">
+                    <div className="project-meta-left">
+                      <Clock className="icon-xs" />
                       <span
                         className={
                           daysUntilDue < 0
@@ -315,14 +261,8 @@ export function ProjectCollaboration({
                           : `${daysUntilDue} days left`}
                       </span>
                     </div>
-                    <div
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "0.25rem",
-                      }}
-                    >
-                      <Users style={{ height: 12, width: 12 }} />
+                    <div className="project-meta-right">
+                      <Users className="icon-xs" />
                       <span>{group?.members.length || 0}</span>
                     </div>
                   </div>
@@ -332,7 +272,7 @@ export function ProjectCollaboration({
                       View Details
                     </Button>
                     <Button size="sm" variant="outline">
-                      <FileText style={{ height: 12, width: 12 }} />
+                      <FileText className="icon-xs" />
                     </Button>
                   </div>
                 </CardContent>

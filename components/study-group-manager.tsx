@@ -18,7 +18,7 @@ import {
 } from "@/components/ui/dialog";
 import { Users, Plus, Calendar, MessageCircle, Settings } from "lucide-react";
 import type { StudyGroup } from "@/types/collaboration";
-import "@/styles/sticky-group-manager.css";
+import "@/styles/study-group-manager.css";
 
 interface StudyGroupManagerProps {
   studyGroups: StudyGroup[];
@@ -61,7 +61,7 @@ export function StudyGroupManager({
         <Dialog open={showCreateDialog} onOpenChange={setShowCreateDialog}>
           <DialogTrigger asChild>
             <Button className="createButton">
-              <Plus className="h-4 w-4 mr-2" />
+              <Plus className="icon-sm icon-gap" />
               Create Group
             </Button>
           </DialogTrigger>
@@ -151,9 +151,9 @@ export function StudyGroupManager({
                     {group.members.slice(0, 3).map((member) => (
                       <Avatar
                         key={member.id}
-                        className="h-6 w-6 border-2 border-background"
+                        className="avatar-sm avatar-border"
                       >
-                        <AvatarFallback className="text-xs">
+                        <AvatarFallback className="avatar-fallback-xs">
                           {member.name.charAt(0)}
                         </AvatarFallback>
                       </Avatar>
@@ -172,7 +172,7 @@ export function StudyGroupManager({
                     onClick={() => onSelectGroup(group)}
                     className="chatButton"
                   >
-                    <MessageCircle className="h-3 w-3 mr-1" />
+                    <MessageCircle className="icon-xs icon-gap-sm" />
                     Chat
                   </Button>
                   <Button
@@ -180,14 +180,14 @@ export function StudyGroupManager({
                     variant="outline"
                     onClick={() => onSelectGroup(group)}
                   >
-                    <Calendar className="h-3 w-3" />
+                    <Calendar className="icon-xs" />
                   </Button>
                   <Button
                     size="sm"
                     variant="outline"
                     onClick={() => onSelectGroup(group)}
                   >
-                    <Settings className="h-3 w-3" />
+                    <Settings className="icon-xs" />
                   </Button>
                 </div>
               </CardContent>

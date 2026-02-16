@@ -1,0 +1,121 @@
+/* Styles for Study Group Manager component */
+.container {
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.createButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.dialogContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.formLabel {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.actionButtons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.groupsGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.groupCard {
+  /* card-specific overrides if needed */
+}
+
+.cardHeaderContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cardTitle {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.subjectBadge {
+  margin-top: 0.25rem;
+}
+
+.descriptionText {
+  color: var(--color-muted-foreground);
+}
+
+.membersContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.avatarGroup {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.avatar-sm {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.avatar-border {
+  border: 2px solid var(--color-muted-foreground);
+  border-radius: 9999px;
+  box-sizing: border-box;
+}
+
+.avatar-fallback-xs {
+  font-size: 0.75rem;
+}
+
+.memberCount {
+  font-size: 0.875rem;
+  color: var(--color-foreground);
+}
+
+.actionButtonsGroup {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.icon-gap {
+  margin-right: 8px;
+}
+
+.icon-gap-sm {
+  margin-right: 4px;
+}
+
+/* Reuse centralized icon sizes if available; provide fallbacks */
+.icon-xs { width: 0.75rem; height: 0.75rem; }
+.icon-sm { width: 1rem; height: 1rem; }
+.icon-md { width: 1.5rem; height: 1.5rem; }

@@ -78,7 +78,7 @@ export function FeatureCard({
       <CardHeader className="utilities-tool-card-header">
         <div className="utilities-tool-top">
           <div className="utilities-tool-icon">
-            <Icon className="h-5 w-5" />
+            <Icon className="icon-md" />
           </div>
           <Badge className={`utilities-tool-badge ${badgeColor}`} variant="secondary">
             {badgeText}

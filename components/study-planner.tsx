@@ -96,7 +96,7 @@ export function StudyPlanner({ studySessions, tasks }: StudyPlannerProps) {
         <Card className="calendar-card">
           <CardHeader>
             <CardTitle className="calendar-title flex items-center gap-2">
-              <CalendarIcon className="calendar-icon h-5 w-5" />
+              <CalendarIcon className="calendar-icon icon-md" />
               Calendar
             </CardTitle>
           </CardHeader>
@@ -136,13 +136,13 @@ export function StudyPlanner({ studySessions, tasks }: StudyPlannerProps) {
                 {todaySessions.length === 0 ? (
                   <div className="empty-schedule text-center py-8 px-4">
                     <div className="empty-schedule-icon-container mb-4">
-                      <BookOpen className="empty-schedule-icon h-12 w-12 mx-auto text-primary/70" />
+                      <BookOpen className="empty-schedule-icon icon-xl icon-center" />
                     </div>
                     <p className="text-muted-foreground mb-4">
                       No study sessions scheduled for this day
                     </p>
                     <Button className="mt-2 enhanced-button" size="sm">
-                      <CalendarIcon className="w-4 h-4 mr-2" />
+                      <CalendarIcon className="icon-sm icon-gap" />
                       Schedule Session
                     </Button>
                   </div>
@@ -166,7 +166,7 @@ export function StudyPlanner({ studySessions, tasks }: StudyPlannerProps) {
                                 {session.topic}
                               </p>
                               <div className="session-time mt-2">
-                                <Clock className="h-3 w-3 text-primary" />
+                                <Clock className="icon-xs text-primary" />
                                 <span className="text-xs text-slate-600">
                                   {format(session.startTime, "HH:mm")} -{" "}
                                   {format(session.endTime, "HH:mm")}
@@ -212,7 +212,7 @@ export function StudyPlanner({ studySessions, tasks }: StudyPlannerProps) {
                         </div>
                         <div className="week-day-stats">
                           <div className="week-day-info">
-                            <Clock className="h-4 w-4 text-primary" />
+                            <Clock className="icon-sm text-primary" />
                             <span className="text-sm font-medium">
                               {dayStudyTime} minutes
                             </span>
@@ -252,7 +252,7 @@ export function StudyPlanner({ studySessions, tasks }: StudyPlannerProps) {
         <Card className="techniques-card">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <Target className="h-5 w-5 calendar-icon" />
+              <Target className="icon-md calendar-icon" />
               Study Techniques
             </CardTitle>
           </CardHeader>
@@ -287,7 +287,7 @@ export function StudyPlanner({ studySessions, tasks }: StudyPlannerProps) {
           <CardContent>
             {upcomingTasks.length === 0 ? (
               <div className="empty-schedule">
-                <Target className="empty-schedule-icon h-12 w-12 mx-auto mb-4" />
+                <Target className="empty-schedule-icon icon-xl mx-auto mb-4" />
                 <p className="text-muted-foreground">
                   No upcoming tasks with due dates
                 </p>

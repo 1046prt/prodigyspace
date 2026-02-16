@@ -54,7 +54,7 @@ export function PomodoroTimer() {
     <Card className="pomodoro-card">
       <CardHeader className="pomodoro-header flex flex-row items-center justify-between">
         <CardTitle className="pomodoro-title">
-          <Timer className="timer-icon h-5 w-5" />
+          <Timer className="timer-icon icon-md" />
           Pomodoro Timer
         </CardTitle>
         <Button
@@ -64,7 +64,7 @@ export function PomodoroTimer() {
           className="settings-button"
           aria-label="Settings"
         >
-          <Settings className="h-4 w-4" />
+          <Settings className="icon-sm" />
         </Button>
       </CardHeader>
       <CardContent className="space-y-4 p-6 pt-4 pb-8">

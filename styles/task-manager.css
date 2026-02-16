@@ -23,3 +23,13 @@
 .task-create-btn{ padding:0.75rem 2rem; border-radius:1rem; font-weight:600; display:inline-flex; align-items:center; gap:0.5rem; background:linear-gradient(90deg,var(--color-primary-500),var(--color-secondary-500)); color:var(--color-primary-foreground); border:0; }
 
 .task-create-label{ display:inline-block; }
+
+/* Icon helpers for this component */
+.icon-xs { width: 0.75rem; height: 0.75rem; }
+.icon-sm { width: 1rem; height: 1rem; }
+.icon-md { width: 1.5rem; height: 1.5rem; }
+.icon-lg { width: 2rem; height: 2rem; }
+.icon-xl { width: 3rem; height: 3rem; }
+
+.icon-gap { margin-right: 8px; }
+.icon-gap-sm { margin-right: 4px; }

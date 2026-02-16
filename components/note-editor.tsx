@@ -68,9 +68,9 @@ export function NoteEditor({ note, onSave, onCancel }: NoteEditorProps) {
             className={isPinned ? "pin-button-pinned" : "pin-button-unpinned"}
           >
             {isPinned ? (
-              <Pin className="h-4 w-4" />
+              <Pin className="icon-sm" />
             ) : (
-              <PinOff className="h-4 w-4" />
+              <PinOff className="icon-sm" />
             )}
           </Button>
         </CardTitle>
@@ -138,7 +138,7 @@ export function NoteEditor({ note, onSave, onCancel }: NoteEditorProps) {
               className="tag-input"
             />
             <Button onClick={handleAddTag} variant="outline" size="sm">
-              <Tag className="h-4 w-4" />
+              <Tag className="icon-sm" />
             </Button>
           </div>
         </div>
@@ -148,7 +148,7 @@ export function NoteEditor({ note, onSave, onCancel }: NoteEditorProps) {
             Cancel
           </Button>
           <Button onClick={handleSave} disabled={!title.trim()}>
-            <Save className="h-4 w-4 mr-2" />
+            <Save className="icon-sm mr-2" />
             Save Note
           </Button>
         </div>

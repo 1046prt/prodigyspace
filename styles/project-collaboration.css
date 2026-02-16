@@ -1,3 +1,99 @@
+/* Styles for Project Collaboration component */
+.projectCollaboration {
+  width: 100%;
+}
+
+.projectCollaborationHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.projectCollaborationTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.popover-trigger-button {
+  width: 100%;
+  justify-content: flex-start;
+  text-align: left;
+  font-weight: 400;
+  background: transparent;
+}
+
+.icon-gap {
+  margin-right: 8px;
+}
+
+.project-empty-icon {
+  height: 48px;
+  width: 48px;
+  color: var(--color-muted-foreground);
+  display: block;
+  margin: 0 auto 1rem;
+}
+
+.project-empty-title {
+  font-size: 1.125rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.project-empty-message {
+  color: var(--color-muted-foreground);
+  margin-bottom: 1rem;
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.project-card-header {
+  padding-bottom: 0.75rem;
+}
+
+.project-card-header-row {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+}
+
+.badge-fit {
+  width: fit-content;
+}
+
+.project-progress-wrapper {
+  margin-bottom: 1rem;
+}
+
+.project-progress-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.875rem;
+  margin-bottom: 0.25rem;
+}
+
+.project-meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.875rem;
+}
+
+.project-meta-left,
+.project-meta-right {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.projectCardActions .btn {
+  margin-right: 0.5rem;
+}
 :root {
 	--projectCard__box__shadow--1: rgba(0, 0, 0, 0.08);
 	--projectStatus__txt--2: #fff;

@@ -79,6 +79,7 @@ export function DocumentScanner({
         <CardHeader className="document-scanner-header">
           <CardTitle className="document-scanner-title">
             <Camera className="scanner-icon h-5 w-5" />
+              <Camera className="scanner-icon icon-md" />
             Document Scanner
           </CardTitle>
         </CardHeader>
@@ -152,6 +153,7 @@ export function DocumentScanner({
               className="upload-button"
             >
               <Upload className="h-4 w-4" />
+                <Upload className="icon-sm" />
               Upload Images
             </button>
             <input
@@ -165,6 +167,7 @@ export function DocumentScanner({
 
             <button type="button" className="upload-button">
               <Camera className="h-4 w-4" />
+                <Camera className="icon-sm" />
               Scan Document
             </button>
           </div>
@@ -190,6 +193,7 @@ export function DocumentScanner({
                       onClick={() => removePage(index)}
                     >
                       <Trash2 className="h-3 w-3" />
+                        <Trash2 className="icon-xs" />
                     </button>
                   </div>
                 ))}
@@ -203,6 +207,7 @@ export function DocumentScanner({
             className="save-button"
           >
             <FileText className="h-4 w-4" />
+              <FileText className="icon-sm" />
             Save Document
           </button>
         </CardContent>
@@ -233,6 +238,8 @@ export function DocumentScanner({
                         className="document-delete"
                       >
                         <Trash2 className="h-4 w-4" />
+                          <Trash2 className="icon-sm" />
+                          <Trash2 className="icon-sm" />
                       </button>
                     </div>
                     <div className="document-meta">

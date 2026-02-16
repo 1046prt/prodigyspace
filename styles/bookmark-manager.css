@@ -49,6 +49,17 @@
   flex-shrink: 0;
 }
 
+/* Local icon helpers (replaces inline Tailwind sizing) */
+.bookmark-add-icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.bookmark-action-icon {
+  width: 1rem;
+  height: 1rem;
+}
+
 .bookmark-add-button {
   background-color: var(--brand-purple);
   color: var(--color-primary-foreground);

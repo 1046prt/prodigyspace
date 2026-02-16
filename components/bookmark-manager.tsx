@@ -92,7 +92,7 @@ export function BookmarkManager() {
             size="sm"
             className="bookmark-add-button"
           >
-            <Plus className="h-4 w-4" />
+            <Plus className="bookmark-add-icon" />
           </Button>
         </CardHeader>
         <CardContent className="bookmark-content">
@@ -230,7 +230,7 @@ export function BookmarkManager() {
                         className="bookmark-action-button"
                         title="Open bookmark"
                       >
-                        <ExternalLink className="h-4 w-4" />
+                        <ExternalLink className="bookmark-action-icon" />
                       </Button>
                       <Button
                         variant="ghost"
@@ -239,7 +239,7 @@ export function BookmarkManager() {
                         className="bookmark-action-button"
                         title="Edit bookmark"
                       >
-                        <Edit className="h-4 w-4" />
+                        <Edit className="bookmark-action-icon" />
                       </Button>
                       <Button
                         variant="ghost"
@@ -248,7 +248,7 @@ export function BookmarkManager() {
                         className="bookmark-action-button bookmark-delete-button"
                         title="Delete bookmark"
                       >
-                        <Trash2 className="h-4 w-4" />
+                        <Trash2 className="bookmark-action-icon" />
                       </Button>
                     </div>
                   </div>

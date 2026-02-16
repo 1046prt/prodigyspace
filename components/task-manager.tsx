@@ -137,14 +137,14 @@ export function TaskManager({
   };
 
   return (
-    <div className="task-manager-root" style={{ color: "var(--color-foreground)" }}>
+    <div className="task-manager-root">
       {/* Enhanced Header Section with Gradient Background */}
       <div className="task-manager-header-enhanced">
         <div className="task-manager-title-section flex flex-col items-center text-center">
           <div className="task-manager-title-section">
             <div className="task-manager-logo">
-              <div className="task-manager-logo-inner">
-                <CheckSquare className="icon-lg text-white" />
+                <div className="task-manager-logo-inner">
+                <CheckSquare className="icon-xl text-white" />
               </div>
             </div>
           </div>
@@ -158,7 +158,7 @@ export function TaskManager({
           <Dialog open={showCreateDialog} onOpenChange={setShowCreateDialog}>
             <DialogTrigger asChild>
               <Button className="task-create-btn">
-                <Plus className="icon-md mr-2" />
+                <Plus className="icon-md icon-gap" />
                 <span className="task-create-label">Create New Task</span>
               </Button>
             </DialogTrigger>
@@ -182,7 +182,7 @@ export function TaskManager({
                           "linear-gradient(135deg, var(--color-primary-500), var(--color-secondary-500))",
                       }}
                     >
-                      <Plus className="h-6 w-6 text-white" />
+                      <Plus className="icon-md text-white" />
                     </div>
                     <div>
                       <DialogTitle
@@ -446,7 +446,7 @@ export function TaskManager({
                       disabled={!title.trim()}
                       className="task-button-primary w-full sm:w-auto h-12 px-8 border-0 disabled:opacity-50 disabled:cursor-not-allowed font-bold rounded-lg shadow-lg transform hover:scale-105 transition-all duration-300"
                     >
-                      <Plus className="h-5 w-5 mr-2" />
+                      <Plus className="icon-sm icon-gap" />
                       Create Task
                     </Button>
                   </div>
@@ -468,9 +468,9 @@ export function TaskManager({
         <CardContent className="filters-content p-8">
           <div className="filters-header flex items-center justify-between mb-8">
             <div className="flex items-center gap-4">
-              <div className="task-filter-icon w-12 h-12 rounded-full flex items-center justify-center shadow-lg">
-                <Filter className="h-6 w-6 text-white" />
-              </div>
+                <div className="task-filter-icon w-12 h-12 rounded-full flex items-center justify-center shadow-lg">
+                <Filter className="icon-md text-white" />
+                </div>
               <div>
                 <h3 className="task-filter-title text-2xl font-bold">
                   Filter & Sort Tasks
@@ -563,7 +563,7 @@ export function TaskManager({
           }}
         >
           <div className="tasks-placeholder-icon-wrap w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg animate-pulse">
-            <CheckCircle2 className="tasks-placeholder-icon h-12 w-12 text-white" />
+            <CheckCircle2 className="tasks-placeholder-icon icon-xl" />
           </div>
           <h3 className="tasks-placeholder-title text-2xl font-bold bg-gradient-to-r from-gray-700 to-gray-900 dark:from-gray-200 dark:to-gray-100 bg-clip-text text-transparent mb-4">
             No tasks found
@@ -573,7 +573,7 @@ export function TaskManager({
               ? "Create your first task to get started with better organization!"
               : "Try adjusting your filters to find what you're looking for."}
           </p>
-          <Button
+            <Button
             onClick={() => setShowCreateDialog(true)}
             className="task-button-primary px-8 py-4 rounded-xl font-bold shadow-lg transform hover:scale-105 transition-all duration-300 border-0"
             style={{
@@ -582,7 +582,7 @@ export function TaskManager({
               color: "var(--color-primary-foreground)",
             }}
           >
-            <Plus className="h-5 w-5 mr-3" />
+            <Plus className="icon-md icon-gap" />
             Add Task
           </Button>
         </div>
@@ -659,7 +659,7 @@ export function TaskManager({
                           // Add edit functionality here
                         }}
                       >
-                        <Edit className="h-4 w-4" />
+                        <Edit className="icon-sm" />
                       </Button>
                       <Button
                         variant="ghost"
@@ -667,7 +667,7 @@ export function TaskManager({
                         className="task-action-button task-action-button-destructive h-9 w-9 rounded-lg shadow-sm flex items-center justify-center"
                         onClick={() => onDeleteTask(task.id)}
                       >
-                        <Trash2 className="h-4 w-4" />
+                        <Trash2 className="icon-sm" />
                       </Button>
                     </div>
                   </div>
@@ -706,7 +706,7 @@ export function TaskManager({
                         color: "var(--color-primary-foreground)",
                       }}
                     >
-                      <Flag className="h-3 w-3 mr-1" />
+                      <Flag className="icon-xs icon-gap-sm" />
                       {task.priority.toUpperCase()}
                     </Badge>
 
@@ -794,7 +794,7 @@ export function TaskManager({
                             color: "var(--color-primary-foreground)",
                           }}
                         >
-                          <CalendarIcon className="h-4 w-4" />
+                          <CalendarIcon className="icon-sm" />
                         </div>
                         <span className="font-semibold">
                           {isOverdue
@@ -823,7 +823,7 @@ export function TaskManager({
                             color: "var(--color-primary-foreground)",
                           }}
                         >
-                          <Clock className="h-4 w-4" />
+                          <Clock className="icon-sm" />
                         </div>
                         <span
                           className="font-semibold"
@@ -849,7 +849,7 @@ export function TaskManager({
                             color: "var(--color-primary-foreground)",
                           }}
                         >
-                          <BookOpen className="h-4 w-4" />
+                          <BookOpen className="icon-sm" />
                         </div>
                         <span
                           className="font-semibold"

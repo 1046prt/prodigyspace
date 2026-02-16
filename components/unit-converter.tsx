@@ -105,7 +105,7 @@ export function UnitConverter() {
     <Card className="unit-converter-card">
       <CardHeader className="unit-converter-header">
         <CardTitle className="unit-converter-title">
-          <Calculator className="calculator-icon h-5 w-5" />
+          <Calculator className="calculator-icon icon-md" />
           Unit Converter
         </CardTitle>
       </CardHeader>
@@ -126,13 +126,13 @@ export function UnitConverter() {
             <Select value={category} onValueChange={setCategory}>
               <SelectTrigger className="category-select">
                 {currentCategory &&
-                  React.createElement(currentCategory.icon, {
-                    className: `category-icon h-4 w-4`,
+                    React.createElement(currentCategory.icon, {
+                    className: `category-icon icon-sm`,
                     size: 16,
                   })}
                 <SelectValue />
               </SelectTrigger>
-              <SelectContent className="select-content">
+                  <SelectContent className="select-content">
                 {unitCategories.map((cat) => (
                   <SelectItem
                     key={cat.id}
@@ -140,7 +140,7 @@ export function UnitConverter() {
                     className="select-item"
                   >
                     {React.createElement(cat.icon, {
-                      className: `category-icon h-4 w-4 mr-2`,
+                      className: `category-icon icon-sm mr-2`,
                       size: 16,
                     })}
                     {cat.name}
