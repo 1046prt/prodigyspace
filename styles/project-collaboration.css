@@ -23,9 +23,7 @@
   background: transparent;
 }
 
-.icon-gap {
-  margin-right: 8px;
-}
+/* icon gap utility is centralized in styles/utilities/icons.css */
 
 .project-empty-icon {
   height: 48px;

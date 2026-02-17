@@ -1,0 +1,22 @@
+/* Portal and z-index helpers for popups and Radix components */
+[data-radix-portal] {
+  z-index: 9999 !important;
+}
+
+[data-state="open"][role="dialog"],
+[data-state="open"][data-slot="select-content"],
+[data-state="open"][data-slot="popover-content"],
+[data-state="open"][data-slot="dropdown-menu-content"] {
+  z-index: 9999 !important;
+}
+
+/* Ensure select dropdowns appear above everything */
+[data-slot="select-content"] {
+  z-index: 9999 !important;
+  position: fixed !important;
+}
+
+/* Fix for radix select viewport */
+[data-radix-select-viewport] {
+  z-index: 9999 !important;
+}

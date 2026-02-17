@@ -287,20 +287,7 @@
   filter: drop-shadow(0 1px 2px var(--empty__filter--36));
 }
 
-/* Small helpers used by StudyPlanner component */
-.icon-center {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.icon-gap {
-  margin-right: 8px;
-}
-
-.mb-4 {
-  margin-bottom: 1rem;
-}
+/* Small helpers moved to centralized utilities (styles/utilities/) */
 
 .empty-schedule p {
   margin-bottom: 1.25rem;

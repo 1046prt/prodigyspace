@@ -107,15 +107,4 @@
   margin-top: 0.5rem;
 }
 
-.icon-gap {
-  margin-right: 8px;
-}
-
-.icon-gap-sm {
-  margin-right: 4px;
-}
-
-/* Reuse centralized icon sizes if available; provide fallbacks */
-.icon-xs { width: 0.75rem; height: 0.75rem; }
-.icon-sm { width: 1rem; height: 1rem; }
-.icon-md { width: 1.5rem; height: 1.5rem; }
+/* Icon spacing and sizes are centralized in styles/utilities/icons.css */
