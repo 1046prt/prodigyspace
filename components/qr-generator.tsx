@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-import { Download, ImageIcon, Link as LinkIcon } from "lucide-react";
+import { Download, ImageIcon, Link as LinkIcon, QrCode, Copy, RefreshCw, Zap } from "lucide-react";
 import "@/styles/qr-generator.css";
 
 export function QrGenerator() {
@@ -107,52 +107,64 @@ export function QrGenerator() {
 
   return (
     <Card className="qr-generator-card">
-      <CardHeader>
-        <div className="qr-header">
-          <CardTitle className="qr-title">QR Code Generator</CardTitle>
-          <p className="qr-subtitle">Quickly generate high‑quality QR codes for URLs, text, or embedded images.</p>
+      <CardHeader className="qr-header-container">
+        <div className="qr-header-content">
+          <div className="qr-header-badge">
+            <QrCode className="badge-icon" />
+            <span>QR Generator</span>
+          </div>
+          <CardTitle className="qr-title">Generate QR Codes Instantly</CardTitle>
+          <p className="qr-subtitle">Create high-quality QR codes for URLs, text, or images. Customize size and format to your needs.</p>
         </div>
       </CardHeader>
       <CardContent>
         <div className="qr-grid">
           <div className="qr-controls">
-            <div className="qr-mode">
-              <label className="qr-mode-option">
-                <input
-                  type="radio"
-                  name="mode"
-                  checked={mode === "text"}
-                  onChange={() => setMode("text")}
-                />
-                Text / URL
-              </label>
-              <label className="qr-mode-option">
-                <input
-                  type="radio"
-                  name="mode"
-                  checked={mode === "image"}
-                  onChange={() => setMode("image")}
-                />
-                Image (embed)
-              </label>
+            {/* Mode Selection */}
+            <div className="qr-mode-section">
+              <h3 className="section-title">Content Type</h3>
+              <div className="qr-mode">
+                <label className="qr-mode-option">
+                  <input
+                    type="radio"
+                    name="mode"
+                    checked={mode === "text"}
+                    onChange={() => setMode("text")}
+                  />
+                  <span className="mode-icon"><LinkIcon className="w-4 h-4" /></span>
+                  <span>Text / URL</span>
+                </label>
+                <label className="qr-mode-option">
+                  <input
+                    type="radio"
+                    name="mode"
+                    checked={mode === "image"}
+                    onChange={() => setMode("image")}
+                  />
+                  <span className="mode-icon"><ImageIcon className="w-4 h-4" /></span>
+                  <span>Image (embed)</span>
+                </label>
+              </div>
             </div>
 
             <div className="input-group">
-              <Label className="input-label">Enter text or URL</Label>
+              <Label className="input-label">
+                <span className="label-text">Input</span>
+                <span className="label-hint">{mode === "text" ? "URL or text" : "Upload image"}</span>
+              </Label>
               <Input
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 placeholder={
                   mode === "text"
-                    ? "https://example.com or any text"
-                    : "Upload an image to embed"
+                    ? "https://example.com or any text..."
+                    : "Upload an image to embed..."
                 }
                 className="qr-input"
               />
             </div>
 
             <div className="file-upload">
-              <Label className="input-label">Or upload image</Label>
               <input
                 ref={fileRef}
                 type="file"
@@ -161,41 +173,51 @@ export function QrGenerator() {
                 className="file-input-hidden"
               />
               <Button variant="outline" onClick={() => fileRef.current?.click()} className="upload-btn">
-                Upload image
+                <ImageIcon className="w-4 h-4 mr-2" />
+                Upload Image
               </Button>
-              <div className="upload-hint">Supported: PNG, JPG, SVG — keep images small for embedding.</div>
+              <div className="upload-hint">PNG, JPG, SVG • Keep images small</div>
             </div>
 
-            <div className="size-row">
-              <div>
-                <Label className="input-label">Format</Label>
-                <div className="format-select">
-                  <label>
-                    <input type="radio" name="format" checked={format === "png"} onChange={() => setFormat("png")} /> PNG
-                  </label>
-                  <label>
-                    <input type="radio" name="format" checked={format === "svg"} onChange={() => setFormat("svg")} /> SVG
-                  </label>
+            <div className="settings-section">
+              <h3 className="section-title">Settings</h3>
+              <div className="size-row">
+                <div className="format-group">
+                  <Label className="input-label">Format</Label>
+                  <div className="format-select">
+                    <label className="format-option">
+                      <input type="radio" name="format" checked={format === "png"} onChange={() => setFormat("png")} /> 
+                      <span>PNG</span>
+                    </label>
+                    <label className="format-option">
+                      <input type="radio" name="format" checked={format === "svg"} onChange={() => setFormat("svg")} /> 
+                      <span>SVG</span>
+                    </label>
+                  </div>
                 </div>
-              </div>
 
-              <div className="size-control">
-                <Label className="input-label">Size</Label>
-                <div className="size-input-row">
-                  <input
-                    type="range"
-                    min={128}
-                    max={1024}
-                    value={size}
-                    onChange={(e) => setSize(Number(e.target.value))}
-                  />
-                  <div className="size-value">{size}px</div>
+                <div className="size-control">
+                  <div className="size-header">
+                    <Label className="input-label">Size</Label>
+                    <div className="size-value">{size}px</div>
+                  </div>
+                  <div className="size-input-row">
+                    <input
+                      type="range"
+                      min={128}
+                      max={1024}
+                      value={size}
+                      onChange={(e) => setSize(Number(e.target.value))}
+                      className="size-slider"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
 
             <div className="actions">
               <Button onClick={generateQr} className="btn-primary">
+                <Zap className="w-4 h-4 mr-2" />
                 Generate
               </Button>
               <Button
@@ -206,15 +228,17 @@ export function QrGenerator() {
                   setQrSvg(null);
                   setError(null);
                 }}
+                className="btn-secondary"
               >
+                <RefreshCw className="w-4 h-4 mr-2" />
                 Clear
               </Button>
-              <Button variant="outline" onClick={handleCopy} disabled={!qrDataUrl && !qrSvg}>
-                <Download className="h-4 w-4" />
-                Copy Data
+              <Button variant="outline" onClick={handleCopy} disabled={!qrDataUrl && !qrSvg} className="btn-secondary">
+                <Copy className="w-4 h-4 mr-2" />
+                Copy
               </Button>
-              <Button variant="default" onClick={handleDownload} disabled={!qrDataUrl && !qrSvg}>
-                <Download className="h-4 w-4" />
+              <Button variant="default" onClick={handleDownload} disabled={!qrDataUrl && !qrSvg} className="btn-download">
+                <Download className="w-4 h-4 mr-2" />
                 Download
               </Button>
             </div>
@@ -223,6 +247,10 @@ export function QrGenerator() {
           </div>
 
           <div className="qr-preview">
+            <div className="qr-preview-header">
+              <QrCode className="preview-title-icon" />
+              <h3 className="preview-title">Preview</h3>
+            </div>
             <div className="qr-preview-inner" role="img" aria-label="QR preview">
               {qrDataUrl ? (
                 // eslint-disable-next-line @next/next/no-img-element
@@ -230,15 +258,18 @@ export function QrGenerator() {
               ) : qrSvg ? (
                 <div className="qr-svg" dangerouslySetInnerHTML={{ __html: qrSvg }} />
               ) : (
-                <div className="qr-placeholder">Preview will appear here</div>
+                <div className="qr-placeholder">
+                  <QrCode className="placeholder-icon" />
+                  <p>Preview will appear here</p>
+                </div>
               )}
             </div>
             <div className="hint-row">
               <div className="hint-item">
-                <LinkIcon className="hint-icon" /> Encode URLs or short text
+                <LinkIcon className="hint-icon" /> URLs & text encoded instantly
               </div>
               <div className="hint-item">
-                <ImageIcon className="hint-icon" /> Embedding large images may fail
+                <ImageIcon className="hint-icon" /> Keep images small for best results
               </div>
             </div>
           </div>
