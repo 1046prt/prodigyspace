@@ -1,157 +1,157 @@
 # ProdigySpace | Student Productivity Hub
 
-A productivity application designed specifically for students. ProdigySpace helps you manage expenses, organize tasks, and stay productive throughout your academic journey.
+ProdigySpace is a lightweight, privacy-first productivity app made for students. It brings together tools you actually use every day and keeps everything stored locally in your browser so your data stays private and works offline.
 
-## Features
+What you'll find in ProdigySpace
 
-### Expense Tracker
+- Expense Tracker: add expenses, set categories and budgets, view simple charts, and export CSVs for backup or reporting.
+- Task & Todo Manager: create tasks with priorities, due dates, categories, and filter or sort to focus on what's important.
+- Sticky Notes: create colorful notes, position them on a board, resize and persist them across sessions for quick thoughts.
+- Pomodoro Timer & Focus Tools: built-in timer to structure study sessions and short-break reminders to keep focus and energy balanced.
+- Alarms & Reminders: set alarms and reminders for classes, deadlines, or personal routines.
+- Attendance Tracker: simple attendance logging for classes or study groups.
+- Collaboration & Study Groups: lightweight team tools for sharing tasks, notes, and coordinating study sessions.
+- Notes & Editor: rich note-taking with a focused editor for class notes and quick reference.
+- Expense Insights: visualizations and summaries to help you see where money goes over time.
+- Wellbeing Tools: mood tracker, meditation center, and hydration reminders to support healthy study habits.
+- Utility Tools: QR code generator, document scanner, unit converter, timezone converter, and other small utilities to save time.
+- Accessibility & Themes: mobile-friendly UI, light/dark themes, and PWA support so you can install the app on your device.
 
-- Track daily expenses with custom categories
-- Set and monitor budgets
-- Visual spending analytics with charts
-- CSV export functionality
-- Offline data storage
+Why this app
 
-### Task Management
+ProdigySpace aims to be simple, dependable, and private. There are no accounts, no cloud sync, and no tracking — just practical tools that work whether you're online or offline. The design focuses on reducing friction so you spend less time managing tools and more time studying.
 
-- Create and organize tasks with categories
-- Set priorities and due dates
-- Filter tasks by status and category
-- Progress tracking and completion statistics
-- Offline synchronization
+Features (detailed)
 
-### Sticky Notes
+- Expense Tracker
+	- Custom categories and tags
+	- Budgeting support and quick summaries
+	- CSV export for spreadsheets
+	- Local storage persistence and offline access
 
-- Create colorful sticky notes
-- Drag and drop interface
-- Resizable notes
-- Offline storage and persistence
-- Quick note-taking for ideas and reminders
+- Task & Todo Management
+	- Create, edit, and delete tasks
+	- Set priority, due dates, and completion status
+	- Filter by category, date, or status
+	- Quick bulk actions and completion statistics
 
-### Student-Focused Design
+- Sticky Notes & Board
+	- Create resizable sticky notes
+	- Drag-and-drop board for organizing ideas
+	- Color labels and quick editing
+	- Persisted to local storage
 
-- Clean, distraction-free interface
-- Dark and light theme support
-- Mobile-responsive design
-- PWA support for native app experience
-- Completely offline functionality
+- Focus & Wellbeing
+	- Pomodoro-style timer with configurable intervals
+	- Mood tracking and meditation center
+	- Hydration reminders / water tracker
 
-## Getting Started
+- Collaboration & Study Groups
+	- Simple group workspace for sharing tasks and notes
+	- Lightweight sync within groups (local-first design)
 
-### Prerequisites
+- Utilities & Tools
+	- QR code generation for sharing links or notes
+	- Document scanning / quick capture
+	- Unit and timezone converters
+	- Calculator and other small helpers
 
-- Node.js 18+
-- npm or yarn
+Data & Privacy
 
-### Installation
+- All data is stored locally in your browser using LocalStorage. Your data stays on your device.
+- Offline-first: the app works without a network connection.
 
-**1. Clone the repository:**
+Quick start
 
- ```bash
-   git clone https://github.com/1046prt/prodigyspace.git
-   cd prodigyspace
+Prerequisites: Node.js 18+ and either `npm` or `yarn`.
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/1046prt/prodigyspace.git
+cd prodigyspace
 ```
 
-**2. Install dependencies:**
+2. Install dependencies:
 
-  ```bash
-   npm install
+```bash
+npm install
+# or: yarn
 ```
 
-## or
+3. Run the development server:
 
-yarn install
-\`\`\`
+```bash
+npm run dev
+# or: yarn dev
+```
 
-**3. Run the development server:**
-   \`\`\`bash
-   npm run dev
+Then open http://localhost:3000 in your browser.
 
-**or**
-yarn dev
-\`\`\`
+Quick start
 
-**4. Open [http://localhost:3000](http://localhost:3000) in your browser.**
+Prerequisites: Node.js 18+ and either `npm` or `yarn`.
 
-### Building for Production
+1. Clone the repository:
 
-\`\`\`bash
+```bash
+git clone https://github.com/1046prt/prodigyspace.git
+cd prodigyspace
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+# or: yarn
+```
+
+3. Run the development server:
+
+```bash
+npm run dev
+# or: yarn dev
+```
+
+Then open http://localhost:3000 in your browser.
+
+Build for production
+
+```bash
 npm run build
 npm start
-\`\`\`
+```
 
-## PWA Installation
+Technology highlights
 
-ProdigySpace can be installed as a Progressive Web App (PWA) on your device:
+- Next.js 14 (App Router)
+- Tailwind CSS and shadcn/ui for UI components
+- Recharts for charts and visualizations
+- next-themes for theme control
+- LocalStorage for offline-first data storage
+- PWA support via a service worker
 
-1. Open the app in your browser
-2. Look for the "Install" prompt or use your browser's install option
-3. Follow the installation prompts
-4. Access prodigyspace from your home screen like a native app
+Contributing
 
-## Technology Stack
+Contributions are welcome. A simple workflow:
 
-- **Framework**: Next.js 14 with App Router
-- **Styling**: Tailwind CSS
-- **UI Components**: shadcn/ui
-- **Icons**: Lucide React
-- **Charts**: Recharts
-- **Theme**: next-themes
-- **Storage**: Local Storage (offline-first)
-- **PWA**: Service Worker with offline caching
+1. Fork the repo and create a branch for your feature
+2. Make your changes and run the tests (`npm test`)
+3. Commit, push, and open a pull request
 
-## Data Storage
+See the `CONTRIBUTING.md` file for details.
 
-All data is stored locally in your browser using localStorage, ensuring:
+Reporting bugs and requesting features
 
-- Complete offline functionality
-- Privacy - your data never leaves your device
-- Fast performance
-- No account required
+Please open an issue on GitHub and include:
 
-## Customization
-
-### Themes
-
-prodigyspace supports both light and dark themes that automatically adapt to your system preferences or can be manually toggled.
-
-### Categories
-
-Customize expense and task categories to match your specific needs and workflow.
-
-## Contributing
-
-We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details.
-
-### Development Setup
-
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature/amazing-feature`
-3. Make your changes
-4. Run tests: `npm test`
-5. Commit your changes: `git commit -m 'Add amazing feature'`
-6. Push to the branch: `git push origin feature/amazing-feature`
-7. Open a Pull Request
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Bug Reports
-
-If you encounter any bugs or issues, please [open an issue](https://github.com/1046prt/prodigyspace/issues) with:
-
-- A clear description of the problem
-- Steps to reproduce
+- A clear description of the problem or idea
+- Steps to reproduce (if reporting a bug)
 - Expected vs actual behavior
-- Screenshots if applicable
+- Screenshots if useful
 
-## Feature Requests
+License
 
-Have an idea for a new feature? We'd love to hear it! [Open a feature request](https://github.com/1046prt/prodigyspace/issues) and describe:
+This project is released under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-- The feature you'd like to see
-- Why it would be useful
-- How you envision it working
-
----
+If you'd like, I can also tidy up the contributing section or add a short development checklist. 
