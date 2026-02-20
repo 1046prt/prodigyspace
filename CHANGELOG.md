@@ -5,6 +5,32 @@ All notable changes to ProdigySpace will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+
+- 🔳 QR Code Generator Utility
+  - Generate QR codes from text, URLs, and images
+  - Support for multiple formats (PNG and SVG)
+  - Customizable QR code size (128-1024px)
+  - Image embedding capability for branding
+  - Copy to clipboard functionality
+  - Download QR codes as PNG or SVG files
+  - Real-time preview with format switching
+
+### Improved
+
+- Enhanced code quality with consistent linting standards
+- Optimized build process with successful compilation
+- Improved CSS organization using external stylesheets throughout components
+
+### Fixed
+
+- Build and lint validation passes successfully
+- All ESLint warnings and errors resolved
+
+---
+
 ## [1.0.0] - 2024-01-20
 
 ### Added
