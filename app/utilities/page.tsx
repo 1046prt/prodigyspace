@@ -429,7 +429,7 @@ export default function UtilitiesPage() {
                     System Information
                   </CardTitle>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="system-info-card">
                   <div className="system-info-grid">
                     <div className="system-info-item">
                       <span className="system-info-label">Browser:</span>
