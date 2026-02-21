@@ -17,6 +17,8 @@ import {
   Globe,
   Wifi,
   Monitor,
+  Cpu,
+  Clipboard,
 } from "lucide-react";
 import { UnitConverter } from "@/components/unit-converter";
 import { Calculator } from "@/components/calculator";
@@ -160,6 +162,19 @@ export default function UtilitiesPage() {
       ? getTimeSystemInfo()
       : { timezone: "Unknown", language: "Unknown" }),
   };
+
+  const [copiedKey, setCopiedKey] = useState<string | null>(null);
+
+  const systemItems = [
+    { key: "browser", label: "Browser", value: systemInfo.browser, icon: Monitor },
+    { key: "platform", label: "Platform", value: systemInfo.platform, icon: Cpu },
+    { key: "language", label: "Language", value: systemInfo.language, icon: Globe },
+    { key: "cookiesEnabled", label: "Cookies", value: systemInfo.cookiesEnabled ? "Enabled" : "Disabled", icon: FileText },
+    { key: "onlineStatus", label: "Online", value: systemInfo.onlineStatus ? "Online" : "Offline", icon: Wifi },
+    { key: "screenResolution", label: "Screen", value: systemInfo.screenResolution, icon: Monitor },
+    { key: "colorDepth", label: "Color Depth", value: `${systemInfo.colorDepth} bit`, icon: Palette },
+    { key: "timezone", label: "Timezone", value: systemInfo.timezone, icon: Clock },
+  ];
 
   // UTC offset label not currently used in UI — keep function available if needed later
   // const utcOffsetLabel = (() => {
@@ -431,54 +446,38 @@ export default function UtilitiesPage() {
                 </CardHeader>
                 <CardContent className="system-info-card">
                   <div className="system-info-grid">
-                    <div className="system-info-item">
-                      <span className="system-info-label">Browser:</span>
-                      <span className="system-info-value">
-                        {systemInfo.browser}
-                      </span>
-                    </div>
-                    <div className="system-info-item">
-                      <span className="system-info-label">Platform:</span>
-                      <span className="system-info-value">
-                        {systemInfo.platform}
-                      </span>
-                    </div>
-                    <div className="system-info-item">
-                      <span className="system-info-label">Language:</span>
-                      <span className="system-info-value">
-                        {systemInfo.language}
-                      </span>
-                    </div>
-                    <div className="system-info-item">
-                      <span className="system-info-label">Cookies:</span>
-                      <span className="system-info-value">
-                        {systemInfo.cookiesEnabled ? "Enabled" : "Disabled"}
-                      </span>
-                    </div>
-                    <div className="system-info-item">
-                      <span className="system-info-label">Online:</span>
-                      <span className="system-info-value">
-                        {systemInfo.onlineStatus ? "Yes" : "No"}
-                      </span>
-                    </div>
-                    <div className="system-info-item">
-                      <span className="system-info-label">Screen:</span>
-                      <span className="system-info-value">
-                        {systemInfo.screenResolution}
-                      </span>
-                    </div>
-                    <div className="system-info-item">
-                      <span className="system-info-label">Color Depth:</span>
-                      <span className="system-info-value">
-                        {systemInfo.colorDepth} bit
-                      </span>
-                    </div>
-                    <div className="system-info-item">
-                      <span className="system-info-label">Timezone:</span>
-                      <span className="system-info-value">
-                        {systemInfo.timezone}
-                      </span>
-                    </div>
+                    {systemItems.map((item) => {
+                      const Icon = item.icon as any;
+                      return (
+                        <div key={item.key} className="system-info-item">
+                          <div className="system-info-left">
+                            <Icon className="system-info-icon" />
+                            <span className="system-info-label">{item.label}</span>
+                          </div>
+
+                          <div className="system-info-right">
+                            <span className="system-info-value">{item.value}</span>
+                            <Button
+                              size="sm"
+                              variant="ghost"
+                              className="system-info-copy"
+                              onClick={() => {
+                                if (typeof navigator !== "undefined" && navigator.clipboard) {
+                                  navigator.clipboard.writeText(String(item.value));
+                                }
+                                setCopiedKey(item.key);
+                                setTimeout(() => setCopiedKey(null), 1800);
+                              }}
+                            >
+                              <Clipboard className="h-4 w-4" />
+                            </Button>
+                            {copiedKey === item.key && (
+                              <span className="copy-indicator">Copied!</span>
+                            )}
+                          </div>
+                        </div>
+                      );
+                    })}
                   </div>
                 </CardContent>
               </Card>

@@ -1140,14 +1140,52 @@
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  padding: 8px;
-  border-radius: 8px;
+  padding: 8px 10px;
+  border-radius: 10px;
   transition: background 0.15s ease-in-out, transform 0.12s ease;
 }
 
 .system-info-item:hover {
   background: color-mix(in srgb, var(--color-primary-500) 6%, transparent);
   transform: translateY(-2px);
+}
+
+.system-info-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.system-info-icon {
+  background: color-mix(in srgb, var(--color-primary-500) 14%, transparent);
+  color: var(--icon__txt--16);
+  padding: 6px;
+  border-radius: 8px;
+  width: 34px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.system-info-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.system-info-copy {
+  padding: 6px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.copy-indicator {
+  font-size: 0.75rem;
+  color: var(--color-primary-600);
+  margin-left: 6px;
 }
 
 .system-info-label {
