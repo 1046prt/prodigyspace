@@ -64,15 +64,13 @@ export default function HomePage() {
       new Date(task.dueDate) < new Date()
   ).length;
 
-  const totalStudyTime = meditationSessions.reduce(
-    (sum, session) => sum + session.duration,
-    0
-  );
-  const averageMood =
-    moodEntries.length > 0
-      ? moodEntries.reduce((sum, entry) => sum + entry.mood, 0) /
-        moodEntries.length
-      : 0;
+  const totalStudyTime = Array.isArray(meditationSessions)
+    ? meditationSessions.reduce((sum, session) => sum + (session?.duration || 0), 0)
+    : 0;
+
+  const averageMood = Array.isArray(moodEntries) && moodEntries.length > 0
+    ? moodEntries.reduce((sum, entry) => sum + (entry?.mood || 0), 0) / moodEntries.length
+    : 0;
 
   const upcomingTasks = tasks
     .filter((task) => task.dueDate && task.status !== "completed")
